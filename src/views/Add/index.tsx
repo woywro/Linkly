@@ -1,7 +1,12 @@
 import { Input } from "../../components/Input";
+import { addLink } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+
 export const Add = () => {
+  const dispatch = useDispatch();
+
   const handleAdd = () => {
-    console.log("add");
+    dispatch(addLink({ name: "aa", url: "ddd", tags: ["acc", "dsd"] }));
   };
 
   return (

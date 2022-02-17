@@ -6,6 +6,8 @@ import { Modal } from "../components/Modal";
 import { useState } from "react";
 import { Add } from "../views/Add";
 import { useRouter } from "next/router";
+import { Provider } from "react-redux";
+import store from "../redux/store";
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -34,24 +36,26 @@ const theme = {
 export default function App({ Component, pageProps }) {
   const router = useRouter();
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Wrapper>
-        <ViewBox>
-          <Modal
-            open={router.pathname == "/add" ? true : false}
-            onClose={() => {
-              router.push("/");
-            }}
-          >
-            <Add />
-          </Modal>
-          <NavBar />
-          <Component {...pageProps} />
-          <div id="portal" />
-        </ViewBox>
-      </Wrapper>
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Wrapper>
+          <ViewBox>
+            <Modal
+              open={router.pathname == "/add" ? true : false}
+              onClose={() => {
+                router.push("/");
+              }}
+            >
+              <Add />
+            </Modal>
+            <NavBar />
+            <Component {...pageProps} />
+            <div id="portal" />
+          </ViewBox>
+        </Wrapper>
+      </ThemeProvider>
+    </Provider>
   );
 }
 const Wrapper = styled.div`
