@@ -48,6 +48,7 @@ export default function App({ Component, pageProps }) {
           </Modal>
           <NavBar />
           <Component {...pageProps} />
+          <div id="portal" />
         </ViewBox>
       </Wrapper>
     </ThemeProvider>
