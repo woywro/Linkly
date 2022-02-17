@@ -5,6 +5,9 @@ import {
   RiChat1Line,
   RiLayoutGridLine,
   RiNotification4Line,
+  RiFolder5Line,
+  RiFolder5Fill,
+  RiAddCircleLine,
   RiBookReadLine,
 } from "react-icons/ri";
 import { useRouter } from "next/router";
@@ -50,9 +53,11 @@ export const NavBar = () => {
   return (
     <Container>
       <Links>
-        <Item isActive={router.pathname == "/" ? true : false}>
-          <RiLayoutGridLine />
-        </Item>
+        <Link href={`/add`} as={`/add`} passHref>
+          <Item isActive={false}>
+            <RiAddCircleLine />
+          </Item>
+        </Link>
         <Link href="/" passHref>
           <Item isActive={router.pathname == "/" ? true : false}>
             <RiLayoutGridLine />
@@ -60,7 +65,7 @@ export const NavBar = () => {
         </Link>
         <Link href="/folders" passHref>
           <Item isActive={router.pathname == "/folders" ? true : false}>
-            <RiNotification4Line />
+            <RiFolder5Line />
           </Item>
         </Link>
       </Links>

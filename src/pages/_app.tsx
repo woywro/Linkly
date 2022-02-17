@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { NavBar } from "../components/NavBar";
 import { Modal } from "../components/Modal";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -30,20 +31,20 @@ const theme = {
 
 export default function App({ Component, pageProps }) {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <Wrapper>
         <ViewBox>
-          <button onClick={() => setIsOpen(true)}>op</button>
           <Modal
-            open={isOpen}
+            open={router.pathname == "/add" ? true : false}
             onClose={() => {
-              setIsOpen(false);
+              router.push("/");
             }}
           >
-            <div>s</div>
-            <div>s</div>
+            <div>addds</div>
+            <div>ewews</div>
           </Modal>
           <NavBar />
           <Component {...pageProps} />
