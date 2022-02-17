@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { createPortal } from "react-dom";
+import { RiCloseCircleLine } from "react-icons/ri";
 
 const Overlay = styled.div`
   position: fixed;
@@ -20,6 +21,18 @@ const StyledModal = styled.div`
   background-color: #fff;
   padding: 50px;
   z-index: 1000;
+  border-radius: 20px;
+`;
+
+const CloseButton = styled.button`
+  background: none;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  top: 0;
+  right: 0;
+  position: absolute;
 `;
 
 interface Props {
@@ -33,7 +46,9 @@ export const Modal = ({ open, onClose, children }: Props) => {
   return createPortal(
     <Overlay>
       <StyledModal>
-        <button onClick={onClose}>close</button>
+        <CloseButton>
+          <RiCloseCircleLine onClick={onClose} />
+        </CloseButton>
         {children}
       </StyledModal>
     </Overlay>,

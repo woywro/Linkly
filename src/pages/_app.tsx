@@ -4,6 +4,7 @@ import { ThemeProvider } from "styled-components";
 import { NavBar } from "../components/NavBar";
 import { Modal } from "../components/Modal";
 import { useState } from "react";
+import { Add } from "../views/Add";
 import { useRouter } from "next/router";
 
 const GlobalStyles = createGlobalStyle`
@@ -12,6 +13,7 @@ const GlobalStyles = createGlobalStyle`
   margin: 0;
   padding: 0;
   outline: 0;
+  font-family: 'Lato', sans-serif;
 }
 `;
 
@@ -30,7 +32,6 @@ const theme = {
 };
 
 export default function App({ Component, pageProps }) {
-  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
   return (
     <ThemeProvider theme={theme}>
@@ -43,8 +44,7 @@ export default function App({ Component, pageProps }) {
               router.push("/");
             }}
           >
-            <div>addds</div>
-            <div>ewews</div>
+            <Add />
           </Modal>
           <NavBar />
           <Component {...pageProps} />
