@@ -6,21 +6,23 @@ const StyledSuggestions = styled.ul`
   list-style: none;
   max-height: 150px;
   overflow-y: auto;
-  padding-left: 0;
-  width: calc(300px + 1rem);
+  width: 100%;
   position: absolute;
   bottom: 0;
   right: 0;
   background: ${(props) => props.theme.colors.background};
 `;
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-flow: row;
-  padding: 10px;
+  border: none;
   position: relative;
-  border-bottom: 1px solid black;
+  background: #e2e7f3;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-size: 15px;
+  width: 100%;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const ChoosenList = styled.ul`
@@ -45,6 +47,12 @@ const StyledInput = styled.input`
   background: none;
 `;
 
+const Suggestion = styled.li`
+  font-weight: ${(props) => (props.type == "tag" ? "normal" : "bold")};
+  cursor: pointer;
+  padding: 5px;
+`;
+
 export const AutoComplete = ({ suggestions, setTags }) => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
@@ -52,16 +60,16 @@ export const AutoComplete = ({ suggestions, setTags }) => {
   const [input, setInput] = useState("");
   const [ChoosenElements, setChoosenElements] = useState([]);
 
-  useEffect(() => {
-    setTags(ChoosenElements);
-  }, [ChoosenElements]);
+  // useEffect(() => {
+  //   setTags(ChoosenElements);
+  // }, [ChoosenElements]);
 
   const onChange = (e) => {
     const userInput = e.target.value;
 
     const unLinked = suggestions.filter(
       (suggestion) =>
-        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
 
     setInput(e.target.value);
@@ -86,11 +94,15 @@ export const AutoComplete = ({ suggestions, setTags }) => {
   const SuggestionsListComponent = () => {
     return filteredSuggestions.length ? (
       <StyledSuggestions>
-        {filteredSuggestions.map((suggestion, index) => {
+        {filteredSuggestions.map((suggestion) => {
           return (
-            <li key={suggestion} onClick={onClick}>
-              {suggestion}
-            </li>
+            <Suggestion
+              key={suggestion}
+              onClick={onClick}
+              type={suggestion.type}
+            >
+              {suggestion.name}
+            </Suggestion>
           );
         })}
       </StyledSuggestions>

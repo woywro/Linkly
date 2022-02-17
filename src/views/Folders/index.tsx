@@ -1,3 +1,8 @@
+import { FolderList } from "./components/FolderList";
 export const Folders = () => {
-  return <div></div>;
+  return (
+    <>
+      <FolderList />
+    </>
+  );
 };

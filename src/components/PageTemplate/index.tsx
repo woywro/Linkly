@@ -12,6 +12,12 @@ const Title = styled.div`
   font-weight: bold;
 `;
 
+const ChildrenWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+`;
+
 interface Props {
   title: string;
   children: JSX.Element;
@@ -21,7 +27,7 @@ export const PageTemplate = ({ title, children }: Props) => {
   return (
     <Container>
       <Title>{title}</Title>
-      {children}
+      <ChildrenWrapper>{children}</ChildrenWrapper>
     </Container>
   );
 };

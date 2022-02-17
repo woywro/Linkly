@@ -3,6 +3,18 @@ import { addLink } from "../../redux/actions";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { AutoComplete } from "../../components/Autocomplete";
+import styled from "styled-components";
+import { Button } from "../../components/Button";
+import { Text } from "../../components/Text";
+
+const Container = styled.div`
+  height: 300px;
+  width: 300px;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: column;
+  align-items: center;
+`;
 
 export const Add = () => {
   const [name, setName] = useState("");
@@ -17,7 +29,8 @@ export const Add = () => {
   };
 
   return (
-    <div>
+    <Container>
+      <Text size="big">Create Link</Text>
       <Input
         placeholder="name"
         onChange={(e) => {
@@ -31,22 +44,17 @@ export const Add = () => {
         }}
       />
       <AutoComplete
-        tags={tags}
         setTags={setTags}
         suggestions={[
-          "Alligator",
-          "Bask",
-          "Crocodilian",
-          "Death Roll",
-          "Eggs",
-          "Jaws",
-          "Reptile",
-          "Solitary",
-          "Tail",
-          "Wetlands",
+          { name: "social media", type: "category" },
+          { name: "video", type: "category" },
+          { name: "school", type: "category" },
+          { name: "facebook", type: "tag" },
+          { name: "youtube", type: "tag" },
+          { name: "work", type: "category" },
         ]}
       />
-      <button onClick={handleAdd}>add</button>
-    </div>
+      <Button onClick={handleAdd}>add</Button>
+    </Container>
   );
 };
