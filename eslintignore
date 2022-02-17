@@ -1,0 +1,9 @@
+node_modules
+backend/**/build
+frontend/**/build
+backend/**/node_modules
+frontend/**/node_modules
+bazel-out
+dist
+frontend/**/*.svg
+**/tests/assets/*
