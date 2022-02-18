@@ -19,12 +19,15 @@ export const FolderList = () => {
     const categories: string[] = [];
     Links.map((e) => {
       e.tags.map((x) => {
-        categories.push(x);
+        if (x.type == "category") {
+          categories.push(x);
+        }
       });
     });
     const uniqueCategories = [...new Set(categories)];
     setCategories(uniqueCategories);
   };
+
   useEffect(() => {
     generateCategories();
   }, []);

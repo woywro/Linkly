@@ -7,15 +7,14 @@ const Container = styled.div`
   height: 100%;
   padding: 30px;
 `;
-const Title = styled.div`
+const Title = styled.h1`
   font-size: 36px;
-  font-weight: bold;
 `;
 
 const ChildrenWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 20px;
+  padding: 30px;
 `;
 
 interface Props {

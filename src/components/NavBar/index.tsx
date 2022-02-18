@@ -27,7 +27,7 @@ const Container = styled.nav`
 const Item = styled.a<{ isActive?: boolean }>`
   text-decoration: none;
   color: black;
-  padding: 5px;
+  padding: 10px;
   font-size: 24px;
   display: flex;
   justify-content: center;
@@ -35,7 +35,7 @@ const Item = styled.a<{ isActive?: boolean }>`
   ${({ isActive }) =>
     isActive &&
     css`
-      background: red;
+      background: ${(props) => props.theme.colors.background};
       border-radius: 20px;
     `}
 `;
@@ -54,7 +54,7 @@ export const NavBar = () => {
     <Container>
       <Links>
         <Link href={`/add`} as={`/add`} passHref>
-          <Item isActive={false}>
+          <Item isActive={router.pathname == "/add" ? true : false}>
             <RiAddCircleLine />
           </Item>
         </Link>
