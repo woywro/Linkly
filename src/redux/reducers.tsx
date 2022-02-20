@@ -62,6 +62,7 @@ export const Links = (state = initialState, action) => {
           name: action.payload.link.name,
           url: action.payload.link.url,
           tags: action.payload.link.tags,
+          color: action.payload.link.color,
         },
       ];
     }

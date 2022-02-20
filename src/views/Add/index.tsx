@@ -6,6 +6,7 @@ import { AutoComplete } from "../../components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { Text } from "../../components/Text";
+import { ColorChoice } from "./components/ColorChoice";
 
 const Container = styled.div`
   height: 300px;
@@ -20,11 +21,12 @@ export const Add = () => {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState("");
+  const [color, setColor] = useState("");
 
   const dispatch = useDispatch();
 
   const handleAdd = () => {
-    dispatch(addLink({ name: name, url: url, tags: tags }));
+    dispatch(addLink({ name: name, url: url, tags: tags, color: color }));
     console.log(tags);
   };
 
@@ -53,6 +55,7 @@ export const Add = () => {
           { name: "work", type: "category" },
         ]}
       />
+      <ColorChoice setColor={setColor} color={color} />
       <Button onClick={handleAdd}>add</Button>
     </Container>
   );
