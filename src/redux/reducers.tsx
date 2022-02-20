@@ -3,7 +3,7 @@ const initialState = [
   {
     name: "facebook profile",
     id: 123402,
-    url: "facebook.com",
+    url: "https://www.facebook.com/",
     tags: ["facebook", "profile", "social"],
     color: "#ffd230",
   },
@@ -19,6 +19,13 @@ const initialState = [
     id: 330299,
     url: "youtube.com",
     tags: ["video", "youtube"],
+    color: "#ffd230",
+  },
+  {
+    name: "portal studenta",
+    id: 386399,
+    url: "xyz.pl",
+    tags: ["education", "school"],
     color: "#ffd230",
   },
 ];

@@ -31,10 +31,11 @@ interface Props {
   col: string;
   row: string;
   bg: string;
-  children: JSX.Element;
+  children: JSX.Element[];
+  onClick: () => void;
 }
 
-export const ListItem = ({ title, col, row, bg, children }: Props) => {
+export const ListItem = ({ title, col, row, bg, children, onClick }: Props) => {
   const backgrounds = [
     "white",
     "radial-gradient(#76b2fe, #b69efe)",
@@ -45,7 +46,12 @@ export const ListItem = ({ title, col, row, bg, children }: Props) => {
   ];
 
   return (
-    <StyledListItem column={col} row={row} bg={backgrounds[bg]}>
+    <StyledListItem
+      column={col}
+      row={row}
+      bg={backgrounds[bg]}
+      onClick={onClick}
+    >
       <Text size="big" color="white">
         {title}
       </Text>

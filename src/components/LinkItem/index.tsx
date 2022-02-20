@@ -4,6 +4,7 @@ import { generateHistory } from "../../utils/generateHistory";
 import { useEffect } from "react";
 import { updateHistory } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { LinkInterface } from "../../types/LinkInterface";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,21 +18,25 @@ const Wrapper = styled.div`
   margin: 5px;
   cursor: pointer;
 `;
+interface Props {
+  item: LinkInterface;
+}
 
-export const Link = ({ item }) => {
+export const LinkItem = ({ item }: Props) => {
   const dispatch = useDispatch();
   const History = useSelector((state) => state.history);
 
-  const handleOnClick = (item) => {
+  const handleOnClick = (item: LinkInterface) => {
     console.log(item);
     dispatch(updateHistory(item));
     console.log(History);
+    window.open(item.url, "_blank");
   };
 
   return (
     <Wrapper onClick={() => handleOnClick(item)}>
       <Text bold>{item.name}</Text>
-      <Text>{item.url}</Text>
+      <Text size="small">{item.url}</Text>
     </Wrapper>
   );
 };

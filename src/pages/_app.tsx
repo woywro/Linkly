@@ -8,6 +8,7 @@ import { Add } from "../views/Add";
 import { useRouter } from "next/router";
 import { Provider } from "react-redux";
 import store from "../redux/store";
+import { LinksModal } from "../views/HomePage/components/LinksModal";
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -48,6 +49,14 @@ export default function App({ Component, pageProps }) {
               }}
             >
               <Add />
+            </Modal>
+            <Modal
+              open={router.pathname == "/links" ? true : false}
+              onClose={() => {
+                router.push("/");
+              }}
+            >
+              <LinksModal />
             </Modal>
             <NavBar />
             <Component {...pageProps} />
