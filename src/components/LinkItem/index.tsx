@@ -32,7 +32,7 @@ export const LinkItem = ({ item, color }: Props) => {
     console.log(item);
     dispatch(updateHistory(item));
     console.log(History);
-    window.open(item.url, "_blank");
+    // window.open(item.url, "_blank");
   };
 
   return (

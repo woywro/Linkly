@@ -8,7 +8,7 @@ const Wrapper = styled.ul`
   align-items: center;
   flex-flow: column;
   width: 100%;
-  max-height: 200px;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 `;

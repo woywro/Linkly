@@ -23,6 +23,12 @@ const StyledModal = styled.div`
   padding: 50px;
   z-index: 1000;
   border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 500px;
+  height: 500px;
 `;
 
 const CloseButton = styled.button`

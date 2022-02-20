@@ -8,27 +8,6 @@ const initialState = [
     color: "#ffd230",
   },
   {
-    name: "facebook profile",
-    id: 123402,
-    url: "https://www.facebook.com/",
-    tags: ["facebook", "profile", "social"],
-    color: "#ffd230",
-  },
-  {
-    name: "facebook profile",
-    id: 123402,
-    url: "https://www.facebook.com/",
-    tags: ["facebook", "profile", "social"],
-    color: "#ffd230",
-  },
-  {
-    name: "facebook profile",
-    id: 123402,
-    url: "https://www.facebook.com/",
-    tags: ["facebook", "profile", "social"],
-    color: "#ffd230",
-  },
-  {
     name: "instagram profile",
     id: 103978,
     url: "instagram.com",
@@ -76,10 +55,8 @@ export const Links = (state = initialState, action) => {
 export const History = (state = initialHistory, action) => {
   switch (action.type) {
     case "UPDATE_HISTORY": {
-      const newHistory = [
-        { id: action.payload.link.id, time: Date.now() },
-        ...state,
-      ];
+      const newObj = { id: action.payload.link.id, time: Date.now() };
+      const newHistory = [newObj, ...state];
       return newHistory;
     }
     default: {

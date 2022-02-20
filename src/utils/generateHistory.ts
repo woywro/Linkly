@@ -3,7 +3,9 @@ export const generateHistory = (Links, History) => {
   Links.map((e) => {
     History.map((x) => {
       if (e.id == x.id) {
-        recentLinks.push(e);
+        const obj = JSON.parse(JSON.stringify(e));
+        obj.time = x.time;
+        recentLinks.push(obj);
       }
     });
   });

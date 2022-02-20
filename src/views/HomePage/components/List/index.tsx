@@ -8,6 +8,7 @@ import { Modal } from "../../../../components/Modal";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { LinkItem } from "../../../../components/LinkItem";
+import { Text } from "../../../../components/Text";
 const StyledList = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -41,7 +42,7 @@ export const List = () => {
         })}
       </ListItem>
       <Link href={`/links`} as={`/links`} passHref>
-        <ListItem title={"All links"} col={"4/5"} row={"1"} bg="4"></ListItem>
+        <ListItem title={"All links"} col={"4/5"} row={"1"} bg="4" />
       </Link>
       <ListItem title={"ccc"} col={"4/5"} row={"2"} bg="5" />
     </StyledList>
