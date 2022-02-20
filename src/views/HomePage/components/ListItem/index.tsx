@@ -35,31 +35,6 @@ interface Props {
 }
 
 export const ListItem = ({ title, col, row, bg, children }: Props) => {
-  const History = useSelector((state) => state.history);
-  const Links = useSelector((state) => state.links);
-  const [history, setHistory] = useState([]);
-
-  const generateHistoryLinks = () => {
-    console.log(History);
-    const recentLinks = [];
-    Links.map((e) => {
-      History.map((x) => {
-        if (e.id == x) {
-          recentLinks.push(e);
-        }
-      });
-    });
-    setHistory(recentLinks);
-  };
-
-  useEffect(() => {
-    generateHistoryLinks();
-  }, []);
-
-  useEffect(() => {
-    console.log(history);
-  }, [history]);
-
   const backgrounds = [
     "white",
     "radial-gradient(#76b2fe, #b69efe)",

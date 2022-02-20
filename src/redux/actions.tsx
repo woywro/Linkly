@@ -6,3 +6,9 @@ export const addLink = (link: LinkInterface) => ({
     link,
   },
 });
+export const updateHistory = (link: LinkInterface) => ({
+  type: "UPDATE_HISTORY",
+  payload: {
+    link,
+  },
+});

@@ -23,7 +23,7 @@ const initialState = [
   },
 ];
 
-const initialHistory = ["330299", "123402"];
+const initialHistory = [];
 
 export const Links = (state = initialState, action) => {
   switch (action.type) {
@@ -47,9 +47,12 @@ export const Links = (state = initialState, action) => {
 export const History = (state = initialHistory, action) => {
   switch (action.type) {
     case "UPDATE_HISTORY": {
-      return [...state, action.payload.history];
+      const newHistory = [
+        { id: action.payload.link.id, time: Date.now() },
+        ...state,
+      ];
+      return newHistory;
     }
-
     default: {
       return state;
     }
