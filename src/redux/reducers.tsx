@@ -8,6 +8,27 @@ const initialState = [
     color: "#ffd230",
   },
   {
+    name: "facebook profile",
+    id: 123402,
+    url: "https://www.facebook.com/",
+    tags: ["facebook", "profile", "social"],
+    color: "#ffd230",
+  },
+  {
+    name: "facebook profile",
+    id: 123402,
+    url: "https://www.facebook.com/",
+    tags: ["facebook", "profile", "social"],
+    color: "#ffd230",
+  },
+  {
+    name: "facebook profile",
+    id: 123402,
+    url: "https://www.facebook.com/",
+    tags: ["facebook", "profile", "social"],
+    color: "#ffd230",
+  },
+  {
     name: "instagram profile",
     id: 103978,
     url: "instagram.com",

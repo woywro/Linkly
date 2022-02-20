@@ -30,7 +30,6 @@ export const Add = () => {
 
   return (
     <Container>
-      <Text size="big">Create Link</Text>
       <Input
         placeholder="name"
         onChange={(e) => {

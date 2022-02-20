@@ -43,6 +43,7 @@ export default function App({ Component, pageProps }) {
         <Wrapper>
           <ViewBox>
             <Modal
+              title={"Add Link"}
               open={router.pathname == "/add" ? true : false}
               onClose={() => {
                 router.push("/");
@@ -51,6 +52,7 @@ export default function App({ Component, pageProps }) {
               <Add />
             </Modal>
             <Modal
+              title={"All links"}
               open={router.pathname == "/links" ? true : false}
               onClose={() => {
                 router.push("/");

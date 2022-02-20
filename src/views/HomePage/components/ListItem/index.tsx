@@ -3,7 +3,7 @@ import { Text } from "../../../../components/Text";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
-const StyledListItem = styled.li`
+const StyledListItem = styled.li<{ bg: string; column: string; row: string }>`
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -12,6 +12,7 @@ const StyledListItem = styled.li`
   border-radius: 20px;
   height: 100%;
   width: 100%;
+  cursor: pointer;
   background: ${(props) => props.bg};
   grid-column: ${(props) => props.column};
   grid-row: ${(props) => props.row};
@@ -31,8 +32,8 @@ interface Props {
   col: string;
   row: string;
   bg: string;
-  children: JSX.Element[];
-  onClick: () => void;
+  children?: JSX.Element[];
+  onClick?: () => void;
 }
 
 export const ListItem = ({ title, col, row, bg, children, onClick }: Props) => {

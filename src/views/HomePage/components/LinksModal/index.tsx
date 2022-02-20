@@ -4,10 +4,13 @@ import { useSelector } from "react-redux";
 
 const Wrapper = styled.ul`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-flow: column;
   width: 100%;
+  max-height: 200px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 export const LinksModal = () => {
@@ -16,7 +19,7 @@ export const LinksModal = () => {
   return (
     <Wrapper>
       {Links.map((e) => {
-        return <LinkItem item={e} />;
+        return <LinkItem item={e} color={e.color} />;
       })}
     </Wrapper>
   );
