@@ -21,7 +21,7 @@ const Wrapper = styled.div<{ color: string }>`
 `;
 interface Props {
   item: LinkInterface;
-  color: string;
+  color?: string;
 }
 
 export const LinkItem = ({ item, color }: Props) => {

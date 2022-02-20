@@ -44,7 +44,7 @@ interface Props {
   title: string;
   open: boolean;
   onClose: () => void;
-  children: JSX.Element[];
+  children: JSX.Element[] | JSX.Element;
 }
 
 export const Modal = ({ title, open, onClose, children }: Props) => {
