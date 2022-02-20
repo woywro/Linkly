@@ -7,6 +7,7 @@ import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { Text } from "../../components/Text";
 import { ColorChoice } from "./components/ColorChoice";
+import { useSelector } from "react-redux";
 
 const Container = styled.div`
   height: 300px;
@@ -24,6 +25,7 @@ export const Add = () => {
   const [color, setColor] = useState("");
 
   const dispatch = useDispatch();
+  const Tags = useSelector((state) => state.tags);
 
   const handleAdd = () => {
     dispatch(addLink({ name: name, url: url, tags: tags, color: color }));
@@ -44,17 +46,7 @@ export const Add = () => {
           setUrl(e.target.value);
         }}
       />
-      <AutoComplete
-        setTags={setTags}
-        suggestions={[
-          { name: "social media", type: "category" },
-          { name: "video", type: "category" },
-          { name: "school", type: "category" },
-          { name: "facebook", type: "tag" },
-          { name: "youtube", type: "tag" },
-          { name: "work", type: "category" },
-        ]}
-      />
+      <AutoComplete setTags={setTags} suggestions={Tags} />
       <ColorChoice setColor={setColor} color={color} />
       <Button onClick={handleAdd}>add</Button>
     </Container>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { setEmitFlags } from "typescript";
+import { Text } from "../Text";
+import { useDispatch } from "react-redux";
+import { updateTags } from "../../redux/actions";
 
 const StyledSuggestions = styled.ul`
   list-style: none;
@@ -48,9 +50,17 @@ const StyledInput = styled.input`
 `;
 
 const Suggestion = styled.li`
-  font-weight: ${(props) => (props.type == "tag" ? "normal" : "bold")};
   cursor: pointer;
   padding: 5px;
+`;
+
+const Add = styled.div`
+  cursor: pointer;
+  background: red;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const AutoComplete = ({ suggestions, setTags }) => {
@@ -59,17 +69,14 @@ export const AutoComplete = ({ suggestions, setTags }) => {
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [input, setInput] = useState("");
   const [ChoosenElements, setChoosenElements] = useState([]);
-
-  // useEffect(() => {
-  //   setTags(ChoosenElements);
-  // }, [ChoosenElements]);
+  const dispatch = useDispatch();
 
   const onChange = (e) => {
     const userInput = e.target.value;
 
     const unLinked = suggestions.filter(
       (suggestion) =>
-        suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
 
     setInput(e.target.value);
@@ -91,23 +98,30 @@ export const AutoComplete = ({ suggestions, setTags }) => {
     setInput("");
   };
 
+  const handleAddTag = (e) => {
+    setActiveSuggestionIndex(0);
+    setShowSuggestions(false);
+    setChoosenElements([...ChoosenElements, e.target.innerText]);
+    dispatch(updateTags(e.target.innerText));
+    setInput("");
+  };
+
   const SuggestionsListComponent = () => {
     return filteredSuggestions.length ? (
       <StyledSuggestions>
         {filteredSuggestions.map((suggestion) => {
           return (
-            <Suggestion
-              key={suggestion}
-              onClick={onClick}
-              type={suggestion.type}
-            >
-              {suggestion.name}
+            <Suggestion key={suggestion} onClick={onClick}>
+              {suggestion}
             </Suggestion>
           );
         })}
       </StyledSuggestions>
     ) : (
-      <p>none</p>
+      <Add onClick={handleAddTag}>
+        <Text>{input}</Text>
+        <Text bold>+</Text>
+      </Add>
     );
   };
 

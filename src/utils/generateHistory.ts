@@ -1,5 +1,19 @@
-export const generateHistory = (Links, History) => {
-  const recentLinks = [];
+import { LinkInterface } from "../types/LinkInterface";
+
+interface LinkHistoryInterface extends LinkInterface {
+  time: number;
+}
+
+interface historyInterface {
+  time: number;
+  id: number;
+}
+
+export const generateHistory = (
+  Links: LinkInterface[],
+  History: historyInterface[]
+) => {
+  const recentLinks: LinkHistoryInterface[] = [];
   Links.map((e) => {
     History.map((x) => {
       if (e.id == x.id) {
@@ -12,6 +26,5 @@ export const generateHistory = (Links, History) => {
   const recentLinksSorted = recentLinks.sort((a, b) => {
     return b.time - a.time;
   });
-  console.log(recentLinksSorted);
   return recentLinksSorted;
 };

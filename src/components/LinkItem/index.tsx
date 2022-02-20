@@ -11,7 +11,7 @@ const Wrapper = styled.div<{ color: string }>`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   background-color: ${(props) =>
     props.color !== undefined ? props.color : "white"};
   opacity: 0.5;
@@ -38,7 +38,7 @@ export const LinkItem = ({ item, color }: Props) => {
   return (
     <Wrapper onClick={() => handleOnClick(item)} color={color}>
       <Text bold>{item.name}</Text>
-      <Text size="small">{item.url}</Text>
+      {/* <Text size="small">{item.url}</Text> */}
     </Wrapper>
   );
 };

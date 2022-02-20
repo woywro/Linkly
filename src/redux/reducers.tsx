@@ -65,8 +65,22 @@ export const History = (state = initialHistory, action) => {
   }
 };
 
+const initialTags = ["facebook", "social", "instagram", "video"];
+
+export const Tags = (state = initialTags, action) => {
+  switch (action.type) {
+    case "UPDATE_TAGS": {
+      return [...state, action.payload.tag];
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
 const allReducers = combineReducers({
   links: Links,
   history: History,
+  tags: Tags,
 });
 export default allReducers;
