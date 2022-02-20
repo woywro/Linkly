@@ -10,7 +10,7 @@ const StyledSuggestions = styled.ul`
   overflow-y: auto;
   width: 100%;
   position: absolute;
-  bottom: 0;
+  top: 100%;
   right: 0;
   background: ${(props) => props.theme.colors.background};
 `;
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
   border: none;
   position: relative;
   background: #e2e7f3;
-  padding: 15px 20px;
+  padding: 10px;
   border-radius: 10px;
   font-size: 15px;
   width: 100%;
@@ -45,8 +45,8 @@ const ChoosenElement = styled.li`
 
 const StyledInput = styled.input`
   border: none;
-  padding: 5px 10px;
   background: none;
+  position: relative;
 `;
 
 const Suggestion = styled.li`
@@ -56,8 +56,9 @@ const Suggestion = styled.li`
 
 const Add = styled.div`
   cursor: pointer;
-  background: red;
+  background: ${(props) => props.theme.colors.background};
   padding: 5px;
+  border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -119,8 +120,7 @@ export const AutoComplete = ({ suggestions, setTags }) => {
       </StyledSuggestions>
     ) : (
       <Add onClick={handleAddTag}>
-        <Text>{input}</Text>
-        <Text bold>+</Text>
+        <Text bold>{input}</Text>
       </Add>
     );
   };
