@@ -4,11 +4,12 @@ import { Text } from "../../../../components/Text";
 import Link from "next/link";
 
 const StyledCategory = styled.div`
-  padding: 10px;
+  padding: 5px;
   display: flex;
   font-size: 22px;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 `;
 
 export const Category = ({ name }) => {

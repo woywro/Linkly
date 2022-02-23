@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { Text } from "../../../../components/Text";
-import { LinkInterface } from "../../../../types/LinkInterface";
-import { updateHistory } from "../../../../redux/actions";
+import { Text } from "../Text";
+import { LinkInterface } from "../../types/LinkInterface";
+import { updateHistory } from "../../redux/actions";
 import { RiLinksFill } from "react-icons/ri";
 import { useTheme } from "styled-components";
 

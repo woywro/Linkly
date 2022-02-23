@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components";
 import { Link } from "../Link";
-import { Text } from "../../../../components/Text";
+import { Text } from "../Text";
 
 const StyledLinks = styled.div`
   width: 100%;
