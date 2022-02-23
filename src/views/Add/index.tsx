@@ -8,6 +8,7 @@ import { Button } from "../../components/Button";
 import { Text } from "../../components/Text";
 import { ColorChoice } from "./components/ColorChoice";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 const Container = styled.div`
   height: 300px;
@@ -27,9 +28,12 @@ export const Add = () => {
   const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
 
-  const handleAdd = () => {
+  const handleAdd = async () => {
     dispatch(addLink({ name: name, url: url, tags: tags, color: color }));
-    console.log(tags);
+    await axios.post("/api/addLink", {
+      name,
+      url,
+    });
   };
 
   return (

@@ -10,7 +10,8 @@ datasource db {
   url      = "file:./dev.db"
 }
 
-model User {
+model Link {
   id Int @id @default(autoincrement())
   name String
+  url String
 }
