@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { PageTemplate } from "../../components/PageTemplate";
 import { useRouter } from "next/router";
 import { Links } from "../../components/Links";
-import { useSelector } from "react-redux";
+import { CategoryInfo } from "./components/CategoryInfo";
 
 export const CategoryPage = ({ category }) => {
   const { asPath } = useRouter();
@@ -14,7 +14,9 @@ export const CategoryPage = ({ category }) => {
           <Links />
         </PageTemplate>
       </LeftWrapper>
-      <RightWrapper></RightWrapper>
+      <RightWrapper>
+        <CategoryInfo category={category} />
+      </RightWrapper>
     </Container>
   );
 };
