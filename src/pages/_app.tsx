@@ -22,8 +22,8 @@ const GlobalStyles = createGlobalStyle`
 
 const theme = {
   colors: {
-    background: "#bdd8e8",
-    background1: "#EEF2F5",
+    primary: "#0094ff",
+    secondary: "#A8A8A8",
   },
   shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
   fonts: ["sans-serif", "Roboto"],
@@ -51,15 +51,6 @@ export default function App({ Component, pageProps }) {
             >
               <Add />
             </Modal>
-            <Modal
-              title={"All links"}
-              open={router.pathname == "/links" ? true : false}
-              onClose={() => {
-                router.push("/");
-              }}
-            >
-              <LinksModal />
-            </Modal>
             <NavBar />
             <Component {...pageProps} />
             <div id="portal" />
@@ -75,16 +66,17 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.theme.colors.background};
+  background: white;
 `;
 const ViewBox = styled.div`
-  width: 70vw;
+  width: 80vw;
   height: 70vh;
   display: flex;
+  padding: 10px;
   justify-content: flex-start;
   position: relative;
   align-items: center;
   box-shadow: ${(props) => props.theme.shadow};
-  background: ${(props) => props.theme.colors.background1};
+  background: #0094ff;
   border-radius: 10px;
 `;

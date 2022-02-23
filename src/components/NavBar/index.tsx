@@ -17,11 +17,11 @@ const Container = styled.nav`
   flex-flow: column;
   align-items: center;
   justify-content: center;
-  background: white;
   border-radius: 20px;
-  height: 90%;
-  width: 100px;
+  height: 70%;
+  width: 70px;
   margin: 10px;
+  margin-right: 0;
 `;
 
 const Item = styled.a<{ isActive?: boolean }>`
@@ -35,7 +35,7 @@ const Item = styled.a<{ isActive?: boolean }>`
   ${({ isActive }) =>
     isActive &&
     css`
-      background: ${(props) => props.theme.colors.background};
+      background: white;
       border-radius: 20px;
     `}
 `;
@@ -61,11 +61,6 @@ export const NavBar = () => {
         <Link href="/" passHref>
           <Item isActive={router.pathname == "/" ? true : false}>
             <RiLayoutGridLine />
-          </Item>
-        </Link>
-        <Link href="/folders" passHref>
-          <Item isActive={router.pathname == "/folders" ? true : false}>
-            <RiFolder5Line />
           </Item>
         </Link>
       </Links>
