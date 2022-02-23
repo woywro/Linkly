@@ -54,9 +54,6 @@ export const HomePage = () => {
     <Container>
       <LeftWrapper>
         <PageTemplate title={"Home"}>
-          {/* {Links.map((e) => {
-            return <LinkItem item={e} />;
-          })} */}
           <List />
         </PageTemplate>
       </LeftWrapper>
