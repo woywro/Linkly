@@ -24,3 +24,8 @@ model Category {
   name String
   links String[]
 }
+
+model History {
+  id Int
+  timestamp Int
+}

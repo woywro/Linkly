@@ -38,10 +38,10 @@ export const Links = (state = initialState, action) => {
       return [
         ...state,
         {
+          id: action.payload.link.id,
           name: action.payload.link.name,
           url: action.payload.link.url,
           tags: action.payload.link.tags,
-          color: action.payload.link.color,
         },
       ];
     }
@@ -55,7 +55,7 @@ export const Links = (state = initialState, action) => {
 export const History = (state = initialHistory, action) => {
   switch (action.type) {
     case "UPDATE_HISTORY": {
-      const newObj = { id: action.payload.link.id, time: Date.now() };
+      const newObj = { id: action.payload.link.id, timestamp: Date.now() };
       const newHistory = [newObj, ...state];
       return newHistory;
     }

@@ -1,5 +1,8 @@
 import styled from "styled-components";
 import { Text } from "../../../../components/Text";
+import { LinkInterface } from "../../../../types/LinkInterface";
+import moment from "moment";
+import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
 
 const Wrapper = styled.div`
   display: flex;
@@ -8,6 +11,7 @@ const Wrapper = styled.div`
   padding: 5px;
   opacity: 0.5;
   margin: 5px;
+  width: 100%;
   cursor: pointer;
   &:hover {
     text-decoration: underline;
@@ -16,20 +20,18 @@ const Wrapper = styled.div`
   }
 `;
 interface Props {
-  item: LinkInterface;
-  color?: string;
+  item: HistoryLinkInterface;
 }
 
-export const HistoryItem = ({ item, color }: Props) => {
-  const handleOnClick = (item: LinkInterface) => {
+export const HistoryItem = ({ item }: Props) => {
+  const handleOnClick = (item) => {
     // dispatch(updateHistory(item));
-    console.log(History);
     // window.open(item.url, "_blank");
   };
-
   return (
     <Wrapper onClick={() => handleOnClick(item)}>
       <Text bold>{item.name}</Text>
+      <Text>{moment(item.timestamp).format("LT")}</Text>
     </Wrapper>
   );
 };

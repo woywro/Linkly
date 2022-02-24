@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { LinkItem } from "../../../../components/LinkItem";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { HistoryItem } from "../HistoryItem";
+import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
 
 const Wrapper = styled.div`
   display: flex;
@@ -19,12 +20,13 @@ export const History = () => {
   const History = useSelector((state) => state.history);
   const Links = useSelector((state) => state.links);
 
-  const [history, setHistory] = useState<LinkInterface[]>([]);
+  const [history, setHistory] = useState<HistoryLinkInterface[]>([]);
 
   useEffect(() => {
     const newHistory = generateHistory(Links, History);
-    setHistory(newHistory.slice(0, 3));
+    setHistory(newHistory.slice(0, 5));
   }, [History]);
+
   return (
     <Wrapper>
       {history.map((e) => {
