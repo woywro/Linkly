@@ -1,4 +1,5 @@
 import { combineReducers } from "redux";
+import { HistoryInterface } from "../types/HistoryInterface";
 const initialState = [
   {
     name: "facebook profile",
@@ -30,7 +31,7 @@ const initialState = [
   },
 ];
 
-const initialHistory = [];
+const initialHistory: HistoryInterface[] = [];
 
 export const Links = (state = initialState, action) => {
   switch (action.type) {
