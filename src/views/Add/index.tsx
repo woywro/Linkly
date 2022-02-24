@@ -6,7 +6,7 @@ import { AutoComplete } from "../../components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { Text } from "../../components/Text";
-import { ColorChoice } from "./components/ColorChoice";
+import { ColorChoice } from "../../components/ColorChoice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
@@ -23,13 +23,12 @@ export const Add = () => {
   const [name, setName] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState("");
-  const [color, setColor] = useState("");
 
   const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
 
   const handleAdd = async () => {
-    dispatch(addLink({ name: name, url: url, tags: tags, color: color }));
+    dispatch(addLink({ name: name, url: url, tags: tags }));
     await axios.post("/api/addLink", {
       name,
       url,
@@ -51,7 +50,6 @@ export const Add = () => {
         }}
       />
       <AutoComplete setTags={setTags} suggestions={Tags} />
-      <ColorChoice setColor={setColor} color={color} />
       <Button onClick={handleAdd}>add</Button>
     </Container>
   );

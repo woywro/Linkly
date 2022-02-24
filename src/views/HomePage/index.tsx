@@ -6,6 +6,8 @@ import { LinkItem } from "../../components/LinkItem";
 import { LinkInterface } from "../../types/LinkInterface";
 import { PageTemplate } from "../../components/PageTemplate";
 import { List } from "./components/List";
+import { Text } from "../../components/Text";
+import { History } from "./components/History";
 
 const Container = styled.div`
   display: flex;
@@ -40,16 +42,6 @@ const RightWrapper = styled.div`
 `;
 
 export const HomePage = () => {
-  const Links = useSelector((state) => state.links);
-  const History = useSelector((state) => state.history);
-
-  const [history, setHistory] = useState<LinkInterface[]>([]);
-
-  useEffect(() => {
-    const newHistory = generateHistory(Links, History);
-    setHistory(newHistory.slice(0, 3));
-  }, [History]);
-
   return (
     <Container>
       <LeftWrapper>
@@ -58,9 +50,9 @@ export const HomePage = () => {
         </PageTemplate>
       </LeftWrapper>
       <RightWrapper>
-        {history.map((e) => {
-          return <LinkItem item={e} />;
-        })}
+        <PageTemplate title={"History"}>
+          <History />
+        </PageTemplate>
       </RightWrapper>
     </Container>
   );

@@ -15,5 +15,12 @@ model Link {
   id Int @id @default(autoincrement())
   name String
   url String
+  category String
   tags String[]
+}
+
+model Category {
+  id Int @id @default(autoincrement())
+  name String
+  links String[]
 }
