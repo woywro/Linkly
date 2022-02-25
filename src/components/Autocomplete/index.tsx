@@ -100,6 +100,7 @@ export const AutoComplete = ({ suggestions, setTags }) => {
     setFilteredSuggestions([]);
     setShowSuggestions(false);
     setChoosenElements([...ChoosenElements, { name: e.name, type: e.type }]);
+    setTags([...ChoosenElements, { name: e.name, type: e.type }]);
     setInput("");
   };
 

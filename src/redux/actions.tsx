@@ -1,4 +1,5 @@
 import { LinkInterface } from "../types/LinkInterface";
+import axios from "axios";
 
 export const addLink = (link: LinkInterface) => ({
   type: "ADD_LINK",
@@ -6,6 +7,7 @@ export const addLink = (link: LinkInterface) => ({
     link,
   },
 });
+
 export const updateHistory = (link: LinkInterface) => ({
   type: "UPDATE_HISTORY",
   payload: {
@@ -18,3 +20,18 @@ export const updateTags = (tag: { name: string; type: string }) => ({
     tag,
   },
 });
+
+export const setLinks = (links: LinkInterface[]) => ({
+  type: "SET_LINKS",
+  payload: {
+    links,
+  },
+});
+
+export const getLinks = () => {
+  return function (dispatch) {
+    axios.get("/api/getLinks").then((res) => {
+      dispatch(setLinks(res.data.link));
+    });
+  };
+};

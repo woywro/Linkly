@@ -42,6 +42,7 @@ const RightWrapper = styled.div`
 `;
 
 export const HomePage = () => {
+  
   return (
     <Container>
       <LeftWrapper>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components";
 import { Link } from "../Link";
@@ -23,6 +24,9 @@ export const Links = () => {
   const theme = useTheme();
   console.log(theme);
   const Links = useSelector((state) => state.links);
+  useEffect(() => {
+    console.log(Links);
+  }, [Links]);
 
   return (
     <StyledLinks>

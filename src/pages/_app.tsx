@@ -3,12 +3,10 @@ import { createGlobalStyle } from "styled-components";
 import { ThemeProvider } from "styled-components";
 import { NavBar } from "../components/NavBar";
 import { Modal } from "../components/Modal";
-import { useState } from "react";
 import { Add } from "../views/Add";
 import { useRouter } from "next/router";
-import { Provider } from "react-redux";
+import { Provider, useDispatch } from "react-redux";
 import store from "../redux/store";
-import { LinksModal } from "../views/HomePage/components/LinksModal";
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -36,6 +34,7 @@ const theme = {
 
 export default function App({ Component, pageProps }) {
   const router = useRouter();
+
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>

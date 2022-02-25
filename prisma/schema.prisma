@@ -15,8 +15,8 @@ model Link {
   id Int @id @default(autoincrement())
   name String
   url String
-  category String
-  tags String[]
+  categories String[]
+  keywords String[]
 }
 
 model Category {
@@ -25,7 +25,3 @@ model Category {
   links String[]
 }
 
-model History {
-  id Int
-  timestamp Int
-}

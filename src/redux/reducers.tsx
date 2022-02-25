@@ -43,9 +43,13 @@ export const Links = (state = initialState, action: AnyAction) => {
           id: action.payload.link.id,
           name: action.payload.link.name,
           url: action.payload.link.url,
-          tags: action.payload.link.tags,
+          categories: action.payload.link.categories,
+          keywords: action.payload.link.categories,
         },
       ];
+    }
+    case "SET_LINKS": {
+      return action.payload.links;
     }
 
     default: {
