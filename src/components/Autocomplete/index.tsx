@@ -12,7 +12,7 @@ const StyledSuggestions = styled.ul`
   position: absolute;
   top: 100%;
   right: 0;
-  background: ${(props) => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.secondary};
 `;
 const Wrapper = styled.div`
   border: none;
@@ -52,6 +52,10 @@ const StyledInput = styled.input`
 const Suggestion = styled.li`
   cursor: pointer;
   padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  aling-items: center;
+  width: 100%;
 `;
 
 const Add = styled.div`
@@ -64,12 +68,16 @@ const Add = styled.div`
   justify-content: center;
 `;
 
+interface Tag {
+  name: string;
+  type: string;
+}
+
 export const AutoComplete = ({ suggestions, setTags }) => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  const [activeSuggestionIndex, setActiveSuggestionIndex] = useState(0);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [input, setInput] = useState("");
-  const [ChoosenElements, setChoosenElements] = useState([]);
+  const [ChoosenElements, setChoosenElements] = useState<Tag[]>([]);
   const dispatch = useDispatch();
 
   const onChange = (e) => {
@@ -77,33 +85,29 @@ export const AutoComplete = ({ suggestions, setTags }) => {
 
     const unLinked = suggestions.filter(
       (suggestion) =>
-        suggestion.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+        suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
-
     setInput(e.target.value);
     setFilteredSuggestions(unLinked);
-    setActiveSuggestionIndex(0);
     setShowSuggestions(true);
   };
 
   const handleDeleteTag = (e) => {
-    setChoosenElements(ChoosenElements.filter((x) => x !== e.target.innerText));
+    setChoosenElements(ChoosenElements.filter((x) => x.name !== e.name));
   };
 
-  const onClick = (e) => {
+  const handleAddSuggestion = (e) => {
     setFilteredSuggestions([]);
-    setInput(e.target.innerText);
-    setActiveSuggestionIndex(0);
     setShowSuggestions(false);
-    setChoosenElements([...ChoosenElements, e.target.innerText]);
+    setChoosenElements([...ChoosenElements, { name: e.name, type: e.type }]);
     setInput("");
   };
 
   const handleAddTag = (e) => {
-    setActiveSuggestionIndex(0);
     setShowSuggestions(false);
-    setChoosenElements([...ChoosenElements, e.target.innerText]);
-    dispatch(updateTags(e.target.innerText));
+    setChoosenElements([...ChoosenElements, { name: e.name, type: e.type }]);
+    const newObj = { name: e.target.innerText, type: "category" };
+    dispatch(updateTags(newObj));
     setInput("");
   };
 
@@ -112,8 +116,14 @@ export const AutoComplete = ({ suggestions, setTags }) => {
       <StyledSuggestions>
         {filteredSuggestions.map((suggestion) => {
           return (
-            <Suggestion key={suggestion} onClick={onClick}>
-              {suggestion}
+            <Suggestion
+              key={suggestion.name}
+              onClick={() => handleAddSuggestion(suggestion)}
+            >
+              <Text size={"small"} bold>
+                {suggestion.name}
+              </Text>
+              <Text size={"small"}>{suggestion.type}</Text>
             </Suggestion>
           );
         })}
@@ -129,7 +139,11 @@ export const AutoComplete = ({ suggestions, setTags }) => {
     <Wrapper>
       <ChoosenList>
         {ChoosenElements.map((e) => {
-          return <ChoosenElement onClick={handleDeleteTag}>{e}</ChoosenElement>;
+          return (
+            <ChoosenElement onClick={() => handleDeleteTag(e)}>
+              {e.name}
+            </ChoosenElement>
+          );
         })}
       </ChoosenList>
       <StyledInput

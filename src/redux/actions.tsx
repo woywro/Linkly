@@ -12,7 +12,7 @@ export const updateHistory = (link: LinkInterface) => ({
     link,
   },
 });
-export const updateTags = (tag: string) => ({
+export const updateTags = (tag: { name: string; type: string }) => ({
   type: "UPDATE_TAGS",
   payload: {
     tag,

@@ -1,5 +1,6 @@
 import { combineReducers } from "redux";
 import { HistoryInterface } from "../types/HistoryInterface";
+import { AnyAction } from "redux";
 const initialState = [
   {
     name: "facebook profile",
@@ -33,7 +34,7 @@ const initialState = [
 
 const initialHistory: HistoryInterface[] = [];
 
-export const Links = (state = initialState, action) => {
+export const Links = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case "ADD_LINK": {
       return [
@@ -53,7 +54,7 @@ export const Links = (state = initialState, action) => {
   }
 };
 
-export const History = (state = initialHistory, action) => {
+export const History = (state = initialHistory, action: AnyAction) => {
   switch (action.type) {
     case "UPDATE_HISTORY": {
       const newObj = { id: action.payload.link.id, timestamp: Date.now() };
@@ -66,9 +67,13 @@ export const History = (state = initialHistory, action) => {
   }
 };
 
-const initialTags = ["facebook", "social", "instagram", "video"];
+const initialTags = [
+  { name: "facebook", type: "tag" },
+  { name: "social", type: "category" },
+  { name: "video", type: "category" },
+];
 
-export const Tags = (state = initialTags, action) => {
+export const Tags = (state = initialTags, action: AnyAction) => {
   switch (action.type) {
     case "UPDATE_TAGS": {
       return [...state, action.payload.tag];

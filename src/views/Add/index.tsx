@@ -5,8 +5,6 @@ import { useState } from "react";
 import { AutoComplete } from "../../components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
-import { Text } from "../../components/Text";
-import { ColorChoice } from "../../components/ColorChoice";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
