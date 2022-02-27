@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components";
-import { Link } from "../Link";
+import { LinkItem } from "../LinkItem";
 import { Text } from "../Text";
 
 const StyledLinks = styled.div`
@@ -47,7 +47,7 @@ export const Links = () => {
         </Text>
       </FieldLabels>
       {Links.map((e) => {
-        return <Link item={e} />;
+        return <LinkItem item={e} />;
       })}
     </StyledLinks>
   );

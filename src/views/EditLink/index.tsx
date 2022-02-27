@@ -16,7 +16,7 @@ const Container = styled.div`
   align-items: center;
 `;
 
-export const Add = () => {
+export const EditLink = ({ item }) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState([]);
@@ -36,22 +36,12 @@ export const Add = () => {
     });
   }, [tags]);
 
-  const handleAdd = async () => {
-    dispatch(
-      addLink({
-        title: title,
-        url: url,
-        categories: categories,
-        keywords: keywords,
-      })
-    );
-    await axios.post("/api/addLink", {
-      title,
-      url,
-      categories,
-      keywords,
-    });
-  };
+  useEffect(() => {
+    setTitle(item.title);
+    setUrl(item.url);
+    setCategories(item.categories);
+    setKeywords(item.keywords);
+  }, [item]);
 
   return (
     <Container>
@@ -60,15 +50,16 @@ export const Add = () => {
         onChange={(e) => {
           setTitle(e.target.value);
         }}
+        value={title}
       />
       <Input
         placeholder="url"
         onChange={(e) => {
           setUrl(e.target.value);
         }}
+        value={url}
       />
       <AutoComplete setTags={setTags} suggestions={Tags} />
-      <Button onClick={handleAdd}>add</Button>
     </Container>
   );
 };

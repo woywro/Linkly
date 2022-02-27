@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 import { ThemeProvider } from "styled-components";
 import { NavBar } from "../components/NavBar";
 import { Modal } from "../components/Modal";
-import { Add } from "../views/Add";
+import { Add, EditLink } from "../views/EditLink";
 import { useRouter } from "next/router";
 import { Provider, useDispatch } from "react-redux";
 import store from "../redux/store";
@@ -55,6 +55,15 @@ export default function App({
               >
                 <Add />
               </Modal>
+              {/* <Modal
+                title={"Edit Link"}
+                open={router.pathname == "/editLink" ? true : false}
+                onClose={() => {
+                  router.push("/");
+                }}
+              >
+                <EditLink />
+              </Modal> */}
               <AuthGuard>
                 <NavBar />
               </AuthGuard>
