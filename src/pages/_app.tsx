@@ -7,6 +7,7 @@ import { Add } from "../views/Add";
 import { useRouter } from "next/router";
 import { Provider, useDispatch } from "react-redux";
 import store from "../redux/store";
+import { SessionProvider } from "next-auth/react";
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -32,31 +33,36 @@ const theme = {
   },
 };
 
-export default function App({ Component, pageProps }) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const router = useRouter();
 
   return (
-    <Provider store={store}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        <Wrapper>
-          <ViewBox>
-            <Modal
-              title={"Add Link"}
-              open={router.pathname == "/add" ? true : false}
-              onClose={() => {
-                router.push("/");
-              }}
-            >
-              <Add />
-            </Modal>
-            <NavBar />
-            <Component {...pageProps} />
-            <div id="portal" />
-          </ViewBox>
-        </Wrapper>
-      </ThemeProvider>
-    </Provider>
+    <SessionProvider session={session}>
+      <Provider store={store}>
+        <ThemeProvider theme={theme}>
+          <GlobalStyles />
+          <Wrapper>
+            <ViewBox>
+              <Modal
+                title={"Add Link"}
+                open={router.pathname == "/add" ? true : false}
+                onClose={() => {
+                  router.push("/");
+                }}
+              >
+                <Add />
+              </Modal>
+              <NavBar />
+              <Component {...pageProps} />
+              <div id="portal" />
+            </ViewBox>
+          </Wrapper>
+        </ThemeProvider>
+      </Provider>
+    </SessionProvider>
   );
 }
 const Wrapper = styled.div`

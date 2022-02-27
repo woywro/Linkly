@@ -6,6 +6,7 @@ import { AutoComplete } from "../../components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import axios from "axios";
+import { useSession } from "next-auth/react"
 
 const Container = styled.div`
   height: 300px;
@@ -17,14 +18,16 @@ const Container = styled.div`
 `;
 
 export const Add = () => {
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [keywords, setKeywords] = useState([]);
+  const { session, status } = useSession()
 
   const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
+
 
   useEffect(() => {
     tags.map((e) => {
@@ -39,25 +42,18 @@ export const Add = () => {
   const handleAdd = async () => {
     dispatch(
       addLink({
-        name: name,
+        title: title,
         url: url,
         categories: categories,
         keywords: keywords,
       })
     );
     await axios.post("/api/addLink", {
-      name,
+      title,
       url,
       categories,
       keywords,
     });
-    // console.log({
-    //   name: name,
-    //   url: url,
-    //   tags: tags,
-    //   categories: categories,
-    //   keywords: keywords,
-    // });
   };
 
   return (
@@ -65,7 +61,7 @@ export const Add = () => {
       <Input
         placeholder="name"
         onChange={(e) => {
-          setName(e.target.value);
+          setTitle(e.target.value);
         }}
       />
       <Input

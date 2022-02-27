@@ -41,10 +41,11 @@ export const Links = (state = initialState, action: AnyAction) => {
         ...state,
         {
           id: action.payload.link.id,
-          name: action.payload.link.name,
+          title: action.payload.link.name,
           url: action.payload.link.url,
           categories: action.payload.link.categories,
           keywords: action.payload.link.categories,
+          ownerId: action.payload.link.ownerId
         },
       ];
     }

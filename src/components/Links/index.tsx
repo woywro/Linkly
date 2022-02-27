@@ -7,6 +7,8 @@ import { Text } from "../Text";
 const StyledLinks = styled.div`
   width: 100%;
   height: 70%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 const FieldLabels = styled.div`

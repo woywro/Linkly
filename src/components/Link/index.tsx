@@ -69,7 +69,7 @@ export const Link = ({ item }: Props) => {
     <Wrapper onClick={() => handleOnClick(item)}>
       <Label>
         <AiOutlineLink />
-        <Name>{item.name}</Name>
+        <Name>{item.title}</Name>
       </Label>
       <Text color={theme.colors.secondary}>{"woywro"}</Text>
       <Text color={theme.colors.secondary}>{"June,13,2020"}</Text>

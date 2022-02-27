@@ -37,7 +37,7 @@ export const LinkItem = ({ item, color }: Props) => {
 
   return (
     <Wrapper onClick={() => handleOnClick(item)} color={color}>
-      <Text bold>{item.name}</Text>
+      <Text bold>{item.title}</Text>
       {/* <Text size="small">{item.url}</Text> */}
     </Wrapper>
   );

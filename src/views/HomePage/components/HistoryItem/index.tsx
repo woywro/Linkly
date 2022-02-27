@@ -30,7 +30,7 @@ export const HistoryItem = ({ item }: Props) => {
   };
   return (
     <Wrapper onClick={() => handleOnClick(item)}>
-      <Text bold>{item.name}</Text>
+      <Text bold>{item.title}</Text>
       <Text>{moment(item.timestamp).format("LT")}</Text>
     </Wrapper>
   );
