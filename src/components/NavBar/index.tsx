@@ -10,8 +10,9 @@ import {
   RiAddCircleLine,
   RiBookReadLine,
 } from "react-icons/ri";
+import { BiLogOut, BiLogIn } from "react-icons/bi";
 import { useRouter } from "next/router";
-
+import { useSession, signOut } from "next-auth/react";
 const Container = styled.nav`
   display: flex;
   flex-flow: column;
@@ -32,6 +33,7 @@ const Item = styled.a<{ isActive?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
   ${({ isActive }) =>
     isActive &&
     css`
@@ -48,8 +50,14 @@ const Links = styled.div`
   height: 50%;
 `;
 
+const LogoutBtn = styled(Item)`
+  position: absolute;
+  bottom: 30px;
+`;
+
 export const NavBar = () => {
   const router = useRouter();
+  const { data: session } = useSession();
   return (
     <Container>
       <Links>
@@ -63,6 +71,11 @@ export const NavBar = () => {
             <RiLayoutGridLine />
           </Item>
         </Link>
+        {session && (
+          <LogoutBtn isActive={false} onClick={() => signOut()}>
+            <BiLogOut />
+          </LogoutBtn>
+        )}
       </Links>
     </Container>
   );

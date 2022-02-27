@@ -9,7 +9,6 @@ import { Provider, useDispatch } from "react-redux";
 import store from "../redux/store";
 import { SessionProvider } from "next-auth/react";
 import { AuthGuard } from "../components/AuthGuard";
-import Login from "./login";
 
 const GlobalStyles = createGlobalStyle`
 *{

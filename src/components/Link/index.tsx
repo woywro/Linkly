@@ -2,13 +2,15 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { Text } from "../Text";
 import { LinkInterface } from "../../types/LinkInterface";
-import { updateHistory } from "../../redux/actions";
+import { deleteLink, updateHistory } from "../../redux/actions";
 import { useTheme } from "styled-components";
 import { AiOutlineLink } from "react-icons/ai";
 import { CgMoreAlt } from "react-icons/cg";
 import { Button } from "../Button";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { DropdownMenu } from "../DropdownMenu";
 import axios from "axios";
+import OutsideAlerter from "../OutsideAlerter";
 
 const Wrapper = styled.div`
   display: grid;
@@ -19,6 +21,7 @@ const Wrapper = styled.div`
   padding: 5px;
   margin: 5px;
   cursor: pointer;
+  position: relative;
 `;
 
 const Label = styled.div`
@@ -45,6 +48,15 @@ const MoreButton = styled.button`
   color: ${(props) => props.theme.colors.secondary};
 `;
 
+const DropDownButton = styled.button`
+  padding: 10px;
+  width: 100%;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-bottom: 1px solid ${(props) => props.theme.colors.secondary};
+`;
+
 interface Props {
   item: LinkInterface;
 }
@@ -53,6 +65,7 @@ export const Link = ({ item }: Props) => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const History = useSelector((state) => state.history);
+  const [show, setShow] = useState(false);
 
   const handleOnClick = async (item: LinkInterface) => {
     console.log(History);
@@ -65,10 +78,25 @@ export const Link = ({ item }: Props) => {
     // window.open(item.url, "_blank");
   };
 
-  const handleOpenMenu = useCallback((e) => {
-    e.stopPropagation();
-    console.log("menu");
-  }, []);
+  const handleOpenMenu = useCallback(
+    (e) => {
+      e.stopPropagation();
+      console.log("menu");
+      setShow(!show);
+    },
+    [show]
+  );
+
+  const handleDeleteLink = useCallback(
+    async (e, item) => {
+      e.stopPropagation();
+      dispatch(deleteLink(item));
+      await axios.post("/api/deleteLink", {
+        id: item.id,
+      });
+    },
+    [show]
+  );
 
   return (
     <Wrapper onClick={() => handleOnClick(item)}>
@@ -81,6 +109,12 @@ export const Link = ({ item }: Props) => {
       <MoreButton onClick={handleOpenMenu}>
         <CgMoreAlt size={"20px"} />
       </MoreButton>
+      <DropdownMenu show={show}>
+        <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
+          Delete
+        </DropDownButton>
+        <DropDownButton>Share</DropDownButton>
+      </DropdownMenu>
     </Wrapper>
   );
 };

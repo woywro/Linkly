@@ -49,6 +49,9 @@ export const Links = (state = initialState, action: AnyAction) => {
         },
       ];
     }
+    case "DELETE_LINK": {
+      return [...state].filter((e) => e.id !== action.payload.link.id);
+    }
     case "SET_LINKS": {
       return action.payload.links;
     }

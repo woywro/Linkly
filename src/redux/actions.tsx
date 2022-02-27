@@ -8,6 +8,12 @@ export const addLink = (link: LinkInterface) => ({
     link,
   },
 });
+export const deleteLink = (link: LinkInterface) => ({
+  type: "DELETE_LINK",
+  payload: {
+    link,
+  },
+});
 
 export const updateHistory = (link: LinkInterface) => ({
   type: "UPDATE_HISTORY",
