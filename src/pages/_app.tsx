@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { Provider, useDispatch } from "react-redux";
 import store from "../redux/store";
 import { SessionProvider } from "next-auth/react";
+import { AuthGuard } from "../components/AuthGuard";
 
 const GlobalStyles = createGlobalStyle`
 *{
@@ -35,10 +36,9 @@ const theme = {
 
 export default function App({
   Component,
-  pageProps: { session, ...pageProps },
+  pageProps: { session, status, ...pageProps },
 }) {
   const router = useRouter();
-
   return (
     <SessionProvider session={session}>
       <Provider store={store}>
@@ -55,8 +55,10 @@ export default function App({
               >
                 <Add />
               </Modal>
-              <NavBar />
-              <Component {...pageProps} />
+              <AuthGuard>
+                <NavBar />
+                <Component {...pageProps} />
+              </AuthGuard>
               <div id="portal" />
             </ViewBox>
           </Wrapper>
