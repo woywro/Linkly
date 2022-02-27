@@ -25,6 +25,7 @@ export const History = () => {
   useEffect(() => {
     const newHistory = generateHistory(Links, History);
     setHistory(newHistory.slice(0, 5));
+    console.log(History);
   }, [History]);
 
   return (

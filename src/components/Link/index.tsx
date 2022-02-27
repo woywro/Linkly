@@ -8,6 +8,7 @@ import { AiOutlineLink } from "react-icons/ai";
 import { CgMoreAlt } from "react-icons/cg";
 import { Button } from "../Button";
 import { useCallback } from "react";
+import axios from "axios";
 
 const Wrapper = styled.div`
   display: grid;
@@ -53,10 +54,14 @@ export const Link = ({ item }: Props) => {
   const dispatch = useDispatch();
   const History = useSelector((state) => state.history);
 
-  const handleOnClick = (item: LinkInterface) => {
+  const handleOnClick = async (item: LinkInterface) => {
+    console.log(History);
+    // dispatch(updateHistory(item));
     console.log(History);
     dispatch(updateHistory(item));
-    console.log(History);
+    await axios.post("/api/addHistory", {
+      linkId: item.id,
+    });
     // window.open(item.url, "_blank");
   };
 

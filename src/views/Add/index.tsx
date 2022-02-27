@@ -6,7 +6,6 @@ import { AutoComplete } from "../../components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import axios from "axios";
-import { useSession } from "next-auth/react"
 
 const Container = styled.div`
   height: 300px;
@@ -23,11 +22,9 @@ export const Add = () => {
   const [tags, setTags] = useState([]);
   const [categories, setCategories] = useState([]);
   const [keywords, setKeywords] = useState([]);
-  const { session, status } = useSession()
 
   const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
-
 
   useEffect(() => {
     tags.map((e) => {

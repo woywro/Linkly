@@ -13,6 +13,14 @@ model Category {
   links String[]
 }
 
+model History {
+  id         String   @id @default(cuid())
+  linkId  String
+  timestamp String 
+  ownerId     String
+  owner       User    @relation(fields: [ownerId], references: [id])
+}
+
 model Link {
   id         String   @id @default(cuid())
   title      String
@@ -62,6 +70,7 @@ model User {
   accounts      Account[]
   sessions      Session[]
   links         Link[]
+  history       History[]
 }
 
 model VerificationToken {

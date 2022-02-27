@@ -1,7 +1,6 @@
 export interface LinkInterface {
-  name: string;
-  id: number;
+  title: string;
   url: string;
-  category: string;
-  tags: string[];
+  categories: string[];
+  keywords: string[];
 }

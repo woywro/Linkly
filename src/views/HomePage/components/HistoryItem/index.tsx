@@ -31,7 +31,7 @@ export const HistoryItem = ({ item }: Props) => {
   return (
     <Wrapper onClick={() => handleOnClick(item)}>
       <Text bold>{item.title}</Text>
-      <Text>{moment(item.timestamp).format("LT")}</Text>
+      <Text>{moment(parseInt(item.timestamp)).format("LT")}</Text>
     </Wrapper>
   );
 };

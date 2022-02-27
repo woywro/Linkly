@@ -8,6 +8,16 @@ CREATE TABLE "Category" (
 );
 
 -- CreateTable
+CREATE TABLE "History" (
+    "id" TEXT NOT NULL,
+    "linkId" TEXT NOT NULL,
+    "timestamp" TEXT NOT NULL,
+    "ownerId" TEXT NOT NULL,
+
+    CONSTRAINT "History_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Link" (
     "id" TEXT NOT NULL,
     "title" TEXT NOT NULL,
@@ -81,6 +91,9 @@ CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token"
 
 -- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
+
+-- AddForeignKey
+ALTER TABLE "History" ADD CONSTRAINT "History_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Link" ADD CONSTRAINT "Link_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

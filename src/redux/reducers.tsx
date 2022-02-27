@@ -45,7 +45,7 @@ export const Links = (state = initialState, action: AnyAction) => {
           url: action.payload.link.url,
           categories: action.payload.link.categories,
           keywords: action.payload.link.categories,
-          ownerId: action.payload.link.ownerId
+          ownerId: action.payload.link.ownerId,
         },
       ];
     }
@@ -62,9 +62,12 @@ export const Links = (state = initialState, action: AnyAction) => {
 export const History = (state = initialHistory, action: AnyAction) => {
   switch (action.type) {
     case "UPDATE_HISTORY": {
-      const newObj = { id: action.payload.link.id, timestamp: Date.now() };
+      const newObj = { linkId: action.payload.link.id, timestamp: Date.now() };
       const newHistory = [newObj, ...state];
       return newHistory;
+    }
+    case "SET_HISTORY": {
+      return action.payload.links;
     }
     default: {
       return state;

@@ -12,7 +12,7 @@ export const generateHistory = (
   const recentLinks: LinkHistoryInterface[] = [];
   Links.map((e) => {
     History.map((x) => {
-      if (e.id == x.id) {
+      if (e.id == x.linkId) {
         const obj = JSON.parse(JSON.stringify(e));
         obj.timestamp = x.timestamp;
         recentLinks.push(obj);
