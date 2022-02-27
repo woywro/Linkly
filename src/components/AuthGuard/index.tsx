@@ -12,19 +12,19 @@ export const AuthGuard = ({ children }) => {
     }
   }, [status, Session]);
 
-    if (status == "loading") {
-      return <div>load</div>;
-    }
+  if (status == "loading") {
+    return <div>load</div>;
+  }
 
-    if (status == "unauthenticated") {
-      return <>{children}</>;
-    } else {
-      return null;
-    }
+  if (status == "authenticated") {
+    return <>{children}</>;
+  }
 
-//   return Session !== undefined && status == "loading" ? (
-//     <p>loading</p>
-//   ) : (
-//     status == "unauthenticated" && <>{children}</>
-//   );
+  return null;
+
+  //   return Session !== undefined && status == "loading" ? (
+  //     <p>loading</p>
+  //   ) : (
+  //     status == "unauthenticated" && <>{children}</>
+  //   );
 };
