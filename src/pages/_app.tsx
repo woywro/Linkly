@@ -46,7 +46,7 @@ export default function App({
           <GlobalStyles />
           <Wrapper>
             <ViewBox>
-              <Modal
+              {/* <Modal
                 title={"Add Link"}
                 open={router.pathname == "/add" ? true : false}
                 onClose={() => {
@@ -54,7 +54,7 @@ export default function App({
                 }}
               >
                 <Add />
-              </Modal>
+              </Modal> */}
               {/* <Modal
                 title={"Edit Link"}
                 open={router.pathname == "/editLink" ? true : false}

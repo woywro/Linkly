@@ -61,8 +61,8 @@ export const NavBar = () => {
   return (
     <Container>
       <Links>
-        <Link href={`/add`} as={`/add`} passHref>
-          <Item isActive={router.pathname == "/add" ? true : false}>
+        <Link href={`/addLink`} as={`/addLink`} passHref>
+          <Item isActive={router.pathname == "/addLink" ? true : false}>
             <RiAddCircleLine />
           </Item>
         </Link>
