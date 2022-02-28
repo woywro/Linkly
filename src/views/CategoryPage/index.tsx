@@ -4,19 +4,21 @@ import { useRouter } from "next/router";
 import { CategoryInfo } from "./components/CategoryInfo";
 import { Links } from "../HomePage/components/Links";
 
-export const CategoryPage = ({ category }) => {
+export const CategoryPage = ({ data }) => {
   const { asPath } = useRouter();
 
   return (
     <Container>
       <LeftWrapper>
         <PageTemplate title={`${asPath}`}>
-          <Links />
+          <div>
+            {data.map((e) => {
+              return <div>{e.url}</div>;
+            })}
+          </div>
         </PageTemplate>
       </LeftWrapper>
-      <RightWrapper>
-        <CategoryInfo category={category} />
-      </RightWrapper>
+      <RightWrapper>{/* <CategoryInfo category={category} /> */}</RightWrapper>
     </Container>
   );
 };

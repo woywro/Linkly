@@ -10,6 +10,7 @@ const StyledCategories = styled.div`
   flex-flow: column;
   width: 100%;
   height: 30%;
+  overflow-y:scroll;
 `;
 
 export const Categories = () => {
@@ -25,7 +26,6 @@ export const Categories = () => {
       {categories.map((e) => {
         return <Category name={e.value} />;
       })}
-      <Category name={"programowanie"} />
     </StyledCategories>
   );
 };

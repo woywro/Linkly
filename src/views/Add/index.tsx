@@ -29,9 +29,9 @@ export const Add = () => {
   useEffect(() => {
     tags.map((e) => {
       if (e.type == "category") {
-        setCategories([...categories, e.name]);
+        setCategories([...categories, e.value]);
       } else {
-        setKeywords([...keywords, e.name]);
+        setKeywords([...keywords, e.value]);
       }
     });
   }, [tags]);

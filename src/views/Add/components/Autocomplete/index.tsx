@@ -47,7 +47,7 @@ export const AutoComplete = ({ suggestions, setTags }) => {
     const newObj = { value: e.target.innerText, type: "category" };
     dispatch(updateTags(newObj));
     await axios.post("/api/addTag", {
-      value: "fff",
+      value: e.target.innerText,
       type: "category",
     });
     setInput("");
@@ -83,7 +83,7 @@ export const AutoComplete = ({ suggestions, setTags }) => {
         {ChoosenElements.map((e) => {
           return (
             <ChoosenElement onClick={() => handleDeleteTag(e)}>
-              {e.name}
+              {e.value}
             </ChoosenElement>
           );
         })}
