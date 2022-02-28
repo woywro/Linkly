@@ -57,3 +57,18 @@ export const getHistory = () => {
     });
   };
 };
+
+export const setTags = (tags) => ({
+  type: "SET_TAGS",
+  payload: {
+    tags,
+  },
+});
+
+export const getTags = () => {
+  return function (dispatch) {
+    axios.get("/api/getTags").then((res) => {
+      dispatch(setTags(res.data.tags));
+    });
+  };
+};

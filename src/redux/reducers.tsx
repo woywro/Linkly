@@ -89,6 +89,9 @@ export const Tags = (state = initialTags, action: AnyAction) => {
     case "UPDATE_TAGS": {
       return [...state, action.payload.tag];
     }
+    case "SET_TAGS": {
+      return action.payload.tags;
+    }
     default: {
       return state;
     }

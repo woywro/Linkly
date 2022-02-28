@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { PageTemplate } from "../../components/PageTemplate";
 import { useRouter } from "next/router";
-import { Links } from "../../components/Links";
 import { CategoryInfo } from "./components/CategoryInfo";
+import { Links } from "../HomePage/components/Links";
 
 export const CategoryPage = ({ category }) => {
   const { asPath } = useRouter();

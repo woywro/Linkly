@@ -3,6 +3,101 @@ import styled from "styled-components";
 import { Text } from "../../../../components/Text";
 import { useDispatch } from "react-redux";
 import { updateTags } from "../../../../redux/actions";
+import axios from "axios";
+
+interface Tag {
+  name: string;
+  type: string;
+}
+
+export const AutoComplete = ({ suggestions, setTags }) => {
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [input, setInput] = useState("");
+  const [ChoosenElements, setChoosenElements] = useState<Tag[]>([]);
+  const dispatch = useDispatch();
+
+  const onChange = (e) => {
+    const userInput = e.target.value;
+
+    const unLinked = suggestions.filter(
+      (suggestion) =>
+        suggestion.value.toLowerCase().indexOf(userInput.toLowerCase()) > -1
+    );
+    setInput(e.target.value);
+    setFilteredSuggestions(unLinked);
+    setShowSuggestions(true);
+  };
+
+  const handleDeleteTag = (e) => {
+    setChoosenElements(ChoosenElements.filter((x) => x.value !== e.value));
+  };
+
+  const handleAddSuggestion = (e) => {
+    setFilteredSuggestions([]);
+    setShowSuggestions(false);
+    setChoosenElements([...ChoosenElements, { value: e.value, type: e.type }]);
+    setTags([...ChoosenElements, { value: e.value, type: e.type }]);
+    setInput("");
+  };
+
+  const handleAddTag = async (e) => {
+    setShowSuggestions(false);
+    setChoosenElements([...ChoosenElements, { value: e.value, type: e.type }]);
+    const newObj = { value: e.target.innerText, type: "category" };
+    dispatch(updateTags(newObj));
+    await axios.post("/api/addTag", {
+      value: "fff",
+      type: "category",
+    });
+    setInput("");
+  };
+
+  const SuggestionsListComponent = () => {
+    return filteredSuggestions.length ? (
+      <StyledSuggestions>
+        {filteredSuggestions.map((suggestion) => {
+          return (
+            <Suggestion
+              key={suggestion.value}
+              onClick={() => handleAddSuggestion(suggestion)}
+            >
+              <Text size={"small"} bold>
+                {suggestion.value}
+              </Text>
+              <Text size={"small"}>{suggestion.type}</Text>
+            </Suggestion>
+          );
+        })}
+      </StyledSuggestions>
+    ) : (
+      <Add onClick={handleAddTag}>
+        <Text bold>{input}</Text>
+      </Add>
+    );
+  };
+
+  return (
+    <Wrapper>
+      <ChoosenList>
+        {ChoosenElements.map((e) => {
+          return (
+            <ChoosenElement onClick={() => handleDeleteTag(e)}>
+              {e.name}
+            </ChoosenElement>
+          );
+        })}
+      </ChoosenList>
+      <StyledInput
+        type="text"
+        onChange={onChange}
+        value={input}
+        placeholder="enter tags"
+      />
+      {showSuggestions && input && <SuggestionsListComponent />}
+    </Wrapper>
+  );
+};
 
 const StyledSuggestions = styled.ul`
   list-style: none;
@@ -67,93 +162,3 @@ const Add = styled.div`
   align-items: center;
   justify-content: center;
 `;
-
-interface Tag {
-  name: string;
-  type: string;
-}
-
-export const AutoComplete = ({ suggestions, setTags }) => {
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [input, setInput] = useState("");
-  const [ChoosenElements, setChoosenElements] = useState<Tag[]>([]);
-  const dispatch = useDispatch();
-
-  const onChange = (e) => {
-    const userInput = e.target.value;
-
-    const unLinked = suggestions.filter(
-      (suggestion) =>
-        suggestion.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1
-    );
-    setInput(e.target.value);
-    setFilteredSuggestions(unLinked);
-    setShowSuggestions(true);
-  };
-
-  const handleDeleteTag = (e) => {
-    setChoosenElements(ChoosenElements.filter((x) => x.name !== e.name));
-  };
-
-  const handleAddSuggestion = (e) => {
-    setFilteredSuggestions([]);
-    setShowSuggestions(false);
-    setChoosenElements([...ChoosenElements, { name: e.name, type: e.type }]);
-    setTags([...ChoosenElements, { name: e.name, type: e.type }]);
-    setInput("");
-  };
-
-  const handleAddTag = (e) => {
-    setShowSuggestions(false);
-    setChoosenElements([...ChoosenElements, { name: e.name, type: e.type }]);
-    const newObj = { name: e.target.innerText, type: "category" };
-    dispatch(updateTags(newObj));
-    setInput("");
-  };
-
-  const SuggestionsListComponent = () => {
-    return filteredSuggestions.length ? (
-      <StyledSuggestions>
-        {filteredSuggestions.map((suggestion) => {
-          return (
-            <Suggestion
-              key={suggestion.name}
-              onClick={() => handleAddSuggestion(suggestion)}
-            >
-              <Text size={"small"} bold>
-                {suggestion.name}
-              </Text>
-              <Text size={"small"}>{suggestion.type}</Text>
-            </Suggestion>
-          );
-        })}
-      </StyledSuggestions>
-    ) : (
-      <Add onClick={handleAddTag}>
-        <Text bold>{input}</Text>
-      </Add>
-    );
-  };
-
-  return (
-    <Wrapper>
-      <ChoosenList>
-        {ChoosenElements.map((e) => {
-          return (
-            <ChoosenElement onClick={() => handleDeleteTag(e)}>
-              {e.name}
-            </ChoosenElement>
-          );
-        })}
-      </ChoosenList>
-      <StyledInput
-        type="text"
-        onChange={onChange}
-        value={input}
-        placeholder="enter tags"
-      />
-      {showSuggestions && input && <SuggestionsListComponent />}
-    </Wrapper>
-  );
-};

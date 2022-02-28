@@ -7,10 +7,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Category {
-  id    Int      @id @default(autoincrement())
-  name  String
-  links String[]
+model Tag {
+  id         String   @id @default(cuid())
+  value      String
+  type      String
+  ownerId     String
+  owner       User    @relation(fields: [ownerId], references: [id])
 }
 
 model History {
@@ -71,6 +73,7 @@ model User {
   sessions      Session[]
   links         Link[]
   history       History[]
+  tags          Tag[]
 }
 
 model VerificationToken {
