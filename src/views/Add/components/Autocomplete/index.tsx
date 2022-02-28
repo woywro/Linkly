@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { Text } from "../Text";
+import { Text } from "../../../../components/Text";
 import { useDispatch } from "react-redux";
-import { updateTags } from "../../redux/actions";
+import { updateTags } from "../../../../redux/actions";
 
 const StyledSuggestions = styled.ul`
   list-style: none;

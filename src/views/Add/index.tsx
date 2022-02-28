@@ -2,7 +2,7 @@ import { Input } from "../../components/Input";
 import { addLink } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { AutoComplete } from "../../components/Autocomplete";
+import { AutoComplete } from "./components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import axios from "axios";

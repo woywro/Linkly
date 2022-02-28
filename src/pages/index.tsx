@@ -4,14 +4,14 @@ import { useDispatch } from "react-redux";
 import { getHistory, getLinks } from "../redux/actions";
 import { useSelector } from "react-redux";
 export default function Home() {
-    const Links = useSelector((state) => state.links);
+  const Links = useSelector((state) => state.links);
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getLinks());
-  },[]);
+  }, []);
   useEffect(() => {
     dispatch(getHistory());
-  },[Links]);
+  }, [Links]);
   return <HomePage />;
 }

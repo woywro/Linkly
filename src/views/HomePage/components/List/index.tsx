@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Categories } from "../Categories";
-import { Links } from "../../../../components/Links";
+import { Links } from "../Links";
 
 const StyledList = styled.div`
   display: flex;

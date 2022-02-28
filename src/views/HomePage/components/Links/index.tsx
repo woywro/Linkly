@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components";
-import { LinkItem } from "../LinkItem";
-import { Text } from "../Text";
+import { LinkItem } from "../../../../components/LinkItem";
+import { Text } from "../../../../components/Text";
 
 const StyledLinks = styled.div`
   width: 100%;
