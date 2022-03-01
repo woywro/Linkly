@@ -1,6 +1,7 @@
 import { LinkInterface } from "../types/LinkInterface";
 import axios from "axios";
 import { HistoryInterface } from "../types/HistoryInterface";
+import { TagInterface } from "../types/TagInterface";
 
 export const addLink = (link: LinkInterface) => ({
   type: "ADD_LINK",
@@ -21,7 +22,7 @@ export const updateHistory = (link: LinkInterface) => ({
     link,
   },
 });
-export const updateTags = (tag: { name: string; type: string }) => ({
+export const updateTags = (tag: TagInterface) => ({
   type: "UPDATE_TAGS",
   payload: {
     tag,

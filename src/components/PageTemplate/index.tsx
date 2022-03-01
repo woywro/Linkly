@@ -27,7 +27,12 @@ const ChildrenWrapper = styled.div`
   height: 100%;
 `;
 
-export const PageTemplate = ({ title, children }) => {
+interface Props {
+  title: string;
+  children: JSX.Element[];
+}
+
+export const PageTemplate = ({ title, children }: Props) => {
   return (
     <Container>
       <Title>{title}</Title>

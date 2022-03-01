@@ -1,6 +1,7 @@
 import { combineReducers } from "redux";
 import { HistoryInterface } from "../types/HistoryInterface";
 import { AnyAction } from "redux";
+import { TagInterface } from "../types/TagInterface";
 const initialState = [
   {
     name: "facebook profile",
@@ -78,11 +79,7 @@ export const History = (state = initialHistory, action: AnyAction) => {
   }
 };
 
-const initialTags = [
-  { name: "facebook", type: "tag" },
-  { name: "social", type: "category" },
-  { name: "video", type: "category" },
-];
+const initialTags: TagInterface[] = [];
 
 export const Tags = (state = initialTags, action: AnyAction) => {
   switch (action.type) {

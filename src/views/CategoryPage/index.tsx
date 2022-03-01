@@ -2,7 +2,8 @@ import styled from "styled-components";
 import { PageTemplate } from "../../components/PageTemplate";
 import { useRouter } from "next/router";
 import { CategoryInfo } from "./components/CategoryInfo";
-import { Links } from "../HomePage/components/Links";
+import { LinkItem } from "../../components/LinkItem";
+import { Links } from "../../components/Links";
 
 export const CategoryPage = ({ data }) => {
   const { asPath } = useRouter();
@@ -11,11 +12,11 @@ export const CategoryPage = ({ data }) => {
     <Container>
       <LeftWrapper>
         <PageTemplate title={`${asPath}`}>
-          <div>
+          <Links>
             {data.map((e) => {
-              return <div>{e.url}</div>;
+              return <LinkItem item={e} />;
             })}
-          </div>
+          </Links>
         </PageTemplate>
       </LeftWrapper>
       <RightWrapper>{/* <CategoryInfo category={category} /> */}</RightWrapper>

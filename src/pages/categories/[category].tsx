@@ -1,8 +1,12 @@
 import { CategoryPage } from "../../views/CategoryPage";
 import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
+import { useEffect } from "react";
 
 export default function elementPage({ data }) {
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return <CategoryPage data={data} />;
 }
 

@@ -1,12 +1,12 @@
-import { useEffect } from "react";
+import { Children, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components";
-import { LinkItem } from "../../../../components/LinkItem";
-import { Text } from "../../../../components/Text";
+import { LinkItem } from "../LinkItem";
+import { Text } from "../Text";
 
 const StyledLinks = styled.div`
   width: 100%;
-  height: 70%;
+  height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
 `;
@@ -22,7 +22,16 @@ const FieldLabels = styled.div`
   cursor: pointer;
 `;
 
-export const Links = () => {
+const ChildrenWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+`;
+
+interface Props {
+  children: JSX.Element[];
+}
+
+export const Links = ({ children }: Props) => {
   const theme = useTheme();
   console.log(theme);
   const Links = useSelector((state) => state.links);
@@ -46,9 +55,7 @@ export const Links = () => {
           more
         </Text>
       </FieldLabels>
-      {Links.map((e) => {
-        return <LinkItem item={e} />;
-      })}
+      <ChildrenWrapper>{children}</ChildrenWrapper>
     </StyledLinks>
   );
 };

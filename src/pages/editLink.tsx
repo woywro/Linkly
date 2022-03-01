@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
-import styled from "styled-components";
-import { useEffect } from "react";
 import { EditLink } from "../views/EditLink";
 import { Modal } from "../components/Modal";
+import { LinkInterface } from "../types/LinkInterface";
 
-export default function editLink(props) {
+interface Props {
+  item: LinkInterface;
+}
+
+export default function editLink({ item }: Props) {
   const router = useRouter();
-  useEffect(() => {
-    console.log(JSON.parse(props.item));
-  }, [props]);
   return (
     <Modal
       title={"Edit Link"}
@@ -17,7 +17,7 @@ export default function editLink(props) {
         router.push("/");
       }}
     >
-      <EditLink item={JSON.parse(props.item)} />
+      <EditLink item={JSON.parse(item)} />
     </Modal>
   );
 }

@@ -64,13 +64,9 @@ interface Props {
 export const LinkItem = ({ item }: Props) => {
   const theme = useTheme();
   const dispatch = useDispatch();
-  const History = useSelector((state) => state.history);
   const [show, setShow] = useState(false);
 
   const handleOnClick = async (item: LinkInterface) => {
-    console.log(History);
-    // dispatch(updateHistory(item));
-    console.log(History);
     dispatch(updateHistory(item));
     await axios.post("/api/addHistory", {
       linkId: item.id,

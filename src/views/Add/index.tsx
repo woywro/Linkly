@@ -6,6 +6,8 @@ import { AutoComplete } from "./components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import axios from "axios";
+import { LinkInterface } from "../../types/LinkInterface";
+import { TagInterface } from "../../types/TagInterface";
 
 const Container = styled.div`
   height: 300px;
@@ -17,16 +19,17 @@ const Container = styled.div`
 `;
 
 export const Add = () => {
-  const [title, setTitle] = useState("");
-  const [url, setUrl] = useState("");
-  const [tags, setTags] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [keywords, setKeywords] = useState([]);
+  const [title, setTitle] = useState<string>("");
+  const [url, setUrl] = useState<string>("");
+  const [tags, setTags] = useState<TagInterface[] | []>([]);
+  const [categories, setCategories] = useState<string[] | []>([]);
+  const [keywords, setKeywords] = useState<string[] | []>([]);
 
   const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
 
   useEffect(() => {
+    console.log(tags);
     tags.map((e) => {
       if (e.type == "category") {
         setCategories([...categories, e.value]);
@@ -37,14 +40,13 @@ export const Add = () => {
   }, [tags]);
 
   const handleAdd = async () => {
-    dispatch(
-      addLink({
-        title: title,
-        url: url,
-        categories: categories,
-        keywords: keywords,
-      })
-    );
+    const newLink: LinkInterface = {
+      title: title,
+      url: url,
+      categories: categories,
+      keywords: keywords,
+    };
+    dispatch(addLink(newLink));
     await axios.post("/api/addLink", {
       title,
       url,

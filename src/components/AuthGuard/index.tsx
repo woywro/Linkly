@@ -2,7 +2,11 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { useSession } from "next-auth/react";
 
-export const AuthGuard = ({ children }) => {
+interface Props {
+  children: JSX.Element[];
+}
+
+export const AuthGuard = ({ children }: Props) => {
   const { data: Session, status } = useSession();
   const router = useRouter();
 

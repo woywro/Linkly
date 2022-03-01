@@ -9,8 +9,8 @@ const StyledCategories = styled.div`
   align-items: flex-start;
   flex-flow: column;
   width: 100%;
-  height: 30%;
-  overflow-y:scroll;
+  height: 100%;
+  overflow-y: scroll;
 `;
 
 export const Categories = () => {

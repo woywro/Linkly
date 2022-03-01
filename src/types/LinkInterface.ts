@@ -3,4 +3,5 @@ export interface LinkInterface {
   url: string;
   categories: string[];
   keywords: string[];
+  id?: string;
 }

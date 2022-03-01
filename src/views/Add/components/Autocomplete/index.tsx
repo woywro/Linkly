@@ -4,20 +4,25 @@ import { Text } from "../../../../components/Text";
 import { useDispatch } from "react-redux";
 import { updateTags } from "../../../../redux/actions";
 import axios from "axios";
+import { TagInterface } from "../../../../types/TagInterface";
 
-interface Tag {
-  name: string;
-  type: string;
+interface Props {
+  suggestions: TagInterface[];
+  setTags: (arg0: TagInterface[]) => void;
 }
 
-export const AutoComplete = ({ suggestions, setTags }) => {
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-  const [showSuggestions, setShowSuggestions] = useState(false);
-  const [input, setInput] = useState("");
-  const [ChoosenElements, setChoosenElements] = useState<Tag[]>([]);
+export const AutoComplete = ({ suggestions, setTags }: Props) => {
+  const [filteredSuggestions, setFilteredSuggestions] = useState<
+    TagInterface[] | []
+  >([]);
+  const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
+  const [input, setInput] = useState<string>("");
+  const [ChoosenElements, setChoosenElements] = useState<TagInterface[] | []>(
+    []
+  );
   const dispatch = useDispatch();
 
-  const onChange = (e) => {
+  const onChange = (e: { target: HTMLInputElement }) => {
     const userInput = e.target.value;
 
     const unLinked = suggestions.filter(
@@ -29,11 +34,13 @@ export const AutoComplete = ({ suggestions, setTags }) => {
     setShowSuggestions(true);
   };
 
-  const handleDeleteTag = (e) => {
-    setChoosenElements(ChoosenElements.filter((x) => x.value !== e.value));
+  const handleDeleteTag = (e: { target: HTMLInputElement }) => {
+    setChoosenElements(
+      ChoosenElements.filter((x) => x.value !== e.target.value)
+    );
   };
 
-  const handleAddSuggestion = (e) => {
+  const handleAddSuggestion = (e: TagInterface) => {
     setFilteredSuggestions([]);
     setShowSuggestions(false);
     setChoosenElements([...ChoosenElements, { value: e.value, type: e.type }]);
@@ -43,9 +50,17 @@ export const AutoComplete = ({ suggestions, setTags }) => {
 
   const handleAddTag = async (e) => {
     setShowSuggestions(false);
-    setChoosenElements([...ChoosenElements, { value: e.value, type: e.type }]);
-    const newObj = { value: e.target.innerText, type: "category" };
-    dispatch(updateTags(newObj));
+    setChoosenElements([
+      ...ChoosenElements,
+      { value: e.target.innerText, type: "category" },
+    ]);
+
+    dispatch(
+      updateTags({
+        value: e.target.innerText,
+        type: "category",
+      })
+    );
     await axios.post("/api/addTag", {
       value: e.target.innerText,
       type: "category",

@@ -1,44 +1,18 @@
 import styled from "styled-components";
-import { createGlobalStyle } from "styled-components";
 import { ThemeProvider } from "styled-components";
 import { NavBar } from "../components/NavBar";
-import { Modal } from "../components/Modal";
-import { Add, EditLink } from "../views/EditLink";
-import { useRouter } from "next/router";
 import { Provider, useDispatch } from "react-redux";
 import store from "../redux/store";
 import { SessionProvider } from "next-auth/react";
 import { AuthGuard } from "../components/AuthGuard";
-
-const GlobalStyles = createGlobalStyle`
-*{
-  box-sizing:border-box;
-  margin: 0;
-  padding: 0;
-  outline: 0;
-  font-family: 'Lato', sans-serif;
-}
-`;
-
-const theme = {
-  colors: {
-    primary: "#0094ff",
-    secondary: "#A8A8A8",
-  },
-  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
-  fonts: ["sans-serif", "Roboto"],
-  fontSizes: {
-    small: "1em",
-    medium: "2em",
-    large: "3em",
-  },
-};
+import { GlobalStyles } from "../theme/globalStyles";
+import { theme } from "../theme/theme";
+import { AppProps } from "next/app";
 
 export default function App({
   Component,
   pageProps: { session, status, ...pageProps },
-}) {
-  const router = useRouter();
+}: AppProps) {
   return (
     <SessionProvider session={session}>
       <Provider store={store}>
@@ -46,28 +20,10 @@ export default function App({
           <GlobalStyles />
           <Wrapper>
             <ViewBox>
-              {/* <Modal
-                title={"Add Link"}
-                open={router.pathname == "/add" ? true : false}
-                onClose={() => {
-                  router.push("/");
-                }}
-              >
-                <Add />
-              </Modal> */}
-              {/* <Modal
-                title={"Edit Link"}
-                open={router.pathname == "/editLink" ? true : false}
-                onClose={() => {
-                  router.push("/");
-                }}
-              >
-                <EditLink />
-              </Modal> */}
               <AuthGuard>
                 <NavBar />
+                <Component {...pageProps} />
               </AuthGuard>
-              <Component {...pageProps} />
               <div id="portal" />
             </ViewBox>
           </Wrapper>
