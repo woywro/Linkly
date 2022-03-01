@@ -7,11 +7,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: flex-start;
   flex-flow: column;
+  padding: 10px;
 `;
 const Title = styled.h1`
   font-size: 35px;
   opacity: 0.5;
-  margin: 15px;
   position: relative;
   &::before {
     position: absolute;
@@ -25,6 +25,7 @@ const Title = styled.h1`
 const ChildrenWrapper = styled.div`
   width: 100%;
   height: 100%;
+  padding: 10px;
 `;
 
 interface Props {

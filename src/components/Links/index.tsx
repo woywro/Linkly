@@ -18,13 +18,16 @@ const FieldLabels = styled.div`
   grid-template-columns: 2fr 2fr 2fr 1fr;
   width: 100%;
   padding: 5px;
-  margin: 5px;
   cursor: pointer;
 `;
 
 const ChildrenWrapper = styled.div`
   width: 100%;
   height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: column;
 `;
 
 interface Props {

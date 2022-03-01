@@ -8,7 +8,7 @@ const StyledList = styled.div`
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-template-rows: 3fr 1fr 4fr 1fr;
+  grid-template-rows: 4fr 1fr 8fr;
   width: 100%;
   height: 100%;
   padding: 10px;
