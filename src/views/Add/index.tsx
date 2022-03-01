@@ -71,7 +71,7 @@ export const Add = () => {
         }}
         value={url}
       />
-      <AutoComplete setTags={setTags} suggestions={Tags} />
+      <AutoComplete setTags={setTags} suggestions={Tags} tags={tags} />
       <Button onClick={handleAdd}>add</Button>
     </Container>
   );

@@ -26,15 +26,36 @@ export const EditLink = ({ item }) => {
   const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
 
+  // useEffect(() => {
+  //   tags.map((e) => {
+  //     if (e.type == "category") {
+  //       setCategories([...categories, e.name]);
+  //     } else {
+  //       setKeywords([...keywords, e.name]);
+  //     }
+  //   });
+  // }, [tags]);
+
   useEffect(() => {
-    tags.map((e) => {
-      if (e.type == "category") {
-        setCategories([...categories, e.name]);
-      } else {
-        setKeywords([...keywords, e.name]);
-      }
+    const choosenCategories = [];
+    const choosenKeywords = [];
+    categories.map((e) => {
+      const category = {
+        value: e,
+        type: "category",
+      };
+      choosenCategories.push(category);
     });
-  }, [tags]);
+    keywords.map((e) => {
+      const keyword = {
+        value: e,
+        type: "keyword",
+      };
+      choosenKeywords.push(keyword);
+    });
+    setTags(choosenCategories.concat(choosenKeywords));
+    console.log(choosenKeywords.concat(choosenCategories));
+  }, [categories, keywords]);
 
   useEffect(() => {
     setTitle(item.title);
@@ -59,7 +80,7 @@ export const EditLink = ({ item }) => {
         }}
         value={url}
       />
-      <AutoComplete setTags={setTags} suggestions={Tags} />
+      <AutoComplete setTags={setTags} suggestions={Tags} tags={tags} />
     </Container>
   );
 };

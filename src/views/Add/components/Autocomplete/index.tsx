@@ -11,7 +11,7 @@ interface Props {
   setTags: (arg0: TagInterface[]) => void;
 }
 
-export const AutoComplete = ({ suggestions, setTags }: Props) => {
+export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
   const [filteredSuggestions, setFilteredSuggestions] = useState<
     TagInterface[] | []
   >([]);
@@ -21,6 +21,8 @@ export const AutoComplete = ({ suggestions, setTags }: Props) => {
     []
   );
   const dispatch = useDispatch();
+
+  useEffect(() => [setChoosenElements(tags)], [tags]);
 
   const onChange = (e: { target: HTMLInputElement }) => {
     const userInput = e.target.value;
