@@ -50,11 +50,6 @@ export const AutoComplete = ({ suggestions, setTags }: Props) => {
 
   const handleAddTag = async (e) => {
     setShowSuggestions(false);
-    setChoosenElements([
-      ...ChoosenElements,
-      { value: e.target.innerText, type: "category" },
-    ]);
-
     dispatch(
       updateTags({
         value: e.target.innerText,
@@ -65,6 +60,14 @@ export const AutoComplete = ({ suggestions, setTags }: Props) => {
       value: e.target.innerText,
       type: "category",
     });
+    setChoosenElements([
+      ...ChoosenElements,
+      { value: e.target.innerText, type: "category" },
+    ]);
+    setTags([
+      ...ChoosenElements,
+      { value: e.target.innerText, type: "category" },
+    ]);
     setInput("");
   };
 
