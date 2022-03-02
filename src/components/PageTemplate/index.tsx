@@ -30,7 +30,7 @@ const ChildrenWrapper = styled.div`
 
 interface Props {
   title: string;
-  children: JSX.Element[];
+  children: JSX.Element[] | JSX.Element;
 }
 
 export const PageTemplate = ({ title, children }: Props) => {

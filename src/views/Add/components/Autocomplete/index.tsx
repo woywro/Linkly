@@ -9,6 +9,7 @@ import { TagInterface } from "../../../../types/TagInterface";
 interface Props {
   suggestions: TagInterface[];
   setTags: (arg0: TagInterface[]) => void;
+  tags: TagInterface[];
 }
 
 export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
@@ -22,7 +23,9 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
   );
   const dispatch = useDispatch();
 
-  useEffect(() => [setChoosenElements(tags)], [tags]);
+  useEffect(() => {
+    setChoosenElements(tags);
+  }, [tags]);
 
   const onChange = (e: { target: HTMLInputElement }) => {
     const userInput = e.target.value;
@@ -169,8 +172,9 @@ const Suggestion = styled.li`
   padding: 5px;
   display: flex;
   justify-content: space-between;
-  aling-items: center;
+  align-items: center;
   width: 100%;
+  background: red;
 `;
 
 const Add = styled.div`

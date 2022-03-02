@@ -4,8 +4,13 @@ import { useRouter } from "next/router";
 import { CategoryInfo } from "./components/CategoryInfo";
 import { LinkItem } from "../../components/LinkItem";
 import { Links } from "../../components/Links";
+import { LinkInterface } from "../../types/LinkInterface";
 
-export const CategoryPage = ({ data }) => {
+interface Props {
+  data: LinkInterface[];
+}
+
+export const CategoryPage = ({ data }: Props) => {
   const { asPath } = useRouter();
 
   return (
@@ -13,7 +18,7 @@ export const CategoryPage = ({ data }) => {
       <LeftWrapper>
         <PageTemplate title={`${asPath}`}>
           <Links>
-            {data.map((e) => {
+            {data.map((e: LinkInterface) => {
               return <LinkItem item={e} />;
             })}
           </Links>

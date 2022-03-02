@@ -6,6 +6,8 @@ import { AutoComplete } from "../Add/components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import axios from "axios";
+import { TagInterface } from "../../types/TagInterface";
+import { LinkInterface } from "../../types/LinkInterface";
 
 const Container = styled.div`
   height: 300px;
@@ -16,29 +18,23 @@ const Container = styled.div`
   align-items: center;
 `;
 
-export const EditLink = ({ item }) => {
+interface Props {
+  item: LinkInterface;
+}
+
+export const EditLink = ({ item }: Props) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
-  const [tags, setTags] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [keywords, setKeywords] = useState([]);
+  const [tags, setTags] = useState<TagInterface[] | []>([]);
+  const [categories, setCategories] = useState<string[] | []>([]);
+  const [keywords, setKeywords] = useState<string[] | []>([]);
 
   const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
 
-  // useEffect(() => {
-  //   tags.map((e) => {
-  //     if (e.type == "category") {
-  //       setCategories([...categories, e.name]);
-  //     } else {
-  //       setKeywords([...keywords, e.name]);
-  //     }
-  //   });
-  // }, [tags]);
-
   useEffect(() => {
-    const choosenCategories = [];
-    const choosenKeywords = [];
+    const choosenCategories: TagInterface[] = [];
+    const choosenKeywords: TagInterface[] = [];
     categories.map((e) => {
       const category = {
         value: e,
@@ -53,8 +49,9 @@ export const EditLink = ({ item }) => {
       };
       choosenKeywords.push(keyword);
     });
-    setTags(choosenCategories.concat(choosenKeywords));
-    console.log(choosenKeywords.concat(choosenCategories));
+    const choosenTags: TagInterface[] =
+      choosenCategories.concat(choosenKeywords);
+    setTags(choosenTags);
   }, [categories, keywords]);
 
   useEffect(() => {

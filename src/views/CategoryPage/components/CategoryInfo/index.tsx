@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { RiFolder5Fill, RiLinksFill } from "react-icons/ri";
 import { Text } from "../../../../components/Text";
 import { useTheme } from "styled-components";
+import { TagInterface } from "../../../../types/TagInterface";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,14 +18,18 @@ const Name = styled.div`
   width: 100%;
 `;
 
-export const CategoryInfo = ({ category }) => {
+interface Props {
+  category: TagInterface;
+}
+
+export const CategoryInfo = ({ category }: Props) => {
   const theme = useTheme();
   return (
     <Wrapper>
       <Name>
         <RiFolder5Fill size={"80px"} color={theme.colors.primary} />
         <Text size={"big"} color={theme.colors.secondary}>
-          {category.name}
+          {category.value}
         </Text>
       </Name>
     </Wrapper>
