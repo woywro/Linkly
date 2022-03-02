@@ -32,12 +32,3 @@ export async function getServerSideProps({ req, params }) {
     props: { data },
   };
 }
-
-// export async function getStaticPaths() {
-//   const categories = [{ name: "programowanie" }];
-//   const paths = categories.map((category) => ({
-//     params: { category: category.name },
-//   }));
-
-//   return { paths, fallback: false };
-// }

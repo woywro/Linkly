@@ -24,7 +24,9 @@ export const CategoryPage = ({ data }: Props) => {
           </Links>
         </PageTemplate>
       </LeftWrapper>
-      <RightWrapper>{/* <CategoryInfo category={category} /> */}</RightWrapper>
+      <RightWrapper>
+        <CategoryInfo data={data} />
+      </RightWrapper>
     </Container>
   );
 };
