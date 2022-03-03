@@ -6,6 +6,7 @@ import { LinkItem } from "../../../../components/LinkItem";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { HistoryItem } from "../HistoryItem";
 import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
+import { Text } from "../../../../components/Text";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,9 +31,15 @@ export const History = () => {
 
   return (
     <Wrapper>
-      {history.map((e) => {
-        return <HistoryItem item={e} />;
-      })}
+      {history.length == 0 ? (
+        <Text>Recently used links will appear here once you open them.</Text>
+      ) : (
+        <>
+          {history.map((e) => {
+            return <HistoryItem item={e} />;
+          })}
+        </>
+      )}
     </Wrapper>
   );
 };

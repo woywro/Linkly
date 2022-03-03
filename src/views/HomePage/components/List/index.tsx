@@ -5,6 +5,8 @@ import { useSelector } from "react-redux";
 import { LinkItem } from "../../../../components/LinkItem";
 import { useEffect } from "react";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
+import { Text } from "../../../../components/Text";
+import { useRouter } from "next/router";
 
 const StyledList = styled.div`
   display: grid;
@@ -22,7 +24,12 @@ const Divider = styled.div`
   width: 100%;
 `;
 
+const ClickableText = styled(Text)`
+  cursor: pointer;
+`;
+
 export const List = () => {
+  const router = useRouter();
   const userLinks = useSelector((state) => state.links);
   const loadingState = useSelector((state) => state.LoadingReducer);
   useEffect(() => {
@@ -37,11 +44,17 @@ export const List = () => {
         <>
           <Categories />
           <Divider />
-          <Links>
-            {userLinks.map((e) => {
-              return <LinkItem item={e} />;
-            })}
-          </Links>
+          {userLinks.length == 0 ? (
+            <ClickableText onClick={() => router.push("/addLink")}>
+              There are no links. Click on that message to create one!
+            </ClickableText>
+          ) : (
+            <Links>
+              {userLinks.map((e) => {
+                return <LinkItem item={e} />;
+              })}
+            </Links>
+          )}
         </>
       )}
     </StyledList>
