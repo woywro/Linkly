@@ -53,26 +53,20 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
     setInput("");
   };
 
-  const handleAddTag = async (e) => {
+  const handleAddTag = async (type) => {
     setShowSuggestions(false);
     dispatch(
       updateTags({
-        value: e.target.innerText,
-        type: "category",
+        value: input,
+        type: type,
       })
     );
     await axios.post("/api/addTag", {
-      value: e.target.innerText,
-      type: "category",
+      value: input,
+      type: type,
     });
-    setChoosenElements([
-      ...ChoosenElements,
-      { value: e.target.innerText, type: "category" },
-    ]);
-    setTags([
-      ...ChoosenElements,
-      { value: e.target.innerText, type: "category" },
-    ]);
+    setChoosenElements([...ChoosenElements, { value: input, type: type }]);
+    setTags([...ChoosenElements, { value: input, type: type }]);
     setInput("");
   };
 
@@ -94,8 +88,16 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
         })}
       </StyledSuggestions>
     ) : (
-      <Add onClick={handleAddTag}>
-        <Text bold>{input}</Text>
+      <Add>
+        <Text size={"small"}>No results!</Text>
+        <TypeChoices>
+          <TypeChoice onClick={() => handleAddTag("category")}>
+            Category +
+          </TypeChoice>
+          <TypeChoice onClick={() => handleAddTag("keyword")}>
+            Keyword +
+          </TypeChoice>
+        </TypeChoices>
       </Add>
     );
   };
@@ -185,5 +187,23 @@ const Add = styled.div`
   border-radius: 20px;
   display: flex;
   align-items: center;
+  flex-flow: column;
   justify-content: center;
+`;
+
+const TypeChoices = styled.div`
+  cursor: pointer;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+`;
+
+const TypeChoice = styled(Text)`
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: ${(props) => props.theme.colors.active};
+    text-decoration-thickness: 3px;
+  }
 `;
