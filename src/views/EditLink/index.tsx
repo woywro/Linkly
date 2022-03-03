@@ -8,6 +8,7 @@ import { Button } from "../../components/Button";
 import axios from "axios";
 import { TagInterface } from "../../types/TagInterface";
 import { LinkInterface } from "../../types/LinkInterface";
+import { useRouter } from "next/router";
 
 const Container = styled.div`
   height: 300px;
@@ -28,6 +29,7 @@ export const EditLink = ({ item }: Props) => {
   const [tags, setTags] = useState<TagInterface[] | []>([]);
   const [categories, setCategories] = useState<string[] | []>([]);
   const [keywords, setKeywords] = useState<string[] | []>([]);
+  const router = useRouter();
 
   const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
@@ -61,6 +63,27 @@ export const EditLink = ({ item }: Props) => {
     setKeywords(item.keywords);
   }, [item]);
 
+  const handleSaveLink = async () => {
+    console.log(item.id);
+    console.log(tags);
+    const categoriesFiltered: string[] = [];
+    const keywordsFiltered: string[] = [];
+    tags.map((e) => {
+      if (e.type == "category") {
+        categoriesFiltered.push(e.value);
+      } else {
+        keywordsFiltered.push(e.value);
+      }
+    });
+    console.log(categoriesFiltered);
+    await axios.post("/api/updateLink", {
+      id: item.id,
+      categories: categoriesFiltered,
+      keywords: keywordsFiltered,
+    });
+    router.push("/");
+  };
+
   return (
     <Container>
       <Input
@@ -78,6 +101,7 @@ export const EditLink = ({ item }: Props) => {
         value={url}
       />
       <AutoComplete setTags={setTags} suggestions={Tags} tags={tags} />
+      <Button onClick={handleSaveLink}>save</Button>
     </Container>
   );
 };

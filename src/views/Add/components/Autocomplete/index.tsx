@@ -39,10 +39,10 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
     setShowSuggestions(true);
   };
 
-  const handleDeleteTag = (e: { target: HTMLInputElement }) => {
-    setChoosenElements(
-      ChoosenElements.filter((x) => x.value !== e.target.value)
-    );
+  const handleDeleteTag = async (e) => {
+    setChoosenElements(ChoosenElements.filter((x) => x.value !== e.value));
+    console.log(e.value);
+    setTags(ChoosenElements.filter((x) => x.value !== e.value));
   };
 
   const handleAddSuggestion = (e: TagInterface) => {
@@ -156,7 +156,8 @@ const ChoosenElement = styled.li`
   justify-content: center;
   padding: 5px;
   font-size: 12px;
-  background: ${(props) => props.theme.colors.background};
+  background: ${(props) => props.theme.colors.secondary};
+  cursor: pointer;
   border-radius: 20px;
   margin: 2px;
 `;
@@ -174,7 +175,7 @@ const Suggestion = styled.li`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: red;
+  background: white;
 `;
 
 const Add = styled.div`

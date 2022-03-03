@@ -36,6 +36,13 @@ export const setLinks = (links: LinkInterface[]) => ({
   },
 });
 
+export const updateLink = (link: LinkInterface) => ({
+  type: "UPDATE_LINK",
+  payload: {
+    link,
+  },
+});
+
 export const getLinks = () => {
   return function (dispatch) {
     dispatch({ type: "LOAD_LOADING" });
