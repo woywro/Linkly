@@ -30,7 +30,7 @@ const Label = styled.div`
   align-items: center;
   &:hover {
     text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.primary};
+    text-decoration-color: ${(props) => props.theme.colors.active};
     text-decoration-thickness: 3px;
   }
 `;

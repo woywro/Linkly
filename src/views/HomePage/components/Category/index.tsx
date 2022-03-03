@@ -12,12 +12,16 @@ const StyledCategory = styled.div`
   cursor: pointer;
 `;
 
+const Title = styled(Text)`
+  margin-left: 5px;
+`;
+
 export const Category = ({ name }) => {
   return (
     <Link href={`/categories/${name}`} passHref>
       <StyledCategory>
         <RiFolder5Fill />
-        <Text>{name}</Text>
+        <Title>{name}</Title>
       </StyledCategory>
     </Link>
   );

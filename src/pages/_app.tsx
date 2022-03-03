@@ -41,14 +41,14 @@ const Wrapper = styled.div`
   background: white;
 `;
 const ViewBox = styled.div`
-  width: 80vw;
-  height: 70vh;
+  width: 85vw;
+  height: 80vh;
   display: flex;
   padding: 10px;
   justify-content: flex-start;
   position: relative;
   align-items: center;
   box-shadow: ${(props) => props.theme.shadow};
-  background: #0094ff;
+  background: ${(props) => props.theme.colors.primary};
   border-radius: 10px;
 `;

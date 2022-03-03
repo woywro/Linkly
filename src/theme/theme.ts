@@ -1,7 +1,8 @@
 export const theme = {
   colors: {
-    primary: "#0094ff",
+    primary: "#FF9F45",
     secondary: "#A8A8A8",
+    active: "#F76E11",
   },
   shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
   fonts: ["sans-serif", "Roboto"],
