@@ -1,4 +1,5 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import { LoginPage } from "../views/LoginPage";
 
 export default function Login() {
   const { data: session } = useSession();
@@ -13,10 +14,5 @@ export default function Login() {
     );
   }
 
-  return (
-    <div>
-      Click to sign into your user account <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </div>
-  );
+  return <LoginPage />;
 }
