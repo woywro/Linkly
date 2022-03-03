@@ -38,8 +38,10 @@ export const setLinks = (links: LinkInterface[]) => ({
 
 export const getLinks = () => {
   return function (dispatch) {
+    dispatch({ type: "LOAD_LOADING" });
     axios.get("/api/getLinks").then((res) => {
       dispatch(setLinks(res.data.link));
+      dispatch({ type: "LOAD_SUCCESS" });
     });
   };
 };

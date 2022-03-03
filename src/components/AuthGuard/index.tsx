@@ -13,11 +13,13 @@ export const AuthGuard = ({ children }: Props) => {
   useEffect(() => {
     if (status == "unauthenticated") {
       router.push("/login");
+    } else {
+      router.push("/");
     }
   }, [status, Session]);
 
   if (status == "loading") {
-    return <div>load</div>;
+    return <></>;
   }
 
   if (status == "authenticated") {

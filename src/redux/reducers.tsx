@@ -95,9 +95,44 @@ export const Tags = (state = initialTags, action: AnyAction) => {
   }
 };
 
+const initial = {
+  data: [],
+  loading: false,
+  error: "",
+};
+
+export const LoadingReducer = (state = initial, action) => {
+  switch (action.type) {
+    case "LOAD_LOADING": {
+      return {
+        ...state,
+        loading: true,
+        error: "",
+      };
+    }
+    case "LOAD_SUCCESS": {
+      return {
+        ...state,
+        loading: false,
+      };
+    }
+    case "LOAD_ERROR": {
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
 const allReducers = combineReducers({
   links: Links,
   history: History,
   tags: Tags,
+  LoadingReducer: LoadingReducer,
 });
 export default allReducers;

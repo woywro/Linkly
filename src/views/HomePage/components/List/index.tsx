@@ -3,6 +3,8 @@ import { Categories } from "../Categories";
 import { Links } from "../../../../components/Links";
 import { useSelector } from "react-redux";
 import { LinkItem } from "../../../../components/LinkItem";
+import { useEffect } from "react";
+import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 
 const StyledList = styled.div`
   display: grid;
@@ -22,16 +24,26 @@ const Divider = styled.div`
 
 export const List = () => {
   const userLinks = useSelector((state) => state.links);
+  const loadingState = useSelector((state) => state.LoadingReducer);
+  useEffect(() => {
+    console.log(loadingState);
+  }, [loadingState]);
 
   return (
     <StyledList>
-      <Categories />
-      <Divider />
-      <Links>
-        {userLinks.map((e) => {
-          return <LinkItem item={e} />;
-        })}
-      </Links>
+      {loadingState.loading == true ? (
+        <LoadingSpinner />
+      ) : (
+        <>
+          <Categories />
+          <Divider />
+          <Links>
+            {userLinks.map((e) => {
+              return <LinkItem item={e} />;
+            })}
+          </Links>
+        </>
+      )}
     </StyledList>
   );
 };

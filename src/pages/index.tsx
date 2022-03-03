@@ -3,6 +3,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getHistory, getLinks, getTags } from "../redux/actions";
 import { useSelector } from "react-redux";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 export default function Home() {
   const Links = useSelector((state) => state.links);
 
@@ -16,5 +18,6 @@ export default function Home() {
   useEffect(() => {
     dispatch(getTags());
   }, [Links]);
+
   return <HomePage />;
 }
