@@ -32,9 +32,6 @@ export const List = () => {
   const router = useRouter();
   const userLinks = useSelector((state) => state.links);
   const loadingState = useSelector((state) => state.LoadingReducer);
-  useEffect(() => {
-    console.log(loadingState);
-  }, [loadingState]);
 
   return (
     <StyledList>
