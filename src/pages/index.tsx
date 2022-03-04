@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 export default function Home() {
   const Links = useSelector((state) => state.links);
+  const hi = useSelector((state) => state.history);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -14,6 +15,7 @@ export default function Home() {
   }, []);
   useEffect(() => {
     dispatch(getHistory());
+    console.log(hi);
   }, [Links]);
   useEffect(() => {
     dispatch(getTags());

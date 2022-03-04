@@ -46,11 +46,16 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
   };
 
   const handleAddSuggestion = (e: TagInterface) => {
-    setFilteredSuggestions([]);
-    setShowSuggestions(false);
-    setChoosenElements([...ChoosenElements, { value: e.value, type: e.type }]);
-    setTags([...ChoosenElements, { value: e.value, type: e.type }]);
-    setInput("");
+    if (!ChoosenElements.map((e) => e.value).includes(e.value)) {
+      setFilteredSuggestions([]);
+      setShowSuggestions(false);
+      setChoosenElements([
+        ...ChoosenElements,
+        { value: e.value, type: e.type },
+      ]);
+      setTags([...ChoosenElements, { value: e.value, type: e.type }]);
+      setInput("");
+    }
   };
 
   const handleAddTag = async (type) => {

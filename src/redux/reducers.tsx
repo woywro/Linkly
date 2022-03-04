@@ -56,9 +56,6 @@ export const Links = (state = initialState, action: AnyAction) => {
     case "SET_LINKS": {
       return action.payload.links;
     }
-    // case "UPDATE_LINK": {
-    //   return [...state]action.payload.link;
-    // }
 
     default: {
       return state;

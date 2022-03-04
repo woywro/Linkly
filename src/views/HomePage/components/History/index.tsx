@@ -27,7 +27,7 @@ export const History = () => {
 
   const setFetchedHistory = useCallback(() => {
     const newHistory = generateHistory(Links, History);
-    setHistory(newHistory);
+    setHistory(newHistory.slice(0, 5));
   }, [History]);
 
   useEffect(() => {
