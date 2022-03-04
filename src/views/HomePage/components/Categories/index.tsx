@@ -16,6 +16,7 @@ const StyledCategories = styled.div`
 export const Categories = () => {
   const [categories, setCategories] = useState([]);
   const Tags = useSelector((state) => state.tags);
+
   useEffect(() => {
     const tagsFiltered = Tags.filter((e) => e.type == "category");
     setCategories(tagsFiltered);

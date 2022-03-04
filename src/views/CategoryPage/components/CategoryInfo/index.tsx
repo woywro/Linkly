@@ -32,9 +32,6 @@ interface Props {
 export const CategoryInfo = ({ data }: Props) => {
   const theme = useTheme();
   const router = useRouter();
-  useEffect(() => {
-    console.log(router.query);
-  }, [router]);
 
   return (
     <Wrapper>

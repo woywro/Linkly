@@ -9,6 +9,7 @@ import axios from "axios";
 import { TagInterface } from "../../types/TagInterface";
 import { LinkInterface } from "../../types/LinkInterface";
 import { useRouter } from "next/router";
+import { useCallback } from "react";
 
 const Container = styled.div`
   height: 300px;
@@ -31,10 +32,9 @@ export const EditLink = ({ item }: Props) => {
   const [keywords, setKeywords] = useState<string[] | []>([]);
   const router = useRouter();
 
-  const dispatch = useDispatch();
   const Tags = useSelector((state) => state.tags);
 
-  useEffect(() => {
+  const setUserSavedTags = useCallback(() => {
     const choosenCategories: TagInterface[] = [];
     const choosenKeywords: TagInterface[] = [];
     categories.map((e) => {
@@ -56,16 +56,22 @@ export const EditLink = ({ item }: Props) => {
     setTags(choosenTags);
   }, [categories, keywords]);
 
-  useEffect(() => {
+  const setInputValues = useCallback(() => {
     setTitle(item.title);
     setUrl(item.url);
     setCategories(item.categories);
     setKeywords(item.keywords);
   }, [item]);
 
-  const handleSaveLink = async () => {
-    console.log(item.id);
-    console.log(tags);
+  useEffect(() => {
+    setUserSavedTags();
+  }, [categories, keywords]);
+
+  useEffect(() => {
+    setInputValues();
+  }, [item]);
+
+  const handleSaveLink = useCallback(async () => {
     const categoriesFiltered: string[] = [];
     const keywordsFiltered: string[] = [];
     tags.map((e) => {
@@ -75,14 +81,13 @@ export const EditLink = ({ item }: Props) => {
         keywordsFiltered.push(e.value);
       }
     });
-    console.log(categoriesFiltered);
     await axios.post("/api/updateLink", {
       id: item.id,
       categories: categoriesFiltered,
       keywords: keywordsFiltered,
     });
     router.push("/");
-  };
+  }, [tags, item]);
 
   return (
     <Container>

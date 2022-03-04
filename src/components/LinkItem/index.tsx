@@ -66,13 +66,16 @@ export const LinkItem = ({ item }: Props) => {
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
-  const handleOnClick = async (item: LinkInterface) => {
-    dispatch(updateHistory(item));
-    await axios.post("/api/addHistory", {
-      linkId: item.id,
-    });
-    // window.open(item.url, "_blank");
-  };
+  const handleOnClick = useCallback(
+    async (item: LinkInterface) => {
+      dispatch(updateHistory(item));
+      await axios.post("/api/addHistory", {
+        linkId: item.id,
+      });
+      // window.open(item.url, "_blank");
+    },
+    [item]
+  );
 
   const handleOpenMenu = useCallback(
     (e) => {

@@ -36,11 +36,6 @@ interface Props {
 
 export const Links = ({ children }: Props) => {
   const theme = useTheme();
-  console.log(theme);
-  const Links = useSelector((state) => state.links);
-  useEffect(() => {
-    console.log(Links);
-  }, [Links]);
 
   return (
     <StyledLinks>

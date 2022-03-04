@@ -8,6 +8,8 @@ import { Button } from "../../components/Button";
 import axios from "axios";
 import { LinkInterface } from "../../types/LinkInterface";
 import { TagInterface } from "../../types/TagInterface";
+import { useRouter } from "next/router";
+import { useCallback } from "react";
 
 const Container = styled.div`
   height: 300px;
@@ -26,10 +28,10 @@ export const Add = () => {
   const [keywords, setKeywords] = useState<string[] | []>([]);
 
   const dispatch = useDispatch();
+  const router = useRouter();
   const Tags = useSelector((state) => state.tags);
 
   useEffect(() => {
-    console.log(tags);
     tags.map((e) => {
       if (e.type == "category") {
         setCategories([...categories, e.value]);
@@ -39,7 +41,7 @@ export const Add = () => {
     });
   }, [tags]);
 
-  const handleAdd = async () => {
+  const handleAdd = useCallback(async () => {
     const newLink: LinkInterface = {
       title: title,
       url: url,
@@ -53,7 +55,8 @@ export const Add = () => {
       categories,
       keywords,
     });
-  };
+    router.push("/");
+  }, [title, url, keywords, categories]);
 
   return (
     <Container>

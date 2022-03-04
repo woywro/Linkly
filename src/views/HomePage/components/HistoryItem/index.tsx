@@ -24,12 +24,8 @@ interface Props {
 }
 
 export const HistoryItem = ({ item }: Props) => {
-  const handleOnClick = (item) => {
-    // dispatch(updateHistory(item));
-    // window.open(item.url, "_blank");
-  };
   return (
-    <Wrapper onClick={() => handleOnClick(item)}>
+    <Wrapper>
       <Text bold>{item.title}</Text>
       <Text>{moment(parseInt(item.timestamp)).format("LT")}</Text>
     </Wrapper>

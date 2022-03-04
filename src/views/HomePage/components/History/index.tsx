@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { generateHistory } from "../../../../utils/generateHistory";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { LinkItem } from "../../../../components/LinkItem";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { HistoryItem } from "../HistoryItem";
@@ -15,6 +15,8 @@ const Wrapper = styled.div`
   flex-flow: column;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 export const History = () => {
@@ -23,10 +25,13 @@ export const History = () => {
 
   const [history, setHistory] = useState<HistoryLinkInterface[]>([]);
 
-  useEffect(() => {
+  const setFetchedHistory = useCallback(() => {
     const newHistory = generateHistory(Links, History);
-    setHistory(newHistory.slice(0, 5));
-    console.log(History);
+    setHistory(newHistory);
+  }, [History]);
+
+  useEffect(() => {
+    setFetchedHistory();
   }, [History]);
 
   return (

@@ -8,6 +8,7 @@ import { PageTemplate } from "../../components/PageTemplate";
 import { List } from "./components/List";
 import { Text } from "../../components/Text";
 import { History } from "./components/History";
+import { Input } from "../../components/Input";
 
 const Container = styled.div`
   display: flex;
