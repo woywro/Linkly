@@ -34,6 +34,7 @@ interface Props {
 }
 
 export const PageTemplate = ({ title, children }: Props) => {
+
   return (
     <Container>
       <Title>{title}</Title>

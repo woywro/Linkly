@@ -92,6 +92,9 @@ CREATE TABLE "VerificationToken" (
 CREATE UNIQUE INDEX "Tag_id_key" ON "Tag"("id");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "Link_id_key" ON "Link"("id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");
 
 -- CreateIndex

@@ -45,14 +45,20 @@ const RightWrapper = styled.div`
 `;
 
 export const HomePage = () => {
+  
   const [shares, setShares] = useState([]);
 
-  const getShared = async () => {
-    axios.get("/api/getShares").then((res) => {
-      console.log(res.data.shares);
-    });
-  };
 
+  const getShared = async () => {
+    await axios.get("/api/getSharedCategories").then((res) => {
+      console.log(res.data.shares)
+    });
+    }
+
+
+ 
+  
+ 
   return (
     <Container>
       <Button onClick={getShared}>getShared</Button>

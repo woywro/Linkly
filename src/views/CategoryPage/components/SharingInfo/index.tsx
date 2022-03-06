@@ -9,7 +9,7 @@ const Container = styled.div`
   padding: 10px;
   margin-top: 20px;
   display: flex;
-  justify-content: start;
+  justify-content: space-between;
   align-items: flex-start;
   border-top: 1px solid ${(props) => props.theme.colors.secondary};
 `;

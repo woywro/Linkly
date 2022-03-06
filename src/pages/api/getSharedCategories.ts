@@ -10,7 +10,7 @@ export default async (req, res) => {
     //   sharedWith: { has: session.user.email },
     // },
     select: {
-      category: true,
+      category: true
     },
   });
   res.statusCode = 200;

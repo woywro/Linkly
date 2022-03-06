@@ -10,7 +10,8 @@ export default async (req, res) => {
   try {
     const result = await prisma.Share.create({
       data: {
-        ...data,
+        sharedWith: data.sharedWith,
+        category: {connect: { id: data.categoryId}},
         owner: { connect: { email: session.user.email } },
       },
     });

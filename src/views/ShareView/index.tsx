@@ -11,12 +11,12 @@ export const ShareView = () => {
     setSharedList([...sharedList, input]);
   };
   const handleSave = useCallback(async () => {
-    const categoryId = "cl0fb4fhv0112o0f57uy83sc6";
+    const categoryId = "cl0feiuex0105akf58z7rn1sa";
     const sharedWith = sharedList;
     console.log(sharedList);
     await axios.post("/api/createShare", {
-      categoryId,
-      sharedWith,
+      categoryId: categoryId,
+      sharedWith: sharedWith,
     });
   }, [sharedList]);
   return (

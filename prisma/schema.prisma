@@ -34,7 +34,7 @@ model History {
 }
 
 model Link {
-  id         String   @id @default(cuid())
+  id         String   @id @default(cuid()) @unique
   title      String
   url        String?
   categories String[]
