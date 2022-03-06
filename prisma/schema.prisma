@@ -11,7 +11,7 @@ model Share {
     id         String   @id @default(cuid())
     ownerId String
     owner User    @relation(fields: [ownerId], references: [id])
-    sharedWith String[]
+    sharedWith String
     categoryId String
     category Tag @relation(fields: [categoryId], references: [id])
 }
