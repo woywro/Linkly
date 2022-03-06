@@ -40,8 +40,11 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
   };
 
   const handleDeleteTag = async (e) => {
-    setChoosenElements(ChoosenElements.filter((x) => x.value !== e.value));
     console.log(e.value);
+    await axios.post("/api/deleteTag", {
+      value: e.value,
+    });
+    setChoosenElements(ChoosenElements.filter((x) => x.value !== e.value));
     setTags(ChoosenElements.filter((x) => x.value !== e.value));
   };
 

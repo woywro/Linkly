@@ -7,6 +7,8 @@ import { LinkInterface } from "../../../../types/LinkInterface";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { SharingInfo } from "../SharingInfo";
+import { Button } from "../../../../components/Button";
+import axios from "axios";
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,6 +35,12 @@ export const CategoryInfo = ({ data }: Props) => {
   const theme = useTheme();
   const router = useRouter();
 
+  const handleDeleteCategory = async () => {
+    console.log(router.query.category);
+    const categoryName = router.query.category;
+    await axios.post("/api/deleteTag/", { value: categoryName });
+  };
+
   return (
     <Wrapper>
       <Name>
@@ -44,6 +52,7 @@ export const CategoryInfo = ({ data }: Props) => {
       <Text size={"medium"} color={theme.colors.secondary}>
         links: {data.length}
       </Text>
+      <Button onClick={handleDeleteCategory}>Delete Category</Button>
       <SharingInfo />
     </Wrapper>
   );

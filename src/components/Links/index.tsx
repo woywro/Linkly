@@ -1,7 +1,4 @@
-import { Children, useEffect } from "react";
-import { useSelector } from "react-redux";
 import styled, { useTheme } from "styled-components";
-import { LinkItem } from "../LinkItem";
 import { Text } from "../Text";
 
 const StyledLinks = styled.div`
