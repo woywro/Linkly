@@ -1,4 +1,6 @@
+import { useRouter } from "next/router";
 import styled, { useTheme } from "styled-components";
+import { Button } from "../../../../components/Button";
 import { Text } from "../../../../components/Text";
 
 const Container = styled.div`
@@ -14,11 +16,16 @@ const Container = styled.div`
 
 export const SharingInfo = () => {
   const theme = useTheme();
+  const router = useRouter();
+  const handleShare = () => {
+    router.push(`/share`);
+  };
   return (
     <Container>
       <Text size={"big"} color={theme.colors.secondary}>
         Sharing:
       </Text>
+      <Button onClick={handleShare}>Share</Button>
     </Container>
   );
 };

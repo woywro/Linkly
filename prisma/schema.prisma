@@ -7,12 +7,22 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Share {
+    id         String   @id @default(cuid())
+    ownerId String
+    owner User    @relation(fields: [ownerId], references: [id])
+    sharedWith String[]
+    categoryId String
+    category Tag @relation(fields: [categoryId], references: [id])
+}
+
 model Tag {
-  id         String   @id @default(cuid())
+  id         String   @id @default(cuid()) @unique
   value      String
   type      String
   ownerId     String
   owner       User    @relation(fields: [ownerId], references: [id])
+  share         Share[]
 }
 
 model History {
@@ -74,6 +84,7 @@ model User {
   links         Link[]
   history       History[]
   tags          Tag[]
+  share         Share[]
 }
 
 model VerificationToken {

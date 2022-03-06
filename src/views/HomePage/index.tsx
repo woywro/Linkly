@@ -9,6 +9,8 @@ import { List } from "./components/List";
 import { Text } from "../../components/Text";
 import { History } from "./components/History";
 import { Input } from "../../components/Input";
+import { Button } from "../../components/Button";
+import axios from "axios";
 
 const Container = styled.div`
   display: flex;
@@ -43,8 +45,17 @@ const RightWrapper = styled.div`
 `;
 
 export const HomePage = () => {
+  const [shares, setShares] = useState([]);
+
+  const getShared = async () => {
+    axios.get("/api/getShares").then((res) => {
+      console.log(res.data.shares);
+    });
+  };
+
   return (
     <Container>
+      <Button onClick={getShared}>getShared</Button>
       <LeftWrapper>
         <PageTemplate title={"Home"}>
           <List />
