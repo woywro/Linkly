@@ -6,6 +6,8 @@ export const PageContainer = styled.div`
   flex-flow: row;
   width: 100%;
   height: 100%;
+  overflow-y: hidden;
+  overflow-x: hidden;
   padding: 10px;
 `;
 export const LeftWrapper = styled.div`
@@ -35,6 +37,7 @@ export const RightWrapper = styled.div`
 
 export const PageTitle = styled.h1`
   font-size: 35px;
+  margin: 5px;
   opacity: 0.5;
   position: relative;
   margin:-bottom: 10px;

@@ -1,9 +1,7 @@
-import styled from "styled-components";
-import { PageTemplate } from "../../components/PageTemplate";
 import { useRouter } from "next/router";
 import { CategoryInfo } from "./components/CategoryInfo";
 import { LinkItem } from "../../components/LinkItem";
-import { Links } from "../../components/Links";
+import { Links } from "../HomePage/components/Links";
 import { LinkInterface } from "../../types/LinkInterface";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 

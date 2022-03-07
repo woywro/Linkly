@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Categories } from "../Categories";
-import { Links } from "../../../../components/Links";
+import { Links } from "../Links";
 import { useSelector } from "react-redux";
 import { LinkItem } from "../../../../components/LinkItem";
 import { useEffect } from "react";
