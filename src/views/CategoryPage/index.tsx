@@ -12,13 +12,14 @@ interface Props {
 
 export const CategoryPage = ({ data }: Props) => {
   const { asPath } = useRouter();
+  console.log(data);
 
   return (
     <Container>
       <LeftWrapper>
         <PageTemplate title={`${asPath}`}>
           <Links>
-            {data.map((e: LinkInterface) => {
+            {data.links.map((e: LinkInterface) => {
               return <LinkItem item={e} />;
             })}
           </Links>

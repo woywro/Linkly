@@ -8,8 +8,7 @@ export default async (req, res) => {
   try {
     const result = await prisma.Tag.delete({
       where: {
-        value: data.value,
-        owner: { email: session.user.email },
+        id: data.id,
       },
     });
     res.status(200).json(result);

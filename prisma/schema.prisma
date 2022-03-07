@@ -10,10 +10,10 @@ datasource db {
 model Share {
     id         String   @id @default(cuid())
     ownerId String
-    owner User    @relation(fields: [ownerId], references: [id])
+    owner User?    @relation(fields: [ownerId], references: [id])
     sharedWith String
     categoryId String
-    category Tag @relation(fields: [categoryId], references: [id])
+    category Tag? @relation(fields: [categoryId], references: [id])
 }
 
 model Tag {
@@ -21,7 +21,7 @@ model Tag {
   value      String
   type      String
   ownerId     String
-  owner       User    @relation(fields: [ownerId], references: [id])
+  owner       User?    @relation(fields: [ownerId], references: [id])
   share         Share[]
 }
 
@@ -30,7 +30,7 @@ model History {
   linkId  String
   timestamp String 
   ownerId     String
-  owner       User    @relation(fields: [ownerId], references: [id])
+  owner       User?    @relation(fields: [ownerId], references: [id])
 }
 
 model Link {
@@ -40,7 +40,7 @@ model Link {
   categories String[]
   keywords   String[]
   ownerId    String
-  owner      User    @relation(fields: [ownerId], references: [id])
+  owner      User?    @relation(fields: [ownerId], references: [id])
 }
 
 //auth

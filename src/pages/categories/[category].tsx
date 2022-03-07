@@ -14,7 +14,7 @@ const prisma = new PrismaClient();
 
 export async function getServerSideProps({ req, params }) {
   const session = await getSession({ req });
-  const data = await prisma.Link.findMany({
+  const links = await prisma.Link.findMany({
     where: {
       owner: { email: session.user.email },
       categories: {
@@ -22,6 +22,13 @@ export async function getServerSideProps({ req, params }) {
       },
     },
   });
+  const tag = await prisma.Tag.findMany({
+    where: {
+      owner: { email: session.user.email },
+      value: params.category,
+    },
+  });
+  const data = { links, tag };
 
   if (!data) {
     return {

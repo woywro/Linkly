@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { SharingInfo } from "../SharingInfo";
 import { Button } from "../../../../components/Button";
 import axios from "axios";
+import { setLinks } from "../../../../redux/actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -36,9 +37,8 @@ export const CategoryInfo = ({ data }: Props) => {
   const router = useRouter();
 
   const handleDeleteCategory = async () => {
-    console.log(router.query.category);
-    const categoryName = router.query.category;
-    await axios.post("/api/deleteTag/", { value: categoryName });
+    console.log(data.tag[0].id);
+    await axios.post("/api/deleteTag", { id: data.tag[0].id });
   };
 
   return (
