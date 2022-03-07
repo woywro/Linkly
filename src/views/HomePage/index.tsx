@@ -48,20 +48,15 @@ export const HomePage = () => {
   
   const [shares, setShares] = useState([]);
 
-
   const getShared = async () => {
     await axios.get("/api/getSharedCategories").then((res) => {
       console.log(res.data.shares)
     });
     }
 
-
- 
-  
- 
   return (
     <Container>
-      <Button onClick={getShared}>getShared</Button>
+      {/* <Button onClick={getShared}>getShared</Button> */}
       <LeftWrapper>
         <PageTemplate title={"Home"}>
           <List />

@@ -42,19 +42,24 @@ export const Add = () => {
   }, [tags]);
 
   const handleAdd = useCallback(async () => {
-    const newLink: LinkInterface = {
-      title: title,
-      url: url,
-      categories: categories,
-      keywords: keywords,
-    };
-    dispatch(addLink(newLink));
-    await axios.post("/api/addLink", {
-      title,
-      url,
-      categories,
-      keywords,
-    });
+    // const newLink: LinkInterface = {
+    //   title: title,
+    //   url: url,
+    //   categories: categories,
+    //   keywords: keywords,
+    // };
+    // dispatch(addLink(newLink));
+    await axios
+      .post("/api/addLink", {
+        title,
+        url,
+        categories,
+        keywords,
+      })
+      .then((res) => {
+        console.log(res.data);
+        dispatch(addLink(res.data));
+      });
     router.push("/");
   }, [title, url, keywords, categories]);
 

@@ -2,7 +2,7 @@
 CREATE TABLE "Share" (
     "id" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
-    "sharedWith" TEXT[],
+    "sharedWith" TEXT NOT NULL,
     "categoryId" TEXT NOT NULL,
 
     CONSTRAINT "Share_pkey" PRIMARY KEY ("id")

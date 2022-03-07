@@ -42,10 +42,10 @@ export const Links = (state = initialState, action: AnyAction) => {
         ...state,
         {
           id: action.payload.link.id,
-          title: action.payload.link.name,
+          title: action.payload.link.title,
           url: action.payload.link.url,
           categories: action.payload.link.categories,
-          keywords: action.payload.link.categories,
+          keywords: action.payload.link.keywords,
           ownerId: action.payload.link.ownerId,
         },
       ];

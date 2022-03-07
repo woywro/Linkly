@@ -39,8 +39,8 @@ model Link {
   url        String?
   categories String[]
   keywords   String[]
-  ownerId     String
-  owner       User    @relation(fields: [ownerId], references: [id])
+  ownerId    String
+  owner      User    @relation(fields: [ownerId], references: [id])
 }
 
 //auth

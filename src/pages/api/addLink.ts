@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { triggerAsyncId } from "async_hooks";
 import { getSession } from "next-auth/react";
 import { useSession } from "next-auth/react";
 
@@ -12,6 +13,14 @@ export default async (req, res) => {
       data: {
         ...data,
         owner: { connect: { email: session.user.email } },
+      },
+      select: {
+        id: true,
+        title: true,
+        url: true,
+        categories: true,
+        keywords: true,
+        ownerId: true,
       },
     });
     res.status(200).json(result);
