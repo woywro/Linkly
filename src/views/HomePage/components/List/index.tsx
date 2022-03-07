@@ -42,17 +42,11 @@ export const List = () => {
         <>
           <Categories />
           <Divider />
-          {userLinks.length == 0 ? (
-            <ClickableText onClick={() => router.push("/addLink")}>
-              There are no links. Click on that message to create one!
-            </ClickableText>
-          ) : (
-            <Links>
-              {userLinks.map((e) => {
-                return <LinkItem item={e} />;
-              })}
-            </Links>
-          )}
+          <Links>
+            {userLinks.map((e) => {
+              return <LinkItem item={e} />;
+            })}
+          </Links>
         </>
       )}
     </StyledList>

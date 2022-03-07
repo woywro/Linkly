@@ -22,6 +22,10 @@ const Wrapper = styled.div`
   margin: 5px;
   cursor: pointer;
   position: relative;
+  border-radius: 20px;
+  &:hover {
+    background: ${(props) => props.theme.colors.active2};
+  }
 `;
 
 const Label = styled.div`

@@ -5,10 +5,15 @@ import axios from "axios";
 import { setLinks } from "../../../../redux/actions";
 import { useDispatch, useStore } from "react-redux";
 import { useEffect, useState } from "react";
+import { Input } from "../../../../components/Input";
+import { Button } from "../../../../components/Button";
+import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
+
 export const SortBar = () => {
   const [sorting, setSorting] = useState("asc");
+  const [searchMode, setSearchMode] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const theme = useTheme();
-  const fields = ["name", "owner", "last modified", "more"];
   const dispatch = useDispatch();
 
   const handleSortByName = () => {
@@ -25,29 +30,74 @@ export const SortBar = () => {
     }
   };
 
+  const handleSearchByName = () => {
+    console.log(searchValue);
+    axios
+      .get("/api/searchLinksByName", { params: { search: searchValue } })
+      .then((res) => {
+        dispatch(setLinks(res.data.link));
+        console.log(res.data.link);
+      });
+  };
+
+  const handleStopSearch = () => {
+    setSearchMode(false);
+    setSearchValue("");
+  };
+
+  useEffect(() => {
+    handleSearchByName();
+  }, [searchValue]);
+
   return (
     <FieldLabels>
       <Field>
-        <Text bold color={theme.colors.secondary}>
-          NAME
-        </Text>
-        <IconButton onClick={handleSortByName}>
-          {sorting == "asc" ? <AiOutlineArrowDown /> : <AiOutlineArrowUp />}
-        </IconButton>
+        {searchMode == false ? (
+          <>
+            <Text
+              bold
+              color={theme.colors.secondary}
+              onClick={() => {
+                setSearchMode(!searchMode);
+              }}
+            >
+              NAME
+            </Text>
+            <IconButton onClick={handleSortByName}>
+              {sorting == "asc" ? <BsChevronDown /> : <BsChevronUp />}
+            </IconButton>
+          </>
+        ) : (
+          <SearchContainer>
+            <TextInput
+              autoFocus
+              placeholder="search"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+            />
+            <IconButton
+              onClick={() => {
+                handleStopSearch();
+              }}
+            >
+              <BsXLg />
+            </IconButton>
+          </SearchContainer>
+        )}
       </Field>
       <Field>
         <Text bold color={theme.colors.secondary}>
-          owner
+          OWNER
         </Text>
       </Field>
       <Field>
         <Text bold color={theme.colors.secondary}>
-          last modified
+          LAST MODIFIED
         </Text>
       </Field>
       <Field>
         <Text bold color={theme.colors.secondary}>
-          more
+          MORE
         </Text>
       </Field>
     </FieldLabels>
@@ -64,6 +114,13 @@ const FieldLabels = styled.div`
   cursor: pointer;
 `;
 
+const SearchContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row;
+`;
+
 const IconButton = styled.button`
   border: none;
   margin: 0;
@@ -75,6 +132,17 @@ const IconButton = styled.button`
   align-items: center;
   margin-left: 3px;
   cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  &:hover {
+    background: ${(props) => props.theme.colors.active2};
+  }
+`;
+
+const TextInput = styled.input`
+  border: none;
+  font-size: 16px;
+  border-bottom: 2px solid ${(props) => props.theme.colors.secondary};
 `;
 
 const Field = styled.div`
@@ -82,4 +150,9 @@ const Field = styled.div`
   flex-flow: row;
   justify-content: start;
   align-items: center;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: ${(props) => props.theme.colors.active};
+    text-decoration-thickness: 3px;
+  }
 `;
