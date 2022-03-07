@@ -7,27 +7,11 @@ import axios from "axios";
 import styled from "styled-components";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 
-const Header = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-flow: row;
-`;
-
-const StyledInput = styled(Input)`
-  width: 200px;
-  margin-right: 50px;
-`;
-
 export const HomePage = () => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <Header>
-          <PageTitle>Home</PageTitle>
-          <StyledInput placeholder="search" />
-        </Header>
+        <PageTitle>Home</PageTitle>
         <List />
       </LeftWrapper>
       <RightWrapper>

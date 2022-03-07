@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import { Input } from "../../../../components/Input";
 import { Button } from "../../../../components/Button";
 import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
+import { useRouter } from "next/router";
+import { userInfo } from "os";
 
 export const SortBar = () => {
   const [sorting, setSorting] = useState("asc");
@@ -15,6 +17,7 @@ export const SortBar = () => {
   const [searchValue, setSearchValue] = useState("");
   const theme = useTheme();
   const dispatch = useDispatch();
+  const router = useRouter();
 
   const handleSortByName = () => {
     if (sorting == "asc") {

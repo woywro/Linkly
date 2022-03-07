@@ -6,8 +6,6 @@ export const PageContainer = styled.div`
   flex-flow: row;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
-  overflow-x: hidden;
   padding: 10px;
 `;
 export const LeftWrapper = styled.div`

@@ -4,13 +4,10 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 
 const StyledCategories = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-flow: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
   width: 100%;
-  height: 100%;
-  overflow-y: scroll;
+  padding: 10px;
 `;
 
 export const Categories = () => {

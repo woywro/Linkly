@@ -6,14 +6,20 @@ import Link from "next/link";
 const StyledCategory = styled.div`
   padding: 5px;
   display: flex;
-  font-size: 22px;
+  font-size: 50px;
   align-items: center;
   justify-content: center;
+  flex-flow: column;
   cursor: pointer;
+  border-radius: 20px;
+  &:hover {
+    background: ${(props) => props.theme.colors.active2};
+  }
 `;
 
 const Title = styled(Text)`
-  margin-left: 5px;
+  margin-top: 5px;
+  font-size: 20px;
 `;
 
 export const Category = ({ name }) => {

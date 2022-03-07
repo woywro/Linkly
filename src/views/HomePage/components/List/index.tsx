@@ -8,25 +8,29 @@ import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import { Text } from "../../../../components/Text";
 import { useRouter } from "next/router";
 import { Input } from "../../../../components/Input";
+import { SortBar } from "../SortBar";
 
 const StyledList = styled.div`
-  display: grid;
+  display: flex;
   justify-items: center;
   align-items: center;
-  grid-template-rows: 4fr 1fr 8fr;
+  flex-flow: column;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
   padding: 10px;
+`;
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100%;
 `;
 
 const Divider = styled.div`
   height: 2px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   background: ${(props) => props.theme.colors.secondary};
   width: 100%;
-`;
-
-const ClickableText = styled(Text)`
-  cursor: pointer;
 `;
 
 export const List = () => {
@@ -39,15 +43,16 @@ export const List = () => {
       {loadingState.loading == true ? (
         <LoadingSpinner />
       ) : (
-        <>
+        <Wrapper>
           <Categories />
           <Divider />
           <Links>
+            <SortBar />
             {userLinks.map((e) => {
               return <LinkItem item={e} />;
             })}
           </Links>
-        </>
+        </Wrapper>
       )}
     </StyledList>
   );
