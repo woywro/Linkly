@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import { Text } from "../../../../components/Text";
 import { useRouter } from "next/router";
+import { Input } from "../../../../components/Input";
 
 const StyledList = styled.div`
   display: grid;

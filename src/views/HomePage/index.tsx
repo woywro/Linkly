@@ -11,62 +11,19 @@ import { History } from "./components/History";
 import { Input } from "../../components/Input";
 import { Button } from "../../components/Button";
 import axios from "axios";
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-flow: row;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-`;
-
-const LeftWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  height: 100%;
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-`;
-const RightWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-flow: column;
-  width: 25%;
-  height: 100%;
-  background: white;
-  border-radius: 20px;
-  padding: 10px;
-`;
+import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 
 export const HomePage = () => {
-  
-  const [shares, setShares] = useState([]);
-
-  const getShared = async () => {
-    await axios.get("/api/getSharedCategories").then((res) => {
-      console.log(res.data.shares)
-    });
-    }
-
   return (
-    <Container>
-      {/* <Button onClick={getShared}>getShared</Button> */}
+    <PageContainer>
       <LeftWrapper>
-        <PageTemplate title={"Home"}>
-          <List />
-        </PageTemplate>
+        <PageTitle>Home</PageTitle>
+        <List />
       </LeftWrapper>
       <RightWrapper>
-        <PageTemplate title={"History"}>
-          <History />
-        </PageTemplate>
+        <PageTitle>History</PageTitle>
+        <History />
       </RightWrapper>
-    </Container>
+    </PageContainer>
   );
 };

@@ -5,6 +5,7 @@ import { CategoryInfo } from "./components/CategoryInfo";
 import { LinkItem } from "../../components/LinkItem";
 import { Links } from "../../components/Links";
 import { LinkInterface } from "../../types/LinkInterface";
+import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 
 interface Props {
   data: LinkInterface[];
@@ -12,54 +13,21 @@ interface Props {
 
 export const CategoryPage = ({ data }: Props) => {
   const { asPath } = useRouter();
-  console.log(data);
 
   return (
-    <Container>
+    <PageContainer>
       <LeftWrapper>
-        <PageTemplate title={`${asPath}`}>
-          <Links>
-            {data.links.map((e: LinkInterface) => {
-              return <LinkItem item={e} />;
-            })}
-          </Links>
-        </PageTemplate>
+        <PageTitle>{asPath}</PageTitle>
+        <Links>
+          {data.links.map((e: LinkInterface) => {
+            return <LinkItem item={e} />;
+          })}
+        </Links>
       </LeftWrapper>
       <RightWrapper>
+        <PageTitle>Info</PageTitle>
         <CategoryInfo data={data} />
       </RightWrapper>
-    </Container>
+    </PageContainer>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-flow: row;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-`;
-
-const LeftWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 70%;
-  height: 100%;
-  background: white;
-  border-radius: 20px;
-  padding: 20px;
-`;
-const RightWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-flow: column;
-  width: 25%;
-  height: 100%;
-  background: white;
-  border-radius: 20px;
-  padding: 10px;
-`;
