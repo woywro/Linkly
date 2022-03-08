@@ -11,10 +11,9 @@ model Share {
     id         String   @id @default(cuid())
     ownerId String
     owner User?    @relation(fields: [ownerId], references: [id])
-    sharedWith String
-    categoryId String
-    category Tag? @relation(fields: [categoryId], references: [id])
+    sharedWith String[]
 }
+
 
 model Tag {
   id         String   @id @default(cuid()) @unique
@@ -22,7 +21,16 @@ model Tag {
   type      String
   ownerId     String
   owner       User?    @relation(fields: [ownerId], references: [id])
-  share         Share[]
+  links Link[]
+}
+
+model Link {
+  id         String   @id @default(cuid()) @unique
+  title      String
+  url        String?
+  ownerId    String
+  owner      User?    @relation(fields: [ownerId], references: [id])
+  tags Tag[]
 }
 
 model History {
@@ -31,16 +39,6 @@ model History {
   timestamp String 
   ownerId     String
   owner       User?    @relation(fields: [ownerId], references: [id])
-}
-
-model Link {
-  id         String   @id @default(cuid()) @unique
-  title      String
-  url        String?
-  categories String[]
-  keywords   String[]
-  ownerId    String
-  owner      User?    @relation(fields: [ownerId], references: [id])
 }
 
 //auth

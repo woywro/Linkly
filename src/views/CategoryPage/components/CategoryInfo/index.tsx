@@ -60,7 +60,7 @@ export const CategoryInfo = ({ data }: Props) => {
         links: {data.length}
       </Text>
       <Button onClick={handleDeleteCategory}>Delete Category</Button>
-      <SharingInfo />
+      <SharingInfo data={data} />
     </Wrapper>
   );
 };

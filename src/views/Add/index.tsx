@@ -55,6 +55,7 @@ export const Add = () => {
         url,
         categories,
         keywords,
+        tags,
       })
       .then((res) => {
         console.log(res.data);

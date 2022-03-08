@@ -4,21 +4,24 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { useCallback } from "react";
 import axios from "axios";
-export const ShareView = () => {
+export const ShareView = ({ categoryId }) => {
   const [input, setInput] = useState("");
   const [sharedList, setSharedList] = useState(["dd"]);
+
   const handleAdd = () => {
     setSharedList([...sharedList, input]);
   };
+
   const handleSave = useCallback(async () => {
-    const categoryId = "cl0fo0ft80073x8f5zlztr529";
     const sharedWith = sharedList;
     console.log(sharedList);
+    console.log(categoryId);
     await axios.post("/api/createShare", {
       categoryId: categoryId,
       sharedWith: sharedWith,
     });
   }, [sharedList]);
+
   return (
     <Container>
       <Input placeholder="email" onChange={(e) => setInput(e.target.value)} />

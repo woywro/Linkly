@@ -8,18 +8,32 @@ const prisma = new PrismaClient();
 export default async (req, res) => {
   const data = req.body;
   const session = await getSession({ req });
+  const tags = data.tags.map((e) => {
+    return {
+      value: e.value,
+      category: e.type,
+    };
+  });
+  console.log(tags);
   try {
     const result = await prisma.Link.create({
       data: {
-        ...data,
+        title: data.title,
+        url: data.url,
         owner: { connect: { email: session.user.email } },
+        tags: {
+          create: data.tags.map((tag) => ({
+            value: tag.value,
+            type: tag.type,
+            owner: { connect: { email: session.user.email } },
+          })),
+        },
       },
       select: {
         id: true,
         title: true,
         url: true,
-        categories: true,
-        keywords: true,
+        tags: true,
         ownerId: true,
       },
     });

@@ -2,8 +2,7 @@
 CREATE TABLE "Share" (
     "id" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
-    "sharedWith" TEXT NOT NULL,
-    "categoryId" TEXT NOT NULL,
+    "sharedWith" TEXT[],
 
     CONSTRAINT "Share_pkey" PRIMARY KEY ("id")
 );
@@ -19,6 +18,16 @@ CREATE TABLE "Tag" (
 );
 
 -- CreateTable
+CREATE TABLE "Link" (
+    "id" TEXT NOT NULL,
+    "title" TEXT NOT NULL,
+    "url" TEXT,
+    "ownerId" TEXT NOT NULL,
+
+    CONSTRAINT "Link_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "History" (
     "id" TEXT NOT NULL,
     "linkId" TEXT NOT NULL,
@@ -26,18 +35,6 @@ CREATE TABLE "History" (
     "ownerId" TEXT NOT NULL,
 
     CONSTRAINT "History_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "Link" (
-    "id" TEXT NOT NULL,
-    "title" TEXT NOT NULL,
-    "url" TEXT,
-    "categories" TEXT[],
-    "keywords" TEXT[],
-    "ownerId" TEXT NOT NULL,
-
-    CONSTRAINT "Link_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -88,6 +85,12 @@ CREATE TABLE "VerificationToken" (
     "expires" TIMESTAMP(3) NOT NULL
 );
 
+-- CreateTable
+CREATE TABLE "_LinkToTag" (
+    "A" TEXT NOT NULL,
+    "B" TEXT NOT NULL
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "Tag_id_key" ON "Tag"("id");
 
@@ -109,8 +112,11 @@ CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token"
 -- CreateIndex
 CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
 
--- AddForeignKey
-ALTER TABLE "Share" ADD CONSTRAINT "Share_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Tag"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- CreateIndex
+CREATE UNIQUE INDEX "_LinkToTag_AB_unique" ON "_LinkToTag"("A", "B");
+
+-- CreateIndex
+CREATE INDEX "_LinkToTag_B_index" ON "_LinkToTag"("B");
 
 -- AddForeignKey
 ALTER TABLE "Share" ADD CONSTRAINT "Share_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -119,13 +125,19 @@ ALTER TABLE "Share" ADD CONSTRAINT "Share_ownerId_fkey" FOREIGN KEY ("ownerId") 
 ALTER TABLE "Tag" ADD CONSTRAINT "Tag_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "History" ADD CONSTRAINT "History_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Link" ADD CONSTRAINT "Link_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Link" ADD CONSTRAINT "Link_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "History" ADD CONSTRAINT "History_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_LinkToTag" ADD FOREIGN KEY ("A") REFERENCES "Link"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "_LinkToTag" ADD FOREIGN KEY ("B") REFERENCES "Tag"("id") ON DELETE CASCADE ON UPDATE CASCADE;
