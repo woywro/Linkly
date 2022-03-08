@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
+import { useDebugValue } from "react";
 const prisma = new PrismaClient();
 
 export default async (req, res) => {
@@ -9,6 +10,10 @@ export default async (req, res) => {
     const result = await prisma.Tag.delete({
       where: {
         id: data.id,
+      },
+      select: {
+        value: true,
+        type: true,
       },
     });
     res.status(200).json(result);

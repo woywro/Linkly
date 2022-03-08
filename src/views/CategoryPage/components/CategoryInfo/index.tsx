@@ -10,6 +10,8 @@ import { SharingInfo } from "../SharingInfo";
 import { Button } from "../../../../components/Button";
 import axios from "axios";
 import { setLinks } from "../../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { setTags } from "../../../../redux/actions";
 
 const Wrapper = styled.div`
   display: flex;
@@ -35,10 +37,15 @@ interface Props {
 export const CategoryInfo = ({ data }: Props) => {
   const theme = useTheme();
   const router = useRouter();
+  const dispatch = useDispatch();
+  const tags = useSelector((state) => state.tags);
 
   const handleDeleteCategory = async () => {
     console.log(data.tag[0].id);
-    await axios.post("/api/deleteTag", { id: data.tag[0].id });
+    await axios.post("/api/deleteTag", { id: data.tag[0].id }).then((res) => {
+      dispatch(setTags(tags.filter((e) => e.value !== res.data.value)));
+    });
+    router.push("/");
   };
 
   return (
