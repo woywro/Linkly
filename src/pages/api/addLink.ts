@@ -22,11 +22,16 @@ export default async (req, res) => {
         url: data.url,
         owner: { connect: { email: session.user.email } },
         tags: {
-          create: data.tags.map((tag) => ({
-            value: tag.value,
-            type: tag.type,
-            owner: { connect: { email: session.user.email } },
-          })),
+          connectOrCreate: {
+            where: {
+              value: "a",
+            },
+            create: data.tags.map((tag) => ({
+              value: tag.value,
+              type: tag.type,
+              owner: { connect: { email: session.user.email } },
+            })),
+          },
         },
       },
       select: {

@@ -69,10 +69,10 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
         type: type,
       })
     );
-    await axios.post("/api/addTag", {
-      value: input,
-      type: type,
-    });
+    // await axios.post("/api/addTag", {
+    //   value: input,
+    //   type: type,
+    // });
     setChoosenElements([...ChoosenElements, { value: input, type: type }]);
     setTags([...ChoosenElements, { value: input, type: type }]);
     setInput("");

@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   flex-flow: column;
   padding: 10px;
   width: 100%;
-  height: 100%;
+  height: 50%;
 `;
 const Name = styled.div`
   display: flex;
@@ -31,17 +31,16 @@ const Name = styled.div`
 `;
 
 interface Props {
-  data: LinkInterface[];
+  links: LinkInterface[];
 }
 
-export const CategoryInfo = ({ data }: Props) => {
+export const CategoryInfo = ({ links }: Props) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tags);
 
   const handleDeleteCategory = async () => {
-    console.log(data.tag[0].id);
     await axios.post("/api/deleteTag", { id: data.tag[0].id }).then((res) => {
       dispatch(setTags(tags.filter((e) => e.value !== res.data.value)));
     });
@@ -57,10 +56,9 @@ export const CategoryInfo = ({ data }: Props) => {
         </Text>
       </Name>
       <Text size={"medium"} color={theme.colors.secondary}>
-        links: {data.length}
+        links: {links.length}
       </Text>
       <Button onClick={handleDeleteCategory}>Delete Category</Button>
-      <SharingInfo data={data} />
     </Wrapper>
   );
 };

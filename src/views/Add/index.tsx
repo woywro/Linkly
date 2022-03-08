@@ -53,12 +53,9 @@ export const Add = () => {
       .post("/api/addLink", {
         title,
         url,
-        categories,
-        keywords,
         tags,
       })
       .then((res) => {
-        console.log(res.data);
         dispatch(addLink(res.data));
       });
     router.push("/");

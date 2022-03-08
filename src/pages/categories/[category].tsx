@@ -1,13 +1,14 @@
 import { CategoryPage } from "../../views/CategoryPage";
 import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
-import { useEffect } from "react";
+import { LinkInterface } from "../../types/LinkInterface";
 
-export default function elementPage({ data }) {
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-  return <CategoryPage data={data} />;
+interface Props {
+  links: LinkInterface[];
+}
+
+export default function elementPage({ links }: Props) {
+  return <CategoryPage links={links} />;
 }
 
 const prisma = new PrismaClient();
@@ -17,25 +18,19 @@ export async function getServerSideProps({ req, params }) {
   const links = await prisma.Link.findMany({
     where: {
       owner: { email: session.user.email },
-      categories: {
-        has: params.category,
+      tags: {
+        some: {
+          value: params.category,
+        },
       },
     },
   });
-  const tag = await prisma.Tag.findMany({
-    where: {
-      owner: { email: session.user.email },
-      value: params.category,
-    },
-  });
-  const data = { links, tag };
-
-  if (!data) {
+  if (!links) {
     return {
       notFound: true,
     };
   }
   return {
-    props: { data },
+    props: { links },
   };
 }

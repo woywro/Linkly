@@ -14,7 +14,7 @@ const Container = styled.div`
   border-top: 1px solid ${(props) => props.theme.colors.secondary};
 `;
 
-export const SharingInfo = ({ data }) => {
+export const SharingInfo = () => {
   const theme = useTheme();
   const router = useRouter();
   const handleShare = () => {
