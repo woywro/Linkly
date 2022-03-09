@@ -14,7 +14,6 @@ export default async (req, res) => {
       category: e.type,
     };
   });
-  console.log(tags);
   try {
     const result = await prisma.Link.create({
       data: {
@@ -22,16 +21,17 @@ export default async (req, res) => {
         url: data.url,
         owner: { connect: { email: session.user.email } },
         tags: {
-          connectOrCreate: {
-            where: {
-              value: "a",
-            },
-            create: data.tags.map((tag) => ({
+          connectOrCreate: data.tags.map((tag) => ({
+            create: {
               value: tag.value,
+              valId: `${session.user.email}/${tag.value}`,
               type: tag.type,
               owner: { connect: { email: session.user.email } },
-            })),
-          },
+            },
+            where: {
+              valId: `${session.user.email}/${tag.value}`,
+            },
+          })),
         },
       },
       select: {

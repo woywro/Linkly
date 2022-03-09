@@ -11,6 +11,7 @@ CREATE TABLE "Share" (
 CREATE TABLE "Tag" (
     "id" TEXT NOT NULL,
     "value" TEXT NOT NULL,
+    "valId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
 
@@ -93,6 +94,9 @@ CREATE TABLE "_LinkToTag" (
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Tag_id_key" ON "Tag"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Tag_valId_key" ON "Tag"("valId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Link_id_key" ON "Link"("id");

@@ -1,7 +1,7 @@
-import { NextApiHandler } from 'next';
-import NextAuth from 'next-auth';
-import { PrismaAdapter } from '@next-auth/prisma-adapter';
-import GoogleProvider from 'next-auth/providers/google';
+import { NextApiHandler } from "next";
+import NextAuth from "next-auth";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import GoogleProvider from "next-auth/providers/google";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -11,17 +11,23 @@ export default authHandler;
 
 const options = {
   providers: [
- GoogleProvider({
-    clientId: process.env.GOOGLE_CLIENT_ID,
-    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-     authorization: {
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      authorization: {
         params: {
           prompt: "consent",
           access_type: "offline",
-          response_type: "code"
-        }
-      }
-  })
+          response_type: "code",
+        },
+      },
+      callbacks: {
+        session: async (session, user) => {
+          session.userId = user.id;
+          return Promise.resolve(session);
+        },
+      },
+    }),
   ],
   adapter: PrismaAdapter(prisma),
   secret: process.env.SECRET,

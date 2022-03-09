@@ -18,9 +18,10 @@ model Share {
 model Tag {
   id         String   @id @default(cuid()) @unique
   value      String 
+  valId String @unique
   type      String
-  ownerId     String
-  owner       User?    @relation(fields: [ownerId], references: [id])
+  ownerId     String 
+  owner       User?    @relation(fields: [ownerId], references: [id]) 
   links Link[]
 }
 
