@@ -18,14 +18,7 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
   >([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
-  const [ChoosenElements, setChoosenElements] = useState<TagInterface[] | []>(
-    []
-  );
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    setChoosenElements(tags);
-  }, [tags]);
 
   const onChange = (e: { target: HTMLInputElement }) => {
     const userInput = e.target.value;
@@ -39,42 +32,34 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
     setShowSuggestions(true);
   };
 
-  const handleDeleteTag = async (e) => {
-    console.log(e.value);
-    await axios.post("/api/deleteTag", {
-      value: e.value,
-    });
-    setChoosenElements(ChoosenElements.filter((x) => x.value !== e.value));
-    setTags(ChoosenElements.filter((x) => x.value !== e.value));
+  const handleDeleteTag = (e) => {
+    setTags(JSON.parse(JSON.stringify(tags)).filter((x) => x.value !== e.value));
+    console.log(JSON.parse(JSON.stringify(tags)).filter((x) => x.value !== e.value));
   };
 
   const handleAddSuggestion = (e: TagInterface) => {
-    if (!ChoosenElements.map((e) => e.value).includes(e.value)) {
+    if (!tags.map((e) => e.value).includes(e.value)) {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
-      setChoosenElements([
-        ...ChoosenElements,
-        { value: e.value, type: e.type },
-      ]);
-      setTags([...ChoosenElements, { value: e.value, type: e.type }]);
+      setTags([...tags, { value: e.value, type: e.type }]);
       setInput("");
     }
   };
 
   const handleAddTag = async (type) => {
     setShowSuggestions(false);
-    dispatch(
-      updateTags({
-        value: input,
-        type: type,
-      })
-    );
+    // dispatch(
+    //   updateTags({
+    //     value: input,
+    //     type: type,
+    //   })
+    // );
     // await axios.post("/api/addTag", {
     //   value: input,
     //   type: type,
     // });
-    setChoosenElements([...ChoosenElements, { value: input, type: type }]);
-    setTags([...ChoosenElements, { value: input, type: type }]);
+    // setChoosenElements([...ChoosenElements, { value: input, type: type }]);
+    setTags([...tags, { value: input, type: type }]);
     setInput("");
   };
 
@@ -113,13 +98,14 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
   return (
     <Wrapper>
       <ChoosenList>
-        {ChoosenElements.map((e) => {
-          return (
-            <ChoosenElement onClick={() => handleDeleteTag(e)}>
-              {e.value}
-            </ChoosenElement>
-          );
-        })}
+        {tags !== undefined &&
+          tags.map((e) => {
+            return (
+              <ChoosenElement onClick={() => handleDeleteTag(e)}>
+                {e.value}
+              </ChoosenElement>
+            );
+          })}
       </ChoosenList>
       <StyledInput
         type="text"

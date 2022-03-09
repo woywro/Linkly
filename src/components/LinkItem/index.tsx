@@ -11,6 +11,7 @@ import { useCallback, useState } from "react";
 import { DropdownMenu } from "../DropdownMenu";
 import axios from "axios";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   display: grid;
@@ -67,6 +68,7 @@ interface Props {
 
 export const LinkItem = ({ item }: Props) => {
   const theme = useTheme();
+  const router = useRouter();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
 
@@ -101,6 +103,13 @@ export const LinkItem = ({ item }: Props) => {
     [show]
   );
 
+  const handleEditLink = () => {
+    router.push({
+      pathname: `/editLink/${item.id}`,
+      query: item,
+    });
+  };
+
   return (
     <Wrapper onClick={() => handleOnClick(item)}>
       <Label>
@@ -116,24 +125,16 @@ export const LinkItem = ({ item }: Props) => {
         <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
           Delete
         </DropDownButton>
-        <Link
-          href={{
-            pathname: "/editLink",
-            query: {
-              item: JSON.stringify(item),
-            },
+        {/* <Link href={`/editLink/${item.id}`} passHref> */}
+        <DropDownButton
+          onClick={(e) => {
+            handleEditLink();
+            e.stopPropagation();
           }}
-          as={`/editLink`}
-          passHref
         >
-          <DropDownButton
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          >
-            Edit
-          </DropDownButton>
-        </Link>
+          Edit
+        </DropDownButton>
+        {/* </Link> */}
       </DropdownMenu>
     </Wrapper>
   );

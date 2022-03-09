@@ -1,5 +1,5 @@
 import { Input } from "../../components/Input";
-import { addLink } from "../../redux/actions";
+import { addLink, setLinks } from "../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { AutoComplete } from "../Add/components/Autocomplete";
@@ -21,73 +21,57 @@ const Container = styled.div`
 `;
 
 interface Props {
-  item: LinkInterface;
+  link: string;
 }
 
-export const EditLink = ({ item }: Props) => {
+export const EditLink = ({ linkId }: Props) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState<TagInterface[] | []>([]);
-  const [categories, setCategories] = useState<string[] | []>([]);
-  const [keywords, setKeywords] = useState<string[] | []>([]);
+  const [link, setLink] = useState("");
+
   const router = useRouter();
 
-  const Tags = useSelector((state) => state.tags);
+  const allTags = useSelector((state) => state.tags);
 
-  const setUserSavedTags = useCallback(() => {
-    const choosenCategories: TagInterface[] = [];
-    const choosenKeywords: TagInterface[] = [];
-    categories.map((e) => {
-      const category = {
-        value: e,
-        type: "category",
-      };
-      choosenCategories.push(category);
-    });
-    keywords.map((e) => {
-      const keyword = {
-        value: e,
-        type: "keyword",
-      };
-      choosenKeywords.push(keyword);
-    });
-    const choosenTags: TagInterface[] =
-      choosenCategories.concat(choosenKeywords);
-    setTags(choosenTags);
-  }, [categories, keywords]);
-
-  const setInputValues = useCallback(() => {
-    setTitle(item.title);
-    setUrl(item.url);
-    setCategories(item.categories);
-    setKeywords(item.keywords);
-  }, [item]);
+  const getLink = async () => {
+    console.log("change");
+    await axios
+      .get("/api/getSpecifiedLink", {
+        params: {
+          id: linkId,
+        },
+      })
+      .then((res) => {
+        setLink(res.data.link);
+        console.log(res.data.link);
+      });
+  };
 
   useEffect(() => {
-    setUserSavedTags();
-  }, [categories, keywords]);
-
+    console.log("get");
+    getLink();
+  }, [linkId]);
   useEffect(() => {
     setInputValues();
-  }, [item]);
+  }, [link]);
 
-  const handleSaveLink = useCallback(async () => {
-    const categoriesFiltered: string[] = [];
-    const keywordsFiltered: string[] = [];
-    tags.map((e) => {
-      if (e.type == "category") {
-        categoriesFiltered.push(e.value);
-      } else {
-        keywordsFiltered.push(e.value);
-      }
-    });
+  const setInputValues = useCallback(() => {
+    setTitle(link.title);
+    setUrl(link.url);
+    setTags(link.tags);
+  }, [link, linkId]);
+
+  const handleSaveLink = async () => {
+    console.log(tags);
     await axios.post("/api/updateLink", {
-      id: item.id,
-      categories: categoriesFiltered,
-      keywords: keywordsFiltered,
+      id: link.id,
+      title: title,
+      url: url,
+      tags: tags,
     });
-    router.push("/");
-  }, [tags, item]);
+    // router.push("/");
+  };
 
   return (
     <Container>
@@ -105,7 +89,7 @@ export const EditLink = ({ item }: Props) => {
         }}
         value={url}
       />
-      <AutoComplete setTags={setTags} suggestions={Tags} tags={tags} />
+      <AutoComplete setTags={setTags} suggestions={allTags} tags={tags} />
       <Button onClick={handleSaveLink}>save</Button>
     </Container>
   );
