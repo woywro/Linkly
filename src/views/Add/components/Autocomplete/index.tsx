@@ -33,8 +33,12 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
   };
 
   const handleDeleteTag = (e) => {
-    setTags(JSON.parse(JSON.stringify(tags)).filter((x) => x.value !== e.value));
-    console.log(JSON.parse(JSON.stringify(tags)).filter((x) => x.value !== e.value));
+    setTags(
+      JSON.parse(JSON.stringify(tags)).filter((x) => x.value !== e.value)
+    );
+    console.log(
+      JSON.parse(JSON.stringify(tags)).filter((x) => x.value !== e.value)
+    );
   };
 
   const handleAddSuggestion = (e: TagInterface) => {
@@ -48,17 +52,6 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
 
   const handleAddTag = async (type) => {
     setShowSuggestions(false);
-    // dispatch(
-    //   updateTags({
-    //     value: input,
-    //     type: type,
-    //   })
-    // );
-    // await axios.post("/api/addTag", {
-    //   value: input,
-    //   type: type,
-    // });
-    // setChoosenElements([...ChoosenElements, { value: input, type: type }]);
     setTags([...tags, { value: input, type: type }]);
     setInput("");
   };

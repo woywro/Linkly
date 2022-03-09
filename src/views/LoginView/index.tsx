@@ -49,7 +49,7 @@ const Title = styled(Text)`
   font-size: 50px;
 `;
 
-export const LoginPage = () => {
+export const LoginView = () => {
   const theme = useTheme();
   return (
     <Wrapper>

@@ -10,6 +10,7 @@ import { LinkInterface } from "../../types/LinkInterface";
 import { TagInterface } from "../../types/TagInterface";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import { setTags } from "../../redux/actions";
 
 const Container = styled.div`
   height: 300px;
@@ -24,31 +25,13 @@ export const Add = () => {
   const [title, setTitle] = useState<string>("");
   const [url, setUrl] = useState<string>("");
   const [tags, setTags] = useState<TagInterface[] | []>([]);
-  const [categories, setCategories] = useState<string[] | []>([]);
-  const [keywords, setKeywords] = useState<string[] | []>([]);
 
   const dispatch = useDispatch();
   const router = useRouter();
   const Tags = useSelector((state) => state.tags);
 
-  useEffect(() => {
-    tags.map((e) => {
-      if (e.type == "category") {
-        setCategories([...categories, e.value]);
-      } else {
-        setKeywords([...keywords, e.value]);
-      }
-    });
-  }, [tags]);
-
   const handleAdd = useCallback(async () => {
-    // const newLink: LinkInterface = {
-    //   title: title,
-    //   url: url,
-    //   categories: categories,
-    //   keywords: keywords,
-    // };
-    // dispatch(addLink(newLink));
+    console.log(tags);
     await axios
       .post("/api/addLink", {
         title,
@@ -56,10 +39,12 @@ export const Add = () => {
         tags,
       })
       .then((res) => {
+        console.log(res.data);
         dispatch(addLink(res.data));
+        // dispatch(setTags([...Tags, {}]))
       });
     router.push("/");
-  }, [title, url, keywords, categories]);
+  }, [title, url, tags]);
 
   return (
     <Container>

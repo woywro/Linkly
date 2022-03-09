@@ -44,8 +44,7 @@ export const Links = (state = initialState, action: AnyAction) => {
           id: action.payload.link.id,
           title: action.payload.link.title,
           url: action.payload.link.url,
-          categories: action.payload.link.categories,
-          keywords: action.payload.link.keywords,
+          tags: action.payload.link.tags,
           ownerId: action.payload.link.ownerId,
         },
       ];

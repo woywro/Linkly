@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { Category } from "../Category";
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { getTags } from "../../../../redux/actions";
 
 const StyledCategories = styled.div`
   display: grid;
@@ -12,11 +14,15 @@ const StyledCategories = styled.div`
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);
+  const Links = useSelector((state) => state.links);
   const Tags = useSelector((state) => state.tags);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const tagsFiltered = Tags.filter((e) => e.type == "category");
-    setCategories(tagsFiltered);
+    dispatch(getTags());
+  }, [Links]);
+  useEffect(() => {
+    setCategories(Tags);
   }, [Tags]);
 
   return (
