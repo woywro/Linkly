@@ -14,12 +14,12 @@ const Container = styled.div`
   border-top: 1px solid ${(props) => props.theme.colors.secondary};
 `;
 
-export const Sharing = () => {
+export const Sharing = ({ tag }) => {
   const theme = useTheme();
   const router = useRouter();
   const handleShare = () => {
-    router.push(`/share/${data.tag[0].id}`);
-    console.log(data);
+    router.push(`/share/${tag.id}`);
+    console.log(tag);
   };
   return (
     <Container>

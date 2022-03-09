@@ -45,7 +45,7 @@ export const CategoryView = ({ links }: Props) => {
       <RightWrapper>
         <PageTitle>Info</PageTitle>
         <BasicInfo links={links} tag={tag} />
-        <Sharing />
+        <Sharing tag={tag} />
       </RightWrapper>
     </PageContainer>
   );

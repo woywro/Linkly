@@ -4,9 +4,11 @@ import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { useCallback } from "react";
 import axios from "axios";
-export const ShareView = ({ categoryId }) => {
+import { useRouter } from "next/router";
+export const ShareView = () => {
   const [input, setInput] = useState("");
   const [sharedList, setSharedList] = useState(["dd"]);
+  const router = useRouter();
 
   const handleAdd = () => {
     setSharedList([...sharedList, input]);
@@ -15,9 +17,9 @@ export const ShareView = ({ categoryId }) => {
   const handleSave = useCallback(async () => {
     const sharedWith = sharedList;
     console.log(sharedList);
-    console.log(categoryId);
+    console.log(router.query);
     await axios.post("/api/createShare", {
-      categoryId: categoryId,
+      categoryId: router.query.share,
       sharedWith: sharedWith,
     });
   }, [sharedList]);

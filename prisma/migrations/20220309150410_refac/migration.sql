@@ -2,6 +2,7 @@
 CREATE TABLE "Share" (
     "id" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
+    "categoryId" TEXT NOT NULL,
     "sharedWith" TEXT[],
 
     CONSTRAINT "Share_pkey" PRIMARY KEY ("id")
@@ -121,6 +122,9 @@ CREATE UNIQUE INDEX "_LinkToTag_AB_unique" ON "_LinkToTag"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_LinkToTag_B_index" ON "_LinkToTag"("B");
+
+-- AddForeignKey
+ALTER TABLE "Share" ADD CONSTRAINT "Share_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Tag"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Share" ADD CONSTRAINT "Share_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;

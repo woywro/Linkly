@@ -10,6 +10,8 @@ datasource db {
 model Share {
     id         String   @id @default(cuid())
     ownerId String
+    categoryId String
+    category Tag?  @relation(fields: [categoryId], references: [id])
     owner User?    @relation(fields: [ownerId], references: [id])
     sharedWith String[]
 }
@@ -23,6 +25,7 @@ model Tag {
   ownerId     String 
   owner       User?    @relation(fields: [ownerId], references: [id]) 
   links Link[]
+  share Share[]
 }
 
 model Link {

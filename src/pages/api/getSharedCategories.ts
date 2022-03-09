@@ -9,8 +9,13 @@ export default async (req, res) => {
     where: {
       sharedWith: { has: session.user.email },
     },
-    select: {
-      category: true,
+    include: {
+      category: {
+        select: {
+          links: true,
+          owner: true,
+        }
+      },
     },
   });
   res.statusCode = 200;
