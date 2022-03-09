@@ -1,18 +1,18 @@
 import { useRouter } from "next/router";
-import { CategoryInfo } from "./components/CategoryInfo";
+import { BasicInfo } from "./components/BasicInfo";
 import { LinkItem } from "../../components/LinkItem";
 import { Links } from "../HomePage/components/Links";
 import { LinkInterface } from "../../types/LinkInterface";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 import { useEffect, useState } from "react";
-import { SharingInfo } from "./components/SharingInfo";
+import { Sharing } from "./components/Sharing";
 import axios from "axios";
 
 interface Props {
   links: LinkInterface[];
 }
 
-export const CategoryPage = ({ links }: Props) => {
+export const CategoryView = ({ links }: Props) => {
   const { asPath, query } = useRouter();
   const [tag, setTag] = useState();
 
@@ -44,8 +44,8 @@ export const CategoryPage = ({ links }: Props) => {
       </LeftWrapper>
       <RightWrapper>
         <PageTitle>Info</PageTitle>
-        <CategoryInfo links={links} />
-        <SharingInfo />
+        <BasicInfo links={links} tag={tag} />
+        <Sharing />
       </RightWrapper>
     </PageContainer>
   );

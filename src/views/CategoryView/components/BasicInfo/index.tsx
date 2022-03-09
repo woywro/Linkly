@@ -6,7 +6,6 @@ import { TagInterface } from "../../../../types/TagInterface";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { SharingInfo } from "../SharingInfo";
 import { Button } from "../../../../components/Button";
 import axios from "axios";
 import { setLinks } from "../../../../redux/actions";
@@ -32,16 +31,17 @@ const Name = styled.div`
 
 interface Props {
   links: LinkInterface[];
+  tag: TagInterface;
 }
 
-export const CategoryInfo = ({ links }: Props) => {
+export const BasicInfo = ({ links, tag }: Props) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
   const tags = useSelector((state) => state.tags);
 
   const handleDeleteCategory = async () => {
-    await axios.post("/api/deleteTag", { id: data.tag[0].id }).then((res) => {
+    await axios.post("/api/deleteTag", { id: tag.id }).then((res) => {
       dispatch(setTags(tags.filter((e) => e.value !== res.data.value)));
     });
     router.push("/");

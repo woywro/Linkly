@@ -1,4 +1,4 @@
-import { CategoryPage } from "../../views/CategoryPage";
+import { CategoryView } from "../../views/CategoryView";
 import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
 import { LinkInterface } from "../../types/LinkInterface";
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function elementPage({ links }: Props) {
-  return <CategoryPage links={links} />;
+  return <CategoryView links={links} />;
 }
 
 const prisma = new PrismaClient();
