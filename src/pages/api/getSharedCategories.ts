@@ -13,8 +13,10 @@ export default async (req, res) => {
       category: {
         select: {
           links: true,
+          value: true,
           owner: true,
-        }
+          id: true,
+        },
       },
     },
   });

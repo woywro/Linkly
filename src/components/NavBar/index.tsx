@@ -8,6 +8,7 @@ import {
   RiFolder5Line,
   RiFolder5Fill,
   RiAddCircleLine,
+  RiTeamLine,
   RiBookReadLine,
 } from "react-icons/ri";
 import { BiLogOut, BiLogIn } from "react-icons/bi";
@@ -69,6 +70,11 @@ export const NavBar = () => {
         <Link href="/" passHref>
           <Item isActive={router.pathname == "/" ? true : false}>
             <RiLayoutGridLine />
+          </Item>
+        </Link>
+        <Link href="/social" passHref>
+          <Item isActive={router.pathname == "/social" ? true : false}>
+            <RiTeamLine />
           </Item>
         </Link>
         {session && (
