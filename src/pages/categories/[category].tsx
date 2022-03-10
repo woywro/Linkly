@@ -24,6 +24,15 @@ export async function getServerSideProps({ req, params }) {
         },
       },
     },
+    select: {
+      id: true,
+      title: true,
+      url: true,
+      tags: true,
+      ownerId: true,
+      owner: true,
+      modificationTimestamp: true,
+    },
   });
   if (!links) {
     return {

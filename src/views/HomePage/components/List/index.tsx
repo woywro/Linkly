@@ -3,7 +3,7 @@ import { Categories } from "../Categories";
 import { Links } from "../Links";
 import { useSelector } from "react-redux";
 import { LinkItem } from "../../../../components/LinkItem";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import { Text } from "../../../../components/Text";
 import { useRouter } from "next/router";
@@ -36,6 +36,7 @@ const Divider = styled.div`
 export const List = () => {
   const router = useRouter();
   const userLinks = useSelector((state) => state.links);
+  const Tags = useSelector((state) => state.tags);
   const loadingState = useSelector((state) => state.LoadingReducer);
 
   return (
