@@ -44,6 +44,7 @@ const CloseButton = styled.button`
 
 const ModalTitle = styled(Text)`
   margin: 5px;
+  font-size: 28px;
 `;
 
 interface Props {
@@ -58,7 +59,7 @@ export const Modal = ({ title, open, onClose, children }: Props) => {
   return createPortal(
     <Overlay>
       <StyledModal>
-        <ModalTitle size="big">{title}</ModalTitle>
+        <ModalTitle>{title}</ModalTitle>
         <CloseButton>
           <RiCloseCircleLine onClick={onClose} />
         </CloseButton>

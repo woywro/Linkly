@@ -3,10 +3,23 @@ import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { LinkInterface } from "../../types/LinkInterface";
 import { SharedItemView } from "../../views/SharedItemView";
+import { Modal } from "../../components/Modal";
 
 export default function SharedItem({ share }) {
   console.log(share);
-  return <SharedItemView share={share} />;
+  const router = useRouter();
+
+  return (
+    <Modal
+      title={share.category.value}
+      open={true}
+      onClose={() => {
+        router.push("/");
+      }}
+    >
+      <SharedItemView share={share} />
+    </Modal>
+  );
 }
 
 const prisma = new PrismaClient();

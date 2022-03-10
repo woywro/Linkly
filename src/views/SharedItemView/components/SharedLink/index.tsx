@@ -8,45 +8,35 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { Text } from "../../../../components/Text";
-import { RiFolder5Fill, RiLinksFill } from "react-icons/ri";
-import { Button } from "../../../../components/Button";
+import { LinkInterface } from "../../../../types/LinkInterface";
 
 interface Props {
   item: LinkInterface;
 }
 
-export const FeedItem = ({ category }) => {
+export const SharedLink = ({ link }: Props) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
 
   return (
-    <Wrapper
-      onClick={() => {
-        router.push({
-          pathname: `/social/${category.shareId}`,
-        });
-        console.log(category);
-      }}
-    >
+    <Wrapper>
       <Label>
-        <RiFolder5Fill />
-        <Name>{category.value}</Name>
+        <AiOutlineLink />
+        <Name>{link.title}</Name>
       </Label>
-      <Text color={theme.colors.secondary}>{category.owner.email}</Text>
-      <Text color={theme.colors.secondary}>{"June,13,2020"}</Text>
-      <Text color={theme.colors.secondary}>{category.links.length}</Text>
+      <Text color={theme.colors.secondary}>{link.url.slice(0, 20)}</Text>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  display: grid;
-  justify-content: center;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  grid-template-columns: 2fr 2fr 2fr 2fr;
   width: 100%;
-  padding: 15px;
+  padding: 10px;
+  margin: 5px;
   cursor: pointer;
   position: relative;
   border-radius: 20px;
@@ -59,7 +49,6 @@ const Label = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 30px;
   &:hover {
     text-decoration: underline;
     text-decoration-color: ${(props) => props.theme.colors.active};
@@ -68,7 +57,7 @@ const Label = styled.div`
 `;
 
 const Name = styled(Text)`
-  margin-left: 10px;
+  margin-left: 5px;
 `;
 
 const MoreButton = styled.button`
