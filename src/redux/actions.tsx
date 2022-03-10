@@ -29,7 +29,7 @@ export const updateTags = (tag: TagInterface) => ({
   },
 });
 
-export const setLinks = (links: LinkInterface[]) => ({
+export const setLinks = (links) => ({
   type: "SET_LINKS",
   payload: {
     links,
@@ -48,6 +48,7 @@ export const getLinks = () => {
     dispatch({ type: "LOAD_LOADING" });
     axios.get("/api/getLinks").then((res) => {
       dispatch(setLinks(res.data.link));
+      console.log(res.data.link);
       dispatch({ type: "LOAD_SUCCESS" });
     });
   };

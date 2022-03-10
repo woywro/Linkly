@@ -17,6 +17,8 @@ export default async (req, res) => {
       url: true,
       tags: true,
       ownerId: true,
+      owner: true,
+      modificationTimestamp: true,
     },
   });
   res.statusCode = 200;

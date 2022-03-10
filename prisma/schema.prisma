@@ -33,6 +33,7 @@ model Link {
   title      String
   url        String?
   ownerId    String
+  modificationTimestamp String
   owner      User?    @relation(fields: [ownerId], references: [id])
   tags Tag[]
 }

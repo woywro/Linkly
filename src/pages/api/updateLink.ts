@@ -15,6 +15,7 @@ export default async (req, res) => {
         title: data.title,
         url: data.url,
         owner: { connect: { email: session.user.email } },
+        modificationTimestamp: Date.now().toString(),
         tags: {
           connectOrCreate: data.tags.map((tag) => ({
             create: {

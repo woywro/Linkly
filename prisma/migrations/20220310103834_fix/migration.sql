@@ -25,6 +25,7 @@ CREATE TABLE "Link" (
     "title" TEXT NOT NULL,
     "url" TEXT,
     "ownerId" TEXT NOT NULL,
+    "modificationTimestamp" TEXT NOT NULL,
 
     CONSTRAINT "Link_pkey" PRIMARY KEY ("id")
 );

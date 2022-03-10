@@ -49,7 +49,9 @@ export const SortBar = () => {
   };
 
   useEffect(() => {
-    handleSearchByName();
+    if (searchValue.length > 0) {
+      handleSearchByName();
+    }
   }, [searchValue]);
 
   return (

@@ -7,11 +7,12 @@ import { useTheme } from "styled-components";
 import { AiOutlineLink } from "react-icons/ai";
 import { CgMoreAlt } from "react-icons/cg";
 import { Button } from "../Button";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { DropdownMenu } from "../DropdownMenu";
 import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 const Wrapper = styled.div`
   display: grid;
@@ -110,14 +111,20 @@ export const LinkItem = ({ item }: Props) => {
     });
   };
 
+  useEffect(() => {
+    console.log(item);
+  }, [item]);
+
   return (
     <Wrapper onClick={() => handleOnClick(item)}>
       <Label>
         <AiOutlineLink />
         <Name>{item.title}</Name>
       </Label>
-      <Text color={theme.colors.secondary}>{"woywro"}</Text>
-      <Text color={theme.colors.secondary}>{"June,13,2020"}</Text>
+      <Text color={theme.colors.secondary}>{item.owner.email}</Text>
+      <Text color={theme.colors.secondary}>
+        {moment(parseInt(item.modificationTimestamp)).format("lll")}
+      </Text>
       <MoreButton onClick={handleOpenMenu}>
         <CgMoreAlt size={"20px"} />
       </MoreButton>
