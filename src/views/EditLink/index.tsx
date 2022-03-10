@@ -10,6 +10,7 @@ import { TagInterface } from "../../types/TagInterface";
 import { LinkInterface } from "../../types/LinkInterface";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import { updateLink } from "../../redux/actions";
 
 const Container = styled.div`
   height: 300px;
@@ -31,6 +32,7 @@ export const EditLink = ({ linkId }: Props) => {
   const [link, setLink] = useState("");
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const allTags = useSelector((state) => state.tags);
 
@@ -64,12 +66,16 @@ export const EditLink = ({ linkId }: Props) => {
 
   const handleSaveLink = async () => {
     console.log(tags);
-    await axios.post("/api/updateLink", {
-      id: link.id,
-      title: title,
-      url: url,
-      tags: tags,
-    });
+    await axios
+      .post("/api/updateLink", {
+        id: link.id,
+        title: title,
+        url: url,
+        tags: tags,
+      })
+      .then((res) => {
+        dispatch(updateLink(res.data));
+      });
     // router.push("/");
   };
 

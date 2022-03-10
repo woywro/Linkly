@@ -20,6 +20,15 @@ export const Links = (state = initialState, action: AnyAction) => {
     case "SET_LINKS": {
       return action.payload.links;
     }
+    case "UPDATE_LINK": {
+      const filtered = [...state].filter(
+        (e) => e.id !== action.payload.link.id
+      );
+      const sorted = [...filtered, action.payload.link].sort(
+        (a, b) => b.modificationTimestamp - a.modificationTimestamp
+      );
+      return sorted;
+    }
 
     default: {
       return state;
