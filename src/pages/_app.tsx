@@ -24,7 +24,6 @@ export default function App({
                 <NavBar />
               </AuthGuard>
               <Component {...pageProps} />
-              <div id="portal" />
             </ViewBox>
           </Wrapper>
         </ThemeProvider>

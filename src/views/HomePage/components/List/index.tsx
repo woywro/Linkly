@@ -12,7 +12,7 @@ import { SortBar } from "../SortBar";
 
 const StyledList = styled.div`
   display: flex;
-  justify-items: center;
+  justify-content: center;
   align-items: center;
   flex-flow: column;
   width: 100%;

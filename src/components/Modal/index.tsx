@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { createPortal } from "react-dom";
 import { RiCloseCircleLine } from "react-icons/ri";
 import { Text } from "../Text";
+import { Portal } from "../../HOC/Portal";
 
 const Overlay = styled.div`
   position: fixed;
@@ -56,16 +57,17 @@ interface Props {
 
 export const Modal = ({ title, open, onClose, children }: Props) => {
   if (!open) return null;
-  return createPortal(
-    <Overlay>
-      <StyledModal>
-        <ModalTitle>{title}</ModalTitle>
-        <CloseButton>
-          <RiCloseCircleLine onClick={onClose} />
-        </CloseButton>
-        {children}
-      </StyledModal>
-    </Overlay>,
-    document.getElementById("portal")
+  return (
+    <Portal selector="#portal">
+      <Overlay>
+        <StyledModal>
+          <ModalTitle>{title}</ModalTitle>
+          <CloseButton>
+            <RiCloseCircleLine onClick={onClose} />
+          </CloseButton>
+          {children}
+        </StyledModal>
+      </Overlay>
+    </Portal>
   );
 };

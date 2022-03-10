@@ -20,14 +20,9 @@ const StyledCategories = styled.div`
 
 export const Categories = () => {
   const [categories, setCategories] = useState([]);
-  const { width } = useWindowDimensions();
   const Links = useSelector((state) => state.links);
   const Tags = useSelector((state) => state.tags);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(width);
-  }, [width]);
 
   useEffect(() => {
     dispatch(getTags());
@@ -37,7 +32,7 @@ export const Categories = () => {
   }, [Tags]);
 
   return (
-    <StyledCategories width={width}>
+    <StyledCategories>
       {categories.map((e) => {
         return <Category name={e.value} />;
       })}
