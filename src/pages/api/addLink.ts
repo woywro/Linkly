@@ -2,8 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { triggerAsyncId } from "async_hooks";
 import { getSession } from "next-auth/react";
 import { useSession } from "next-auth/react";
-
-const prisma = new PrismaClient();
+import { prisma } from "../../../prisma/PrismaClient";
 
 export default async (req, res) => {
   const data = req.body;

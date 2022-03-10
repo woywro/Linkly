@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
 import { useDebugValue } from "react";
-const prisma = new PrismaClient();
+import { prisma } from "../../../prisma/PrismaClient";
 
 export default async (req, res) => {
   const data = req.body;
