@@ -18,12 +18,13 @@ export const FeedItem = ({ category }) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
-  const [show, setShow] = useState(false);
 
   return (
     <Wrapper
       onClick={() => {
-        router.push(`/social/${categoryid}`);
+        router.push({
+          pathname: `/social/${category.shareId}`,
+        });
         console.log(category);
       }}
     >

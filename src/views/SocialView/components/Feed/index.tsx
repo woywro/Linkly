@@ -6,29 +6,30 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 export const Feed = () => {
   const theme = useTheme();
-  const [shared, setShared] = useState([]);
+  const [sharedCategories, setSharedCategories] = useState([]);
 
-  const getSharedCategories = async () => {
+  const getShared = async () => {
     await axios.get("/api/getSharedCategories").then((res) => {
       console.log(res.data);
       const categories = [];
       res.data.shares.map((share) => {
+        share.category.shareId = share.id;
         categories.push(share.category);
       });
-      setShared(categories);
+      setSharedCategories(categories);
       console.log(categories);
     });
   };
 
   useEffect(() => {
-    getSharedCategories();
+    getShared();
   }, []);
 
   return (
     <Container>
       <List>
-        {shared !== [] &&
-          shared.map((e) => {
+        {sharedCategories !== [] &&
+          sharedCategories.map((e) => {
             return <FeedItem category={e} />;
           })}
       </List>
