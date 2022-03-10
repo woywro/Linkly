@@ -9,22 +9,15 @@ const initialHistory: HistoryInterface[] = [];
 export const Links = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case "ADD_LINK": {
-      return [
-        ...state,
-        {
-          id: action.payload.link.id,
-          title: action.payload.link.title,
-          url: action.payload.link.url,
-          tags: action.payload.link.tags,
-          ownerId: action.payload.link.ownerId,
-        },
-      ];
+      const linksSorted = [...state, action.payload.link].sort(
+        (a, b) => b.modificationTimestamp - a.modificationTimestamp
+      );
+      return linksSorted;
     }
     case "DELETE_LINK": {
       return [...state].filter((e) => e.id !== action.payload.link.id);
     }
     case "SET_LINKS": {
-      console.log(action.payload);
       return action.payload.links;
     }
 

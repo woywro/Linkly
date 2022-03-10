@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { getHistory, getLinks, getTags } from "../../redux/actions";
+import { getHistory, getLinks, getTags } from "../redux/actions";
 import { useDispatch } from "react-redux";
 
 import { useSession } from "next-auth/react";

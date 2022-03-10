@@ -6,7 +6,7 @@ export default async (req, res) => {
   const session = await getSession({ req });
   const link = await prisma.Link.findMany({
     orderBy: {
-      title: "asc",
+      modificationTimestamp: "desc",
     },
     where: {
       owner: { email: session.user.email },

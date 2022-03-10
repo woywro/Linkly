@@ -4,7 +4,7 @@ import { NavBar } from "../components/NavBar";
 import { Provider, useDispatch } from "react-redux";
 import store from "../redux/store";
 import { SessionProvider } from "next-auth/react";
-import { AuthGuard } from "../components/AuthGuard";
+import { AuthGuard } from "../HOC/AuthGuard";
 import { GlobalStyles } from "../theme/globalStyles";
 import { theme } from "../theme/theme";
 import { AppProps } from "next/app";

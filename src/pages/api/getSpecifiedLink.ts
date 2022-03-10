@@ -11,10 +11,12 @@ export default async (req, res) => {
     },
     select: {
       id: true,
-      ownerId: true,
       title: true,
       url: true,
       tags: true,
+      ownerId: true,
+      owner: true,
+      modificationTimestamp: true,
     },
   });
   res.statusCode = 200;

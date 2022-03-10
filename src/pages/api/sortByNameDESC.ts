@@ -11,6 +11,15 @@ export default async (req, res) => {
     where: {
       owner: { email: session.user.email },
     },
+    select: {
+      id: true,
+      title: true,
+      url: true,
+      tags: true,
+      ownerId: true,
+      owner: true,
+      modificationTimestamp: true,
+    },
   });
   res.statusCode = 200;
   res.json({ link });
