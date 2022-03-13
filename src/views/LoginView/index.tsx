@@ -4,6 +4,9 @@ import { Input } from "../../components/Input";
 import { Text } from "../../components/Text";
 import { theme } from "../../theme/theme";
 import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
+import loginLogo from "../../static/img/loginLogo.png";
+import GoogleButton from "react-google-button";
 
 const Wrapper = styled.div`
   display: flex;
@@ -27,11 +30,19 @@ const LeftWrapper = styled.div`
 
 const RightWrapper = styled.div`
   display: flex;
-  flex-flow: row;
   justify-content: center;
   align-items: center;
   width: 50%;
   height: 100%;
+`;
+const ImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
+  position: relative;
+  padding: 30px;
 `;
 const TextWrapper = styled.div`
   display: flex;
@@ -55,18 +66,20 @@ export const LoginView = () => {
     <Wrapper>
       <LeftWrapper>
         <TextWrapper>
-          <Title color={theme.colors.secondary}>Sign in</Title>
-          <Text color={theme.colors.secondary}>
+          <Title color={theme.colors.primaryText}>Sign in</Title>
+          <Text color={theme.colors.primaryText}>
             Sign in to continue to this application
           </Text>
         </TextWrapper>
-        <StyledInput placeholder="email" />
-        <StyledInput placeholder="password" />
-        <Button>Log in</Button>
-        <Button onClick={() => signIn()}>Log in with Google</Button>
+        {/* <StyledInput placeholder="email" />
+        <StyledInput placeholder="password" /> */}
+        {/* <Button>Log in</Button> */}
+        <GoogleButton onClick={() => signIn()} />
       </LeftWrapper>
       <RightWrapper>
-        <p>ss</p>
+        <ImageWrapper>
+          <Image src={loginLogo} width="100%" height="100%" layout="fill" />
+        </ImageWrapper>
       </RightWrapper>
     </Wrapper>
   );

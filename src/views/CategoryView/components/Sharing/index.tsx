@@ -11,7 +11,7 @@ const Container = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  border-top: 1px solid ${(props) => props.theme.colors.secondary};
+  border-top: 1px solid ${(props) => props.theme.colors.secondaryBg};
 `;
 
 export const Sharing = ({ tag }) => {
@@ -23,7 +23,7 @@ export const Sharing = ({ tag }) => {
   };
   return (
     <Container>
-      <Text size={"big"} color={theme.colors.secondary}>
+      <Text size={"big"} color={theme.colors.primaryText}>
         Sharing:
       </Text>
       <Button onClick={handleShare}>Share</Button>

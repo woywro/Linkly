@@ -51,11 +51,11 @@ export const BasicInfo = ({ links, tag }: Props) => {
     <Wrapper>
       <Name>
         <RiFolder5Fill size={"80px"} color={theme.colors.primary} />
-        <Text size={"big"} color={theme.colors.secondary}>
+        <Text size={"big"} color={theme.colors.primaryText}>
           {router.query.category}
         </Text>
       </Name>
-      <Text size={"medium"} color={theme.colors.secondary}>
+      <Text size={"medium"} color={theme.colors.secondaryText}>
         links: {links.length}
       </Text>
       <Button onClick={handleDeleteCategory}>Delete Category</Button>
