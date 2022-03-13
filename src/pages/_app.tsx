@@ -37,7 +37,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: white;
+  background: ${(props) => props.theme.colors.primaryBg};
 `;
 const ViewBox = styled.div`
   width: 85vw;
@@ -48,6 +48,6 @@ const ViewBox = styled.div`
   position: relative;
   align-items: center;
   box-shadow: ${(props) => props.theme.shadow};
-  background: ${(props) => props.theme.colors.primary};
+  background: ${(props) => props.theme.colors.secondaryBg};
   border-radius: 10px;
 `;

@@ -41,12 +41,10 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px;
-  margin-top: 20px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   flex-flow: column;
-  border-top: 1px solid ${(props) => props.theme.colors.secondary};
 `;
 
 const List = styled.ul`

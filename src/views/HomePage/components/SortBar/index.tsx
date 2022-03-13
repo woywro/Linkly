@@ -61,7 +61,7 @@ export const SortBar = () => {
           <>
             <Text
               bold
-              color={theme.colors.secondary}
+              color={theme.colors.primaryText}
               onClick={() => {
                 setSearchMode(!searchMode);
               }}
@@ -91,17 +91,17 @@ export const SortBar = () => {
         )}
       </Field>
       <Field>
-        <Text bold color={theme.colors.secondary}>
+        <Text bold color={theme.colors.primaryText}>
           OWNER
         </Text>
       </Field>
       <Field>
-        <Text bold color={theme.colors.secondary}>
+        <Text bold color={theme.colors.primaryText}>
           LAST MODIFIED
         </Text>
       </Field>
       <Field>
-        <Text bold color={theme.colors.secondary}>
+        <Text bold color={theme.colors.primaryText}>
           MORE
         </Text>
       </Field>
@@ -140,7 +140,7 @@ const IconButton = styled.button`
   border-radius: 50%;
   padding: 5px;
   &:hover {
-    background: ${(props) => props.theme.colors.active2};
+    background: ${(props) => props.theme.colors.secondaryBg};
   }
 `;
 
@@ -157,7 +157,7 @@ const Field = styled.div`
   align-items: center;
   &:hover {
     text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.active};
+    text-decoration-color: ${(props) => props.theme.colors.primary};
     text-decoration-thickness: 3px;
   }
 `;

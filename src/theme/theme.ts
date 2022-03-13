@@ -1,7 +1,11 @@
 export const theme = {
   colors: {
-    primary: "#FF9F45",
-    secondary: "#A8A8A8",
+    primary: "#01c4d4",
+    secondary: "#e9c74d",
+    primaryBg: "white",
+    secondaryBg: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#bec3c6",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
   },

@@ -5,17 +5,17 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { getTags } from "../../../../redux/actions";
 import { Button } from "../../../../components/Button";
-import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 
 const StyledCategories = styled.div`
-  display: flex;
-  flex-flow: row;
   height: auto;
   padding: 10px;
   width: 100%;
   overflow-x: scroll;
   -moz-scrollbars-horizontal: touch;
+  display: flex;
+  flex-flow: row;
   flex-wrap: nowrap;
+  color: ${(props) => props.theme.colors.primaryText};
 `;
 
 export const Categories = () => {

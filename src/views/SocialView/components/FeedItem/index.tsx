@@ -33,9 +33,9 @@ export const FeedItem = ({ category }) => {
         <RiFolder5Fill />
         <Name>{category.value}</Name>
       </Label>
-      <Text color={theme.colors.secondary}>{category.owner.email}</Text>
-      <Text color={theme.colors.secondary}>{"June,13,2020"}</Text>
-      <Text color={theme.colors.secondary}>{category.links.length}</Text>
+      <Text color={theme.colors.secondaryText}>{category.owner.email}</Text>
+      <Text color={theme.colors.secondaryText}>{"June,13,2020"}</Text>
+      <Text color={theme.colors.secondaryText}>{category.links.length}</Text>
     </Wrapper>
   );
 };
@@ -51,7 +51,7 @@ const Wrapper = styled.div`
   position: relative;
   border-radius: 20px;
   &:hover {
-    background: ${(props) => props.theme.colors.active2};
+    background: ${(props) => props.theme.colors.secondaryBg};
   }
 `;
 
@@ -60,31 +60,15 @@ const Label = styled.div`
   justify-content: flex-start;
   align-items: center;
   font-size: 30px;
+  color: ${(props) => props.theme.colors.primaryText};
   &:hover {
     text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.active};
+    text-decoration-color: ${(props) => props.theme.colors.primary};
     text-decoration-thickness: 3px;
   }
 `;
 
 const Name = styled(Text)`
   margin-left: 10px;
-`;
-
-const MoreButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-start;
-  color: ${(props) => props.theme.colors.secondary};
-`;
-
-const DropDownButton = styled.button`
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: none;
-  cursor: pointer;
-  border-bottom: 1px solid ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.primaryText};
 `;

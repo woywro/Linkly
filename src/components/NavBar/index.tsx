@@ -38,7 +38,7 @@ const Item = styled.a<{ isActive?: boolean }>`
   ${({ isActive }) =>
     isActive &&
     css`
-      background: ${(props) => props.theme.colors.active};
+      background: ${(props) => props.theme.colors.primary};
       border-radius: 20px;
     `}
 `;

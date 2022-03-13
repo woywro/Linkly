@@ -29,7 +29,7 @@ const Divider = styled.div`
   height: 2px;
   margin-top: 10px;
   margin-bottom: 10px;
-  background: ${(props) => props.theme.colors.secondary};
+  background: ${(props) => props.theme.colors.secondaryBg};
   width: 100%;
 `;
 

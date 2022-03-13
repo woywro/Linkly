@@ -19,6 +19,7 @@ export const LeftWrapper = styled.div`
   text-align: left;
   border-radius: 20px;
   padding: 20px;
+  background: ${(props) => props.theme.colors.primaryBg};
 `;
 export const RightWrapper = styled.div`
   display: flex;
@@ -31,6 +32,7 @@ export const RightWrapper = styled.div`
   border-radius: 20px;
   text-align: left;
   padding: 10px;
+  background: ${(props) => props.theme.colors.primaryBg};
 `;
 
 export const PageTitle = styled.h1`
@@ -42,7 +44,7 @@ export const PageTitle = styled.h1`
   &::before {
     position: absolute;
     content: "";
-    background: ${(props) => props.theme.colors.secondary};
+    background: ${(props) => props.theme.colors.primary};
     height: 3px;
     width: 70%;
     bottom: -5px;

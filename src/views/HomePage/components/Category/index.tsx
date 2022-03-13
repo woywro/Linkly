@@ -7,7 +7,6 @@ const StyledCategory = styled.div`
   padding: 5px;
   display: flex;
   height: 100%;
-  width: 150px;
   flex: 0 0 auto;
   font-size: 50px;
   align-items: center;

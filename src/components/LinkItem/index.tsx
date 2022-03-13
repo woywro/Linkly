@@ -26,7 +26,7 @@ const Wrapper = styled.div`
   position: relative;
   border-radius: 20px;
   &:hover {
-    background: ${(props) => props.theme.colors.active2};
+    background: ${(props) => props.theme.colors.secondaryBg};
   }
 `;
 
@@ -34,15 +34,18 @@ const Label = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  color: ${(props) => props.theme.colors.primaryText};
+
   &:hover {
     text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.active};
+    text-decoration-color: ${(props) => props.theme.colors.primary};
     text-decoration-thickness: 3px;
   }
 `;
 
 const Name = styled(Text)`
   margin-left: 5px;
+  color: ${(props) => props.theme.colors.primaryText};
 `;
 
 const MoreButton = styled.button`
@@ -51,7 +54,7 @@ const MoreButton = styled.button`
   cursor: pointer;
   display: flex;
   justify-content: flex-start;
-  color: ${(props) => props.theme.colors.secondary};
+  color: ${(props) => props.theme.colors.secondaryText};
 `;
 
 const DropDownButton = styled.button`
@@ -121,8 +124,8 @@ export const LinkItem = ({ item }: Props) => {
         <AiOutlineLink />
         <Name>{item.title}</Name>
       </Label>
-      <Text color={theme.colors.secondary}>{item.owner.email}</Text>
-      <Text color={theme.colors.secondary}>
+      <Text color={theme.colors.secondaryText}>{item.owner.email}</Text>
+      <Text color={theme.colors.secondaryText}>
         {moment(parseInt(item.modificationTimestamp)).format("lll")}
       </Text>
       <MoreButton onClick={handleOpenMenu}>
