@@ -34,13 +34,22 @@ const Item = styled.a<{ isActive?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
   cursor: pointer;
+  color: ${(props) => props.theme.colors.primaryText};
   ${({ isActive }) =>
     isActive &&
     css`
       background: ${(props) => props.theme.colors.primary};
       border-radius: 20px;
-    `}
+    `};
+  &:hover:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+  }
 `;
 
 const Links = styled.div`
@@ -54,6 +63,8 @@ const Links = styled.div`
 const LogoutBtn = styled(Item)`
   position: absolute;
   bottom: 30px;
+  background: ${(props) => props.theme.colors.secondary};
+  border-radius: 10px;
 `;
 
 export const NavBar = () => {

@@ -39,7 +39,19 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.theme.colors.primaryBg};
+  position: relative;
+  &:after {
+    content: "";
+    border-top-left-radius: 50% 100%;
+    border-top-right-radius: 50% 0%;
+    position: absolute;
+    bottom: 0;
+    z-index: -1;
+    width: 70%;
+    right: 0;
+    background-color: ${(props) => props.theme.colors.primary};
+    height: 20%;
+  }
 `;
 const ViewBox = styled.div`
   width: 85vw;
