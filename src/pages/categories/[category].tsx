@@ -20,7 +20,7 @@ export async function getServerSideProps({ req, params }) {
       owner: { email: session.user.email },
       tags: {
         some: {
-          value: params.category,
+          id: params.category,
         },
       },
     },

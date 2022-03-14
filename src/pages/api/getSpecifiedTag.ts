@@ -5,12 +5,11 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req, res) => {
   const session = await getSession({ req });
   const data = req.body;
-  const tags = await prisma.Tag.findMany({
+  const tag = await prisma.Tag.findUnique({
     where: {
-      owner: { email: session.user.email },
-      value: data.tagValue,
+      id: req.query["id"],
     },
   });
   res.statusCode = 200;
-  res.json({ tags });
+  res.json({ tag });
 };

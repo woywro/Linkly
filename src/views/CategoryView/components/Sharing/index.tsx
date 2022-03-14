@@ -1,7 +1,9 @@
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 import styled, { useTheme } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { Text } from "../../../../components/Text";
+import axios from "axios";
 
 const Container = styled.div`
   width: 100%;
@@ -21,6 +23,19 @@ export const Sharing = ({ tag }) => {
     router.push(`/share/${tag.id}`);
     console.log(tag);
   };
+
+  const checkShare = () => {
+    console.log(tag);
+    axios.get("/api/getShareById", { params: { id: tag.id } }).then((res) => {
+      console.log(res.data);
+    });
+  };
+  useEffect(() => {
+    if (tag !== undefined) {
+      checkShare();
+    }
+  }, [tag]);
+
   return (
     <Container>
       <Text size={"big"} color={theme.colors.primaryText}>

@@ -34,7 +34,7 @@ export const Categories = () => {
   return (
     <StyledCategories>
       {categories.map((e) => {
-        return <Category name={e.value} />;
+        return <Category name={e.value} id={e.id} />;
       })}
     </StyledCategories>
   );

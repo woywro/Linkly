@@ -24,9 +24,9 @@ const Title = styled(Text)`
   font-size: 20px;
 `;
 
-export const Category = ({ name }) => {
+export const Category = ({ name, id }) => {
   return (
-    <Link href={`/categories/${name}`} passHref>
+    <Link href={`/categories/${id}`} passHref>
       <StyledCategory>
         <RiFolder5Fill />
         <Title>{name}</Title>

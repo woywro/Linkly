@@ -17,20 +17,21 @@ export const CategoryView = ({ links }: Props) => {
   const [tag, setTag] = useState();
 
   const getTag = async () => {
-    const tagValue = query.category;
+    const id = query.category;
     await axios
       .get("/api/getSpecifiedTag", {
-        data: {
-          tagValue,
+        params: {
+          id,
         },
       })
       .then((res) => {
-        setTag(res.data.tags[0]);
+        setTag(res.data.tag);
+        console.log(res.data.tag);
       });
   };
   useEffect(() => {
     getTag();
-  }, []);
+  }, [asPath, query]);
 
   return (
     <PageContainer>
