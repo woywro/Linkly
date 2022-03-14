@@ -8,6 +8,8 @@ import { AuthGuard } from "../HOC/AuthGuard";
 import { GlobalStyles } from "../theme/globalStyles";
 import { theme } from "../theme/theme";
 import { AppProps } from "next/app";
+import { useSession } from "next-auth/react";
+import Login from "./login";
 
 export default function App({
   Component,
@@ -22,8 +24,8 @@ export default function App({
             <ViewBox>
               <AuthGuard>
                 <NavBar />
+                <Component {...pageProps} />
               </AuthGuard>
-              <Component {...pageProps} />
             </ViewBox>
           </Wrapper>
         </ThemeProvider>

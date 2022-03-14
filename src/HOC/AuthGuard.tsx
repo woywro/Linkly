@@ -2,8 +2,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import { getHistory, getLinks, getTags } from "../redux/actions";
 import { useDispatch } from "react-redux";
-
+import { Component } from "react";
 import { useSession } from "next-auth/react";
+import Login from "../pages/login";
 
 interface Props {
   children: JSX.Element[];
@@ -33,7 +34,7 @@ export const AuthGuard = ({ children }: Props) => {
     return <>{children}</>;
   }
 
-  return null;
+  return <Login />;
 
   //   return Session !== undefined && status == "loading" ? (
   //     <p>loading</p>
