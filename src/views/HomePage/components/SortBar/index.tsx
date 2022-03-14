@@ -10,9 +10,12 @@ import { Button } from "../../../../components/Button";
 import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
 import { useRouter } from "next/router";
 import { userInfo } from "os";
+import { sortLinks } from "../../../../redux/actions";
 
 export const SortBar = () => {
-  const [sorting, setSorting] = useState("asc");
+  const [sortByName, setSortByName] = useState(false);
+  const [sortByOwner, setSortByOwner] = useState(false);
+  const [sortByModification, setSortByModification] = useState(false);
   const [searchMode, setSearchMode] = useState(false);
   const [searchValue, setSearchValue] = useState("");
   const theme = useTheme();
@@ -20,16 +23,27 @@ export const SortBar = () => {
   const router = useRouter();
 
   const handleSortByName = () => {
-    if (sorting == "asc") {
-      setSorting("desc");
-      axios.get("/api/sortByNameDESC").then((res) => {
-        dispatch(setLinks(res.data.link));
-      });
+    setSortByName(!sortByName);
+    if (sortByName == true) {
+      dispatch(sortLinks("asc"));
     } else {
-      setSorting("asc");
-      axios.get("/api/sortByNameASC").then((res) => {
-        dispatch(setLinks(res.data.link));
-      });
+      dispatch(sortLinks("desc"));
+    }
+  };
+  const handleSortByOwner = () => {
+    setSortByOwner(!sortByOwner);
+    if (sortByName == true) {
+      dispatch(sortLinks("ownerAsc"));
+    } else {
+      dispatch(sortLinks("ownerDesc"));
+    }
+  };
+  const handleSortByModification = () => {
+    setSortByModification(!sortByModification);
+    if (sortByModification == true) {
+      dispatch(sortLinks("modifiedAsc"));
+    } else {
+      dispatch(sortLinks("modifiedDesc"));
     }
   };
 
@@ -69,7 +83,7 @@ export const SortBar = () => {
               NAME
             </Text>
             <IconButton onClick={handleSortByName}>
-              {sorting == "asc" ? <BsChevronDown /> : <BsChevronUp />}
+              {sortByName == true ? <BsChevronDown /> : <BsChevronUp />}
             </IconButton>
           </>
         ) : (
@@ -94,11 +108,17 @@ export const SortBar = () => {
         <Text bold color={theme.colors.primaryText}>
           OWNER
         </Text>
+        <IconButton onClick={handleSortByOwner}>
+          {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
+        </IconButton>
       </Field>
       <Field>
         <Text bold color={theme.colors.primaryText}>
           LAST MODIFIED
         </Text>
+        <IconButton onClick={handleSortByModification}>
+          {sortByModification == true ? <BsChevronDown /> : <BsChevronUp />}
+        </IconButton>
       </Field>
       <Field>
         <Text bold color={theme.colors.primaryText}>

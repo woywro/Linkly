@@ -36,7 +36,6 @@ const Divider = styled.div`
 export const List = () => {
   const router = useRouter();
   const userLinks = useSelector((state) => state.links);
-  const Tags = useSelector((state) => state.tags);
   const loadingState = useSelector((state) => state.LoadingReducer);
 
   return (

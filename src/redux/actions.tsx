@@ -48,9 +48,39 @@ export const getLinks = () => {
     dispatch({ type: "LOAD_LOADING" });
     axios.get("/api/getLinks").then((res) => {
       dispatch(setLinks(res.data.link));
-      console.log(res.data.link);
       dispatch({ type: "LOAD_SUCCESS" });
     });
+  };
+};
+
+export const sortLinks = (sorting) => {
+  return function (dispatch) {
+    switch (sorting) {
+      case "asc":
+        return axios.get("/api/sortByNameASC").then((res) => {
+          dispatch(setLinks(res.data.link));
+        });
+      case "desc":
+        return axios.get("/api/sortByNameDESC").then((res) => {
+          dispatch(setLinks(res.data.link));
+        });
+      case "ownerAsc":
+        return axios.get("/api/sortByOwnerASC").then((res) => {
+          dispatch(setLinks(res.data.link));
+        });
+      case "ownerDesc":
+        return axios.get("/api/sortByOwnerDESC").then((res) => {
+          dispatch(setLinks(res.data.link));
+        });
+      case "modifiedAsc":
+        return axios.get("/api/sortByModificationASC").then((res) => {
+          dispatch(setLinks(res.data.link));
+        });
+      case "modifiedDesc":
+        return axios.get("/api/sortByModificationDESC").then((res) => {
+          dispatch(setLinks(res.data.link));
+        });
+    }
   };
 };
 
