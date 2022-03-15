@@ -34,7 +34,7 @@ interface Props {
   tag: TagInterface;
 }
 
-export const BasicInfo = ({ links, tag }: Props) => {
+export const BasicInfo = ({ tag }: Props) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -56,7 +56,7 @@ export const BasicInfo = ({ links, tag }: Props) => {
         </Text>
       </Name>
       <Text size={"medium"} color={theme.colors.secondaryText}>
-        links: {links.length}
+        links: {tag.links.length}
       </Text>
       <Button onClick={handleDeleteCategory}>Delete Category</Button>
     </Wrapper>

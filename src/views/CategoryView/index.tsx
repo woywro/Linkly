@@ -13,41 +13,24 @@ interface Props {
   links: LinkInterface[];
 }
 
-export const CategoryView = ({ links }: Props) => {
-  const { asPath, query } = useRouter();
-  const [tag, setTag] = useState("");
-  const dispatch = useDispatch();
-
-  const getTag = async () => {
-    const id = query.category;
-    await axios
-      .get("/api/getSpecifiedTag", {
-        params: {
-          id,
-        },
-      })
-      .then((res) => {
-        setTag(res.data.tag);
-        console.log(res.data.tag);
-      });
-  };
+export const CategoryView = ({ tag }: Props) => {
   useEffect(() => {
-    getTag();
-  }, [asPath, query]);
+    console.log(tag);
+  }, [tag]);
 
   return (
     <PageContainer>
       <LeftWrapper>
         <PageTitle>{`categories/${tag.value}`}</PageTitle>
         <Links>
-          {links.map((e: LinkInterface) => {
+          {tag.links.map((e: LinkInterface) => {
             return <LinkItem item={e} />;
           })}
         </Links>
       </LeftWrapper>
       <RightWrapper>
         <PageTitle>Info</PageTitle>
-        <BasicInfo links={links} tag={tag} />
+        <BasicInfo tag={tag} />
         <Sharing tag={tag} />
       </RightWrapper>
     </PageContainer>

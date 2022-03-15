@@ -6,5 +6,6 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   outline: 0;
   font-family: 'Lato', sans-serif;
+  color: ${(props) => props.theme.colors.primaryText};
 }
 `;
