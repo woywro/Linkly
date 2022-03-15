@@ -8,16 +8,14 @@ import { useEffect, useState } from "react";
 import { Sharing } from "./components/Sharing";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { PrismaClient, Tag, Link, Share, User } from "@prisma/client";
+import { TagShareLinks } from "../../types/TagShareLinks";
 
 interface Props {
-  links: LinkInterface[];
+  tag: TagShareLinks;
 }
 
 export const CategoryView = ({ tag }: Props) => {
-  useEffect(() => {
-    console.log(tag);
-  }, [tag]);
-
   return (
     <PageContainer>
       <LeftWrapper>

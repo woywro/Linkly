@@ -1,8 +1,9 @@
 import { CategoryView } from "../../views/CategoryView";
-import { PrismaClient, Tag } from "@prisma/client";
+import { PrismaClient, Tag, Link, Share, User } from "@prisma/client";
 import { getSession } from "next-auth/react";
 import { LinkInterface } from "../../types/LinkInterface";
 import axios from "axios";
+import { TagShareLinks } from "../../types/TagShareLinks";
 
 interface Props {
   tag: TagShareLinks;

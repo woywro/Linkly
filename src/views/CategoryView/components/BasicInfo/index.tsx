@@ -11,6 +11,7 @@ import axios from "axios";
 import { setLinks } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { setTags } from "../../../../redux/actions";
+import { TagShareLinks } from "../../../../types/TagShareLinks";
 
 const Wrapper = styled.div`
   display: flex;
@@ -30,8 +31,7 @@ const Name = styled.div`
 `;
 
 interface Props {
-  links: LinkInterface[];
-  tag: TagInterface;
+  tag: TagShareLinks;
 }
 
 export const BasicInfo = ({ tag }: Props) => {

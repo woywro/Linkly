@@ -6,6 +6,8 @@ import { Text } from "../../../../components/Text";
 import axios from "axios";
 import { useCallback } from "react";
 import { Input } from "../../../../components/Input";
+import { TagShareLinks } from "../../../../types/TagShareLinks";
+import { PageTitle } from "../../../style";
 
 const Container = styled.div`
   width: 100%;
@@ -16,21 +18,26 @@ const Container = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: flex-start;
-  border-top: 1px solid ${(props) => props.theme.colors.secondaryBg};
+  border-top: 2px solid ${(props) => props.theme.colors.secondaryBg};
   overflow-y: scroll;
 `;
 
-export const Sharing = ({ tag }) => {
+interface Props {
+  tag: TagShareLinks;
+}
+
+export const Sharing = ({ tag }: Props) => {
   const theme = useTheme();
   const router = useRouter();
   const [input, setInput] = useState("");
   const [sharedList, setSharedList] = useState([]);
 
   useEffect(() => {
-    if (tag !== undefined) {
+    if (tag.share.length > 0) {
+      console.log(tag);
       setSharedList(tag.share[0].sharedWith);
     }
-  }, [tag]);
+  }, [tag, router]);
 
   const handleSave = useCallback(
     async (sharedList) => {
@@ -58,27 +65,45 @@ export const Sharing = ({ tag }) => {
   return (
     <Container>
       <Wrapper>
-        <Text size={"big"} color={theme.colors.primaryText}>
-          Sharing:
-        </Text>
+        <PageTitle>Sharing:</PageTitle>
         <AddWrapper>
-          <Input
+          <StyledInput
             placeholder="email"
             onChange={(e) => setInput(e.target.value)}
           />
           <Button onClick={handleAdd}>add</Button>
         </AddWrapper>
         <SharedList>
-          {sharedList.map((e) => {
-            return (
-              <SharedEmail onClick={(e) => handleDelete(e)}>{e}</SharedEmail>
-            );
-          })}
+          {sharedList.length > 0 ? (
+            sharedList.map((e) => {
+              return (
+                <SharedEmail onClick={(e) => handleDelete(e)}>{e}</SharedEmail>
+              );
+            })
+          ) : (
+            <EmptyList>
+              <Text>Add people to start sharing this category!</Text>
+            </EmptyList>
+          )}
         </SharedList>
       </Wrapper>
     </Container>
   );
 };
+
+const EmptyList = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  aling-items: center;
+`;
+
+const StyledInput = styled(Input)`
+  border-radius: 0;
+  background: none;
+  padding: 0;
+`;
 
 const AddWrapper = styled.div`
   width: 100%;
@@ -86,8 +111,9 @@ const AddWrapper = styled.div`
   flex-flow: row;
   justify-content: space-around;
   aling-items: center;
-  padding: 10px;
+  padding: 5px;
   margin-top: 10px;
+  border-bottom: 2px solid ${(props) => props.theme.colors.secondaryBg};
 `;
 
 const Wrapper = styled.div`
