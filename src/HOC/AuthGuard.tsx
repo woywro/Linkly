@@ -17,7 +17,7 @@ export const AuthGuard = ({ children }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (status !== "authenticated") {
+    if (status !== "authenticated" && Session == null) {
       // router.push("/login");
     } else {
       router.push("/");

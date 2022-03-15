@@ -15,7 +15,7 @@ interface Props {
 
 export const CategoryView = ({ links }: Props) => {
   const { asPath, query } = useRouter();
-  const [tag, setTag] = useState();
+  const [tag, setTag] = useState("");
   const dispatch = useDispatch();
 
   const getTag = async () => {

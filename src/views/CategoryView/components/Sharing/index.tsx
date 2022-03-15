@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled, { useTheme } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { Text } from "../../../../components/Text";
@@ -11,7 +11,8 @@ const Container = styled.div`
   padding: 10px;
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content: center;
   align-items: flex-start;
   border-top: 1px solid ${(props) => props.theme.colors.secondaryBg};
 `;
@@ -19,6 +20,7 @@ const Container = styled.div`
 export const Sharing = ({ tag }) => {
   const theme = useTheme();
   const router = useRouter();
+  const [sharedWith, setSharedWith] = useState([]);
   const handleShare = () => {
     router.push(`/share/${tag.id}`);
     console.log(tag);
@@ -28,6 +30,7 @@ export const Sharing = ({ tag }) => {
     console.log(tag);
     axios.get("/api/getShareById", { params: { id: tag.id } }).then((res) => {
       console.log(res.data);
+      setSharedWith(res.data.shares);
     });
   };
   useEffect(() => {
@@ -42,6 +45,24 @@ export const Sharing = ({ tag }) => {
         Sharing:
       </Text>
       <Button onClick={handleShare}>Share</Button>
+      <SharedWithList>
+        {sharedWith.map((e) => {
+          return e.sharedWith.map((x) => {
+            return <div>{x}</div>;
+          });
+        })}
+      </SharedWithList>
     </Container>
   );
 };
+
+const SharedWithList = styled.ul`
+  list-style: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: start;
+  aling-items: center;
+  padding: 10px;
+`;

@@ -10,7 +10,7 @@ datasource db {
 model Share {
     id         String   @id @default(cuid())
     ownerId String
-    categoryId String
+    categoryId String @unique
     category Tag?  @relation(fields: [categoryId], references: [id])
     owner User?    @relation(fields: [ownerId], references: [id])
     sharedWith String[]

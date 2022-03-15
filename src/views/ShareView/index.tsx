@@ -5,22 +5,41 @@ import { Input } from "../../components/Input";
 import { useCallback } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 export const ShareView = () => {
   const [input, setInput] = useState("");
-  const [sharedList, setSharedList] = useState(["dd"]);
+  const [sharedList, setSharedList] = useState([]);
   const router = useRouter();
 
   const handleAdd = () => {
     setSharedList([...sharedList, input]);
   };
 
+  const checkShare = () => {
+    const id = router.query.share;
+    axios
+      .get("/api/getShareById", { params: { id: router.query.share } })
+      .then((res) => {
+        console.log(res.data.shares);
+        const sharedWith = [];
+        res.data.shares.map((e) => {
+          e.sharedWith.map((x) => {
+            sharedWith.push(x);
+          });
+        });
+        setSharedList(sharedWith);
+      });
+  };
+  useEffect(() => {
+    checkShare();
+  }, []);
+
   const handleSave = useCallback(async () => {
-    const sharedWith = sharedList;
-    console.log(sharedList);
     console.log(router.query);
+    console.log(sharedList);
     await axios.post("/api/createShare", {
       categoryId: router.query.share,
-      sharedWith: sharedWith,
+      sharedWith: sharedList,
     });
   }, [sharedList]);
 

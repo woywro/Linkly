@@ -48,12 +48,10 @@ export const SortBar = () => {
   };
 
   const handleSearchByName = () => {
-    console.log(searchValue);
     axios
       .get("/api/searchLinksByName", { params: { search: searchValue } })
       .then((res) => {
         dispatch(setLinks(res.data.link));
-        console.log(res.data.link);
       });
   };
 
@@ -63,9 +61,7 @@ export const SortBar = () => {
   };
 
   useEffect(() => {
-    if (searchValue.length > 0) {
-      handleSearchByName();
-    }
+    handleSearchByName();
   }, [searchValue]);
 
   return (
@@ -144,6 +140,16 @@ const SearchContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-flow: row;
+  position: relative;
+  &::after {
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    content: "";
+    width: 100%;
+    height: 2px;
+    background: ${(props) => props.theme.colors.primary};
+  }
 `;
 
 const IconButton = styled.button`
@@ -167,7 +173,6 @@ const IconButton = styled.button`
 const TextInput = styled.input`
   border: none;
   font-size: 16px;
-  border-bottom: 2px solid ${(props) => props.theme.colors.secondary};
 `;
 
 const Field = styled.div`
