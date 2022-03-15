@@ -13,13 +13,12 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px;
-  margin-top: 20px;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: flex-start;
-  border-top: 2px solid ${(props) => props.theme.colors.secondaryBg};
   overflow-y: scroll;
+  padding-top: 0;
 `;
 
 interface Props {
@@ -65,7 +64,6 @@ export const Sharing = ({ tag }: Props) => {
   return (
     <Container>
       <Wrapper>
-        <PageTitle>Sharing:</PageTitle>
         <AddWrapper>
           <StyledInput
             placeholder="email"
@@ -100,9 +98,7 @@ const EmptyList = styled.div`
 `;
 
 const StyledInput = styled(Input)`
-  border-radius: 0;
-  background: none;
-  padding: 0;
+  padding: 0 10px;
 `;
 
 const AddWrapper = styled.div`
@@ -112,8 +108,6 @@ const AddWrapper = styled.div`
   justify-content: space-around;
   aling-items: center;
   padding: 5px;
-  margin-top: 10px;
-  border-bottom: 2px solid ${(props) => props.theme.colors.secondaryBg};
 `;
 
 const Wrapper = styled.div`
@@ -149,5 +143,14 @@ const SharedEmail = styled.div`
   }
   &:hover::after {
     display: block;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    background: ${(props) => props.theme.colors.primary};
   }
 `;

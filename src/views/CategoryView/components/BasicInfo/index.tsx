@@ -50,7 +50,7 @@ export const BasicInfo = ({ tag }: Props) => {
   return (
     <Wrapper>
       <Name>
-        <RiFolder5Fill size={"80px"} color={theme.colors.primary} />
+        <RiFolder5Fill size={"80px"} style={{ fill: theme.colors.secondary }} />
         <Text size={"big"} color={theme.colors.primaryText}>
           {tag.value}
         </Text>

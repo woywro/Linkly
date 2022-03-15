@@ -6,18 +6,16 @@ export const PageContainer = styled.div`
   flex-flow: row;
   width: 100%;
   height: 100%;
-  padding: 10px;
 `;
 export const LeftWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   flex-flow: column;
   align-items: start;
-  width: 70%;
+  width: 75%;
   height: 100%;
   background: white;
   text-align: left;
-  border-radius: 20px;
   padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
 `;
@@ -28,25 +26,23 @@ export const RightWrapper = styled.div`
   flex-flow: column;
   width: 25%;
   height: 100%;
+  border-radius: 30px;
   background: white;
-  border-radius: 20px;
   text-align: left;
   padding: 10px;
-  background: ${(props) => props.theme.colors.primaryBg};
+  background: ${(props) => props.theme.colors.secondaryBg};
 `;
 
 export const PageTitle = styled.h1`
-  font-size: 35px;
-  margin: 5px;
+  font-size: 30px;
+  margin: 10px;
+  opacity: 0.8;
+  color: ${(props) => props.theme.colors.primaryText};
+`;
+
+export const Divider = styled.div`
+  width: 100%;
+  height: 2px;
   opacity: 0.5;
-  position: relative;
-  margin:-bottom: 10px;
-  &::before {
-    position: absolute;
-    content: "";
-    background: ${(props) => props.theme.colors.primary};
-    height: 3px;
-    width: 70%;
-    bottom: -5px;
-  }
+  background: ${(props) => props.theme.colors.blue};
 `;

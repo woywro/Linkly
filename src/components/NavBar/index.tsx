@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Link from "next/link";
 import { css } from "styled-components";
+import { Text } from "../Text";
 import {
   RiChat1Line,
   RiLayoutGridLine,
@@ -21,15 +22,14 @@ const Container = styled.nav`
   justify-content: center;
   border-radius: 20px;
   height: 70%;
-  width: 70px;
-  margin: 10px;
-  margin-right: 0;
+  width: auto;
+  margin: 20px;
 `;
 
 const Item = styled.a<{ isActive?: boolean }>`
   text-decoration: none;
   color: black;
-  padding: 10px;
+  padding: 20px;
   font-size: 24px;
   display: flex;
   justify-content: center;
@@ -40,7 +40,7 @@ const Item = styled.a<{ isActive?: boolean }>`
   ${({ isActive }) =>
     isActive &&
     css`
-      background: ${(props) => props.theme.colors.primary};
+      background: rgba(0, 0, 0, 0.1);
       border-radius: 20px;
     `};
   &:hover:after {
@@ -63,7 +63,7 @@ const Links = styled.div`
 const LogoutBtn = styled(Item)`
   position: absolute;
   bottom: 30px;
-  background: ${(props) => props.theme.colors.secondary};
+  background: ${(props) => props.theme.colors.primary};
   border-radius: 10px;
 `;
 
@@ -76,21 +76,25 @@ export const NavBar = () => {
         <Link href={`/addLink`}>
           <Item isActive={router.pathname == "/addLink" ? true : false}>
             <RiAddCircleLine />
+            <Text>Add</Text>
           </Item>
         </Link>
         <Link href="/" passHref>
           <Item isActive={router.pathname == "/" ? true : false}>
             <RiLayoutGridLine />
+            <Text>Home</Text>
           </Item>
         </Link>
         <Link href="/social" passHref>
           <Item isActive={router.pathname == "/social" ? true : false}>
             <RiTeamLine />
+            <Text>Social</Text>
           </Item>
         </Link>
         {session && (
           <LogoutBtn isActive={false} onClick={() => signOut()}>
             <BiLogOut />
+            <Text>Log out</Text>
           </LogoutBtn>
         )}
       </Links>

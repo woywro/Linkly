@@ -13,7 +13,10 @@ export const HomePage = () => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <PageTitle>Home</PageTitle>
+        <Wrapper>
+          <SearchInput placeholder="search" />
+          <Button>search</Button>
+        </Wrapper>
         <List />
       </LeftWrapper>
       <RightWrapper>
@@ -23,3 +26,18 @@ export const HomePage = () => {
     </PageContainer>
   );
 };
+
+const SearchInput = styled(Input)`
+  background: none;
+  border: 2px solid ${(props) => props.theme.colors.secondaryBg};
+  width: 80%;
+`;
+
+const Wrapper = styled.div`
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+`;

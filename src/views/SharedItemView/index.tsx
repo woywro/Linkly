@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { LinkItem } from "../../components/LinkItem";
-import { Links } from "../HomePage/components/Links";
+import { Links } from "../../components/Links";
 import { LinkInterface } from "../../types/LinkInterface";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 import { useEffect, useState } from "react";

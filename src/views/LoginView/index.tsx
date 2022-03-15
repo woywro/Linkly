@@ -23,10 +23,6 @@ const LeftWrapper = styled.div`
   align-items: center;
   width: 50%;
   height: 100%;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1003%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c220 C 57.6%2c183 172.8%2c28.6 288%2c35 C 403.2%2c41.4 460.8%2c243.8 576%2c252 C 691.2%2c260.2 748.8%2c76.2 864%2c76 C 979.2%2c75.8 1036.8%2c245.8 1152%2c251 C 1267.2%2c256.2 1382.4%2c131.8 1440%2c102L1440 560L0 560z' fill='rgba(112%2c 31%2c 255%2c 1)'%3e%3c/path%3e%3cpath d='M 0%2c358 C 96%2c389.2 288%2c502.4 480%2c514 C 672%2c525.6 768%2c414.8 960%2c416 C 1152%2c417.2 1344%2c499.2 1440%2c520L1440 560L0 560z' fill='rgba(127%2c 57%2c 251%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1003'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
-  background-size: auto;
-  background-repeat: no-repeat;
-  background-position: bottom;
 `;
 
 const RightWrapper = styled.div`

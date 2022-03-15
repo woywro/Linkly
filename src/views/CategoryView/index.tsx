@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { BasicInfo } from "./components/BasicInfo";
 import { LinkItem } from "../../components/LinkItem";
-import { Links } from "../HomePage/components/Links";
+import { Links } from "../../components/Links";
 import { LinkInterface } from "../../types/LinkInterface";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 import { useEffect, useState } from "react";
@@ -10,6 +10,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { PrismaClient, Tag, Link, Share, User } from "@prisma/client";
 import { TagShareLinks } from "../../types/TagShareLinks";
+import { Divider } from "../style";
 
 interface Props {
   tag: TagShareLinks;
@@ -29,6 +30,8 @@ export const CategoryView = ({ tag }: Props) => {
       <RightWrapper>
         <PageTitle>Info</PageTitle>
         <BasicInfo tag={tag} />
+        <Divider />
+        <PageTitle>Sharing</PageTitle>
         <Sharing tag={tag} />
       </RightWrapper>
     </PageContainer>

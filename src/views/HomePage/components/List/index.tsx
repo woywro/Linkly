@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Categories } from "../Categories";
-import { Links } from "../Links";
+import { Links } from "../../../../components/Links";
 import { useSelector } from "react-redux";
 import { LinkItem } from "../../../../components/LinkItem";
 import { useEffect, useState } from "react";
@@ -9,6 +9,7 @@ import { Text } from "../../../../components/Text";
 import { useRouter } from "next/router";
 import { Input } from "../../../../components/Input";
 import { SortBar } from "../SortBar";
+import { PageTitle } from "../../../style";
 
 const StyledList = styled.div`
   display: flex;
@@ -44,8 +45,10 @@ export const List = () => {
         <LoadingSpinner />
       ) : (
         <Wrapper>
+          <PageTitle>Categories</PageTitle>
           <Categories />
           <Divider />
+          <PageTitle>Links</PageTitle>
           <Links>
             <SortBar />
             {userLinks.map((e) => {

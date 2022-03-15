@@ -20,7 +20,7 @@ const Wrapper = styled.div`
   align-items: center;
   grid-template-columns: 2fr 2fr 2fr 1fr;
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   margin: 5px;
   cursor: pointer;
   position: relative;

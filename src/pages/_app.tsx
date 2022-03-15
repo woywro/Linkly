@@ -40,28 +40,16 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  &:after {
-    content: "";
-    border-top-left-radius: 50% 100%;
-    border-top-right-radius: 50% 0%;
-    position: absolute;
-    bottom: 0;
-    z-index: -1;
-    width: 70%;
-    right: 0;
-    background-color: ${(props) => props.theme.colors.primary};
-    height: 20%;
-  }
+  background: #0a91f8;
 `;
 const ViewBox = styled.div`
   width: 85vw;
   height: 80vh;
   display: flex;
-  padding: 10px;
   justify-content: flex-start;
   position: relative;
   align-items: center;
-  box-shadow: ${(props) => props.theme.shadow};
   background: ${(props) => props.theme.colors.secondaryBg};
-  border-radius: 10px;
+  border-radius: 30px;
+  box-shadow: 0px 0px 0px 18px rgba(255, 255, 255, 0.3);
 `;
