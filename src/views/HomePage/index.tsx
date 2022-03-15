@@ -7,7 +7,6 @@ import axios from "axios";
 import styled from "styled-components";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 import { useRouter } from "next/router";
-import { Feed } from "../SocialView/components/Feed";
 
 export const HomePage = () => {
   const router = useRouter();

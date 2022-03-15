@@ -7,6 +7,7 @@ import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 import { useEffect, useState } from "react";
 import { Sharing } from "./components/Sharing";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 interface Props {
   links: LinkInterface[];
@@ -15,6 +16,7 @@ interface Props {
 export const CategoryView = ({ links }: Props) => {
   const { asPath, query } = useRouter();
   const [tag, setTag] = useState();
+  const dispatch = useDispatch();
 
   const getTag = async () => {
     const id = query.category;
@@ -36,7 +38,7 @@ export const CategoryView = ({ links }: Props) => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <PageTitle>{asPath}</PageTitle>
+        <PageTitle>{`categories/${tag.value}`}</PageTitle>
         <Links>
           {links.map((e: LinkInterface) => {
             return <LinkItem item={e} />;

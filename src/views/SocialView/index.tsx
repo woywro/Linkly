@@ -1,7 +1,3 @@
-import { Text } from "../../components/Text";
-import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
-import axios from "axios";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 import { useRouter } from "next/router";
 import { Feed } from "./components/Feed";

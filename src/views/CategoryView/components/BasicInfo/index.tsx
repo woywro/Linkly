@@ -52,7 +52,7 @@ export const BasicInfo = ({ links, tag }: Props) => {
       <Name>
         <RiFolder5Fill size={"80px"} color={theme.colors.primary} />
         <Text size={"big"} color={theme.colors.primaryText}>
-          {router.query.category}
+          {tag.value}
         </Text>
       </Name>
       <Text size={"medium"} color={theme.colors.secondaryText}>
