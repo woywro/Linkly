@@ -4,7 +4,6 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req, res) => {
   const data = req.body;
   const session = await getSession({ req });
-  console.log(data);
   try {
     const result = await prisma.Tag.delete({
       where: {

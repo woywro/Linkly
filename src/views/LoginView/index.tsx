@@ -19,7 +19,7 @@ const Wrapper = styled.div`
 const LeftWrapper = styled.div`
   display: flex;
   flex-flow: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   width: 50%;
   height: 100%;
@@ -67,9 +67,16 @@ const Divider = styled.div`
   margin: 20px;
 `;
 
-const LeftTitle = styled(Text)`
-  font-size: 60px;
-  padding: 30px;
+const LoginImage = styled(Image)`
+  border-radius: 20px;
+`;
+const ImageWrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  height: 80%;
 `;
 
 export const LoginView = () => {
@@ -77,7 +84,9 @@ export const LoginView = () => {
   return (
     <Wrapper>
       <LeftWrapper>
-        <LeftTitle color={"white"}>Keep links organised.</LeftTitle>
+        <ImageWrapper>
+          <LoginImage src={loginLogo} />
+        </ImageWrapper>
       </LeftWrapper>
       <RightWrapper>
         <TextWrapper>

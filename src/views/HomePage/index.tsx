@@ -7,6 +7,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 import { useRouter } from "next/router";
+import { SearchBar } from "../../components/Searchbar";
 
 export const HomePage = () => {
   const router = useRouter();
@@ -14,8 +15,8 @@ export const HomePage = () => {
     <PageContainer>
       <LeftWrapper>
         <Wrapper>
-          <SearchInput placeholder="search" />
-          <Button>search</Button>
+          {/* <SearchInput placeholder="search" /> */}
+          <SearchBar />
         </Wrapper>
         <List />
       </LeftWrapper>

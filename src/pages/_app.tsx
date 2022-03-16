@@ -43,8 +43,8 @@ const Wrapper = styled.div`
   background: #0a91f8;
 `;
 const ViewBox = styled.div`
-  width: 85vw;
-  height: 80vh;
+  width: 90vw;
+  height: 85vh;
   display: flex;
   justify-content: flex-start;
   position: relative;

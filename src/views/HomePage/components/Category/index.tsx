@@ -20,8 +20,8 @@ const StyledCategory = styled.div`
   padding: 5px;
   display: flex;
   height: 120px;
-  width: 200px;
-  margin: 10px;
+  width: 120px;
+  margin: 5px;
   flex: 0 0 auto;
   font-size: 50px;
   align-items: center;

@@ -6,6 +6,7 @@ import { Component } from "react";
 import { useSession } from "next-auth/react";
 import Login from "../pages/login";
 import { LoadingSpinner } from "../components/LoadingSpinner";
+import styled from "styled-components";
 
 interface Props {
   children: JSX.Element[];
@@ -28,10 +29,23 @@ export const AuthGuard = ({ children }: Props) => {
   }, [status, Session]);
 
   if (status == "loading") {
-    return <LoadingSpinner />;
+    return (
+      <Center>
+        <LoadingSpinner />
+      </Center>
+    );
   }
   if (status == "authenticated") {
     return <>{children}</>;
   }
   return <Login />;
 };
+
+const Center = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
