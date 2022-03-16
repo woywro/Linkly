@@ -75,8 +75,8 @@ const ImageWrapper = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
-  height: 80%;
+  width: 70%;
+  height: 70%;
 `;
 
 export const LoginView = () => {

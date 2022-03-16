@@ -10,7 +10,7 @@ const StyledCategories = styled.div`
   height: auto;
   padding: 10px;
   width: 100%;
-  overflow-x: scroll;
+  overflow-x: hidden;
   -moz-scrollbars-horizontal: touch;
   display: flex;
   flex-flow: row;

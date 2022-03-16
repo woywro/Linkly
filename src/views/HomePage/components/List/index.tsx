@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { Input } from "../../../../components/Input";
 import { SortBar } from "../SortBar";
 import { PageTitle } from "../../../style";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const StyledList = styled.div`
   display: flex;
@@ -18,7 +19,7 @@ const StyledList = styled.div`
   flex-flow: column;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: hidden;
   padding: 10px;
 `;
 const Wrapper = styled.div`
@@ -41,22 +42,24 @@ export const List = () => {
 
   return (
     <StyledList>
-      {loadingState.loading == true ? (
-        <LoadingSpinner />
-      ) : (
-        <Wrapper>
-          <PageTitle>Categories</PageTitle>
-          <Categories />
-          <Divider />
-          <PageTitle>Links</PageTitle>
-          <Links>
-            <SortBar />
-            {userLinks.map((e) => {
-              return <LinkItem item={e} />;
-            })}
-          </Links>
-        </Wrapper>
-      )}
+      <Scrollbars style={{ width: "100%", height: "100%" }}>
+        {loadingState.loading == true ? (
+          <LoadingSpinner />
+        ) : (
+          <Wrapper>
+            <PageTitle>Categories</PageTitle>
+            <Categories />
+            <Divider />
+            <PageTitle>Links</PageTitle>
+            <Links>
+              <SortBar />
+              {userLinks.map((e) => {
+                return <LinkItem item={e} />;
+              })}
+            </Links>
+          </Wrapper>
+        )}
+      </Scrollbars>
     </StyledList>
   );
 };

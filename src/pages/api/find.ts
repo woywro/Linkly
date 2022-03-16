@@ -11,6 +11,10 @@ export default async (req, res) => {
         search: `${searchValue}`,
       },
     },
+    select: {
+      url: true,
+      title: true,
+    },
   });
   res.statusCode = 200;
   res.json({ links });

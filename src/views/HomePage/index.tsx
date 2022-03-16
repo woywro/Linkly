@@ -7,7 +7,7 @@ import axios from "axios";
 import styled from "styled-components";
 import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
 import { useRouter } from "next/router";
-import { SearchBar } from "../../components/Searchbar";
+import { SearchBar } from "./components/Searchbar";
 
 export const HomePage = () => {
   const router = useRouter();
@@ -15,7 +15,6 @@ export const HomePage = () => {
     <PageContainer>
       <LeftWrapper>
         <Wrapper>
-          {/* <SearchInput placeholder="search" /> */}
           <SearchBar />
         </Wrapper>
         <List />
@@ -28,14 +27,8 @@ export const HomePage = () => {
   );
 };
 
-const SearchInput = styled(Input)`
-  background: none;
-  border: 2px solid ${(props) => props.theme.colors.secondaryBg};
-  width: 80%;
-`;
-
 const Wrapper = styled.div`
-  padding: 20px;
+  padding: 5px;
   width: 100%;
   display: flex;
   flex-flow: row;

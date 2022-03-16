@@ -5,12 +5,10 @@ import axios from "axios";
 import { setLinks } from "../../../../redux/actions";
 import { useDispatch, useStore } from "react-redux";
 import { useEffect, useState } from "react";
-import { Input } from "../../../../components/Input";
-import { Button } from "../../../../components/Button";
 import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
 import { useRouter } from "next/router";
-import { userInfo } from "os";
 import { sortLinks } from "../../../../redux/actions";
+import { AiOutlineSearch } from "react-icons/ai";
 
 export const SortBar = () => {
   const [sortByName, setSortByName] = useState(false);
@@ -69,6 +67,7 @@ export const SortBar = () => {
       <Field>
         {searchMode == false ? (
           <>
+            <AiOutlineSearch />
             <Text
               bold
               color={theme.colors.primaryText}

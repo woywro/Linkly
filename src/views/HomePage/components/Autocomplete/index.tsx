@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
-import useWindowDimensions from "../../hooks/useWindowDimensions";
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import axios from "axios";
-import { SuggestionInterface } from "../../types/SuggestionInterface";
+import { SuggestionInterface } from "../../../../types/SuggestionInterface";
 
 interface Props {
   input: string;

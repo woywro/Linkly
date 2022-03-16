@@ -7,6 +7,7 @@ import { LinkInterface } from "../../../../types/LinkInterface";
 import { HistoryItem } from "../HistoryItem";
 import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
 import { Text } from "../../../../components/Text";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,8 +16,6 @@ const Wrapper = styled.div`
   flex-flow: column;
   width: 100%;
   height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
 `;
 
 export const History = () => {
@@ -35,16 +34,18 @@ export const History = () => {
   }, [History]);
 
   return (
-    <Wrapper>
-      {history.length == 0 ? (
-        <Text>Recently used links will appear here once you open them.</Text>
-      ) : (
-        <>
-          {history.map((e) => {
-            return <HistoryItem item={e} />;
-          })}
-        </>
-      )}
-    </Wrapper>
+    <Scrollbars style={{ width: "100%", height: "100%" }}>
+      <Wrapper>
+        {history.length == 0 ? (
+          <Text>Recently used links will appear here once you open them.</Text>
+        ) : (
+          <>
+            {history.map((e) => {
+              return <HistoryItem item={e} />;
+            })}
+          </>
+        )}
+      </Wrapper>
+    </Scrollbars>
   );
 };

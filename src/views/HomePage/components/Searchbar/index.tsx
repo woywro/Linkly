@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { AutoComplete } from "../Autocomplete";
 import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
-import { SuggestionInterface } from "../../types/SuggestionInterface";
+import { SuggestionInterface } from "../../../../types/SuggestionInterface";
 
 export const SearchBar = () => {
   const [input, setInput] = useState<string>("");
@@ -45,7 +45,7 @@ export const StyledSearchBar = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   position: relative;
 `;
 
@@ -58,7 +58,7 @@ export const Divider = styled.div`
 export const Input = styled.input`
   border: none;
   width: 100%;
-  padding: 20px 5px;
+  padding: 10px 5px;
   background: white;
   margin-left: 10px;
   color: black;
