@@ -1,44 +1,26 @@
 import { useCallback, useEffect, useState } from "react";
 import styled from "styled-components";
 import useWindowDimensions from "../../hooks/useWindowDimensions";
+import axios from "axios";
+import { SuggestionInterface } from "../../types/SuggestionInterface";
 
 interface Props {
   input: string;
+  suggestions: SuggestionInterface[];
   setInput: (arg0: string) => void;
 }
 
-export const AutoComplete = ({ input }: Props) => {
+export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
   const [hide, setHide] = useState<boolean>(true);
-  const [suggestionsHeight, setSuggestionsHeight] = useState();
-  const [finalSuggestions, setFinalSuggestions] = useState<Array<string>>([]);
-  const [fetchedSuggestions, setFetchedSuggestions] = useState([]);
+  const [suggestionsHeight, setSuggestionsHeight] = useState(0);
+  const [finalSuggestions, setFinalSuggestions] = useState<
+    Array<SuggestionInterface>
+  >([]);
   const { height } = useWindowDimensions();
 
-  const getSuggestions = () => {
-    setFetchedSuggestions([
-      { text: "dd" },
-      { text: "aa" },
-      { text: "aab" },
-      { text: "aavb" },
-      { text: "aafd" },
-      { text: "aava" },
-    ]);
-  };
-
   const generateSuggestions = () => {
-    const suggestions: string[] = fetchedSuggestions.filter((suggestion) => {
-      return (
-        suggestion.text
-          .toLowerCase()
-          .split(" ")
-          .join(" ")
-          .indexOf(input.toLowerCase().split(" ").join(" ")) > -1
-      );
-    });
     if (input.length > 0) {
-      if (!fetchedSuggestions.includes(input)) {
-        setHide(false);
-      }
+      setHide(false);
     } else {
       setHide(true);
     }
@@ -47,17 +29,15 @@ export const AutoComplete = ({ input }: Props) => {
     setFinalSuggestions(suggestions.slice(0, suggestionsQuantity));
   };
 
-  const handleOnClick = useCallback((e) => {
+  const handleOnClick = useCallback((url) => {
     setHide(true);
-  }, []);
-
-  useEffect(() => {
-    getSuggestions();
+    setInput("");
+    window.open(url, "_blank");
   }, []);
 
   useEffect(() => {
     generateSuggestions();
-  }, [height, input]);
+  }, [height, input, suggestions]);
 
   return (
     <>
@@ -65,8 +45,11 @@ export const AutoComplete = ({ input }: Props) => {
         <StyledSuggestions height={suggestionsHeight}>
           {finalSuggestions.map((suggestion) => {
             return (
-              <Suggestion key={suggestion.text} onClick={handleOnClick}>
-                {suggestion.text}
+              <Suggestion
+                key={suggestion.url}
+                onClick={() => handleOnClick(suggestion.url)}
+              >
+                {suggestion.title}
               </Suggestion>
             );
           })}

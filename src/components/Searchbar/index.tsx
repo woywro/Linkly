@@ -2,22 +2,36 @@ import { useState, useRef, useEffect } from "react";
 import styled from "styled-components";
 import { AutoComplete } from "../Autocomplete";
 import { AiOutlineSearch } from "react-icons/ai";
+import axios from "axios";
+import { SuggestionInterface } from "../../types/SuggestionInterface";
 
 export const SearchBar = () => {
-  const searchRef = useRef();
   const [input, setInput] = useState<string>("");
+  const [suggestions, setSuggestions] = useState<SuggestionInterface[]>([]);
+
+  const handleChange = (e: { target: HTMLInputElement }) => {
+    setInput(e.target.value);
+    axios
+      .get("/api/find", {
+        params: {
+          search: e.target.value,
+        },
+      })
+      .then((res) => {
+        setSuggestions(res.data.links);
+      });
+  };
 
   return (
     <StyledSearchBar>
       <AiOutlineSearch />
-      <Input
-        placeholder="wpisz frazę"
-        onChange={(e) => setInput(e.target.value)}
-        value={input}
-        ref={searchRef}
-      />
+      <Input placeholder="wpisz frazę" onChange={handleChange} value={input} />
       {typeof window !== "undefined" && (
-        <AutoComplete input={input} setInput={setInput} />
+        <AutoComplete
+          input={input}
+          setInput={setInput}
+          suggestions={suggestions}
+        />
       )}
     </StyledSearchBar>
   );
