@@ -3,6 +3,7 @@ import { Text } from "../../../../components/Text";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import moment from "moment";
 import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
+import { hoverEffectText } from "../../../../mixins/hoverEffects";
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,9 +15,7 @@ const Wrapper = styled.div`
   width: 100%;
   cursor: pointer;
   &:hover {
-    text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.primary};
-    text-decoration-thickness: 3px;
+    ${hoverEffectText}
   }
 `;
 interface Props {

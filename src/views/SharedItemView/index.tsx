@@ -14,19 +14,30 @@ interface Props {
 }
 
 export const SharedItemView = ({ share }) => {
-  const { asPath, query } = useRouter();
-  const [tag, setTag] = useState();
   const theme = useTheme();
 
   return (
     <Container>
       <Text color={theme.colors.secondary}>{share.category.owner.email}</Text>
-      {share.category.links.map((link) => {
-        return <SharedLink link={link} />;
-      })}
+      <List>
+        {share.category.links.map((link) => {
+          return <SharedLink link={link} />;
+        })}
+      </List>
     </Container>
   );
 };
+
+const List = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: start;
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+`;
 
 const Container = styled.div`
   height: 100%;

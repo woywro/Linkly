@@ -13,6 +13,7 @@ import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import moment from "moment";
+import { hoverEffectBg, hoverEffectText } from "../../mixins/hoverEffects";
 
 const Wrapper = styled.div`
   display: grid;
@@ -26,7 +27,7 @@ const Wrapper = styled.div`
   position: relative;
   border-radius: 20px;
   &:hover {
-    background: ${(props) => props.theme.colors.secondaryBg};
+    ${hoverEffectBg}
   }
 `;
 
@@ -35,11 +36,8 @@ const Label = styled.div`
   justify-content: flex-start;
   align-items: center;
   color: ${(props) => props.theme.colors.primaryText};
-
   &:hover {
-    text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.primary};
-    text-decoration-thickness: 3px;
+    ${hoverEffectText}
   }
 `;
 
@@ -63,7 +61,7 @@ const DropDownButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  border-bottom: 1px solid ${(props) => props.theme.colors.secondary};
+  border-radius: 20px;
 `;
 
 interface Props {

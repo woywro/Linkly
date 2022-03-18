@@ -9,6 +9,10 @@ import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
 import { useRouter } from "next/router";
 import { sortLinks } from "../../../../redux/actions";
 import { AiOutlineSearch } from "react-icons/ai";
+import {
+  hoverEffectBg,
+  hoverEffectText,
+} from "../../../../mixins/hoverEffects";
 
 export const SortBar = () => {
   const [sortByName, setSortByName] = useState(false);
@@ -165,7 +169,7 @@ const IconButton = styled.button`
   border-radius: 50%;
   padding: 5px;
   &:hover {
-    background: ${(props) => props.theme.colors.secondaryBg};
+    ${hoverEffectBg}
   }
 `;
 
@@ -180,8 +184,6 @@ const Field = styled.div`
   justify-content: start;
   align-items: center;
   &:hover {
-    text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.primary};
-    text-decoration-thickness: 3px;
+    ${hoverEffectText}
   }
 `;

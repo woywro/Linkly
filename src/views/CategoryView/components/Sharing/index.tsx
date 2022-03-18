@@ -8,6 +8,7 @@ import { useCallback } from "react";
 import { Input } from "../../../../components/Input";
 import { TagShareLinks } from "../../../../types/TagShareLinks";
 import { PageTitle } from "../../../style";
+import { hoverEffectText } from "../../../../mixins/hoverEffects";
 
 const Container = styled.div`
   width: 100%;
@@ -52,6 +53,7 @@ export const Sharing = ({ tag }: Props) => {
   const handleAdd = () => {
     setSharedList([...sharedList, input]);
     handleSave([...sharedList, input]);
+    setInput("");
   };
   const handleDelete = (e) => {
     const listFiltered = sharedList.filter((x) => {
@@ -133,7 +135,7 @@ const SharedEmail = styled.div`
   position: relative;
   border-radius: 20px;
   &:hover {
-    background: ${(props) => props.theme.colors.secondaryBg};
+    ${hoverEffectText}
   }
   &::after {
     content: "X";

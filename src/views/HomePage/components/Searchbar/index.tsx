@@ -25,7 +25,11 @@ export const SearchBar = () => {
   return (
     <StyledSearchBar>
       <AiOutlineSearch />
-      <Input placeholder="wpisz frazę" onChange={handleChange} value={input} />
+      <Input
+        placeholder="search by name or keyword"
+        onChange={handleChange}
+        value={input}
+      />
       {typeof window !== "undefined" && (
         <AutoComplete
           input={input}

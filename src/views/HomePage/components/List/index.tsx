@@ -42,7 +42,15 @@ export const List = () => {
 
   return (
     <StyledList>
-      <Scrollbars style={{ width: "100%", height: "100%" }}>
+      <Scrollbars
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
         {loadingState.loading == true ? (
           <LoadingSpinner />
         ) : (

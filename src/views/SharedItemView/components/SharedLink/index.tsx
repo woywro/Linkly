@@ -25,12 +25,11 @@ export const SharedLink = ({ link }: Props) => {
         <AiOutlineLink />
         <Name>{link.title}</Name>
       </Label>
-      <Text color={theme.colors.secondary}>{link.url.slice(0, 20)}</Text>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -41,7 +40,7 @@ const Wrapper = styled.div`
   position: relative;
   border-radius: 20px;
   &:hover {
-    background: ${(props) => props.theme.colors.active2};
+    background: ${(props) => props.theme.colors.secondaryBg};
   }
 `;
 
@@ -51,29 +50,11 @@ const Label = styled.div`
   align-items: center;
   &:hover {
     text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.active};
+    text-decoration-color: ${(props) => props.theme.colors.primary};
     text-decoration-thickness: 3px;
   }
 `;
 
 const Name = styled(Text)`
   margin-left: 5px;
-`;
-
-const MoreButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-start;
-  color: ${(props) => props.theme.colors.secondary};
-`;
-
-const DropDownButton = styled.button`
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: none;
-  cursor: pointer;
-  border-bottom: 1px solid ${(props) => props.theme.colors.secondary};
 `;

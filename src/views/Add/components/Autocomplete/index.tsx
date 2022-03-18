@@ -190,7 +190,7 @@ const TypeChoices = styled.div`
 const TypeChoice = styled(Text)`
   &:hover {
     text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.active};
+    text-decoration-color: ${(props) => props.theme.colors.primary};
     text-decoration-thickness: 3px;
   }
 `;

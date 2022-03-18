@@ -51,9 +51,9 @@ export const EditLink = ({ linkId }: Props) => {
   };
 
   useEffect(() => {
-    console.log("get");
     getLink();
   }, [linkId]);
+
   useEffect(() => {
     setInputValues();
   }, [link]);

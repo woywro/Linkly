@@ -69,7 +69,9 @@ const Divider = styled.div`
 
 const LoginImage = styled(Image)`
   border-radius: 20px;
+  object-fit: contain;
 `;
+
 const ImageWrapper = styled.div`
   display: flex;
   flex-flow: column;

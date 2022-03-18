@@ -1,12 +1,11 @@
-import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { LinkInterface } from "../../types/LinkInterface";
 import { SharedItemView } from "../../views/SharedItemView";
 import { Modal } from "../../components/Modal";
+import { prisma } from "../../../prisma/PrismaClient";
 
 export default function SharedItem({ share }) {
-  console.log(share);
   const router = useRouter();
 
   return (
@@ -21,8 +20,6 @@ export default function SharedItem({ share }) {
     </Modal>
   );
 }
-
-const prisma = new PrismaClient();
 
 export async function getServerSideProps({ req, params, query }) {
   const session = await getSession({ req });
