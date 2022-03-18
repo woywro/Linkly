@@ -1,12 +1,11 @@
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import { getHistory, getLinks, getTags } from "../redux/actions";
 import { useDispatch } from "react-redux";
-import { Component } from "react";
-import { useSession } from "next-auth/react";
-import Login from "../pages/login";
-import { LoadingSpinner } from "../components/LoadingSpinner";
 import styled from "styled-components";
+import { LoadingSpinner } from "../components/LoadingSpinner";
+import Login from "../pages/login";
+import { getCollections, getHistory, getLinks } from "../redux/actions";
 
 interface Props {
   children: JSX.Element[];
@@ -24,7 +23,7 @@ export const AuthGuard = ({ children }: Props) => {
       router.push("/");
       dispatch(getLinks());
       dispatch(getHistory());
-      dispatch(getTags());
+      dispatch(getCollections());
     }
   }, [status, Session]);
 

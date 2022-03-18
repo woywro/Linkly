@@ -27,12 +27,10 @@ export const Feed = () => {
 
   return (
     <Container>
-      <List>
-        {sharedCategories !== [] &&
-          sharedCategories.map((e) => {
-            return <FeedItem category={e} />;
-          })}
-      </List>
+      {sharedCategories !== [] &&
+        sharedCategories.map((e) => {
+          return <FeedItem category={e} />;
+        })}
     </Container>
   );
 };
@@ -41,18 +39,9 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-flow: column;
-`;
-
-const List = styled.ul`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: flex-start;
-  flex-flow: column;
-  align-items: start;
-  list-style: none;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 40%;
 `;

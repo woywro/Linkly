@@ -6,7 +6,7 @@ import { AutoComplete } from "../Add/components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import axios from "axios";
-import { TagInterface } from "../../types/TagInterface";
+import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
@@ -22,40 +22,41 @@ const Container = styled.div`
 `;
 
 interface Props {
-  link: string;
+  link: LinkInterface;
 }
 
 export const EditLink = ({ link }: Props) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
-  const [tags, setTags] = useState<TagInterface[] | []>([]);
+  const [collections, setCollections] = useState<CollectionInterface[] | []>(
+    []
+  );
 
   const dispatch = useDispatch();
 
-  const allTags = useSelector((state) => state.tags);
+  const allCollections = useSelector((state) => state.collections);
 
   useEffect(() => {
     setInputValues(JSON.parse(link));
-    console.log(JSON.parse(link));
   }, [link]);
 
   const setInputValues = useCallback(
     (link) => {
       setTitle(link.title);
       setUrl(link.url);
-      setTags(link.tags);
+      setCollections(link.collections);
     },
     [link]
   );
 
   const handleSaveLink = async () => {
-    console.log(tags);
+    console.log(collections);
     await axios
       .post("/api/updateLink", {
         id: JSON.parse(link).id,
         title: title,
         url: url,
-        tags: tags,
+        collections: collections,
       })
       .then((res) => {
         dispatch(updateLink(res.data));
@@ -79,7 +80,11 @@ export const EditLink = ({ link }: Props) => {
         }}
         value={url}
       />
-      <AutoComplete setTags={setTags} suggestions={allTags} tags={tags} />
+      <AutoComplete
+        setCollections={setCollections}
+        suggestions={allCollections}
+        collections={collections}
+      />
       <Button onClick={handleSaveLink}>save</Button>
     </Container>
   );

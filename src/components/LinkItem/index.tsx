@@ -1,68 +1,16 @@
-import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { Text } from "../Text";
-import { LinkInterface } from "../../types/LinkInterface";
-import { deleteLink, updateHistory } from "../../redux/actions";
-import { useTheme } from "styled-components";
+import axios from "axios";
+import moment from "moment";
+import { useRouter } from "next/router";
+import { useCallback, useState } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { CgMoreAlt } from "react-icons/cg";
-import { Button } from "../Button";
-import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useTheme } from "styled-components";
+import { deleteLink, updateHistory } from "../../redux/actions";
+import { LinkInterface } from "../../types/LinkInterface";
 import { DropdownMenu } from "../DropdownMenu";
-import axios from "axios";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import moment from "moment";
-import { hoverEffectBg, hoverEffectText } from "../../mixins/hoverEffects";
-
-const Wrapper = styled.div`
-  display: grid;
-  justify-content: start;
-  align-items: center;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
-  width: 100%;
-  padding: 10px;
-  margin: 5px;
-  cursor: pointer;
-  position: relative;
-  border-radius: 20px;
-  &:hover {
-    ${hoverEffectBg}
-  }
-`;
-
-const Label = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  color: ${(props) => props.theme.colors.primaryText};
-  &:hover {
-    ${hoverEffectText}
-  }
-`;
-
-const Name = styled(Text)`
-  margin-left: 5px;
-  color: ${(props) => props.theme.colors.primaryText};
-`;
-
-const MoreButton = styled.button`
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-start;
-  color: ${(props) => props.theme.colors.secondaryText};
-`;
-
-const DropDownButton = styled.button`
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: none;
-  cursor: pointer;
-  border-radius: 20px;
-`;
+import { Text } from "../Text";
+import { DropDownButton, Label, MoreButton, Name, Wrapper } from "./style";
 
 interface Props {
   item: LinkInterface;
@@ -130,7 +78,6 @@ export const LinkItem = ({ item }: Props) => {
         <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
           Delete
         </DropDownButton>
-        {/* <Link href={`/editLink/${item.id}`} passHref> */}
         <DropDownButton
           onClick={(e) => {
             handleEditLink();
@@ -139,7 +86,6 @@ export const LinkItem = ({ item }: Props) => {
         >
           Edit
         </DropDownButton>
-        {/* </Link> */}
       </DropdownMenu>
     </Wrapper>
   );

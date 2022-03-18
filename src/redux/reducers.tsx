@@ -1,7 +1,6 @@
-import { combineReducers } from "redux";
+import { AnyAction, combineReducers } from "redux";
+import { CollectionInterface } from "../types/CollectionInterface";
 import { HistoryInterface } from "../types/HistoryInterface";
-import { AnyAction } from "redux";
-import { TagInterface } from "../types/TagInterface";
 const initialState = [];
 
 const initialHistory: HistoryInterface[] = [];
@@ -52,15 +51,15 @@ export const History = (state = initialHistory, action: AnyAction) => {
   }
 };
 
-const initialTags: TagInterface[] = [];
+const initialCollections: CollectionInterface[] = [];
 
-export const Tags = (state = initialTags, action: AnyAction) => {
+export const collections = (state = initialCollections, action: AnyAction) => {
   switch (action.type) {
-    case "UPDATE_TAGS": {
-      return [...state, action.payload.tag];
+    case "UPDATE_COLLECTIONS": {
+      return [...state, action.payload.collection];
     }
-    case "SET_TAGS": {
-      return action.payload.tags;
+    case "SET_COLLECTIONS": {
+      return action.payload.collections;
     }
     default: {
       return state;
@@ -105,7 +104,7 @@ export const LoadingReducer = (state = initial, action) => {
 const allReducers = combineReducers({
   links: Links,
   history: History,
-  tags: Tags,
+  collections: collections,
   LoadingReducer: LoadingReducer,
 });
 export default allReducers;

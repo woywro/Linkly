@@ -1,7 +1,7 @@
 import { LinkInterface } from "../types/LinkInterface";
 import axios from "axios";
 import { HistoryInterface } from "../types/HistoryInterface";
-import { TagInterface } from "../types/TagInterface";
+import { CollectionInterface } from "../types/CollectionInterface";
 
 export const addLink = (link: LinkInterface) => ({
   type: "ADD_LINK",
@@ -22,10 +22,10 @@ export const updateHistory = (link: LinkInterface) => ({
     link,
   },
 });
-export const updateTags = (tag: TagInterface) => ({
-  type: "UPDATE_TAGS",
+export const updateCollections = (collection: CollectionInterface) => ({
+  type: "UPDATE_CollectionS",
   payload: {
-    tag,
+    collection,
   },
 });
 
@@ -101,17 +101,17 @@ export const getHistory = () => {
   };
 };
 
-export const setTags = (tags) => ({
-  type: "SET_TAGS",
+export const setCollections = (collections) => ({
+  type: "SET_COLLECTIONS",
   payload: {
-    tags,
+    collections,
   },
 });
 
-export const getTags = () => {
+export const getCollections = () => {
   return function (dispatch) {
-    axios.get("/api/getTags").then((res) => {
-      dispatch(setTags(res.data.tags));
+    axios.get("/api/getCollections").then((res) => {
+      dispatch(setCollections(res.data.collections));
     });
   };
 };

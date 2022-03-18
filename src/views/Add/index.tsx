@@ -7,10 +7,9 @@ import styled from "styled-components";
 import { Button } from "../../components/Button";
 import axios from "axios";
 import { LinkInterface } from "../../types/LinkInterface";
-import { TagInterface } from "../../types/TagInterface";
+import { CollectionInterface } from "../../types/CollectionInterface";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
-import { setTags } from "../../redux/actions";
 
 const Container = styled.div`
   height: 300px;
@@ -24,27 +23,25 @@ const Container = styled.div`
 export const Add = () => {
   const [title, setTitle] = useState<string>("");
   const [url, setUrl] = useState<string>("");
-  const [tags, setTags] = useState<TagInterface[] | []>([]);
+  const [collections, setCollections] = useState<CollectionInterface[] | []>(
+    []
+  );
 
   const dispatch = useDispatch();
   const router = useRouter();
-  const Tags = useSelector((state) => state.tags);
 
   const handleAdd = useCallback(async () => {
-    console.log(tags);
     await axios
       .post("/api/addLink", {
         title,
         url,
-        tags,
+        collections,
       })
       .then((res) => {
-        console.log(res.data);
         dispatch(addLink(res.data));
-        // dispatch(setTags([...Tags, {}]))
       });
     router.push("/");
-  }, [title, url, tags]);
+  }, [title, url, collections]);
 
   return (
     <Container>
@@ -62,7 +59,11 @@ export const Add = () => {
         }}
         value={url}
       />
-      <AutoComplete setTags={setTags} suggestions={Tags} tags={tags} />
+      <AutoComplete
+        setCollections={setCollections}
+        suggestions={collections}
+        collections={collections}
+      />
       <Button onClick={handleAdd}>add</Button>
     </Container>
   );

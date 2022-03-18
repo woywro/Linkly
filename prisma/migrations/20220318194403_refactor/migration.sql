@@ -9,14 +9,14 @@ CREATE TABLE "Share" (
 );
 
 -- CreateTable
-CREATE TABLE "Tag" (
+CREATE TABLE "Collection" (
     "id" TEXT NOT NULL,
     "value" TEXT NOT NULL,
     "valId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
 
-    CONSTRAINT "Tag_pkey" PRIMARY KEY ("id")
+    CONSTRAINT "Collection_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -38,6 +38,17 @@ CREATE TABLE "History" (
     "ownerId" TEXT NOT NULL,
 
     CONSTRAINT "History_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "FriendRequest" (
+    "id" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "ownerId" TEXT NOT NULL,
+    "isAccepted" BOOLEAN NOT NULL DEFAULT false,
+    "timestamp" TEXT NOT NULL,
+
+    CONSTRAINT "FriendRequest_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateTable
@@ -89,7 +100,7 @@ CREATE TABLE "VerificationToken" (
 );
 
 -- CreateTable
-CREATE TABLE "_LinkToTag" (
+CREATE TABLE "_CollectionToLink" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
@@ -98,10 +109,10 @@ CREATE TABLE "_LinkToTag" (
 CREATE UNIQUE INDEX "Share_categoryId_key" ON "Share"("categoryId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Tag_id_key" ON "Tag"("id");
+CREATE UNIQUE INDEX "Collection_id_key" ON "Collection"("id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Tag_valId_key" ON "Tag"("valId");
+CREATE UNIQUE INDEX "Collection_valId_key" ON "Collection"("valId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Link_id_key" ON "Link"("id");
@@ -122,19 +133,19 @@ CREATE UNIQUE INDEX "VerificationToken_token_key" ON "VerificationToken"("token"
 CREATE UNIQUE INDEX "VerificationToken_identifier_token_key" ON "VerificationToken"("identifier", "token");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_LinkToTag_AB_unique" ON "_LinkToTag"("A", "B");
+CREATE UNIQUE INDEX "_CollectionToLink_AB_unique" ON "_CollectionToLink"("A", "B");
 
 -- CreateIndex
-CREATE INDEX "_LinkToTag_B_index" ON "_LinkToTag"("B");
+CREATE INDEX "_CollectionToLink_B_index" ON "_CollectionToLink"("B");
 
 -- AddForeignKey
-ALTER TABLE "Share" ADD CONSTRAINT "Share_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Tag"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Share" ADD CONSTRAINT "Share_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Collection"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Share" ADD CONSTRAINT "Share_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Tag" ADD CONSTRAINT "Tag_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "Collection" ADD CONSTRAINT "Collection_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Link" ADD CONSTRAINT "Link_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
@@ -143,13 +154,16 @@ ALTER TABLE "Link" ADD CONSTRAINT "Link_ownerId_fkey" FOREIGN KEY ("ownerId") RE
 ALTER TABLE "History" ADD CONSTRAINT "History_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "FriendRequest" ADD CONSTRAINT "FriendRequest_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Session" ADD CONSTRAINT "Session_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_LinkToTag" ADD FOREIGN KEY ("A") REFERENCES "Link"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_CollectionToLink" ADD FOREIGN KEY ("A") REFERENCES "Collection"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_LinkToTag" ADD FOREIGN KEY ("B") REFERENCES "Tag"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE "_CollectionToLink" ADD FOREIGN KEY ("B") REFERENCES "Link"("id") ON DELETE CASCADE ON UPDATE CASCADE;

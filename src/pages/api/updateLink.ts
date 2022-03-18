@@ -16,16 +16,16 @@ export default async (req, res) => {
         url: data.url,
         owner: { connect: { email: session.user.email } },
         modificationTimestamp: Date.now().toString(),
-        tags: {
-          connectOrCreate: data.tags.map((tag) => ({
+        collections: {
+          connectOrCreate: data.collections.map((collection) => ({
             create: {
-              value: tag.value,
-              valId: `${session.user.email}/${tag.value}`,
-              type: tag.type,
+              value: collection.value,
+              valId: `${session.user.email}/${collection.value}`,
+              type: collection.type,
               owner: { connect: { email: session.user.email } },
             },
             where: {
-              valId: `${session.user.email}/${tag.value}`,
+              valId: `${session.user.email}/${collection.value}`,
             },
           })),
         },
@@ -34,7 +34,7 @@ export default async (req, res) => {
         id: true,
         title: true,
         url: true,
-        tags: true,
+        collections: true,
         ownerId: true,
         owner: true,
         modificationTimestamp: true,

@@ -4,23 +4,14 @@ import { prisma } from "../../../prisma/PrismaClient";
 
 export default async (req, res) => {
   const session = await getSession({ req });
-  const link = await prisma.Link.findMany({
-    orderBy: {
-      title: "desc",
-    },
+  const request = await prisma.Friend.findMany({
     where: {
-      owner: { email: session.user.email },
+      email: session.user.email,
     },
-    select: {
-      id: true,
-      title: true,
-      url: true,
-      collections: true,
-      ownerId: true,
+    include: {
       owner: true,
-      modificationTimestamp: true,
     },
   });
   res.statusCode = 200;
-  res.json({ link });
+  res.json({ request });
 };

@@ -15,7 +15,7 @@ export default async (req, res) => {
       id: true,
       title: true,
       url: true,
-      tags: true,
+      collections: true,
       ownerId: true,
       owner: true,
       modificationTimestamp: true,

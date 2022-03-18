@@ -5,7 +5,7 @@ export default async (req, res) => {
   const data = req.body;
   const session = await getSession({ req });
   try {
-    const result = await prisma.Tag.delete({
+    const result = await prisma.collection.delete({
       where: {
         id: data.id,
       },

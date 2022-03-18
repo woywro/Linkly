@@ -1,22 +1,22 @@
 import { CategoryView } from "../../views/CategoryView";
-import { PrismaClient, Tag, Link, Share, User } from "@prisma/client";
+import { PrismaClient, collection, Link, Share, User } from "@prisma/client";
 import { getSession } from "next-auth/react";
 import { LinkInterface } from "../../types/LinkInterface";
 import axios from "axios";
-import { TagShareLinks } from "../../types/TagShareLinks";
+import { CollectionShareLinks } from "../../types/CollectionShareLinks";
 import { prisma } from "../../../prisma/PrismaClient";
 
 interface Props {
-  tag: TagShareLinks;
+  collection: CollectionShareLinks;
 }
 
-export default function elementPage({ tag }: Props) {
-  return <CategoryView tag={tag} />;
+export default function elementPage({ collection }: Props) {
+  return <CategoryView collection={collection} />;
 }
 
 export async function getServerSideProps({ req, params }) {
   const session = await getSession({ req });
-  const tag = await prisma.tag.findUnique({
+  const collection = await prisma.collection.findUnique({
     where: {
       id: params.category,
     },
@@ -26,7 +26,7 @@ export async function getServerSideProps({ req, params }) {
           id: true,
           title: true,
           url: true,
-          tags: true,
+          collections: true,
           owner: true,
           modificationTimestamp: true,
         },
@@ -39,12 +39,12 @@ export async function getServerSideProps({ req, params }) {
     },
   });
 
-  if (!tag) {
+  if (!collection) {
     return {
       notFound: true,
     };
   }
   return {
-    props: { tag },
+    props: { collection },
   };
 }

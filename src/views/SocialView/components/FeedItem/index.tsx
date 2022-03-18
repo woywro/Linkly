@@ -30,28 +30,31 @@ export const FeedItem = ({ category }) => {
       }}
     >
       <Label>
-        <RiFolder5Fill />
+        <RiFolder5Fill style={{ fill: theme.colors.secondary }} size={"60px"} />
         <Name>{category.value}</Name>
       </Label>
       <Text color={theme.colors.secondaryText}>{category.owner.email}</Text>
-      <Text color={theme.colors.secondaryText}>{"June,13,2020"}</Text>
       <Text color={theme.colors.secondaryText}>{category.links.length}</Text>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: 2fr 2fr 2fr 2fr;
+  padding: 5px;
+  display: flex;
+  height: 100%;
   width: 100%;
-  padding: 15px;
+  font-size: 50px;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
   cursor: pointer;
-  position: relative;
   border-radius: 20px;
+  color: ${(props) => props.theme.colors.primaryText};
   &:hover {
-    background: ${(props) => props.theme.colors.secondaryBg};
+    background: ${(props) => props.theme.colors.blue};
+    box-shadow: ${(props) => props.theme.shadow};
+    color: white;
   }
 `;
 
@@ -59,16 +62,12 @@ const Label = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  font-size: 30px;
+  flex-flow: column;
+  font-size: 40px;
   color: ${(props) => props.theme.colors.primaryText};
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.primary};
-    text-decoration-thickness: 3px;
-  }
 `;
 
 const Name = styled(Text)`
-  margin-left: 10px;
+  font-size: 25px;
   color: ${(props) => props.theme.colors.primaryText};
 `;

@@ -8,31 +8,31 @@ import { useEffect, useState } from "react";
 import { Sharing } from "./components/Sharing";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import { PrismaClient, Tag, Link, Share, User } from "@prisma/client";
-import { TagShareLinks } from "../../types/TagShareLinks";
+import { PrismaClient, collection, Link, Share, User } from "@prisma/client";
+import { CollectionShareLinks } from "../../types/CollectionShareLinks";
 import { Divider } from "../style";
 
 interface Props {
-  tag: TagShareLinks;
+  collection: CollectionShareLinks;
 }
 
-export const CategoryView = ({ tag }: Props) => {
+export const CategoryView = ({ collection }: Props) => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <PageTitle>{`categories/${tag.value}`}</PageTitle>
+        <PageTitle>{`categories/${collection.value}`}</PageTitle>
         <Links>
-          {tag.links.map((e: LinkInterface) => {
+          {collection.links.map((e: LinkInterface) => {
             return <LinkItem item={e} />;
           })}
         </Links>
       </LeftWrapper>
       <RightWrapper>
         <PageTitle>Info</PageTitle>
-        <BasicInfo tag={tag} />
+        <BasicInfo collection={collection} />
         <Divider />
         <PageTitle>Sharing</PageTitle>
-        <Sharing tag={tag} />
+        <Sharing collection={collection} />
       </RightWrapper>
     </PageContainer>
   );

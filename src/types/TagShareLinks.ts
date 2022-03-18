@@ -1,10 +1,10 @@
-import { Tag, User } from "@prisma/client";
-export type TagShareLinks =
-  | Tag & {
+import { collection, User } from "@prisma/client";
+export type CollectionShareLinks =
+  | collection & {
       links: {
         title: string;
         url: string | null;
-        tags: Tag[];
+        collections: collection[];
         owner: User | null;
         modificationTimestamp: string;
       }[];

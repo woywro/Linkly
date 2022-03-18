@@ -6,7 +6,7 @@ import { Text } from "../../../../components/Text";
 import axios from "axios";
 import { useCallback } from "react";
 import { Input } from "../../../../components/Input";
-import { TagShareLinks } from "../../../../types/TagShareLinks";
+import { CollectionShareLinks } from "../../../../types/CollectionShareLinks";
 import { PageTitle } from "../../../style";
 import { hoverEffectText } from "../../../../mixins/hoverEffects";
 
@@ -23,21 +23,21 @@ const Container = styled.div`
 `;
 
 interface Props {
-  tag: TagShareLinks;
+  collection: CollectionShareLinks;
 }
 
-export const Sharing = ({ tag }: Props) => {
+export const Sharing = ({ collection }: Props) => {
   const theme = useTheme();
   const router = useRouter();
   const [input, setInput] = useState("");
   const [sharedList, setSharedList] = useState([]);
 
   useEffect(() => {
-    if (tag.share.length > 0) {
-      console.log(tag);
-      setSharedList(tag.share[0].sharedWith);
+    if (collection.share.length > 0) {
+      console.log(collection);
+      setSharedList(collection.share[0].sharedWith);
     }
-  }, [tag, router]);
+  }, [collection, router]);
 
   const handleSave = useCallback(
     async (sharedList) => {

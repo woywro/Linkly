@@ -4,7 +4,7 @@ import { prisma } from "../../../prisma/PrismaClient";
 
 export default async (req, res) => {
   const session = await getSession({ req });
-  const tags = await prisma.Tag.findMany({
+  const collections = await prisma.Collection.findMany({
     where: {
       owner: { email: session.user.email },
     },
@@ -16,5 +16,5 @@ export default async (req, res) => {
     },
   });
   res.statusCode = 200;
-  res.json({ tags });
+  res.json({ collections });
 };

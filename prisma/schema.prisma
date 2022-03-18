@@ -12,13 +12,12 @@ model Share {
     id         String   @id @default(cuid())
     ownerId String
     categoryId String @unique
-    category Tag?  @relation(fields: [categoryId], references: [id])
+    category Collection?  @relation(fields: [categoryId], references: [id])
     owner User?    @relation(fields: [ownerId], references: [id])
     sharedWith String[]
 }
 
-
-model Tag {
+model Collection {
   id         String   @id @default(cuid()) @unique
   value      String 
   valId String @unique
@@ -36,7 +35,7 @@ model Link {
   ownerId    String
   modificationTimestamp String
   owner      User?    @relation(fields: [ownerId], references: [id])
-  tags Tag[]
+  collections Collection[]
 }
 
 model History {
@@ -45,6 +44,15 @@ model History {
   timestamp String 
   ownerId     String
   owner       User?    @relation(fields: [ownerId], references: [id])
+}
+
+model FriendRequest {
+  id String @id @default(cuid())
+  email String
+  ownerId     String
+  owner       User?    @relation(fields: [ownerId], references: [id])
+  isAccepted Boolean @default(false)
+  timestamp String 
 }
 
 //auth
@@ -87,8 +95,9 @@ model User {
   sessions      Session[]
   links         Link[]
   history       History[]
-  tags          Tag[]
-  share         Share[]
+  collections          Collection[]
+  shares         Share[]
+  friendRequests FriendRequest[]
 }
 
 model VerificationToken {

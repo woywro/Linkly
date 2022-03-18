@@ -6,7 +6,7 @@ import { PrismaClient } from "@prisma/client";
 import { getSession } from "next-auth/react";
 
 interface Props {
-  linkId: string;
+  link: LinkInterface;
 }
 
 export default function editLink({ link }: Props) {

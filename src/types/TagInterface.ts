@@ -1,4 +1,4 @@
-export interface TagInterface {
+export interface CollectionInterface {
   value: string;
   type: string;
 }

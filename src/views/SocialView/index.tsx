@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import { Feed } from "./components/Feed";
 import { useSelector } from "react-redux";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
+import { Friends } from "./components/Friends";
 
 export const SocialView = () => {
   const loadingState = useSelector((state) => state.LoadingReducer);
@@ -16,6 +17,7 @@ export const SocialView = () => {
       </LeftWrapper>
       <RightWrapper>
         <PageTitle>Friends</PageTitle>
+        <Friends />
       </RightWrapper>
     </PageContainer>
   );

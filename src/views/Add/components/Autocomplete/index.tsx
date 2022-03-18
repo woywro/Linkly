@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Text } from "../../../../components/Text";
-import { useDispatch } from "react-redux";
-import { updateTags } from "../../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCollections } from "../../../../redux/actions";
 import axios from "axios";
-import { TagInterface } from "../../../../types/TagInterface";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
 
 interface Props {
-  suggestions: TagInterface[];
-  setTags: (arg0: TagInterface[]) => void;
-  tags: TagInterface[];
+  suggestions: CollectionInterface[];
+  setCollections: (arg0: CollectionInterface[]) => void;
+  collections: CollectionInterface[];
 }
 
-export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
+export const AutoComplete = ({
+  suggestions,
+  setCollections,
+  collections,
+}: Props) => {
+  const c = useSelector((state) => state.collections);
+
   const [filteredSuggestions, setFilteredSuggestions] = useState<
-    TagInterface[] | []
+    CollectionInterface[] | []
   >([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
@@ -32,27 +38,24 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
     setShowSuggestions(true);
   };
 
-  const handleDeleteTag = (e) => {
-    setTags(
-      JSON.parse(JSON.stringify(tags)).filter((x) => x.value !== e.value)
-    );
-    console.log(
-      JSON.parse(JSON.stringify(tags)).filter((x) => x.value !== e.value)
+  const handleDeleteCollection = (e) => {
+    setCollections(
+      JSON.parse(JSON.stringify(collections)).filter((x) => x.value !== e.value)
     );
   };
 
-  const handleAddSuggestion = (e: TagInterface) => {
-    if (!tags.map((e) => e.value).includes(e.value)) {
+  const handleAddSuggestion = (e: CollectionInterface) => {
+    if (!collections.map((e) => e.value).includes(e.value)) {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
-      setTags([...tags, { value: e.value, type: e.type }]);
+      setCollections([...collections, { value: e.value, type: e.type }]);
       setInput("");
     }
   };
 
-  const handleAddTag = async (type) => {
+  const handleAddCollection = async (type) => {
     setShowSuggestions(false);
-    setTags([...tags, { value: input, type: type }]);
+    setCollections([...collections, { value: input, type: type }]);
     setInput("");
   };
 
@@ -77,10 +80,10 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
       <Add>
         <Text size={"small"}>No results!</Text>
         <TypeChoices>
-          <TypeChoice onClick={() => handleAddTag("category")}>
+          <TypeChoice onClick={() => handleAddCollection("category")}>
             Category +
           </TypeChoice>
-          <TypeChoice onClick={() => handleAddTag("keyword")}>
+          <TypeChoice onClick={() => handleAddCollection("keyword")}>
             Keyword +
           </TypeChoice>
         </TypeChoices>
@@ -91,10 +94,10 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
   return (
     <Wrapper>
       <ChoosenList>
-        {tags !== undefined &&
-          tags.map((e) => {
+        {collections !== undefined &&
+          collections.map((e) => {
             return (
-              <ChoosenElement onClick={() => handleDeleteTag(e)}>
+              <ChoosenElement onClick={() => handleDeleteCollection(e)}>
                 {e.value}
               </ChoosenElement>
             );
@@ -104,7 +107,7 @@ export const AutoComplete = ({ suggestions, setTags, tags }: Props) => {
         type="text"
         onChange={onChange}
         value={input}
-        placeholder="enter tags"
+        placeholder="enter collections"
       />
       {showSuggestions && input && <SuggestionsListComponent />}
     </Wrapper>
