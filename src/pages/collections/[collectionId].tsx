@@ -1,24 +1,21 @@
-import { CategoryView } from "../../views/CategoryView";
-import { PrismaClient, collection, Link, Share, User } from "@prisma/client";
 import { getSession } from "next-auth/react";
-import { LinkInterface } from "../../types/LinkInterface";
-import axios from "axios";
-import { CollectionShareLinks } from "../../types/CollectionShareLinks";
 import { prisma } from "../../../prisma/PrismaClient";
+import { CollectionShareLinks } from "../../types/CollectionShareLinks";
+import { CollectionView } from "../../views/CollectionView";
 
 interface Props {
   collection: CollectionShareLinks;
 }
 
 export default function elementPage({ collection }: Props) {
-  return <CategoryView collection={collection} />;
+  return <CollectionView collection={collection} />;
 }
 
 export async function getServerSideProps({ req, params }) {
   const session = await getSession({ req });
-  const collection = await prisma.collection.findUnique({
+  const collection = await prisma.Collection.findUnique({
     where: {
-      id: params.category,
+      id: params.collectionId,
     },
     include: {
       links: {

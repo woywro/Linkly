@@ -1,13 +1,17 @@
-import styled from "styled-components";
-import { RiFolder5Fill, RiLinksFill } from "react-icons/ri";
-import { Text } from "../../../../components/Text";
 import Link from "next/link";
-import { useTheme } from "styled-components";
+import { RiFolder5Fill } from "react-icons/ri";
+import styled, { useTheme } from "styled-components";
+import { Text } from "../../../../components/Text";
 
-export const Category = ({ name, id }) => {
+interface Props {
+  name: string;
+  id: string;
+}
+
+export const Collection = ({ name, id }: Props) => {
   const theme = useTheme();
   return (
-    <Link href={`/categories/${id}`} passHref>
+    <Link href={`/collections/${id}`} passHref>
       <StyledCategory>
         <RiFolder5Fill style={{ fill: theme.colors.secondary }} size={"60px"} />
         <Title>{name}</Title>
