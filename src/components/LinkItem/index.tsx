@@ -106,15 +106,12 @@ export const LinkItem = ({ item }: Props) => {
   );
 
   const handleEditLink = () => {
+    console.log(item);
     router.push({
       pathname: `/editLink/${item.id}`,
-      query: item,
+      query: { data: JSON.stringify(item) },
     });
   };
-
-  useEffect(() => {
-    console.log(item);
-  }, [item]);
 
   return (
     <Wrapper onClick={() => handleOnClick(item)}>

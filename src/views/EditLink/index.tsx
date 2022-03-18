@@ -25,50 +25,34 @@ interface Props {
   link: string;
 }
 
-export const EditLink = ({ linkId }: Props) => {
+export const EditLink = ({ link }: Props) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [tags, setTags] = useState<TagInterface[] | []>([]);
-  const [link, setLink] = useState("");
 
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const allTags = useSelector((state) => state.tags);
 
-  const getLink = async () => {
-    console.log("change");
-    await axios
-      .get("/api/getSpecifiedLink", {
-        params: {
-          id: linkId,
-        },
-      })
-      .then((res) => {
-        setLink(res.data.link);
-        console.log(res.data.link);
-      });
-  };
-
   useEffect(() => {
-    getLink();
-  }, [linkId]);
-
-  useEffect(() => {
-    setInputValues();
+    setInputValues(JSON.parse(link));
+    console.log(JSON.parse(link));
   }, [link]);
 
-  const setInputValues = useCallback(() => {
-    setTitle(link.title);
-    setUrl(link.url);
-    setTags(link.tags);
-  }, [link, linkId]);
+  const setInputValues = useCallback(
+    (link) => {
+      setTitle(link.title);
+      setUrl(link.url);
+      setTags(link.tags);
+    },
+    [link]
+  );
 
   const handleSaveLink = async () => {
     console.log(tags);
     await axios
       .post("/api/updateLink", {
-        id: link.id,
+        id: JSON.parse(link).id,
         title: title,
         url: url,
         tags: tags,

@@ -23,6 +23,7 @@ export async function getServerSideProps({ req, params }) {
     include: {
       links: {
         select: {
+          id: true,
           title: true,
           url: true,
           tags: true,

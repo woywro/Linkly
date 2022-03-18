@@ -9,7 +9,7 @@ interface Props {
   linkId: string;
 }
 
-export default function editLink({ linkId }: Props) {
+export default function editLink({ link }: Props) {
   const router = useRouter();
   return (
     <Modal
@@ -19,7 +19,7 @@ export default function editLink({ linkId }: Props) {
         router.push("/");
       }}
     >
-      <EditLink linkId={linkId} />
+      <EditLink link={link} />
     </Modal>
   );
 }
@@ -27,7 +27,7 @@ export default function editLink({ linkId }: Props) {
 export async function getServerSideProps({ query }) {
   return {
     props: {
-      linkId: query.linkId,
+      link: query.data,
     },
   };
 }
