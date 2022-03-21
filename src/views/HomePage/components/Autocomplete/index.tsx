@@ -18,16 +18,16 @@ export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
   >([]);
   const { height } = useWindowDimensions();
 
-  const generateSuggestions = () => {
-    if (input.length > 0) {
-      setHide(false);
-    } else {
-      setHide(true);
-    }
-    let suggestionsQuantity = Math.floor((height * 0.2) / 40);
-    setSuggestionsHeight(suggestionsQuantity * 40);
-    setFinalSuggestions(suggestions.slice(0, suggestionsQuantity));
-  };
+  // const generateSuggestions = () => {
+  //   if (input.length > 0) {
+  //     setHide(false);
+  //   } else {
+  //     setHide(true);
+  //   }
+  //   let suggestionsQuantity = Math.floor((height * 0.2) / 40);
+  //   setSuggestionsHeight(suggestionsQuantity * 40);
+  //   setFinalSuggestions(suggestions.slice(0, suggestionsQuantity));
+  // };
 
   const handleOnClick = useCallback((url) => {
     setHide(true);
@@ -36,14 +36,18 @@ export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
   }, []);
 
   useEffect(() => {
-    generateSuggestions();
+    if (input.length > 0) {
+      setHide(false);
+    } else {
+      setHide(true);
+    }
   }, [height, input, suggestions]);
 
   return (
     <>
-      {hide == false && finalSuggestions.length > 0 && (
-        <StyledSuggestions height={suggestionsHeight}>
-          {finalSuggestions.map((suggestion) => {
+      {hide == false && suggestions.length > 0 && (
+        <StyledSuggestions>
+          {suggestions.map((suggestion) => {
             return (
               <Suggestion
                 key={suggestion.url}
@@ -59,7 +63,7 @@ export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
   );
 };
 
-export const StyledSuggestions = styled.ul<{ height: number }>`
+export const StyledSuggestions = styled.ul`
   width: 60%;
   background: #ffffff;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
@@ -75,7 +79,7 @@ export const StyledSuggestions = styled.ul<{ height: number }>`
   color: black;
   top: 100%;
   margin: 0;
-  height: ${(props) => props.height}px;
+  max-height: 300px;
   overflow-y: scroll;
   left: 0;
   z-index: 10;

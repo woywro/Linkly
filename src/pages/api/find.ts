@@ -4,12 +4,18 @@ export default async (req, res) => {
   let searchValue = req.query.search;
   const links = await prisma.Link.findMany({
     where: {
-      title: {
-        search: `${searchValue.split(" ").join(" & ")}`,
-      },
-      url: {
-        search: `${searchValue}`,
-      },
+      OR: [
+        {
+          title: {
+            contains: `${searchValue}`,
+          },
+        },
+        {
+          url: {
+            startsWith: `${searchValue}`,
+          },
+        },
+      ],
     },
     select: {
       url: true,
