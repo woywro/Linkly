@@ -56,13 +56,12 @@ model FriendRequest {
   timestamp String 
 }
 
-model Follows {
-  follower    User @relation("follower", fields: [followerId], references: [id])
-  followerId  String
-  following   User @relation("following", fields: [followingId], references: [id])
-  followingId String
-
-  @@id([followerId, followingId])
+model Friend {
+  id                 String  @id @default(cuid())
+  userId   String
+  friendId String
+  user User @relation(fields: [userId], references: [id])
+  friend User @relation(fields: [friendId], references: [id], name: "friends")
 }
 
 //auth
@@ -109,8 +108,8 @@ model User {
   shares         Share[]
   friendRequestsReceived FriendRequest[] @relation(name: "receiver")
   friendRequestsSent FriendRequest[] @relation( name: "owner")
-  followedBy Follows[] @relation("following")
-  following  Follows[] @relation("follower")
+  friend Friend? 
+  friends Friend[] @relation(name: "friends")
 }
 
 model VerificationToken {

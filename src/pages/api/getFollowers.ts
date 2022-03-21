@@ -9,9 +9,9 @@ export default async (req, res) => {
       email: session.user.email,
     },
     select: {
-      followedBy: {
-        include: {
-          follower: true,
+      friendUserFriends: {
+        select: {
+          user: true,
         },
       },
     },

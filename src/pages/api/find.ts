@@ -4,6 +4,7 @@ export default async (req, res) => {
   let searchValue = req.query.search;
   const links = await prisma.Link.findMany({
     where: {
+      owner: { email: session.user.email },
       OR: [
         {
           title: {

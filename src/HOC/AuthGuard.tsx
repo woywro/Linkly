@@ -13,14 +13,10 @@ interface Props {
 
 export const AuthGuard = ({ children }: Props) => {
   const { data: Session, status } = useSession();
-  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (status !== "authenticated" && Session == null) {
-      // router.push("/login");
-    } else {
-      router.push("/");
+    if (status == "authenticated" && Session !== null) {
       dispatch(getLinks());
       dispatch(getHistory());
       dispatch(getCollections());

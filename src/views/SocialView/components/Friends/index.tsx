@@ -29,13 +29,13 @@ export const Friends = () => {
 
   const getFollowers = async () => {
     await axios.get("/api/getFollowers").then((res) => {
-      setFollowers(res.data.request);
+      // setFollowers(res.data.request.friendUserFriends);
       console.log(res.data.request);
     });
   };
 
   useEffect(() => {
-    getFollowers();
+    // getFollowers();
   }, []);
 
   return (

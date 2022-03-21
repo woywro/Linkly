@@ -6,14 +6,14 @@ export default async (req, res) => {
   const data = req.body;
   const session = await getSession({ req });
   try {
-    const result = await prisma.Follows.create({
+    const result = await prisma.Friend.create({
       data: {
-        follower: {
+        user: {
           connect: {
             email: data.email,
           },
         },
-        following: {
+        friend: {
           connect: {
             email: session.user.email,
           },
