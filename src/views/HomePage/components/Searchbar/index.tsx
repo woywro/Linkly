@@ -4,6 +4,7 @@ import { AutoComplete } from "../Autocomplete";
 import { AiOutlineSearch } from "react-icons/ai";
 import axios from "axios";
 import { SuggestionInterface } from "../../../../types/SuggestionInterface";
+import breakpoints from "../../../../theme/breakpoints";
 
 export const SearchBar = () => {
   const [input, setInput] = useState<string>("");
@@ -23,23 +24,41 @@ export const SearchBar = () => {
   };
 
   return (
-    <StyledSearchBar>
-      <AiOutlineSearch />
-      <Input
-        placeholder="search by name or keyword"
-        onChange={handleChange}
-        value={input}
-      />
-      {typeof window !== "undefined" && (
-        <AutoComplete
-          input={input}
-          setInput={setInput}
-          suggestions={suggestions}
+    <Wrapper>
+      <StyledSearchBar>
+        <AiOutlineSearch />
+        <Input
+          placeholder="search by name or keyword"
+          onChange={handleChange}
+          value={input}
         />
-      )}
-    </StyledSearchBar>
+        {typeof window !== "undefined" && (
+          <AutoComplete
+            input={input}
+            setInput={setInput}
+            suggestions={suggestions}
+          />
+        )}
+      </StyledSearchBar>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.div`
+  padding: 5px;
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: center;
+  @media only screen and ${breakpoints.device.sm} {
+    background: ${(props) => props.theme.colors.primary};
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 120px;
+  }
+`;
 
 export const StyledSearchBar = styled.div`
   width: 60%;
@@ -51,6 +70,9 @@ export const StyledSearchBar = styled.div`
   align-items: center;
   padding: 10px;
   position: relative;
+  @media only screen and ${breakpoints.device.sm} {
+    width: 90%;
+  }
 `;
 
 export const Divider = styled.div`

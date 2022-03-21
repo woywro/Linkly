@@ -56,14 +56,6 @@ model FriendRequest {
   timestamp String 
 }
 
-model Friend {
-  id                 String  @id @default(cuid())
-  userId   String
-  friendId String
-  user User @relation(fields: [userId], references: [id])
-  friend User @relation(fields: [friendId], references: [id], name: "friends")
-}
-
 //auth
 model Account {
   id                 String  @id @default(cuid())
@@ -108,9 +100,8 @@ model User {
   shares         Share[]
   friendRequestsReceived FriendRequest[] @relation(name: "receiver")
   friendRequestsSent FriendRequest[] @relation( name: "owner")
-  friend Friend? 
-  friends Friend[] @relation(name: "friends")
 }
+
 
 model VerificationToken {
   identifier String

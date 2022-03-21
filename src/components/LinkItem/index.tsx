@@ -11,6 +11,8 @@ import { LinkInterface } from "../../types/LinkInterface";
 import { DropdownMenu } from "../DropdownMenu";
 import { Text } from "../Text";
 import { DropDownButton, Label, MoreButton, Name, Wrapper } from "./style";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import breakpoints from "../../theme/breakpoints";
 
 interface Props {
   item: LinkInterface;
@@ -21,6 +23,7 @@ export const LinkItem = ({ item }: Props) => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [show, setShow] = useState(false);
+  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
 
   const handleOnClick = useCallback(
     async (item: LinkInterface) => {
@@ -67,10 +70,14 @@ export const LinkItem = ({ item }: Props) => {
         <AiOutlineLink />
         <Name>{item.title}</Name>
       </Label>
-      <Text color={theme.colors.secondaryText}>{item.owner.email}</Text>
-      <Text color={theme.colors.secondaryText}>
-        {moment(parseInt(item.modificationTimestamp)).format("lll")}
-      </Text>
+      {!mediaQuerySm && (
+        <>
+          <Text color={theme.colors.secondaryText}>{item.owner.email}</Text>
+          <Text color={theme.colors.secondaryText}>
+            {moment(parseInt(item.modificationTimestamp)).format("lll")}
+          </Text>
+        </>
+      )}
       <MoreButton onClick={handleOpenMenu}>
         <CgMoreAlt size={"20px"} />
       </MoreButton>

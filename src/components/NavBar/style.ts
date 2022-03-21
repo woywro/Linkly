@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { css } from "styled-components";
+import breakpoints from "../../theme/breakpoints";
 export const Container = styled.nav`
   display: flex;
   flex-flow: column;

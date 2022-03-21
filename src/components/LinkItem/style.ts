@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { hoverEffectBg, hoverEffectText } from "../../mixins/hoverEffects";
 import { Text } from "../Text";
+import breakpoints from "../../theme/breakpoints";
 
 export const Wrapper = styled.div`
   display: grid;
@@ -15,6 +16,10 @@ export const Wrapper = styled.div`
   border-radius: 20px;
   &:hover {
     ${hoverEffectBg}
+  }
+  @media only screen and ${breakpoints.device.sm} {
+    display: flex;
+    justify-content: space-between;
   }
 `;
 

@@ -4,29 +4,23 @@ import { LeftWrapper, PageContainer, PageTitle, RightWrapper } from "../style";
 import { History } from "./components/History";
 import { List } from "./components/List";
 import { SearchBar } from "./components/Searchbar";
+import breakpoints from "../../theme/breakpoints";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 export const HomePage = () => {
+  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   return (
     <PageContainer>
       <LeftWrapper>
-        <Wrapper>
-          <SearchBar />
-        </Wrapper>
+        <SearchBar />
         <List />
       </LeftWrapper>
-      <RightWrapper>
-        <PageTitle>History</PageTitle>
-        <History />
-      </RightWrapper>
+      {!mediaQuerySm && (
+        <RightWrapper>
+          <PageTitle>History</PageTitle>
+          <History />
+        </RightWrapper>
+      )}
     </PageContainer>
   );
 };
-
-const Wrapper = styled.div`
-  padding: 5px;
-  width: 100%;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-around;
-  align-items: center;
-`;

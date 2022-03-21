@@ -9,9 +9,12 @@ import { hoverEffectText } from "../../../../mixins/hoverEffects";
 export const Friends = () => {
   const [friendRequests, setFriendRequests] = useState([]);
   const [followers, setFollowers] = useState([]);
+  const [input, setInput] = useState("");
+
   const handleCreateFriendRequest = async () => {
-    await axios.post("/api/createFriendRequest", {
-      email: "woywro@gmail.com",
+    console.log(input);
+    await axios.post("/api/addFriend", {
+      email: input,
     });
   };
 
@@ -40,7 +43,10 @@ export const Friends = () => {
 
   return (
     <Container>
-      <Input placeholder="enter yout friend's email" />
+      <Input
+        placeholder="enter yout friend's email"
+        onChange={(e) => setInput(e.target.value)}
+      />
       <Button onClick={handleCreateFriendRequest}>add friend</Button>
       <Button onClick={getFriendRequests}>get requests</Button>
       {friendRequests.map((request) => {

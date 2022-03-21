@@ -8,15 +8,7 @@ import { HistoryItem } from "../HistoryItem";
 import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
 import { Text } from "../../../../components/Text";
 import { Scrollbars } from "react-custom-scrollbars-2";
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-flow: column;
-  width: 100%;
-  height: 100%;
-`;
+import breakpoints from "../../../../theme/breakpoints";
 
 export const History = () => {
   const History = useSelector((state) => state.history);
@@ -49,3 +41,15 @@ export const History = () => {
     </Scrollbars>
   );
 };
+
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: column;
+  width: 100%;
+  height: 100%;
+  @media only screen and ${breakpoints.device.sm} {
+    display: none;
+  }
+`;

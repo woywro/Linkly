@@ -9,10 +9,12 @@ import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
 import { useRouter } from "next/router";
 import { sortLinks } from "../../../../redux/actions";
 import { AiOutlineSearch } from "react-icons/ai";
+import breakpoints from "../../../../theme/breakpoints";
 import {
   hoverEffectBg,
   hoverEffectText,
 } from "../../../../mixins/hoverEffects";
+import useMediaQuery from "../../../../hooks/useMediaQuery";
 
 export const SortBar = () => {
   const [sortByName, setSortByName] = useState(false);
@@ -20,6 +22,7 @@ export const SortBar = () => {
   const [sortByModification, setSortByModification] = useState(false);
   const [searchMode, setSearchMode] = useState(false);
   const [searchValue, setSearchValue] = useState("");
+  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   const theme = useTheme();
   const dispatch = useDispatch();
   const router = useRouter();

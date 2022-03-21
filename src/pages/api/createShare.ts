@@ -8,7 +8,7 @@ export default async (req, res) => {
   const session = await getSession({ req });
   console.log(data);
   try {
-    const result = await prisma.Share.upsert({
+    const result = await prisma.Share.create({
       where: {
         categoryId: data.categoryId,
       },

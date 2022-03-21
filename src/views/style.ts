@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import breakpoints from "../theme/breakpoints";
 export const PageContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -18,6 +19,10 @@ export const LeftWrapper = styled.div`
   text-align: left;
   padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
+  @media only screen and ${breakpoints.device.sm} {
+    width: 100%;
+    padding: 0px;
+  }
 `;
 export const RightWrapper = styled.div`
   display: flex;

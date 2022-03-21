@@ -10,6 +10,8 @@ import { getCollections } from "../../../../redux/actions";
 import { PageTitle } from "../../../style";
 import { Collection } from "../Collection";
 import { SortBar } from "../SortBar";
+import useMediaQuery from "../../../../hooks/useMediaQuery";
+import breakpoints from "../../../../theme/breakpoints";
 
 export const List = () => {
   const router = useRouter();
@@ -17,6 +19,7 @@ export const List = () => {
   const userLinks = useSelector((state) => state.links);
   const loadingState = useSelector((state) => state.LoadingReducer);
   const collections = useSelector((state) => state.collections);
+  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
 
   useEffect(() => {
     dispatch(getCollections());
@@ -46,7 +49,7 @@ export const List = () => {
             <Divider />
             <PageTitle>Links</PageTitle>
             <Links>
-              <SortBar />
+              {!mediaQuerySm && <SortBar />}
               {userLinks.map((e) => {
                 return <LinkItem item={e} />;
               })}
@@ -60,6 +63,9 @@ export const List = () => {
 
 const StyledCollections = styled.div`
   display: flex;
+  @media only screen and ${breakpoints.device.sm} {
+    overflow-x: scroll;
+  }
 `;
 
 const StyledList = styled.div`
