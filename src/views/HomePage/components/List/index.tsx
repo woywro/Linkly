@@ -38,9 +38,11 @@ export const List = () => {
         ) : (
           <Wrapper>
             <PageTitle>Collections</PageTitle>
-            {collections.map((e) => {
-              return <Collection name={e.value} id={e.id} />;
-            })}
+            <StyledCollections>
+              {collections.map((e) => {
+                return <Collection name={e.value} id={e.id} />;
+              })}
+            </StyledCollections>
             <Divider />
             <PageTitle>Links</PageTitle>
             <Links>
@@ -55,6 +57,10 @@ export const List = () => {
     </StyledList>
   );
 };
+
+const StyledCollections = styled.div`
+  display: flex;
+`;
 
 const StyledList = styled.div`
   display: flex;

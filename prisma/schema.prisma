@@ -21,7 +21,6 @@ model Collection {
   id         String   @id @default(cuid()) @unique
   value      String 
   valId String @unique
-  type      String
   ownerId     String 
   owner       User?    @relation(fields: [ownerId], references: [id]) 
   links Link[]
@@ -50,9 +49,20 @@ model FriendRequest {
   id String @id @default(cuid())
   email String
   ownerId     String
-  owner       User?    @relation(fields: [ownerId], references: [id])
+  owner       User?    @relation(fields: [ownerId], references: [id], name: "owner")
+  receiverId String
+  receiver User?    @relation(fields: [receiverId], references: [email], name: "receiver")
   isAccepted Boolean @default(false)
   timestamp String 
+}
+
+model Follows {
+  follower    User @relation("follower", fields: [followerId], references: [id])
+  followerId  String
+  following   User @relation("following", fields: [followingId], references: [id])
+  followingId String
+
+  @@id([followerId, followingId])
 }
 
 //auth
@@ -97,7 +107,10 @@ model User {
   history       History[]
   collections          Collection[]
   shares         Share[]
-  friendRequests FriendRequest[]
+  friendRequestsReceived FriendRequest[] @relation(name: "owner")
+  friendRequestsSent FriendRequest[] @relation( name: "receiver")
+  followedBy Follows[] @relation("follower")
+  following  Follows[] @relation("following")
 }
 
 model VerificationToken {

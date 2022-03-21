@@ -13,7 +13,6 @@ CREATE TABLE "Collection" (
     "id" TEXT NOT NULL,
     "value" TEXT NOT NULL,
     "valId" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
 
     CONSTRAINT "Collection_pkey" PRIMARY KEY ("id")
@@ -45,10 +44,19 @@ CREATE TABLE "FriendRequest" (
     "id" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
+    "receiverId" TEXT NOT NULL,
     "isAccepted" BOOLEAN NOT NULL DEFAULT false,
     "timestamp" TEXT NOT NULL,
 
     CONSTRAINT "FriendRequest_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
+CREATE TABLE "Follows" (
+    "followerId" TEXT NOT NULL,
+    "followingId" TEXT NOT NULL,
+
+    CONSTRAINT "Follows_pkey" PRIMARY KEY ("followerId","followingId")
 );
 
 -- CreateTable
@@ -155,6 +163,15 @@ ALTER TABLE "History" ADD CONSTRAINT "History_ownerId_fkey" FOREIGN KEY ("ownerI
 
 -- AddForeignKey
 ALTER TABLE "FriendRequest" ADD CONSTRAINT "FriendRequest_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "FriendRequest" ADD CONSTRAINT "FriendRequest_receiverId_fkey" FOREIGN KEY ("receiverId") REFERENCES "User"("email") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Follows" ADD CONSTRAINT "Follows_followerId_fkey" FOREIGN KEY ("followerId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "Follows" ADD CONSTRAINT "Follows_followingId_fkey" FOREIGN KEY ("followingId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Account" ADD CONSTRAINT "Account_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;

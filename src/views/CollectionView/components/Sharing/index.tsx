@@ -7,20 +7,7 @@ import axios from "axios";
 import { useCallback } from "react";
 import { Input } from "../../../../components/Input";
 import { CollectionShareLinks } from "../../../../types/CollectionShareLinks";
-import { PageTitle } from "../../../style";
 import { hoverEffectText } from "../../../../mixins/hoverEffects";
-
-const Container = styled.div`
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: flex-start;
-  overflow-y: scroll;
-  padding-top: 0;
-`;
 
 interface Props {
   collection: CollectionShareLinks;
@@ -41,9 +28,8 @@ export const Sharing = ({ collection }: Props) => {
 
   const handleSave = useCallback(
     async (sharedList) => {
-      console.log(router.query);
       await axios.post("/api/createShare", {
-        categoryId: router.query.category,
+        categoryId: router.query.collectionId,
         sharedWith: sharedList,
       });
     },
@@ -155,4 +141,16 @@ const SharedEmail = styled.div`
     height: 5px;
     background: ${(props) => props.theme.colors.primary};
   }
+`;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-y: scroll;
+  padding-top: 0;
 `;

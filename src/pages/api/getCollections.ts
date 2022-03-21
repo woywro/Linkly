@@ -11,7 +11,6 @@ export default async (req, res) => {
     select: {
       id: true,
       value: true,
-      type: true,
       links: true,
     },
   });

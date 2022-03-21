@@ -4,13 +4,16 @@ import { prisma } from "../../../prisma/PrismaClient";
 
 export default async (req, res) => {
   const session = await getSession({ req });
-  const request = await prisma.FriendRequest.findMany({
+  const request = await prisma.User.findMany({
     where: {
       email: session.user.email,
-      isAccepted: false,
     },
     include: {
-      owner: true,
+      followedBy: {
+        include: {
+          follower: true,
+        },
+      },
     },
   });
   res.statusCode = 200;

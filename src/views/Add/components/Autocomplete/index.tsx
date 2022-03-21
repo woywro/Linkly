@@ -1,9 +1,7 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Text } from "../../../../components/Text";
-import { useDispatch, useSelector } from "react-redux";
-import { updateCollections } from "../../../../redux/actions";
-import axios from "axios";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 
 interface Props {
@@ -17,7 +15,7 @@ export const AutoComplete = ({
   setCollections,
   collections,
 }: Props) => {
-  const c = useSelector((state) => state.collections);
+  const savedCollections = useSelector((state) => state.collections);
 
   const [filteredSuggestions, setFilteredSuggestions] = useState<
     CollectionInterface[] | []
@@ -28,8 +26,7 @@ export const AutoComplete = ({
 
   const onChange = (e: { target: HTMLInputElement }) => {
     const userInput = e.target.value;
-
-    const unLinked = suggestions.filter(
+    const unLinked = savedCollections.filter(
       (suggestion) =>
         suggestion.value.toLowerCase().indexOf(userInput.toLowerCase()) > -1
     );
@@ -48,14 +45,14 @@ export const AutoComplete = ({
     if (!collections.map((e) => e.value).includes(e.value)) {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
-      setCollections([...collections, { value: e.value, type: e.type }]);
+      setCollections([...collections, { value: e.value }]);
       setInput("");
     }
   };
 
-  const handleAddCollection = async (type) => {
+  const handleAddCollection = async () => {
     setShowSuggestions(false);
-    setCollections([...collections, { value: input, type: type }]);
+    setCollections([...collections, { value: input }]);
     setInput("");
   };
 
@@ -71,22 +68,15 @@ export const AutoComplete = ({
               <Text size={"small"} bold>
                 {suggestion.value}
               </Text>
-              <Text size={"small"}>{suggestion.type}</Text>
             </Suggestion>
           );
         })}
       </StyledSuggestions>
     ) : (
       <Add>
-        <Text size={"small"}>No results!</Text>
-        <TypeChoices>
-          <TypeChoice onClick={() => handleAddCollection("category")}>
-            Category +
-          </TypeChoice>
-          <TypeChoice onClick={() => handleAddCollection("keyword")}>
-            Keyword +
-          </TypeChoice>
-        </TypeChoices>
+        <TypeChoice onClick={() => handleAddCollection()}>
+          Collection +
+        </TypeChoice>
       </Add>
     );
   };
@@ -179,15 +169,6 @@ const Add = styled.div`
   align-items: center;
   flex-flow: column;
   justify-content: center;
-`;
-
-const TypeChoices = styled.div`
-  cursor: pointer;
-  padding: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
 `;
 
 const TypeChoice = styled(Text)`
