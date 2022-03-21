@@ -8,7 +8,7 @@ export default async (req, res) => {
     where: {
       email: session.user.email,
     },
-    include: {
+    select: {
       followedBy: {
         include: {
           follower: true,

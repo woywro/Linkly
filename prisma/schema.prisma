@@ -12,8 +12,8 @@ model Share {
     id         String   @id @default(cuid())
     ownerId String
     categoryId String @unique
-    category Collection?  @relation(fields: [categoryId], references: [id])
-    owner User?    @relation(fields: [ownerId], references: [id])
+    category Collection?  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+    owner User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
     sharedWith String[]
 }
 
@@ -22,7 +22,7 @@ model Collection {
   value      String 
   valId String @unique
   ownerId     String 
-  owner       User?    @relation(fields: [ownerId], references: [id]) 
+  owner       User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade) 
   links Link[]
   share Share[]
 }
@@ -107,10 +107,10 @@ model User {
   history       History[]
   collections          Collection[]
   shares         Share[]
-  friendRequestsReceived FriendRequest[] @relation(name: "owner")
-  friendRequestsSent FriendRequest[] @relation( name: "receiver")
-  followedBy Follows[] @relation("follower")
-  following  Follows[] @relation("following")
+  friendRequestsReceived FriendRequest[] @relation(name: "receiver")
+  friendRequestsSent FriendRequest[] @relation( name: "owner")
+  followedBy Follows[] @relation("following")
+  following  Follows[] @relation("follower")
 }
 
 model VerificationToken {

@@ -22,7 +22,6 @@ export const Friends = () => {
   };
 
   const handleAcceptFriendRequest = async (e) => {
-    console.log(e);
     await axios.post("/api/addFriend", { email: e.owner.email }).then((res) => {
       console.log("s");
     });
@@ -31,6 +30,7 @@ export const Friends = () => {
   const getFollowers = async () => {
     await axios.get("/api/getFollowers").then((res) => {
       setFollowers(res.data.request);
+      console.log(res.data.request);
     });
   };
 

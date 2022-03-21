@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Button } from "../../../../components/Button";
 import axios from "axios";
-import { setLinks } from "../../../../redux/actions";
+import { deleteCollection, setLinks } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { setCollections } from "../../../../redux/actions";
 import { CollectionShareLinks } from "../../../../types/CollectionShareLinks";
@@ -40,14 +40,15 @@ export const BasicInfo = ({ collection }: Props) => {
   const dispatch = useDispatch();
   const collections = useSelector((state) => state.collections);
 
-  const handleDeleteCategory = async () => {
-    await axios
-      .post("/api/deleteCollection", { id: collection.id })
-      .then((res) => {
-        dispatch(
-          setCollections(collections.filter((e) => e.value !== res.data.value))
-        );
-      });
+  const handleDeleteCategory = () => {
+    // await axios
+    //   .post("/api/deleteCollection", { id: collection.id })
+    //   .then((res) => {
+    //     dispatch(
+    //       setCollections(collections.filter((e) => e.value !== res.data.value))
+    //     );
+    //   });
+    dispatch(deleteCollection(collections, collection.id));
     router.push("/");
   };
 

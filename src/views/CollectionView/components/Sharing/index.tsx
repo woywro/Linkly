@@ -3,51 +3,52 @@ import { useEffect, useState } from "react";
 import styled, { useTheme } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { Text } from "../../../../components/Text";
-import axios from "axios";
 import { useCallback } from "react";
 import { Input } from "../../../../components/Input";
-import { CollectionShareLinks } from "../../../../types/CollectionShareLinks";
 import { hoverEffectText } from "../../../../mixins/hoverEffects";
+import { useDispatch } from "react-redux";
+import { createShare } from "../../../../redux/actions";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
 
 interface Props {
-  collection: CollectionShareLinks;
+  collection: CollectionInterface;
 }
 
 export const Sharing = ({ collection }: Props) => {
-  const theme = useTheme();
   const router = useRouter();
   const [input, setInput] = useState("");
   const [sharedList, setSharedList] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (collection.share.length > 0) {
-      console.log(collection);
       setSharedList(collection.share[0].sharedWith);
     }
   }, [collection, router]);
 
   const handleSave = useCallback(
-    async (sharedList) => {
-      await axios.post("/api/createShare", {
-        categoryId: router.query.collectionId,
-        sharedWith: sharedList,
-      });
+    (sharedList) => {
+      dispatch(createShare(router.query.collectionId, sharedList));
     },
     [sharedList]
   );
 
-  const handleAdd = () => {
+  const handleAdd = useCallback(() => {
     setSharedList([...sharedList, input]);
     handleSave([...sharedList, input]);
     setInput("");
-  };
-  const handleDelete = (e) => {
-    const listFiltered = sharedList.filter((x) => {
-      return x !== e.target.innerText;
-    });
-    setSharedList(listFiltered);
-    handleSave(listFiltered);
-  };
+  }, [input]);
+
+  const handleDelete = useCallback(
+    (e) => {
+      const listFiltered = sharedList.filter((x) => {
+        return x !== e.target.innerText;
+      });
+      setSharedList(listFiltered);
+      handleSave(listFiltered);
+    },
+    [sharedList]
+  );
 
   return (
     <Container>

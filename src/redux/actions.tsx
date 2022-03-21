@@ -115,3 +115,21 @@ export const getCollections = () => {
     });
   };
 };
+
+export const createShare = (categoryId, sharedWith) => {
+  return function (dispatch) {
+    axios.post("/api/createShare", {
+      categoryId: categoryId,
+      sharedWith: sharedWith,
+    });
+  };
+};
+
+export const deleteCollection = (collections, collectionId) => {
+  return function (dispatch) {
+    axios.post("/api/deleteCollection", { id: collectionId }).then((res) => {
+      dispatch(setCollections(collections.filter((e)=> e !== res.data.result)));
+      // console.log([res.data.result]);
+    });
+  };
+};
