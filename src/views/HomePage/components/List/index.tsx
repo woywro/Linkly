@@ -12,6 +12,7 @@ import { Collection } from "../Collection";
 import { SortBar } from "../SortBar";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
 import breakpoints from "../../../../theme/breakpoints";
+import { History } from "../History";
 
 export const List = () => {
   const router = useRouter();
@@ -40,6 +41,12 @@ export const List = () => {
           <LoadingSpinner />
         ) : (
           <Wrapper>
+            {mediaQuerySm && (
+              <>
+                <PageTitle>History</PageTitle>
+                <History />
+              </>
+            )}
             <PageTitle>Collections</PageTitle>
             <StyledCollections>
               {collections.map((e) => {

@@ -8,6 +8,7 @@ import breakpoints from "../../theme/breakpoints";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export const HomePage = () => {
+  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   return (
     <PageContainer>
       <LeftWrapper>

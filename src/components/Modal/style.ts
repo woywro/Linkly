@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Text } from "../Text";
+import breakpoints from "../../theme/breakpoints";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -27,6 +28,11 @@ export const StyledModal = styled.div`
   flex-flow: column;
   width: 500px;
   height: 500px;
+  @media only screen and ${breakpoints.device.sm} {
+    width: 95%;
+    height: 55%;
+    padding: 20px;
+  }
 `;
 
 export const CloseButton = styled.button`

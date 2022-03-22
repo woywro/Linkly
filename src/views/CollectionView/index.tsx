@@ -11,15 +11,28 @@ import {
 } from "../style";
 import { BasicInfo } from "./components/BasicInfo";
 import { Sharing } from "./components/Sharing";
+import useMediaQuery from "../../hooks/useMediaQuery";
+import breakpoints from "../../theme/breakpoints";
 
 interface Props {
   collection: CollectionShareLinks;
 }
 
 export const CollectionView = ({ collection }: Props) => {
+  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
+
   return (
     <PageContainer>
       <LeftWrapper>
+        {mediaQuerySm && (
+          <>
+            <PageTitle>Info</PageTitle>
+            <BasicInfo collection={collection} />
+            <Divider />
+            <PageTitle>Sharing</PageTitle>
+            <Sharing collection={collection} />
+          </>
+        )}
         <PageTitle>{`categories/${collection.value}`}</PageTitle>
         <Links>
           {collection.links.map((e: LinkInterface) => {
