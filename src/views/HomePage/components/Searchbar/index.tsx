@@ -57,6 +57,8 @@ const Wrapper = styled.div`
     margin: 0;
     width: 100%;
     height: 120px;
+    border-bottom-right-radius: 30px;
+    border-bottom-left-radius: 30px;
   }
 `;
 

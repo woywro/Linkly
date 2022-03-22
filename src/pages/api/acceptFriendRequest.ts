@@ -3,11 +3,10 @@ import { triggerAsyncId } from "async_hooks";
 import { getSession } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
+import { NextApiRequest, NextApiResponse } from "next";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
-  const session = await getSession({ req });
-
   try {
     const result = await prisma.FriendRequest.upsert({
       where: { id: data.id },
@@ -16,7 +15,8 @@ export default async (req, res) => {
       },
     });
     res.status(200).json(result);
+    res.end();
   } catch (err) {
-    res.status(403).json({ err: "Error occured while adding new link." });
+    res.status(403).json({ err });
   }
 };

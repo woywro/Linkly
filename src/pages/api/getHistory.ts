@@ -1,18 +1,22 @@
 import { PrismaClient } from "@prisma/client";
+import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
-  const history = await prisma.History.findMany({
-    orderBy: {
-      timestamp: "desc",
-    },
-    take: 5,
-    where: {
-      owner: { email: session.user.email },
-    },
-  });
-  res.statusCode = 200;
-  res.json({ history });
+  try {
+    const history = await prisma.History.findMany({
+      orderBy: {
+        timestamp: "desc",
+      },
+      take: 5,
+      where: {
+        owner: { email: session.user.email },
+      },
+    });
+    res.status(200).json({ history });
+  } catch (err) {
+    res.status(403).json({ err });
+  }
 };

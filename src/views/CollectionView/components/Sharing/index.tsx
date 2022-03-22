@@ -28,9 +28,11 @@ export const Sharing = ({ collection }: Props) => {
 
   const handleSave = useCallback(
     (sharedList) => {
+      console.log(router.query.collectionId);
+      console.log(sharedList);
       dispatch(createShare(router.query.collectionId, sharedList));
     },
-    [sharedList]
+    [sharedList, router]
   );
 
   const handleAdd = useCallback(() => {

@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { triggerAsyncId } from "async_hooks";
+import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
   const session = await getSession({ req });
 
@@ -42,6 +43,6 @@ export default async (req, res) => {
     });
     res.status(200).json(result);
   } catch (err) {
-    res.status(403).json({ err: "Error occured while adding new link." });
+    res.status(403).json({ err });
   }
 };

@@ -72,6 +72,9 @@ const StyledCollections = styled.div`
   display: flex;
   @media only screen and ${breakpoints.device.sm} {
     overflow-x: scroll;
+\
+    background: ${(props) => props.theme.colors.secondaryBg};
+    border-radius: 30px;
   }
 `;
 
