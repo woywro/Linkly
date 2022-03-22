@@ -3,6 +3,7 @@ import styled from "styled-components";
 import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import axios from "axios";
 import { SuggestionInterface } from "../../../../types/SuggestionInterface";
+import breakpoints from "../../../../theme/breakpoints";
 
 interface Props {
   input: string;
@@ -12,22 +13,7 @@ interface Props {
 
 export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
   const [hide, setHide] = useState<boolean>(true);
-  const [suggestionsHeight, setSuggestionsHeight] = useState(0);
-  const [finalSuggestions, setFinalSuggestions] = useState<
-    Array<SuggestionInterface>
-  >([]);
   const { height } = useWindowDimensions();
-
-  // const generateSuggestions = () => {
-  //   if (input.length > 0) {
-  //     setHide(false);
-  //   } else {
-  //     setHide(true);
-  //   }
-  //   let suggestionsQuantity = Math.floor((height * 0.2) / 40);
-  //   setSuggestionsHeight(suggestionsQuantity * 40);
-  //   setFinalSuggestions(suggestions.slice(0, suggestionsQuantity));
-  // };
 
   const handleOnClick = useCallback((url) => {
     setHide(true);
@@ -83,6 +69,9 @@ export const StyledSuggestions = styled.ul`
   overflow-y: scroll;
   left: 0;
   z-index: 10;
+  @media only screen and ${breakpoints.device.sm} {
+    width: 100%;
+  }
 `;
 
 export const Suggestion = styled.li`
