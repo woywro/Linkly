@@ -1,8 +1,5 @@
-import { PrismaClient } from "@prisma/client";
-import { triggerAsyncId } from "async_hooks";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
-import { useSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {

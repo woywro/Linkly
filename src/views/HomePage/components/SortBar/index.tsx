@@ -139,6 +139,11 @@ const FieldLabels = styled.div`
   width: 100%;
   padding: 5px;
   cursor: pointer;
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: ${(props) => props.theme.colors.primaryBg};
+  z-index: 10;
 `;
 
 const SearchContainer = styled.div`

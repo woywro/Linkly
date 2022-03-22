@@ -56,7 +56,7 @@ const Wrapper = styled.div`
     padding: 0;
     margin: 0;
     width: 100%;
-    height: 120px;
+    height: 200px;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
   }

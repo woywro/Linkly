@@ -1,4 +1,5 @@
 import { StyledLinks } from "./style";
+import Scrollbars from "react-custom-scrollbars-2";
 interface Props {
   children: JSX.Element[];
 }

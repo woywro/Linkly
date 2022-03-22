@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { LinkItem } from "../../components/LinkItem";
 import { Links } from "../../components/Links";
 import { LinkInterface } from "../../types/LinkInterface";
-import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
+import { PageContainer, LeftWrapper, RightWrapper, Title } from "../style";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import styled, { useTheme } from "styled-components";

@@ -6,45 +6,44 @@ import {
   Divider,
   LeftWrapper,
   PageContainer,
-  PageTitle,
+  Title,
   RightWrapper,
 } from "../style";
 import { BasicInfo } from "./components/BasicInfo";
 import { Sharing } from "./components/Sharing";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import breakpoints from "../../theme/breakpoints";
+import { useState } from "react";
+import { Button } from "../../components/Button";
+import { OpenWrapperButton } from "../../components/OpenWrapperButton";
+import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 
 interface Props {
   collection: CollectionShareLinks;
 }
 
 export const CollectionView = ({ collection }: Props) => {
+  const [open, setOpen] = useState(false);
+
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
 
   return (
     <PageContainer>
       <LeftWrapper>
-        {mediaQuerySm && (
-          <>
-            <PageTitle>Info</PageTitle>
-            <BasicInfo collection={collection} />
-            <Divider />
-            <PageTitle>Sharing</PageTitle>
-            <Sharing collection={collection} />
-          </>
-        )}
-        <PageTitle>{`categories/${collection.value}`}</PageTitle>
+        <OpenWrapperButton onClick={() => setOpen(true)} />
+        <Title>{`categories/${collection.value}`}</Title>
         <Links>
           {collection.links.map((e: LinkInterface) => {
             return <LinkItem item={e} />;
           })}
         </Links>
       </LeftWrapper>
-      <RightWrapper>
-        <PageTitle>Info</PageTitle>
+      <RightWrapper open={open}>
+        <CloseWrapperButton onClick={() => setOpen(false)} />
+        <Title>Info</Title>
         <BasicInfo collection={collection} />
         <Divider />
-        <PageTitle>Sharing</PageTitle>
+        <Title>Sharing</Title>
         <Sharing collection={collection} />
       </RightWrapper>
     </PageContainer>

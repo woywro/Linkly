@@ -44,6 +44,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 0;
   background: #0a91f8;
   @media only screen and ${breakpoints.device.sm} {
     background: red;
@@ -63,7 +64,7 @@ const ViewBox = styled.div`
   border-radius: 30px;
   box-shadow: 0px 0px 0px 18px rgba(255, 255, 255, 0.3);
   @media only screen and ${breakpoints.device.sm} {
-    width: 100%;
+    width: 100vw;
     height: 100%;
     border-radius: 0;
     box-shadow: none;

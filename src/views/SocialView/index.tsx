@@ -1,4 +1,4 @@
-import { PageContainer, LeftWrapper, RightWrapper, PageTitle } from "../style";
+import { PageContainer, LeftWrapper, RightWrapper, Title } from "../style";
 import { useRouter } from "next/router";
 import { Feed } from "./components/Feed";
 import { useSelector } from "react-redux";
@@ -12,11 +12,11 @@ export const SocialView = () => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <PageTitle>Social</PageTitle>
+        <Title>Social</Title>
         {loadingState.loading == true ? <LoadingSpinner /> : <Feed />}
       </LeftWrapper>
       <RightWrapper>
-        <PageTitle>Friends</PageTitle>
+        <Title>Friends</Title>
         <Friends />
       </RightWrapper>
     </PageContainer>

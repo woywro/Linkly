@@ -7,6 +7,10 @@ export const PageContainer = styled.div`
   flex-flow: row;
   width: 100%;
   height: 100%;
+  @media only screen and ${breakpoints.device.sm} {
+    width: 100%;
+    flex-flow: column;
+  }
 `;
 export const LeftWrapper = styled.div`
   display: flex;
@@ -19,12 +23,13 @@ export const LeftWrapper = styled.div`
   text-align: left;
   padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
+
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
     padding: 0px;
   }
 `;
-export const RightWrapper = styled.div`
+export const RightWrapper = styled.div<{ open: boolean }>`
   display: flex;
   justify-content: flex-start;
   align-items: start;
@@ -37,14 +42,27 @@ export const RightWrapper = styled.div`
   padding: 10px;
   background: ${(props) => props.theme.colors.secondaryBg};
   @media only screen and ${breakpoints.device.sm} {
-    display: none;
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    padding: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    position: absolute;
+    background: ${(props) => props.theme.colors.secondaryBg};
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    z-index: 100;
+    display: ${({ open }) => (open ? "flex" : "none")};
+    transform: ${({ open }) => (open ? "translateX(0)" : "translatey(-100%)")};
+    transition: transform 0.3s ease-in-out;
   }
 `;
 
-export const PageTitle = styled.h1`
+export const Title = styled.h1`
   font-size: 30px;
-  margin: 10px;
+  padding: 10px;
   opacity: 0.8;
+  width: 100%;
   color: ${(props) => props.theme.colors.primaryText};
 `;
 
