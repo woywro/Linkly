@@ -36,6 +36,9 @@ export const RightWrapper = styled.div`
   text-align: left;
   padding: 10px;
   background: ${(props) => props.theme.colors.secondaryBg};
+  @media only screen and ${breakpoints.device.sm} {
+    display: none;
+  }
 `;
 
 export const PageTitle = styled.h1`

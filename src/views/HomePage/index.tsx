@@ -8,19 +8,16 @@ import breakpoints from "../../theme/breakpoints";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 export const HomePage = () => {
-  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   return (
     <PageContainer>
       <LeftWrapper>
         <SearchBar />
         <List />
       </LeftWrapper>
-      {!mediaQuerySm && (
-        <RightWrapper>
-          <PageTitle>History</PageTitle>
-          <History />
-        </RightWrapper>
-      )}
+      <RightWrapper>
+        <PageTitle>History</PageTitle>
+        <History />
+      </RightWrapper>
     </PageContainer>
   );
 };
