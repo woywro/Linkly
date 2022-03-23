@@ -20,7 +20,7 @@ export const History = () => {
   const setFetchedHistory = useCallback(() => {
     const newHistory = generateHistory(Links, History);
     setHistory(newHistory);
-  }, [History]);
+  }, [History, Links]);
 
   useEffect(() => {
     setFetchedHistory();
@@ -49,4 +49,7 @@ const Wrapper = styled.div`
   flex-flow: column;
   width: 100%;
   height: 100%;
+  @media only screen and ${breakpoints.device.sm} {
+    overflow-y: scroll;
+  }
 `;

@@ -13,7 +13,7 @@ export const Collection = ({ name, id }: Props) => {
   return (
     <Link href={`/collections/${id}`} passHref>
       <StyledCategory>
-        <RiFolder5Fill style={{ fill: theme.colors.secondary }} size={"60px"} />
+        <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={"60px"} />
         <Title>{name}</Title>
       </StyledCategory>
     </Link>
@@ -35,7 +35,7 @@ const StyledCategory = styled.div`
   border-radius: 20px;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
-    background: ${(props) => props.theme.colors.blue};
+    background: ${(props) => props.theme.colors.primary};
     box-shadow: ${(props) => props.theme.shadow};
     color: white;
   }

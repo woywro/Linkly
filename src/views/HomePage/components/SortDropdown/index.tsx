@@ -10,13 +10,14 @@ import { useRouter } from "next/router";
 import { sortLinks } from "../../../../redux/actions";
 import { AiOutlineSearch } from "react-icons/ai";
 import breakpoints from "../../../../theme/breakpoints";
+import { DropdownMenu } from "../../../../components/DropdownMenu";
 import {
   hoverEffectBg,
   hoverEffectText,
 } from "../../../../mixins/hoverEffects";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
 
-export const SortBar = () => {
+export const SortDropdown = ({ show }) => {
   const [sortByName, setSortByName] = useState(false);
   const [sortByOwner, setSortByOwner] = useState(false);
   const [sortByModification, setSortByModification] = useState(false);
@@ -70,79 +71,44 @@ export const SortBar = () => {
   }, [searchValue]);
 
   return (
-    <FieldLabels>
-      <Field>
-        {searchMode == false ? (
-          <>
-            <AiOutlineSearch />
-            <Text
-              bold
-              color={theme.colors.primaryText}
-              onClick={() => {
-                setSearchMode(!searchMode);
-              }}
-            >
-              NAME
-            </Text>
-            <IconButton onClick={handleSortByName}>
+    <Wrapper>
+      <DropdownMenu show={show}>
+        <>
+          <Field onClick={handleSortByName}>
+            <Text color={theme.colors.primaryText}>NAME</Text>
+            <IconButton>
               {sortByName == true ? <BsChevronDown /> : <BsChevronUp />}
             </IconButton>
-          </>
-        ) : (
-          <SearchContainer>
-            <TextInput
-              autoFocus
-              placeholder="search"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
-            />
-            <IconButton
-              onClick={() => {
-                handleStopSearch();
-              }}
-            >
-              <BsXLg />
+          </Field>
+          <Field onClick={handleSortByOwner}>
+            <Text color={theme.colors.primaryText}>OWNER</Text>
+            <IconButton>
+              {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
             </IconButton>
-          </SearchContainer>
-        )}
-      </Field>
-      <Field>
-        <Text bold color={theme.colors.primaryText}>
-          OWNER
-        </Text>
-        <IconButton onClick={handleSortByOwner}>
-          {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
-        </IconButton>
-      </Field>
-      <Field>
-        <Text bold color={theme.colors.primaryText}>
-          LAST MODIFIED
-        </Text>
-        <IconButton onClick={handleSortByModification}>
-          {sortByModification == true ? <BsChevronDown /> : <BsChevronUp />}
-        </IconButton>
-      </Field>
-      <Field>
-        <Text bold color={theme.colors.primaryText}>
-          MORE
-        </Text>
-      </Field>
-    </FieldLabels>
+          </Field>
+          <Field onClick={handleSortByModification}>
+            <Text color={theme.colors.primaryText}>LAST MODIFIED</Text>
+            <IconButton>
+              {sortByModification == true ? <BsChevronDown /> : <BsChevronUp />}
+            </IconButton>
+          </Field>
+        </>
+      </DropdownMenu>
+    </Wrapper>
   );
 };
 
-const FieldLabels = styled.div`
-  display: grid;
-  justify-content: start;
-  align-items: center;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
-  width: 100%;
-  padding: 5px;
-  cursor: pointer;
-  background: ${(props) => props.theme.colors.primaryBg};
-  z-index: 10;
+const Wrapper = styled.div`
+  display: none;
   @media only screen and ${breakpoints.device.sm} {
-    display: none;
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    cursor: pointer;
+    &:hover {
+      ${hoverEffectBg}
+    }
   }
 `;
 
@@ -176,9 +142,6 @@ const IconButton = styled.button`
   cursor: pointer;
   border-radius: 50%;
   padding: 5px;
-  &:hover {
-    ${hoverEffectBg}
-  }
 `;
 
 const TextInput = styled.input`
@@ -189,9 +152,8 @@ const TextInput = styled.input`
 const Field = styled.div`
   display: flex;
   flex-flow: row;
-  justify-content: start;
+  justify-content: space-between;
+  width: 100%;
   align-items: center;
-  &:hover {
-    ${hoverEffectText}
-  }
+  padding: 5px;
 `;

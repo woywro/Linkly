@@ -52,11 +52,11 @@ const Wrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   @media only screen and ${breakpoints.device.sm} {
-    background: ${(props) => props.theme.colors.primary};
+    background-image: ${(props) => props.theme.colors.gradient};
     padding: 0;
     margin: 0;
     width: 100%;
-    height: 200px;
+    height: 120px;
     border-bottom-right-radius: 30px;
     border-bottom-left-radius: 30px;
   }

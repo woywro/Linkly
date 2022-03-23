@@ -45,12 +45,14 @@ const Wrapper = styled.div`
   align-items: center;
   position: relative;
   padding: 0;
-  background: #0a91f8;
+  background-color: #8ec5fc;
+  background-image: ${(props) => props.theme.colors.gradient};
+
   @media only screen and ${breakpoints.device.sm} {
     background: red;
   }
   @media only screen and ${breakpoints.device.lg} {
-    background: blue;
+    background: secondary;
   }
 `;
 const ViewBox = styled.div`
@@ -69,8 +71,9 @@ const ViewBox = styled.div`
     border-radius: 0;
     box-shadow: none;
     flex-flow: column;
+    overflow-y: scroll;
   }
   @media only screen and ${breakpoints.device.lg} {
-    background: blue;
+    background: secondary;
   }
 `;

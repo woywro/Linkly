@@ -55,7 +55,7 @@ export const BasicInfo = ({ collection }: Props) => {
   return (
     <Wrapper>
       <Name>
-        <RiFolder5Fill size={"80px"} style={{ fill: theme.colors.secondary }} />
+        <RiFolder5Fill size={"80px"} style={{ fill: theme.colors.yellow }} />
         <Text size={"big"} color={theme.colors.primaryText}>
           {collection.value}
         </Text>

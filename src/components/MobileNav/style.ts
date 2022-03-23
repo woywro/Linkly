@@ -10,7 +10,7 @@ export const Container = styled.div<{ open: boolean }>`
     justify-content:center;
     align-items: center;
     flex-flow: column;
-    background-color: ${(props) => props.theme.colors.primary};
+    background-image:   ${(props) => props.theme.colors.gradient};
     position: fixed;
     transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
     top: 0;

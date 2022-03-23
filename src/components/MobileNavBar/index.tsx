@@ -27,7 +27,7 @@ const Wrapper = styled.nav`
   flex-flow: row;
   justify-content: center;
   align-items: center;
-  background: ${(props) => props.theme.colors.primary};
+  background-image: ${(props) => props.theme.colors.gradient};
 `;
 
 const Title = styled.h1`

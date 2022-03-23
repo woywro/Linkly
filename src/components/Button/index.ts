@@ -1,7 +1,7 @@
 import styled, { css } from "styled-components";
 
 export const Button = styled.button`
-  background: ${(props) => props.theme.colors.blue};
+  background: ${(props) => props.theme.colors.secondary};
   border-radius: 20px;
   color: #ffffff;
   cursor: pointer;
@@ -12,4 +12,7 @@ export const Button = styled.button`
   touch-action: manipulation;
   border: 0;
   margin: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

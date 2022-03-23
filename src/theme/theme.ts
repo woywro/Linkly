@@ -1,8 +1,9 @@
 export const theme = {
   colors: {
-    primary: "#0a91f8",
-    secondary: "#ffc107",
-    blue: "#3246d3",
+    primary: "#8ec5fc",
+    secondary: "#e0c3fc",
+    yellow: "#ffc107",
+    gradient: "linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%)",
     primaryBg: "white",
     secondaryBg: "#f4f6fa",
     primaryText: "#233548",

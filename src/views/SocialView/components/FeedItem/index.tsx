@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   border-radius: 20px;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
-    background: ${(props) => props.theme.colors.blue};
+    background: ${(props) => props.theme.colors.secondary};
     box-shadow: ${(props) => props.theme.shadow};
     color: white;
   }

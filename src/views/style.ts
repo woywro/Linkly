@@ -43,9 +43,9 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   background: ${(props) => props.theme.colors.secondaryBg};
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
-    height: auto;
+    height: 70%;
     bottom: 0;
-    padding: 0;
+    padding: 10px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     position: absolute;
@@ -53,7 +53,7 @@ export const RightWrapper = styled.div<{ open: boolean }>`
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 100;
     display: ${({ open }) => (open ? "flex" : "none")};
-    transform: ${({ open }) => (open ? "translateX(0)" : "translatey(-100%)")};
+    transform: ${({ open }) => (open ? "translateX(0)" : "translate(-100%)")};
     transition: transform 0.3s ease-in-out;
   }
 `;
@@ -70,5 +70,5 @@ export const Divider = styled.div`
   width: 100%;
   height: 2px;
   opacity: 0.5;
-  background: ${(props) => props.theme.colors.blue};
+  background: ${(props) => props.theme.colors.secondary};
 `;

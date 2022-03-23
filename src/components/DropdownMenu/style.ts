@@ -7,7 +7,8 @@ export const StyledMenu = styled.div<{ show: boolean }>`
   position: absolute;
   top: 70%;
   right: 10%;
-  width: 20%;
+  width: auto;
+  height: auto;
   background: white;
   border-radius: 10px;
   padding: 10px;

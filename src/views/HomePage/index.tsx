@@ -20,7 +20,6 @@ export const HomePage = () => {
     <PageContainer>
       <LeftWrapper>
         <OpenWrapperButton onClick={() => setOpen(true)} />
-        <SearchBar />
         <Scrollbars
           style={{
             width: "100%",
@@ -30,6 +29,7 @@ export const HomePage = () => {
             justifyContent: "center",
           }}
         >
+          <SearchBar />
           <CollectionList />
           <LinkList />
         </Scrollbars>
