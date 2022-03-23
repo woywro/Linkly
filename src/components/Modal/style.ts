@@ -33,6 +33,11 @@ export const StyledModal = styled.div`
     height: 55%;
     padding: 20px;
   }
+  @media only screen and ${breakpoints.device.lg} {
+    width: 95%;
+    height: auto;
+    padding: 20px;
+  }
 `;
 
 export const CloseButton = styled.button`

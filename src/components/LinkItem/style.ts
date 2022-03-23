@@ -21,6 +21,9 @@ export const Wrapper = styled.div`
     display: flex;
     justify-content: space-between;
   }
+  @media only screen and ${breakpoints.device.lg} {
+    gap: 20px;
+  }
 `;
 
 export const Label = styled.div`

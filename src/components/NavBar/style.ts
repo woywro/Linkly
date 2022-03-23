@@ -2,14 +2,20 @@ import styled from "styled-components";
 import { css } from "styled-components";
 import breakpoints from "../../theme/breakpoints";
 export const Container = styled.nav`
-  display: flex;
   flex-flow: column;
   align-items: center;
+  display: flex;
   justify-content: center;
   border-radius: 20px;
   height: 70%;
   width: auto;
   margin: 20px;
+  @media only screen and ${breakpoints.device.sm} {
+    display: none;
+  }
+  @media only screen and ${breakpoints.device.lg} {
+    display: none;
+  }
 `;
 
 export const Item = styled.a<{ isActive?: boolean }>`

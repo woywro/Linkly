@@ -28,6 +28,9 @@ export const LeftWrapper = styled.div`
     width: 100%;
     padding: 0px;
   }
+  @media only screen and ${breakpoints.device.lg} {
+    width: 65%;
+  }
 `;
 export const RightWrapper = styled.div<{ open: boolean }>`
   display: flex;
@@ -55,6 +58,9 @@ export const RightWrapper = styled.div<{ open: boolean }>`
     display: ${({ open }) => (open ? "flex" : "none")};
     transform: ${({ open }) => (open ? "translateX(0)" : "translate(-100%)")};
     transition: transform 0.3s ease-in-out;
+  }
+  @media only screen and ${breakpoints.device.lg} {
+    width: 35%;
   }
 `;
 

@@ -3,27 +3,28 @@ import styled from "styled-components";
 import { css } from "styled-components";
 
 export const Container = styled.div<{ open: boolean }>`
+overflow: hidden;
+padding: 20px;
+display: flex;
+justify-content:center;
+align-items: center;
+flex-flow: column;
+background-image:   ${(props) => props.theme.colors.gradient};
+position: fixed;
+transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+top: 0;
+right: 0;
+height: 100%;
+width: 100%;
+overflow; hidden;
+transition: transform 0.3s ease-in-out;
+z-index: 20;
   @media only screen and ${breakpoints.device.sm} {
-    overflow: hidden;
-    padding: 20px;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    flex-flow: column;
-    background-image:   ${(props) => props.theme.colors.gradient};
-    position: fixed;
-    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 100%;
-    overflow; hidden;
-    transition: transform 0.3s ease-in-out;
-    z-index: 20;
+
   }
   @media only screen and ${breakpoints.device.lg} {
-    display: none;
   }
+
 `;
 
 export const NavItems = styled.ul`

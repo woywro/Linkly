@@ -19,6 +19,7 @@ export default function App({
   pageProps: { session, status, ...pageProps },
 }: AppProps) {
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
+  const mediaQueryLg = useMediaQuery(breakpoints.device.lg);
   return (
     <SessionProvider session={session}>
       <Provider store={store}>
@@ -27,7 +28,8 @@ export default function App({
           <Wrapper>
             <ViewBox>
               <AuthGuard>
-                {mediaQuerySm ? <MobileNavBar /> : <NavBar />}
+                <MobileNavBar />
+                <NavBar />
                 <Component {...pageProps} />
               </AuthGuard>
             </ViewBox>
@@ -49,10 +51,9 @@ const Wrapper = styled.div`
   background-image: ${(props) => props.theme.colors.gradient};
 
   @media only screen and ${breakpoints.device.sm} {
-    background: red;
   }
   @media only screen and ${breakpoints.device.lg} {
-    background: secondary;
+    background: blue;
   }
 `;
 const ViewBox = styled.div`
@@ -74,6 +75,11 @@ const ViewBox = styled.div`
     overflow-y: scroll;
   }
   @media only screen and ${breakpoints.device.lg} {
-    background: secondary;
+    width: 100vw;
+    height: 100%;
+    border-radius: 0;
+    box-shadow: none;
+    flex-flow: column;
+    overflow-y: scroll;
   }
 `;

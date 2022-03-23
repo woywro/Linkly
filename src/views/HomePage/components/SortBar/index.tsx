@@ -144,6 +144,9 @@ const FieldLabels = styled.div`
   @media only screen and ${breakpoints.device.sm} {
     display: none;
   }
+  @media only screen and ${breakpoints.device.lg} {
+    gap: 20px;
+  }
 `;
 
 const SearchContainer = styled.div`
