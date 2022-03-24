@@ -110,8 +110,10 @@ export const setCollections = (collections) => ({
 
 export const getCollections = () => {
   return function (dispatch) {
+    dispatch({ type: "LOAD_LOADING" });
     axios.get("/api/getCollections").then((res) => {
       dispatch(setCollections(res.data.collections));
+      dispatch({ type: "LOAD_SUCCESS" });
     });
   };
 };
@@ -131,6 +133,21 @@ export const deleteCollection = (collections, collectionId) => {
       dispatch(
         setCollections(collections.filter((e) => e !== res.data.result))
       );
+    });
+  };
+};
+
+export const getSharedWithYou = () => {
+  return function (dispatch) {
+    dispatch({ type: "LOAD_LOADING" });
+    axios.get("/api/getSharedCategories").then((res) => {
+      const collections = [];
+      res.data.result.shareRequestsReceived.map((share) => {
+        share.collection.shareId = share.id;
+        collections.push(share.collection);
+      });
+      dispatch(setSharedWithYou(collections));
+      dispatch({ type: "LOAD_SUCCESS" });
     });
   };
 };

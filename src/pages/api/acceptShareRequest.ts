@@ -18,7 +18,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         id: true,
         collection: {
           select: {
-            id: true,
             value: true,
             owner: true,
             links: true,

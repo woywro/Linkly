@@ -2,7 +2,7 @@ import styled, { useTheme } from "styled-components";
 import { FeedItem } from "../FeedItem";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { setSharedWithYou } from "../../../../redux/actions";
+import { getSharedWithYou, setSharedWithYou } from "../../../../redux/actions";
 import { useDispatch, useSelector } from "react-redux";
 import { EmptyState } from "../../../../components/EmptyState";
 
@@ -10,21 +10,6 @@ export const Feed = () => {
   const theme = useTheme();
   const dispatch = useDispatch();
   const sharedWithYou = useSelector((state) => state.sharedWithYou);
-
-  const getShared = async () => {
-    await axios.get("/api/getSharedCategories").then((res) => {
-      const collections = [];
-      res.data.result.shareRequestsReceived.map((share) => {
-        share.collection.shareId = share.id;
-        collections.push(share.collection);
-      });
-      dispatch(setSharedWithYou(collections));
-    });
-  };
-
-  useEffect(() => {
-    getShared();
-  }, []);
 
   return (
     <Container>

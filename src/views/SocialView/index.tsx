@@ -1,18 +1,24 @@
 import { PageContainer, LeftWrapper, RightWrapper, Title } from "../style";
 import { useRouter } from "next/router";
 import { Feed } from "./components/Feed";
-import { useSelector } from "react-redux";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
-import { Friends } from "./components/Friends";
 import { ShareRequests } from "./components/ShareRequests";
 import { useState } from "react";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import { CloseWrapperButton } from "../../components/CloseWrapperButton";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getSharedWithYou } from "../../redux/actions";
 
 export const SocialView = () => {
   const loadingState = useSelector((state) => state.LoadingReducer);
   const [open, setOpen] = useState();
   const router = useRouter();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getSharedWithYou());
+  }, []);
   return (
     <PageContainer>
       <LeftWrapper>
