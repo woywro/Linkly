@@ -34,7 +34,18 @@ export const ShareRequests = () => {
       .then((res) => {
         console.log(res.data.result.collection);
         dispatch(updateSharedWithYou(res.data.result.collection));
-        // setShareRequests(shareRequests.filter((e) => e.id !== request.id));
+        setShareRequests(shareRequests.filter((e) => e.id !== request.id));
+      });
+  };
+  const handleDeleteShareRequest = async (request) => {
+    console.log(request);
+    await axios
+      .post("/api/deleteShareRequest", {
+        collectionId: request.collection.id,
+        email: request.receiver.email,
+      })
+      .then((res) => {
+        setShareRequests(shareRequests.filter((e) => e.id !== request.id));
       });
   };
 
@@ -62,6 +73,9 @@ export const ShareRequests = () => {
                 </StyledCategory>
                 <Button onClick={() => handleAcceptShareRequest(request)}>
                   accept
+                </Button>
+                <Button onClick={() => handleDeleteShareRequest(request)}>
+                  x
                 </Button>
               </Row>
             </ShareRequest>
