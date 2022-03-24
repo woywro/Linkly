@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import breakpoints from "../../../../theme/breakpoints";
 import { Title } from "../../../style";
 import Scrollbars from "react-custom-scrollbars-2";
+import { EmptyState } from "../../../../components/EmptyState";
 
 export const CollectionList = () => {
   const dispatch = useDispatch();
@@ -17,12 +18,15 @@ export const CollectionList = () => {
 
   return (
     <Wrapper>
-      <Title>Collections</Title>
-      <List>
-        {collections.map((e) => {
-          return <Collection name={e.value} id={e.id} />;
-        })}
-      </List>
+        <Title>Collections</Title>
+        <List>
+      {collections.length == 0 ? (
+        <EmptyState msg="You don't have link collections"/>
+      ): 
+          collections.map((e) => {
+            return <Collection name={e.value} id={e.id} />;
+          })}
+        </List>
     </Wrapper>
   );
 };

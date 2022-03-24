@@ -4,19 +4,23 @@ import { FeedItem } from "../FeedItem";
 import { Button } from "../../../../components/Button";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { setSharedWithYou } from "../../../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
 export const Feed = () => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const [sharedCategories, setSharedCategories] = useState([]);
+  const sharedWithYou = useSelector((state) => state.sharedWithYou);
 
   const getShared = async () => {
     await axios.get("/api/getSharedCategories").then((res) => {
       console.log(res.data);
       const categories = [];
       res.data.result.shareRequestsReceived.map((share) => {
-        // share.collection.shareId = share.id;
+        share.collection.shareId = share.id;
         categories.push(share.collection);
       });
-      setSharedCategories(categories);
+      dispatch(setSharedWithYou(categories));
       console.log(categories);
     });
   };
@@ -27,8 +31,8 @@ export const Feed = () => {
 
   return (
     <Container>
-      {sharedCategories !== [] &&
-        sharedCategories.map((e) => {
+      {sharedWithYou !== [] &&
+        sharedWithYou.map((e) => {
           return <FeedItem category={e} />;
         })}
     </Container>

@@ -27,11 +27,7 @@ export async function getServerSideProps({ params }) {
           modificationTimestamp: true,
         },
       },
-      share: {
-        select: {
-          sharedWith: true,
-        },
-      },
+      shareRequests: true,
     },
   });
 

@@ -14,6 +14,17 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       data: {
         isAccepted: true,
       },
+      select: {
+        id: true,
+        collection: {
+          select: {
+            id: true,
+            value: true,
+            owner: true,
+            links: true,
+          },
+        },
+      },
     });
     res.status(200).json({ result });
   } catch (err) {

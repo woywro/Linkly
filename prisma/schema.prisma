@@ -34,7 +34,7 @@ model Link {
   url        String?
   ownerId    String
   modificationTimestamp String
-  owner      User?    @relation(fields: [ownerId], references: [id])
+  owner      User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   collections Collection[]
 }
 
@@ -49,12 +49,13 @@ model History {
 model ShareRequest {
   id String @id @default(cuid())
   ownerId     String
-  owner       User?    @relation(fields: [ownerId], references: [id], name: "owner")
+  owner       User?    @relation(fields: [ownerId], references: [id], name: "owner", onDelete: Cascade)
   receiverEmail String
-  receiver User?    @relation(fields: [receiverEmail], references: [email], name: "receiver")
+  receiver User?    @relation(fields: [receiverEmail], references: [email], name: "receiver", onDelete: Cascade)
   collectionId String
-  collection Collection? @relation(fields: [collectionId], references: [id])
+  collection Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   isAccepted Boolean @default(false)
+  createdTimestamp String
 }
 
 //auth

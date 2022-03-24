@@ -8,13 +8,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   console.log(data);
   try {
-    const result = await prisma.ShareRequest.create({
-      data: {
-        owner: { connect: { email: session.user?.email } },
-        receiver: { connect: { email: data.email } },
-        collection: { connect: { id: data.collectionId } },
-        isAccepted: false,
-        createdTimestamp: Date.now().toString(),
+    const result = await prisma.ShareRequest.deleteMany({
+      where: {
+        collectionId: data.collectionId,
+        receiverEmail: data.email,
       },
     });
     res.status(200).json(result);

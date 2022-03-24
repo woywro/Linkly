@@ -134,3 +134,17 @@ export const deleteCollection = (collections, collectionId) => {
     });
   };
 };
+
+export const setSharedWithYou = (collections) => ({
+  type: "SET_SHAREDWITHYOU",
+  payload: {
+    collections,
+  },
+});
+
+export const updateSharedWithYou = (collection) => ({
+  type: "UPDATE_SHAREDWITHYOU",
+  payload: {
+    collection,
+  },
+});

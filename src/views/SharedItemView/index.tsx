@@ -18,9 +18,9 @@ export const SharedItemView = ({ share }) => {
 
   return (
     <Container>
-      <Text color={theme.colors.secondary}>{share.category.owner.email}</Text>
+      <Text color={theme.colors.secondary}>{share.collection.owner.email}</Text>
       <List>
-        {share.category.links.map((link) => {
+        {share.collection.links.map((link) => {
           return <SharedLink link={link} />;
         })}
       </List>

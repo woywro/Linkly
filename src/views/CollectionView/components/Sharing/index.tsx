@@ -22,16 +22,19 @@ export const Sharing = ({ collection }: Props) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (collection.share.length > 0) {
-      setSharedList(collection.share[0].sharedWith);
+    const sharedWith = [];
+    if (collection.shareRequests.length > 0) {
+      collection.shareRequests.map((request) => {
+        if (request.isAccepted == true) {
+          sharedWith.push(request.receiverEmail);
+        }
+      });
+      setSharedList(sharedWith);
     }
   }, [collection, router]);
 
   const handleSave = useCallback(
     (sharedList) => {
-      // console.log(router.query.collectionId);
-      // console.log(sharedList);
-      // dispatch(createShare(router.query.collectionId, sharedList));
       axios.post("/api/createShareRequest", {
         collectionId: router.query.collectionId,
         email: input,
@@ -46,17 +49,14 @@ export const Sharing = ({ collection }: Props) => {
     setInput("");
   }, [input]);
 
-  const handleDelete = useCallback(
-    (e) => {
-      const listFiltered = sharedList.filter((x) => {
-        return x !== e.target.innerText;
-      });
-      setSharedList(listFiltered);
-      handleSave(listFiltered);
-    },
-    [sharedList]
-  );
-
+  const handleDelete = (e) => {
+    console.log(e);
+    axios.post("/api/deleteShareRequest", {
+      email: e,
+      collectionId: router.query.collectionId,
+    });
+    setSharedList(sharedList.filter((x) => x !== e));
+  };
   return (
     <Container>
       <Wrapper>
@@ -71,7 +71,7 @@ export const Sharing = ({ collection }: Props) => {
           {sharedList.length > 0 ? (
             sharedList.map((e) => {
               return (
-                <SharedEmail onClick={(e) => handleDelete(e)}>{e}</SharedEmail>
+                <SharedEmail onClick={() => handleDelete(e)}>{e}</SharedEmail>
               );
             })
           ) : (

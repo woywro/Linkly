@@ -10,6 +10,7 @@ import { Text } from "../../../../components/Text";
 import { Scrollbars } from "react-custom-scrollbars-2";
 import breakpoints from "../../../../theme/breakpoints";
 import { Title } from "../../../style";
+import { EmptyState } from "../../../../components/EmptyState";
 
 export const History = () => {
   const History = useSelector((state) => state.history);
@@ -29,7 +30,7 @@ export const History = () => {
   return (
     <Wrapper>
       {history.length == 0 ? (
-        <Text>Recently used links will appear here once you open them.</Text>
+        <EmptyState msg="Recently used links will appear here" />
       ) : (
         <>
           <Title>History</Title>

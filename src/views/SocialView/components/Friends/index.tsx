@@ -8,71 +8,7 @@ import { hoverEffectText } from "../../../../mixins/hoverEffects";
 import { useSession } from "next-auth/react";
 
 export const Friends = () => {
-  const [friendRequests, setFriendRequests] = useState([]);
-  const [followers, setFollowers] = useState([]);
-  const [input, setInput] = useState("");
-  const { data: session, status } = useSession();
-
-  const handleCreateFriendRequest = async () => {
-    console.log(input);
-    axios.post("/api/createFriendRequest", {
-      email: input,
-    });
-  };
-
-  const getFriendRequests = async () => {
-    await axios.get("/api/getShareRequests").then((res) => {
-      setFriendRequests(res.data.result.shareRequestsReceived);
-      console.log(res.data.result);
-    });
-  };
-
-  const handleAcceptFriendRequest = async (request) => {
-    await axios.post("/api/acceptShareRequest", { id: request.id });
-  };
-
-  const getFollowers = async () => {
-    await axios.get("/api/getFriends").then((res) => {
-      // setFollowers(res.data.request.friendUserFriends);
-      const friends = [];
-      console.log(res.data.result);
-      res.data.result.map((e) => {
-        if (e.owner.email == session.user.email) {
-          friends.push(e.receiver);
-        } else if (e.receiver.email == session.user.email) {
-          friends.push(e.owner);
-        }
-      });
-      console.log(friends);
-    });
-  };
-
-  useEffect(() => {
-    // getFollowers();
-  }, []);
-
-  return (
-    <Container>
-      <Input
-        placeholder="enter yout friend's email"
-        onChange={(e) => setInput(e.target.value)}
-      />
-      <Button onClick={handleCreateFriendRequest}>add friend</Button>
-      <Button onClick={getFriendRequests}>get requests</Button>
-      <Button onClick={getFollowers}>get friends</Button>
-      {friendRequests.map((request) => {
-        return (
-          <FriendRequest onClick={() => handleAcceptFriendRequest(request)}>
-            {request.collection.value}
-          </FriendRequest>
-        );
-      })}
-      <Text>followers</Text>
-      {followers.map((follower) => {
-        return <Follower>{follower.email}</Follower>;
-      })}
-    </Container>
-  );
+  return <Container></Container>;
 };
 
 const FriendRequest = styled.div`

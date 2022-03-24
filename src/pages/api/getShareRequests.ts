@@ -12,12 +12,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
       select: {
         shareRequestsReceived: {
+          where: {
+            isAccepted: false,
+          },
           select: {
             id: true,
             owner: true,
             receiver: true,
             collection: true,
             isAccepted: true,
+            createdTimestamp: true,
           },
         },
       },

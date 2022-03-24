@@ -13,6 +13,7 @@ import { useState } from "react";
 import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
 import { Text } from "../../../../components/Text";
 import { MobileSortButton } from "../MobileSortButton";
+import { EmptyState } from "../../../../components/EmptyState";
 
 export const LinkList = () => {
   const userLinks = useSelector((state) => state.links);
@@ -30,9 +31,13 @@ export const LinkList = () => {
         <SortDropdown show={showMobileSort} />
       </Row>
       <SortBar />
-      {userLinks.map((e) => {
-        return <LinkItem item={e} />;
-      })}
+      {userLinks.length == 0 ? (
+        <EmptyState msg="You don't have links" />
+      ) : (
+        userLinks.map((e) => {
+          return <LinkItem item={e} />;
+        })
+      )}
     </Links>
   );
 };

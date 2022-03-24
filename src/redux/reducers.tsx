@@ -67,6 +67,23 @@ export const collections = (state = initialCollections, action: AnyAction) => {
   }
 };
 
+export const sharedWithYou = (
+  state = initialCollections,
+  action: AnyAction
+) => {
+  switch (action.type) {
+    case "SET_SHAREDWITHYOU": {
+      return action.payload.collections;
+    }
+    case "UPDATE_SHAREDWITHYOU": {
+      return [...state, action.payload.collection];
+    }
+    default: {
+      return state;
+    }
+  }
+};
+
 const initial = {
   data: [],
   loading: false,
@@ -106,5 +123,6 @@ const allReducers = combineReducers({
   history: History,
   collections: collections,
   LoadingReducer: LoadingReducer,
+  sharedWithYou: sharedWithYou,
 });
 export default allReducers;

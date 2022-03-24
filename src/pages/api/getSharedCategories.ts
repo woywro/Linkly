@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const result = await prisma.User.findUnique({
       where: {
-        email: session.user.email ,
+        email: session.user.email,
       },
       select: {
         shareRequestsReceived: {
@@ -16,15 +16,16 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             isAccepted: true,
           },
           select: {
+            id: true,
             collection: {
-              select:{
+              select: {
                 id: true,
                 value: true,
                 owner: true,
                 links: true,
-              }
+              },
             },
-          }
+          },
         },
       },
     });

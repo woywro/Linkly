@@ -4,6 +4,7 @@ import { Feed } from "./components/Feed";
 import { useSelector } from "react-redux";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { Friends } from "./components/Friends";
+import { ShareRequests } from "./components/ShareRequests";
 
 export const SocialView = () => {
   const loadingState = useSelector((state) => state.LoadingReducer);
@@ -16,6 +17,8 @@ export const SocialView = () => {
         {loadingState.loading == true ? <LoadingSpinner /> : <Feed />}
       </LeftWrapper>
       <RightWrapper>
+        <Title>Share requests</Title>
+        <ShareRequests />
         <Title>Sharing</Title>
         <Friends />
       </RightWrapper>

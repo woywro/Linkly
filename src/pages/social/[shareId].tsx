@@ -10,7 +10,7 @@ export default function SharedItem({ share }) {
 
   return (
     <Modal
-      title={share.category.value}
+      title={share.collection.value}
       open={true}
       onClose={() => {
         router.push("/");
@@ -24,12 +24,12 @@ export default function SharedItem({ share }) {
 export async function getServerSideProps({ req, params, query }) {
   const session = await getSession({ req });
   const { shareId } = query;
-  const share = await prisma.Share.findUnique({
+  const share = await prisma.ShareRequest.findUnique({
     where: {
       id: shareId,
     },
     include: {
-      category: {
+      collection: {
         select: {
           links: true,
           value: true,
