@@ -5,35 +5,45 @@ import { Button } from "../../../../components/Button";
 import { Input } from "../../../../components/Input";
 import { Text } from "../../../../components/Text";
 import { hoverEffectText } from "../../../../mixins/hoverEffects";
+import { useSession } from "next-auth/react";
 
 export const Friends = () => {
   const [friendRequests, setFriendRequests] = useState([]);
   const [followers, setFollowers] = useState([]);
   const [input, setInput] = useState("");
+  const { data: session, status } = useSession();
 
   const handleCreateFriendRequest = async () => {
     console.log(input);
-    await axios.post("/api/addFriend", {
+    axios.post("/api/createFriendRequest", {
       email: input,
     });
   };
 
   const getFriendRequests = async () => {
-    await axios.get("/api/getFriendRequest").then((res) => {
-      setFriendRequests(res.data.request);
+    await axios.get("/api/getShareRequests").then((res) => {
+      setFriendRequests(res.data.result.shareRequestsReceived);
+      console.log(res.data.result);
     });
   };
 
-  const handleAcceptFriendRequest = async (e) => {
-    await axios.post("/api/addFriend", { email: e.owner.email }).then((res) => {
-      console.log("s");
-    });
+  const handleAcceptFriendRequest = async (request) => {
+    await axios.post("/api/acceptShareRequest", { id: request.id });
   };
 
   const getFollowers = async () => {
-    await axios.get("/api/getFollowers").then((res) => {
+    await axios.get("/api/getFriends").then((res) => {
       // setFollowers(res.data.request.friendUserFriends);
-      console.log(res.data.request);
+      const friends = [];
+      console.log(res.data.result);
+      res.data.result.map((e) => {
+        if (e.owner.email == session.user.email) {
+          friends.push(e.receiver);
+        } else if (e.receiver.email == session.user.email) {
+          friends.push(e.owner);
+        }
+      });
+      console.log(friends);
     });
   };
 
@@ -49,10 +59,11 @@ export const Friends = () => {
       />
       <Button onClick={handleCreateFriendRequest}>add friend</Button>
       <Button onClick={getFriendRequests}>get requests</Button>
+      <Button onClick={getFollowers}>get friends</Button>
       {friendRequests.map((request) => {
         return (
           <FriendRequest onClick={() => handleAcceptFriendRequest(request)}>
-            {request.owner.email}
+            {request.collection.value}
           </FriendRequest>
         );
       })}

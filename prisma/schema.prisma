@@ -25,6 +25,7 @@ model Collection {
   owner       User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade) 
   links Link[]
   share Share[]
+  shareRequests ShareRequest[]
 }
 
 model Link {
@@ -45,15 +46,15 @@ model History {
   owner       User?    @relation(fields: [ownerId], references: [id])
 }
 
-model FriendRequest {
+model ShareRequest {
   id String @id @default(cuid())
-  email String
   ownerId     String
   owner       User?    @relation(fields: [ownerId], references: [id], name: "owner")
-  receiverId String
-  receiver User?    @relation(fields: [receiverId], references: [email], name: "receiver")
+  receiverEmail String
+  receiver User?    @relation(fields: [receiverEmail], references: [email], name: "receiver")
+  collectionId String
+  collection Collection? @relation(fields: [collectionId], references: [id])
   isAccepted Boolean @default(false)
-  timestamp String 
 }
 
 //auth
@@ -89,7 +90,7 @@ model Session {
 model User {
   id            String    @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String   @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
@@ -98,8 +99,8 @@ model User {
   history       History[]
   collections          Collection[]
   shares         Share[]
-  friendRequestsReceived FriendRequest[] @relation(name: "receiver")
-  friendRequestsSent FriendRequest[] @relation( name: "owner")
+  shareRequestsReceived ShareRequest[] @relation(name: "receiver")
+  shareRequestsSent ShareRequest[] @relation( name: "owner")
 }
 
 

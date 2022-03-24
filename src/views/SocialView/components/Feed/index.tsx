@@ -12,9 +12,9 @@ export const Feed = () => {
     await axios.get("/api/getSharedCategories").then((res) => {
       console.log(res.data);
       const categories = [];
-      res.data.shares.map((share) => {
-        share.category.shareId = share.id;
-        categories.push(share.category);
+      res.data.result.shareRequestsReceived.map((share) => {
+        // share.collection.shareId = share.id;
+        categories.push(share.collection);
       });
       setSharedCategories(categories);
       console.log(categories);
@@ -42,6 +42,6 @@ const Container = styled.div`
   display: grid;
   justify-items: center;
   align-items: center;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 40%;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 30%;
 `;

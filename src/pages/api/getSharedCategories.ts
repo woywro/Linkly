@@ -6,22 +6,29 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
-    const shares = await prisma.Share.findMany({
+    const result = await prisma.User.findUnique({
       where: {
-        sharedWith: { has: session.user.email },
+        email: session.user.email ,
       },
-      include: {
-        category: {
-          select: {
-            links: true,
-            value: true,
-            owner: true,
-            id: true,
+      select: {
+        shareRequestsReceived: {
+          where: {
+            isAccepted: true,
           },
+          select: {
+            collection: {
+              select:{
+                id: true,
+                value: true,
+                owner: true,
+                links: true,
+              }
+            },
+          }
         },
       },
     });
-    res.status(200).json({ shares });
+    res.status(200).json({ result });
   } catch (err) {
     res.status(403).json({ err });
   }

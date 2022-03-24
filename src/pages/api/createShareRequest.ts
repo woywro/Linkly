@@ -6,18 +6,17 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
   const session = await getSession({ req });
+  console.log(data);
   try {
-    const result = await prisma.FriendRequest.create({
+    const result = await prisma.ShareRequest.create({
       data: {
-        email: data.email,
-        owner: { connect: { email: session.user.email } },
+        owner: { connect: { email: session.user?.email } },
         receiver: { connect: { email: data.email } },
+        collection: { connect: { id: data.collectionId } },
         isAccepted: false,
-        timestamp: Date.now().toString(),
       },
     });
     res.status(200).json(result);
-    res.end();
   } catch (err) {
     res.status(403).json({ err });
   }

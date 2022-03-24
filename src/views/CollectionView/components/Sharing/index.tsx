@@ -9,6 +9,7 @@ import { hoverEffectText } from "../../../../mixins/hoverEffects";
 import { useDispatch } from "react-redux";
 import { createShare } from "../../../../redux/actions";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
+import axios from "axios";
 
 interface Props {
   collection: CollectionInterface;
@@ -28,11 +29,15 @@ export const Sharing = ({ collection }: Props) => {
 
   const handleSave = useCallback(
     (sharedList) => {
-      console.log(router.query.collectionId);
-      console.log(sharedList);
-      dispatch(createShare(router.query.collectionId, sharedList));
+      // console.log(router.query.collectionId);
+      // console.log(sharedList);
+      // dispatch(createShare(router.query.collectionId, sharedList));
+      axios.post("/api/createShareRequest", {
+        collectionId: router.query.collectionId,
+        email: input,
+      });
     },
-    [sharedList, router]
+    [sharedList, router, input]
   );
 
   const handleAdd = useCallback(() => {

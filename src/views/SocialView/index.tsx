@@ -16,7 +16,7 @@ export const SocialView = () => {
         {loadingState.loading == true ? <LoadingSpinner /> : <Feed />}
       </LeftWrapper>
       <RightWrapper>
-        <Title>Friends</Title>
+        <Title>Sharing</Title>
         <Friends />
       </RightWrapper>
     </PageContainer>

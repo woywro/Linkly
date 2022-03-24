@@ -30,7 +30,7 @@ export const FeedItem = ({ category }) => {
       }}
     >
       <Label>
-        <RiFolder5Fill style={{ fill: theme.colors.secondary }} size={"60px"} />
+        <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={"60px"} />
         <Name>{category.value}</Name>
       </Label>
       <Text color={theme.colors.secondaryText}>{category.owner.email}</Text>
@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   border-radius: 20px;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
-    background: ${(props) => props.theme.colors.secondary};
+    background: ${(props) => props.theme.colors.primary};
     box-shadow: ${(props) => props.theme.shadow};
     color: white;
   }
