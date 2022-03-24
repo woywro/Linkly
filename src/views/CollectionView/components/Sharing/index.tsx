@@ -1,15 +1,13 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import styled, { useTheme } from "styled-components";
-import { Button } from "../../../../components/Button";
-import { Text } from "../../../../components/Text";
-import { useCallback } from "react";
-import { Input } from "../../../../components/Input";
-import { hoverEffectText } from "../../../../mixins/hoverEffects";
-import { useDispatch } from "react-redux";
-import { createShare } from "../../../../redux/actions";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
 import axios from "axios";
+import { useRouter } from "next/router";
+import { useCallback, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import { Button } from "../../../../components/Button";
+import { Input } from "../../../../components/Input";
+import { Text } from "../../../../components/Text";
+import { hoverEffectText } from "../../../../mixins/hoverEffects";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
 
 interface Props {
   collection: CollectionInterface;
@@ -23,7 +21,7 @@ export const Sharing = ({ collection }: Props) => {
 
   useEffect(() => {
     const sharedWith = [];
-    if (collection.shareRequests.length > 0) {
+    if (collection.shareRequests.length !== 0) {
       collection.shareRequests.map((request) => {
         sharedWith.push({
           email: request.receiverEmail,
@@ -41,18 +39,23 @@ export const Sharing = ({ collection }: Props) => {
         email: input,
       })
       .then(() => {
-        setSharedList([...sharedList, input]);
+        setSharedList([
+          ...sharedList,
+          { email: input, collectionId: router.query.collectionId },
+        ]);
+      })
+      .catch((err) => {
+        alert(err.response.data);
       });
     setInput("");
   }, [router, input, sharedList]);
 
   const handleDelete = (e) => {
-    console.log(e);
     axios.post("/api/deleteShareRequest", {
       email: e,
       collectionId: router.query.collectionId,
     });
-    setSharedList(sharedList.filter((x) => x !== e));
+    setSharedList(sharedList.filter((x) => x.email !== e));
   };
   return (
     <Container>
