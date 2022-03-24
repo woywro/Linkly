@@ -15,6 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         collection: { connect: { id: data.collectionId } },
         isAccepted: false,
         createdTimestamp: Date.now().toString(),
+        idEmail: `${data.collectionId}-${data.email}`,
       },
     });
     res.status(200).json(result);

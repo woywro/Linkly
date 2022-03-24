@@ -47,6 +47,7 @@ CREATE TABLE "ShareRequest" (
     "collectionId" TEXT NOT NULL,
     "isAccepted" BOOLEAN NOT NULL DEFAULT false,
     "createdTimestamp" TEXT NOT NULL,
+    "idEmail" TEXT NOT NULL,
 
     CONSTRAINT "ShareRequest_pkey" PRIMARY KEY ("id")
 );
@@ -116,6 +117,12 @@ CREATE UNIQUE INDEX "Collection_valId_key" ON "Collection"("valId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Link_id_key" ON "Link"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ShareRequest_id_key" ON "ShareRequest"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "ShareRequest_idEmail_key" ON "ShareRequest"("idEmail");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Account_provider_providerAccountId_key" ON "Account"("provider", "providerAccountId");

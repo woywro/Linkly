@@ -5,22 +5,25 @@ import { useSelector } from "react-redux";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { Friends } from "./components/Friends";
 import { ShareRequests } from "./components/ShareRequests";
+import { useState } from "react";
+import { OpenWrapperButton } from "../../components/OpenWrapperButton";
+import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 
 export const SocialView = () => {
   const loadingState = useSelector((state) => state.LoadingReducer);
-
+  const [open, setOpen] = useState();
   const router = useRouter();
   return (
     <PageContainer>
       <LeftWrapper>
+        <OpenWrapperButton onClick={() => setOpen(true)} />
         <Title>Social</Title>
         {loadingState.loading == true ? <LoadingSpinner /> : <Feed />}
       </LeftWrapper>
-      <RightWrapper>
+      <RightWrapper open={open}>
+        <CloseWrapperButton onClick={() => setOpen(false)} />
         <Title>Share requests</Title>
         <ShareRequests />
-        <Title>Sharing</Title>
-        <Friends />
       </RightWrapper>
     </PageContainer>
   );

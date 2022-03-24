@@ -18,15 +18,16 @@ export const CollectionList = () => {
 
   return (
     <Wrapper>
-        <Title>Collections</Title>
-        <List>
-      {collections.length == 0 ? (
-        <EmptyState msg="You don't have link collections"/>
-      ): 
+      <Title>Collections</Title>
+      <List>
+        {collections.length == 0 ? (
+          <EmptyState msg="You don't have link collections" />
+        ) : (
           collections.map((e) => {
             return <Collection name={e.value} id={e.id} />;
-          })}
-        </List>
+          })
+        )}
+      </List>
     </Wrapper>
   );
 };
@@ -42,5 +43,4 @@ const List = styled.ul`
   flex-flow: row;
   max-width: 100%;
   height: 100%;
-  overflow-x: scroll;
 `;

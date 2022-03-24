@@ -44,7 +44,7 @@ export const ShareRequests = () => {
         collectionId: request.collection.id,
         email: request.receiver.email,
       })
-      .then((res) => {
+      .then(() => {
         setShareRequests(shareRequests.filter((e) => e.id !== request.id));
       });
   };
@@ -90,7 +90,6 @@ const StyledCategory = styled.div`
   padding: 5px;
   width: 100%;
   display: flex;
-  margin: 5px;
   font-size: 50px;
   align-items: center;
   justify-content: flex-start;
@@ -113,12 +112,13 @@ const Row = styled.div`
 
 const Wrapper = styled.div`
   width: 100%;
-  height: 100%;
   padding: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-flow: column;
+  height: 100%;
+  overflow-y: scroll;
 `;
 
 const ShareRequest = styled.div`

@@ -47,7 +47,7 @@ model History {
 }
 
 model ShareRequest {
-  id String @id @default(cuid())
+  id String @id @default(cuid()) @unique
   ownerId     String
   owner       User?    @relation(fields: [ownerId], references: [id], name: "owner", onDelete: Cascade)
   receiverEmail String
@@ -56,6 +56,7 @@ model ShareRequest {
   collection Collection? @relation(fields: [collectionId], references: [id], onDelete: Cascade)
   isAccepted Boolean @default(false)
   createdTimestamp String
+  idEmail String @unique
 }
 
 //auth

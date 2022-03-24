@@ -15,7 +15,7 @@ interface Props {
   item: LinkInterface;
 }
 
-export const FeedItem = ({ category }) => {
+export const FeedItem = ({ collection }) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -24,26 +24,23 @@ export const FeedItem = ({ category }) => {
     <Wrapper
       onClick={() => {
         router.push({
-          pathname: `/social/${category.shareId}`,
+          pathname: `/social/${collection.shareId}`,
         });
-        console.log(category);
       }}
     >
       <Label>
         <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={"60px"} />
-        <Name>{category.value}</Name>
+        <Name>{collection.value}</Name>
       </Label>
-      <Text color={theme.colors.secondaryText}>{category.owner.email}</Text>
-      <Text color={theme.colors.secondaryText}>{category.links.length}</Text>
+      <Text color={theme.colors.secondaryText}>{collection.owner.email}</Text>
+      <Text color={theme.colors.secondaryText}>{collection.links.length}</Text>
     </Wrapper>
   );
 };
 
 const Wrapper = styled.div`
-  padding: 5px;
+  padding: 20px;
   display: flex;
-  height: 100%;
-  width: 100%;
   font-size: 50px;
   align-items: center;
   justify-content: center;

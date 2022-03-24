@@ -25,8 +25,6 @@ interface Props {
 export const CollectionView = ({ collection }: Props) => {
   const [open, setOpen] = useState(false);
 
-  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
-
   return (
     <PageContainer>
       <LeftWrapper>

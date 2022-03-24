@@ -25,29 +25,26 @@ export const Sharing = ({ collection }: Props) => {
     const sharedWith = [];
     if (collection.shareRequests.length > 0) {
       collection.shareRequests.map((request) => {
-        if (request.isAccepted == true) {
-          sharedWith.push(request.receiverEmail);
-        }
+        sharedWith.push({
+          email: request.receiverEmail,
+          isAccepted: request.isAccepted,
+        });
       });
       setSharedList(sharedWith);
     }
   }, [collection, router]);
 
-  const handleSave = useCallback(
-    (sharedList) => {
-      axios.post("/api/createShareRequest", {
+  const handleAdd = useCallback(() => {
+    axios
+      .post("/api/createShareRequest", {
         collectionId: router.query.collectionId,
         email: input,
+      })
+      .then(() => {
+        setSharedList([...sharedList, input]);
       });
-    },
-    [sharedList, router, input]
-  );
-
-  const handleAdd = useCallback(() => {
-    setSharedList([...sharedList, input]);
-    handleSave([...sharedList, input]);
     setInput("");
-  }, [input]);
+  }, [router, input, sharedList]);
 
   const handleDelete = (e) => {
     console.log(e);
@@ -71,7 +68,12 @@ export const Sharing = ({ collection }: Props) => {
           {sharedList.length > 0 ? (
             sharedList.map((e) => {
               return (
-                <SharedEmail onClick={() => handleDelete(e)}>{e}</SharedEmail>
+                <SharedEmail
+                  onClick={() => handleDelete(e.email)}
+                  isAccepted={e.isAccepted}
+                >
+                  {e.email}
+                </SharedEmail>
               );
             })
           ) : (
@@ -119,7 +121,7 @@ const SharedList = styled.div`
   padding: 10px;
 `;
 
-const SharedEmail = styled.div`
+const SharedEmail = styled.div<{ isAccepted: boolean }>`
   display: flex;
   justify-content: start;
   align-items: center;
@@ -143,11 +145,17 @@ const SharedEmail = styled.div`
   &::before {
     content: "";
     position: absolute;
-    left: -5px;
+    left: -7px;
     border-radius: 50%;
-    width: 5px;
-    height: 5px;
-    background: ${(props) => props.theme.colors.primary};
+    width: 10px;
+    height: 10px;
+    background: ${(props) => {
+      if (props.isAccepted == true) {
+        return props.theme.colors.green;
+      } else {
+        return props.theme.colors.red;
+      }
+    }};
   }
 `;
 
