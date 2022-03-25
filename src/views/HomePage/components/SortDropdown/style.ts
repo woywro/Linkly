@@ -6,9 +6,7 @@ export const SortDropdownWrapper = styled.div`
   display: none;
   @media only screen and ${breakpoints.device.sm} {
     display: flex;
-    position: absolute;
-    bottom: 0;
-    right: 10px;
+    position: relation;
     cursor: pointer;
     &:hover {
       ${hoverEffectBg}

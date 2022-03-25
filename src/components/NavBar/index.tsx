@@ -6,13 +6,28 @@ import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
 import { Text } from "../Text";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { NavBarWrapper, Item, Links, LogoutBtn } from "./style";
+import styled from "styled-components";
+import logo1 from "../../static/img/logo1.png";
+import logo2 from "../../static/img/logo2.png";
+import Image from "next/image";
+import { useTheme } from "styled-components";
 
 export const NavBar = ({ setTheme }) => {
   const router = useRouter();
   const { data: session } = useSession();
+  const theme = useTheme();
   return (
     <NavBarWrapper>
-      <ThemeSwitcher setTheme={setTheme} />
+      <Col>
+        <LogoWrapper>
+          {theme.colors.primaryBg == "#181818" ? (
+            <Logo src={logo2} />
+          ) : (
+            <Logo src={logo1} />
+          )}
+        </LogoWrapper>
+        <ThemeSwitcher setTheme={setTheme} />
+      </Col>
       <Links>
         <Link href={`/addLink`}>
           <Item isActive={router.pathname == "/addLink" ? true : false}>
@@ -42,3 +57,19 @@ export const NavBar = ({ setTheme }) => {
     </NavBarWrapper>
   );
 };
+
+const LogoWrapper = styled.div`
+  width: 100px;
+  height: auto;
+  padding: 0;
+  margin-top: 20px;
+`;
+const Col = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+`;
+const Logo = styled(Image)`
+  object-fit: contain;
+`;

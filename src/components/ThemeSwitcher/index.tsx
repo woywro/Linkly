@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Button } from "../Button";
 import { DropdownMenu } from "../DropdownMenu";
 import { Text } from "../Text";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import {
   themeDefault,
   themeDefaultDark,
@@ -15,6 +16,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 export const ThemeSwitcher = ({ setTheme }) => {
   const [show, setShow] = useState(false);
   const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
+  const theme = useTheme();
   const handleChangeTheme = (e) => {
     const value = e.target.innerText;
     if (value === "default (light)") {
@@ -36,11 +38,13 @@ export const ThemeSwitcher = ({ setTheme }) => {
     <ThemeSwitcherWrapper>
       <ThemeSwitcherButton onClick={() => setShow(!show)}>
         theme{" "}
-        {show == true ? (
-          <BsChevronDown style={{ fill: "white" }} />
-        ) : (
-          <BsChevronUp style={{ fill: "white" }} />
-        )}
+        <ButtonIcon>
+          {show == true ? (
+            <TiArrowSortedDown style={{ fill: theme.colors.primaryText }} />
+          ) : (
+            <TiArrowSortedUp style={{ fill: theme.colors.primaryText }} />
+          )}
+        </ButtonIcon>
       </ThemeSwitcherButton>
       <DropdownMenu show={show}>
         <ThemeChoiceButton onClick={handleChangeTheme}>
@@ -61,12 +65,13 @@ export const ThemeSwitcher = ({ setTheme }) => {
 };
 
 const ThemeSwitcherWrapper = styled.div`
-  top: 30px;
   position: relative;
 `;
 const ThemeSwitcherButton = styled(Button)`
   width: 100%;
   margin: 0;
+  padding: 5px 10px;
+  color: ${(props) => props.theme.colors.primaryText};
 `;
 const ThemeChoiceButton = styled(Button)`
   width: 100%;
@@ -74,4 +79,12 @@ const ThemeChoiceButton = styled(Button)`
   border-radius: none;
   background: none;
   color: ${(props) => props.theme.colors.primaryText};
+`;
+
+const ButtonIcon = styled.div`
+  margin-left: 5px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;

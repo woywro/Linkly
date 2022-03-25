@@ -15,7 +15,7 @@ export const AutocompleteWrapper = styled.div`
   border: none;
   position: relative;
   background: ${(props) => props.theme.colors.secondaryBg};
-  padding: 10px;
+  padding: 25px 10px;
   border-radius: 10px;
   font-size: 15px;
   width: 100%;
