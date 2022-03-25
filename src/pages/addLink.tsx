@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { AddLink } from "../views/AddLink";
+import { Add } from "../views/Add";
 import { Modal } from "../components/Modal";
 
 export default function AddLink() {
@@ -13,7 +13,7 @@ export default function AddLink() {
         router.push("/");
       }}
     >
-      <AddLink />
+      <Add />
     </Modal>
   );
 }

@@ -128,6 +128,6 @@ export const SortBar = () => {
           MORE
         </Text>
       </Field>
-    </FieldLabels>
+    </SortBarWrapper>
   );
 };

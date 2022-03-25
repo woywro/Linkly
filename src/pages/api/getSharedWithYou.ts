@@ -6,25 +6,23 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
-    const result = await prisma.User.findUnique({
+    const result = await prisma.ShareRequest.findMany({
+      orderBy: {
+        createdTimestamp: "desc",
+      },
       where: {
-        email: session.user.email,
+        receiverEmail: session.user.email,
+        isAccepted: true,
       },
       select: {
-        shareRequestsReceived: {
-          where: {
-            isAccepted: true,
-          },
+        id: true,
+        createdTimestamp: true,
+        collection: {
           select: {
             id: true,
-            collection: {
-              select: {
-                id: true,
-                value: true,
-                owner: true,
-                links: true,
-              },
-            },
+            value: true,
+            owner: true,
+            links: true,
           },
         },
       },

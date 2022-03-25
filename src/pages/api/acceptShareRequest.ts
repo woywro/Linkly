@@ -16,8 +16,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       },
       select: {
         id: true,
+        createdTimestamp: true,
         collection: {
           select: {
+            id: true,
             value: true,
             owner: true,
             links: true,

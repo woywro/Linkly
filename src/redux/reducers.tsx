@@ -73,10 +73,10 @@ export const sharedWithYou = (
 ) => {
   switch (action.type) {
     case "SET_SHAREDWITHYOU": {
-      return action.payload.collections;
+      return action.payload.shares;
     }
     case "UPDATE_SHAREDWITHYOU": {
-      return [...state, action.payload.collection];
+      return [...state, action.payload.share];
     }
     default: {
       return state;

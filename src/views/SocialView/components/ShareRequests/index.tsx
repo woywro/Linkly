@@ -36,8 +36,7 @@ export const ShareRequests = () => {
     await axios
       .post("/api/acceptShareRequest", { id: request.id })
       .then((res) => {
-        res.data.result.collection.shareId = request.id;
-        dispatch(updateSharedWithYou(res.data.result.collection));
+        dispatch(updateSharedWithYou(res.data.result));
         setShareRequests(shareRequests.filter((e) => e.id !== request.id));
       });
   };

@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { AddLinkWrapper } from "./style";
 
-export const AddLink = () => {
+export const Add = () => {
   const [title, setTitle] = useState<string>("");
   const [url, setUrl] = useState<string>("");
   const [collections, setCollections] = useState<CollectionInterface[] | []>(

@@ -6,9 +6,9 @@ export const CollectionWrapper = styled.div`
   height: 120px;
   width: 120px;
   margin: 5px;
-  flex: 0 0 auto;
   font-size: 50px;
   align-items: center;
+  text-align: center;
   justify-content: center;
   flex-flow: column;
   cursor: pointer;

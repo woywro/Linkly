@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { hoverEffectBg } from "../../../../mixins/hoverEffects";
+import breakpoints from "../../../../theme/breakpoints";
 
 export const SortDropdownWrapper = styled.div`
   display: none;

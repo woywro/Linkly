@@ -140,28 +140,28 @@ export const deleteCollection = (collections, collectionId) => {
 export const getSharedWithYou = () => {
   return function (dispatch) {
     dispatch({ type: "LOAD_LOADING" });
-    axios.get("/api/getSharedCategories").then((res) => {
-      const collections = [];
-      res.data.result.shareRequestsReceived.map((share) => {
-        share.collection.shareId = share.id;
-        collections.push(share.collection);
+    axios.get("/api/getSharedWithYou").then((res) => {
+      console.log(res.data.result);
+      const shares = [];
+      res.data.result.map((share) => {
+        shares.push(share);
       });
-      dispatch(setSharedWithYou(collections));
+      dispatch(setSharedWithYou(shares));
       dispatch({ type: "LOAD_SUCCESS" });
     });
   };
 };
 
-export const setSharedWithYou = (collections) => ({
+export const setSharedWithYou = (shares) => ({
   type: "SET_SHAREDWITHYOU",
   payload: {
-    collections,
+    shares,
   },
 });
 
-export const updateSharedWithYou = (collection) => ({
+export const updateSharedWithYou = (share) => ({
   type: "UPDATE_SHAREDWITHYOU",
   payload: {
-    collection,
+    share,
   },
 });

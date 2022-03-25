@@ -3,13 +3,14 @@ import { RiFolder5Fill } from "react-icons/ri";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { Text } from "../../../../components/Text";
-import { Label, Name, FeedItemWrapper } from "./style";
+import { Label, Name, FeedItemWrapper, Row, Timestamp } from "./style";
+import moment from "moment";
 
 interface Props {
   item: LinkInterface;
 }
 
-export const FeedItem = ({ collection }) => {
+export const FeedItem = ({ share }) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -18,16 +19,20 @@ export const FeedItem = ({ collection }) => {
     <FeedItemWrapper
       onClick={() => {
         router.push({
-          pathname: `/social/${collection.shareId}`,
+          pathname: `/social/${share.id}`,
         });
       }}
     >
       <Label>
-        <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={"60px"} />
-        <Name>{collection.value}</Name>
+        <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={"70px"} />
+        <Name>{share.collection.value}</Name>
       </Label>
-      <Text color={theme.colors.secondaryText}>{collection.owner.email}</Text>
-      <Text color={theme.colors.secondaryText}>{collection.links.length}</Text>
+      <Text color={theme.colors.secondaryText}>
+        {share.collection.owner.email}
+      </Text>
+      <Timestamp color={theme.colors.secondaryText}>
+        {moment(parseInt(share.createdTimestamp)).format("LT")}
+      </Timestamp>
     </FeedItemWrapper>
   );
 };

@@ -7,7 +7,7 @@ import { Input } from "../../components/Input";
 import { updateLink } from "../../redux/actions";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
-import { AutoComplete } from "../AddLink/components/Autocomplete";
+import { AutoComplete } from "../Add/components/Autocomplete";
 
 const EditLinkWrapper = styled.div`
   height: 300px;
