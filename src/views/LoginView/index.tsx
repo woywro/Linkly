@@ -1,12 +1,11 @@
+import { signIn } from "next-auth/react";
+import Image from "next/image";
+import GoogleButton from "react-google-button";
 import styled, { useTheme } from "styled-components";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Text } from "../../components/Text";
-import { theme } from "../../theme/theme";
-import { useSession, signIn, signOut } from "next-auth/react";
-import Image from "next/image";
 import loginLogo from "../../static/img/loginLogo.png";
-import GoogleButton from "react-google-button";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,6 +14,8 @@ const Wrapper = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
+  background: ${(props) => props.theme.colors.primaryBg};
+  border-radius: 30px;
 `;
 const LeftWrapper = styled.div`
   display: flex;

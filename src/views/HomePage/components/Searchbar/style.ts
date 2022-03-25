@@ -21,11 +21,11 @@ export const SearchBarWrapper = styled.div`
 
 export const StyledSearchBar = styled.div`
   width: 60%;
-  background: #ffffff;
   box-shadow: ${(props) => props.theme.shadow};
   border-radius: 16px;
   display: flex;
   justify-content: center;
+  background: ${(props) => props.theme.colors.secondaryBg};
   align-items: center;
   padding: 10px;
   position: relative;
@@ -38,12 +38,12 @@ export const Input = styled.input`
   border: none;
   width: 100%;
   padding: 10px 5px;
-  background: white;
   margin-left: 10px;
-  color: black;
+  color: ${(props) => props.theme.colors.primaryText};
   font-size: 14px;
   line-height: 21px;
   transition: all 0.3s ease;
+  background: ${(props) => props.theme.colors.secondaryBg};
   border-radius: 16px;
   &:focus {
     outline: none;

@@ -3,7 +3,7 @@ import breakpoints from "../../../../theme/breakpoints";
 
 export const SugestionsWrapper = styled.ul`
   width: 60%;
-  background: #ffffff;
+  background: ${(props) => props.theme.colors.secondaryBg};
   box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
   border-radius: 16px;

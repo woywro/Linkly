@@ -5,11 +5,11 @@ export const DropdownMenuWrapper = styled.div<{ show: boolean }>`
   flex-flow: column;
   align-items: center;
   position: absolute;
-  top: 70%;
-  right: 10%;
-  width: auto;
+  top: 100%;
+  right: 0;
+  width: 100%;
   height: auto;
-  background: white;
+  background: ${(props) => props.theme.colors.secondaryBg};
   border-radius: 10px;
   padding: 10px;
   box-shadow: ${(props) => props.theme.shadow};

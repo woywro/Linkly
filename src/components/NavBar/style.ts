@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import { css } from "styled-components";
 import breakpoints from "../../theme/breakpoints";
+import { Button } from "../Button";
 
 export const NavBarWrapper = styled.nav`
   flex-flow: column;
   align-items: center;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   border-radius: 20px;
-  height: 70%;
+  height: 100%;
   width: auto;
   margin: 20px;
   @media only screen and ${breakpoints.device.sm} {
@@ -50,12 +51,10 @@ export const Links = styled.div`
   justify-content: space-around;
   align-items: center;
   flex-flow: column;
-  height: 50%;
 `;
 
-export const LogoutBtn = styled(Item)`
-  position: absolute;
-  bottom: 30px;
-  background: ${(props) => props.theme.colors.primary};
-  border-radius: 10px;
+export const LogoutBtn = styled(Button)`
+  margin-bottom: 30px;
+  width: 100%;
+  background: ${(props) => props.theme.colors.secondary};
 `;

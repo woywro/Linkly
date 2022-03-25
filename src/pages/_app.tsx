@@ -1,25 +1,29 @@
-import styled from "styled-components";
-import { ThemeProvider } from "styled-components";
-import { NavBar } from "../components/NavBar";
-import { Provider, useDispatch } from "react-redux";
-import store from "../redux/store";
 import { SessionProvider } from "next-auth/react";
-import { AuthGuard } from "../HOC/AuthGuard";
-import { GlobalStyles } from "../theme/globalStyles";
-import { theme } from "../theme/theme";
 import { AppProps } from "next/app";
-import { useSession } from "next-auth/react";
-import Login from "./login";
-import breakpoints from "../theme/breakpoints";
+import { Provider } from "react-redux";
+import styled, { ThemeProvider } from "styled-components";
 import { MobileNavBar } from "../components/MobileNavBar";
+import { NavBar } from "../components/NavBar";
+import { AuthGuard } from "../HOC/AuthGuard";
 import useMediaQuery from "../hooks/useMediaQuery";
+import store from "../redux/store";
+import breakpoints from "../theme/breakpoints";
+import { GlobalStyles } from "../theme/globalStyles";
+import { themeDefault } from "../theme/theme";
+import { useEffect, useState } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export default function App({
   Component,
   pageProps: { session, status, ...pageProps },
 }: AppProps) {
-  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
-  const mediaQueryLg = useMediaQuery(breakpoints.device.lg);
+  const [theme, setTheme] = useState(themeDefault);
+  const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
+
+  useEffect(() => {
+    setTheme(choosenTheme);
+  }, [choosenTheme]);
+
   return (
     <SessionProvider session={session}>
       <Provider store={store}>
@@ -29,7 +33,7 @@ export default function App({
             <ViewBox>
               <AuthGuard>
                 <MobileNavBar />
-                <NavBar />
+                <NavBar setTheme={setTheme} />
                 <Component {...pageProps} />
               </AuthGuard>
             </ViewBox>

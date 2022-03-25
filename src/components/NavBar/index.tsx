@@ -4,13 +4,15 @@ import { useRouter } from "next/router";
 import { BiLogOut } from "react-icons/bi";
 import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
 import { Text } from "../Text";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 import { NavBarWrapper, Item, Links, LogoutBtn } from "./style";
 
-export const NavBar = () => {
+export const NavBar = ({ setTheme }) => {
   const router = useRouter();
   const { data: session } = useSession();
   return (
     <NavBarWrapper>
+      <ThemeSwitcher setTheme={setTheme} />
       <Links>
         <Link href={`/addLink`}>
           <Item isActive={router.pathname == "/addLink" ? true : false}>
@@ -30,13 +32,13 @@ export const NavBar = () => {
             <Text>Social</Text>
           </Item>
         </Link>
-        {session && (
-          <LogoutBtn isActive={false} onClick={() => signOut()}>
-            <BiLogOut />
-            <Text>Log out</Text>
-          </LogoutBtn>
-        )}
       </Links>
+      {session && (
+        <LogoutBtn isActive={false} onClick={() => signOut()}>
+          <BiLogOut />
+          <Text>Log out</Text>
+        </LogoutBtn>
+      )}
     </NavBarWrapper>
   );
 };

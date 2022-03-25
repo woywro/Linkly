@@ -1,4 +1,4 @@
-export const theme = {
+export const themeDefault = {
   colors: {
     primary: "#8ec5fc",
     secondary: "#e0c3fc",
@@ -6,9 +6,81 @@ export const theme = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%)",
+    // gradient: " linear-gradient(to right, #000428, #004e92)",
     primaryBg: "white",
     secondaryBg: "#f4f6fa",
     primaryText: "#233548",
+    secondaryText: "#bec3c6",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+export const themePink = {
+  colors: {
+    primary: "#b24592",
+    secondary: "#f15f79",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #b24592, #f15f79)",
+    primaryBg: "white",
+    secondaryBg: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#bec3c6",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+
+export const themeDefaultDark = {
+  colors: {
+    primary: "#302b63",
+    secondary: "#302b63",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #0f0c29, #302b63, #24243e)",
+    primaryBg: "#181818",
+    secondaryBg: "#212121",
+    primaryText: "#e4e6eb",
+    secondaryText: "#bec3c6",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+export const themeOrange = {
+  colors: {
+    primary: "rgb(254, 140, 48)",
+    secondary: "rgb(255, 53, 109)",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient:
+      "linear-gradient(113.1deg, rgb(254, 140, 48) 14%, rgb(253, 75, 101) 80.5%, rgb(255, 53, 109) 100.6%)",
+    primaryBg: "#181818",
+    secondaryBg: "#212121",
+    primaryText: "#e4e6eb",
     secondaryText: "#bec3c6",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",

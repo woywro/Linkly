@@ -18,7 +18,7 @@ export const ModalWrapper = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #fff;
+  background: ${(props) => props.theme.colors.primaryBg};
   padding: 50px;
   z-index: 1000;
   border-radius: 20px;

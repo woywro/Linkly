@@ -14,7 +14,7 @@ export const SuggesionsWrapper = styled.ul`
 export const AutocompleteWrapper = styled.div`
   border: none;
   position: relative;
-  background: #e2e7f3;
+  background: ${(props) => props.theme.colors.secondaryBg};
   padding: 10px;
   border-radius: 10px;
   font-size: 15px;

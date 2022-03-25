@@ -4,6 +4,7 @@ import { hoverEffectText } from "../../../../mixins/hoverEffects";
 
 export const StyledInput = styled(Input)`
   padding: 0 10px;
+  background: ${(props) => props.theme.colors.primaryBg};
 `;
 
 export const AddWrapper = styled.div`

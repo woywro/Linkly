@@ -44,7 +44,7 @@ export const IconButton = styled.button`
   border: none;
   margin: 0;
   padding: 0;
-  background: white;
+  background: ${(props) => props.theme.colors.primaryBg};
   color: black;
   display: flex;
   justify-content: center;
@@ -61,6 +61,7 @@ export const IconButton = styled.button`
 export const TextInput = styled.input`
   border: none;
   font-size: 16px;
+  background: ${(props) => props.theme.colors.primaryBg};
 `;
 
 export const Field = styled.div`
