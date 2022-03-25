@@ -4,6 +4,8 @@ export const CollectionsWrapper = styled.div`
   display: flex;
   flex-flow: column;
   width: 100%;
+  overflow-x: scroll;
+  -moz-scrollbars-horizontal: touch;
 `;
 
 export const CollectionsList = styled.ul`

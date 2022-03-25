@@ -13,6 +13,7 @@ export const CollectionWrapper = styled.div`
   flex-flow: column;
   cursor: pointer;
   border-radius: 20px;
+  flex: 0 0 auto;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
     background: ${(props) => props.theme.colors.primary};
