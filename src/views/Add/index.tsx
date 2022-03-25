@@ -1,20 +1,19 @@
-import { Input } from "../../components/Input";
-import { addLink } from "../../redux/actions";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { AutoComplete } from "./components/Autocomplete";
-import styled from "styled-components";
-import { Button } from "../../components/Button";
 import axios from "axios";
-import { LinkInterface } from "../../types/LinkInterface";
-import { CollectionInterface } from "../../types/CollectionInterface";
+import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import * as Yup from "yup";
+import { Button } from "../../components/Button";
+import { InputStyling } from "../../components/Input";
+import { Text } from "../../components/Text";
+import { addLink } from "../../redux/actions";
+import { CollectionInterface } from "../../types/CollectionInterface";
+import { AutoComplete } from "./components/Autocomplete";
 import { AddLinkWrapper } from "./style";
 
 export const Add = () => {
-  const [title, setTitle] = useState<string>("");
-  const [url, setUrl] = useState<string>("");
   const [collections, setCollections] = useState<CollectionInterface[] | []>(
     []
   );
@@ -22,41 +21,92 @@ export const Add = () => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-  const handleAdd = useCallback(async () => {
-    await axios
-      .post("/api/addLink", {
-        title,
-        url,
-        collections,
-      })
-      .then((res) => {
-        dispatch(addLink(res.data));
-      });
-    router.push("/");
-  }, [title, url, collections]);
+  const handleAdd = useCallback(
+    async (title, url) => {
+      await axios
+        .post("/api/addLink", {
+          title,
+          url,
+          collections,
+        })
+        .then((res) => {
+          dispatch(addLink(res.data));
+        });
+      router.push("/");
+    },
+    [collections]
+  );
+
+  const validationSchema = Yup.object({
+    title: Yup.string()
+      .min(2, "title is too short!")
+      .max(15, "title is too long!")
+      .required("title is required"),
+    url: Yup.string()
+      .min(3, "url is too short!")
+      .max(50, "url is too long!")
+      .required("url is required"),
+  });
 
   return (
     <AddLinkWrapper>
-      <Input
-        placeholder="name"
-        onChange={(e) => {
-          setTitle(e.target.value);
+      <Formik
+        initialValues={{
+          title: "",
+          url: "",
         }}
-        value={title}
-      />
-      <Input
-        placeholder="url"
-        onChange={(e) => {
-          setUrl(e.target.value);
+        onSubmit={(values) => {
+          handleAdd(values.title, values.url);
+          console.log("add");
         }}
-        value={url}
-      />
-      <AutoComplete
-        setCollections={setCollections}
-        suggestions={collections}
-        collections={collections}
-      />
-      <Button onClick={handleAdd}>add</Button>
+        validationSchema={validationSchema}
+      >
+        {({ errors, touched }) => (
+          <StyledForm>
+            <InputWrapper>
+              <StyledInput name="title" placeholder="Link title" />
+              {errors.title && touched.title ? (
+                <Error>{errors.title}</Error>
+              ) : null}
+            </InputWrapper>
+            <InputWrapper>
+              <StyledInput name="url" placeholder="Website url" />
+              {errors.url && touched.url ? <Error>{errors.url}</Error> : null}
+            </InputWrapper>
+            <AutoComplete
+              setCollections={setCollections}
+              suggestions={collections}
+              collections={collections}
+            />
+            <Button type="submit">Add</Button>
+          </StyledForm>
+        )}
+      </Formik>
     </AddLinkWrapper>
   );
 };
+
+const StyledForm = styled(Form)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 100%;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-flow: column;
+  width: 100%;
+  height: 80px;
+`;
+
+const Error = styled(Text)`
+  color: ${(props) => props.theme.colors.primary};
+  font-size: 12px;
+  padding: 5px;
+`;
+
+const StyledInput = styled(Field)`
+  ${InputStyling}
+`;
