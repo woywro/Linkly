@@ -4,9 +4,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCollections } from "../../../../redux/actions";
 import { useEffect } from "react";
 import breakpoints from "../../../../theme/breakpoints";
-import { Title } from "../../../style";
+import { Title } from "../../../SocialView/style";
 import Scrollbars from "react-custom-scrollbars-2";
 import { EmptyState } from "../../../../components/EmptyState";
+import { CollectionsWrapper, CollectionsList } from "./style";
 
 export const CollectionList = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,9 @@ export const CollectionList = () => {
   }, []);
 
   return (
-    <Wrapper>
+    <CollectionsWrapper>
       <Title>Collections</Title>
-      <List>
+      <CollectionsList>
         {collections.length == 0 ? (
           <EmptyState msg="You don't have link collections" />
         ) : (
@@ -27,20 +28,7 @@ export const CollectionList = () => {
             return <Collection name={e.value} id={e.id} />;
           })
         )}
-      </List>
-    </Wrapper>
+      </CollectionsList>
+    </CollectionsWrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-`;
-
-const List = styled.ul`
-  display: flex;
-  flex-flow: row;
-  max-width: 100%;
-  height: 100%;
-`;

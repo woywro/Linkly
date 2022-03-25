@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const StyledMenu = styled.div<{ show: boolean }>`
+export const DropdownMenuWrapper = styled.div<{ show: boolean }>`
   justify-content: center;
   flex-flow: column;
   align-items: center;

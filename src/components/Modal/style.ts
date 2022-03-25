@@ -13,7 +13,7 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-export const StyledModal = styled.div`
+export const ModalWrapper = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;

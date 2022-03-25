@@ -1,21 +1,15 @@
-import styled, { useTheme } from "styled-components";
-import { Text } from "../../../../components/Text";
-import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 import axios from "axios";
-import { setLinks } from "../../../../redux/actions";
-import { useDispatch, useStore } from "react-redux";
-import { useEffect, useState } from "react";
-import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
 import { useRouter } from "next/router";
-import { sortLinks } from "../../../../redux/actions";
-import { AiOutlineSearch } from "react-icons/ai";
-import breakpoints from "../../../../theme/breakpoints";
+import { useEffect, useState } from "react";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { useTheme } from "styled-components";
 import { DropdownMenu } from "../../../../components/DropdownMenu";
-import {
-  hoverEffectBg,
-  hoverEffectText,
-} from "../../../../mixins/hoverEffects";
+import { Text } from "../../../../components/Text";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
+import { setLinks, sortLinks } from "../../../../redux/actions";
+import breakpoints from "../../../../theme/breakpoints";
+import { Field, IconButton, SortDropdownWrapper } from "./style";
 
 export const SortDropdown = ({ show }) => {
   const [sortByName, setSortByName] = useState(false);
@@ -71,7 +65,7 @@ export const SortDropdown = ({ show }) => {
   }, [searchValue]);
 
   return (
-    <Wrapper>
+    <SortDropdownWrapper>
       <DropdownMenu show={show}>
         <>
           <Field onClick={handleSortByName}>
@@ -94,66 +88,6 @@ export const SortDropdown = ({ show }) => {
           </Field>
         </>
       </DropdownMenu>
-    </Wrapper>
+    </SortDropdownWrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: none;
-  @media only screen and ${breakpoints.device.sm} {
-    display: flex;
-    position: absolute;
-    bottom: 0;
-    right: 10px;
-    cursor: pointer;
-    &:hover {
-      ${hoverEffectBg}
-    }
-  }
-`;
-
-const SearchContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row;
-  position: relative;
-  &::after {
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    content: "";
-    width: 100%;
-    height: 2px;
-    background: ${(props) => props.theme.colors.primary};
-  }
-`;
-
-const IconButton = styled.button`
-  border: none;
-  margin: 0;
-  padding: 0;
-  background: white;
-  color: black;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-left: 3px;
-  cursor: pointer;
-  border-radius: 50%;
-  padding: 5px;
-`;
-
-const TextInput = styled.input`
-  border: none;
-  font-size: 16px;
-`;
-
-const Field = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  width: 100%;
-  align-items: center;
-  padding: 5px;
-`;

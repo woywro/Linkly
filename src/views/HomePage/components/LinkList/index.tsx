@@ -1,19 +1,15 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
+import { EmptyState } from "../../../../components/EmptyState";
 import { LinkItem } from "../../../../components/LinkItem";
 import { Links } from "../../../../components/Links";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
 import breakpoints from "../../../../theme/breakpoints";
-import { Title } from "../../../style";
-import { SortBar } from "../SortBar";
-import Scrollbars from "react-custom-scrollbars-2";
-import { SortDropdown } from "../SortDropdown";
-import { Button } from "../../../../components/Button";
-import styled from "styled-components";
-import { useState } from "react";
-import { BsXLg, BsChevronUp, BsChevronDown } from "react-icons/bs";
-import { Text } from "../../../../components/Text";
+import { Title } from "../../../SocialView/style";
 import { MobileSortButton } from "../MobileSortButton";
-import { EmptyState } from "../../../../components/EmptyState";
+import { SortBar } from "../SortBar";
+import { SortDropdown } from "../SortDropdown";
+import { Row } from "./style";
 
 export const LinkList = () => {
   const userLinks = useSelector((state) => state.links);
@@ -41,11 +37,3 @@ export const LinkList = () => {
     </Links>
   );
 };
-
-const Row = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: relative;
-`;

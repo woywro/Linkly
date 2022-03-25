@@ -1,4 +1,4 @@
-import { StyledMenu } from "./style";
+import { DropdownMenuWrapper } from "./style";
 
 interface Props {
   show: boolean;
@@ -6,5 +6,5 @@ interface Props {
 }
 
 export const DropdownMenu = ({ show, children }: Props) => {
-  return <StyledMenu show={show}>{children}</StyledMenu>;
+  return <DropdownMenuWrapper show={show}>{children}</DropdownMenuWrapper>;
 };

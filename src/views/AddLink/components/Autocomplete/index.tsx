@@ -1,8 +1,17 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import { Text } from "../../../../components/Text";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
+import {
+  Add,
+  ChoosenSuggestion,
+  ChoosenSuggestionList,
+  StyledInput,
+  SuggesionsWrapper,
+  Suggestion,
+  TypeChoice,
+  AutocompleteWrapper,
+} from "./style";
 
 interface Props {
   suggestions: CollectionInterface[];
@@ -58,7 +67,7 @@ export const AutoComplete = ({
 
   const SuggestionsListComponent = () => {
     return filteredSuggestions.length ? (
-      <StyledSuggestions>
+      <SuggesionsWrapper>
         {filteredSuggestions.map((suggestion) => {
           return (
             <Suggestion
@@ -71,7 +80,7 @@ export const AutoComplete = ({
             </Suggestion>
           );
         })}
-      </StyledSuggestions>
+      </SuggesionsWrapper>
     ) : (
       <Add>
         <TypeChoice onClick={() => handleAddCollection()}>
@@ -82,17 +91,17 @@ export const AutoComplete = ({
   };
 
   return (
-    <Wrapper>
-      <ChoosenList>
+    <AutocompleteWrapper>
+      <ChoosenSuggestionList>
         {collections !== undefined &&
           collections.map((e) => {
             return (
-              <ChoosenElement onClick={() => handleDeleteCollection(e)}>
+              <ChoosenSuggestion onClick={() => handleDeleteCollection(e)}>
                 {e.value}
-              </ChoosenElement>
+              </ChoosenSuggestion>
             );
           })}
-      </ChoosenList>
+      </ChoosenSuggestionList>
       <StyledInput
         type="text"
         onChange={onChange}
@@ -100,81 +109,6 @@ export const AutoComplete = ({
         placeholder="enter collections"
       />
       {showSuggestions && input && <SuggestionsListComponent />}
-    </Wrapper>
+    </AutocompleteWrapper>
   );
 };
-
-const StyledSuggestions = styled.ul`
-  list-style: none;
-  max-height: 150px;
-  overflow-y: auto;
-  width: 100%;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background: ${(props) => props.theme.colors.secondary};
-`;
-const Wrapper = styled.div`
-  border: none;
-  position: relative;
-  background: #e2e7f3;
-  padding: 10px;
-  border-radius: 10px;
-  font-size: 15px;
-  width: 100%;
-  &:focus {
-    outline: none;
-  }
-`;
-
-const ChoosenList = styled.ul`
-  display: flex;
-  flex-flow: row;
-`;
-
-const ChoosenElement = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 5px;
-  font-size: 12px;
-  background: ${(props) => props.theme.colors.secondary};
-  cursor: pointer;
-  border-radius: 20px;
-  margin: 2px;
-`;
-
-const StyledInput = styled.input`
-  border: none;
-  background: none;
-  position: relative;
-`;
-
-const Suggestion = styled.li`
-  cursor: pointer;
-  padding: 5px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background: white;
-`;
-
-const Add = styled.div`
-  cursor: pointer;
-  background: ${(props) => props.theme.colors.background};
-  padding: 5px;
-  border-radius: 20px;
-  display: flex;
-  align-items: center;
-  flex-flow: column;
-  justify-content: center;
-`;
-
-const TypeChoice = styled(Text)`
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.primary};
-    text-decoration-thickness: 3px;
-  }
-`;

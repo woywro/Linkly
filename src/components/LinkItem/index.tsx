@@ -10,7 +10,13 @@ import { deleteLink, updateHistory } from "../../redux/actions";
 import { LinkInterface } from "../../types/LinkInterface";
 import { DropdownMenu } from "../DropdownMenu";
 import { Text } from "../Text";
-import { DropDownButton, Label, MoreButton, Name, Wrapper } from "./style";
+import {
+  DropDownButton,
+  LinkLabel,
+  LinkMenuButton,
+  Name,
+  LinkWrapper,
+} from "./style";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import breakpoints from "../../theme/breakpoints";
 
@@ -65,11 +71,11 @@ export const LinkItem = ({ item }: Props) => {
   };
 
   return (
-    <Wrapper onClick={() => handleOnClick(item)}>
-      <Label>
+    <LinkWrapper onClick={() => handleOnClick(item)}>
+      <LinkLabel>
         <AiOutlineLink />
         <Name>{item.title}</Name>
-      </Label>
+      </LinkLabel>
       {!mediaQuerySm && (
         <>
           <Text color={theme.colors.secondaryText}>{item.owner.email}</Text>
@@ -78,9 +84,9 @@ export const LinkItem = ({ item }: Props) => {
           </Text>
         </>
       )}
-      <MoreButton onClick={handleOpenMenu}>
+      <LinkMenuButton onClick={handleOpenMenu}>
         <CgMoreAlt size={"20px"} />
-      </MoreButton>
+      </LinkMenuButton>
       <DropdownMenu show={show}>
         <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
           Delete
@@ -94,6 +100,6 @@ export const LinkItem = ({ item }: Props) => {
           Edit
         </DropDownButton>
       </DropdownMenu>
-    </Wrapper>
+    </LinkWrapper>
   );
 };

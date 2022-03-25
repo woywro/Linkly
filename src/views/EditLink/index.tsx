@@ -1,18 +1,15 @@
-import { Input } from "../../components/Input";
-import { addLink, setLinks } from "../../redux/actions";
+import axios from "axios";
+import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useState } from "react";
-import { AutoComplete } from "../Add/components/Autocomplete";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
-import axios from "axios";
+import { Input } from "../../components/Input";
+import { updateLink } from "../../redux/actions";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
-import { useRouter } from "next/router";
-import { useCallback } from "react";
-import { updateLink } from "../../redux/actions";
+import { AutoComplete } from "../AddLink/components/Autocomplete";
 
-const Container = styled.div`
+const EditLinkWrapper = styled.div`
   height: 300px;
   width: 300px;
   display: flex;
@@ -65,7 +62,7 @@ export const EditLink = ({ link }: Props) => {
   };
 
   return (
-    <Container>
+    <EditLinkWrapper>
       <Input
         placeholder="name"
         onChange={(e) => {
@@ -86,6 +83,6 @@ export const EditLink = ({ link }: Props) => {
         collections={collections}
       />
       <Button onClick={handleSaveLink}>save</Button>
-    </Container>
+    </EditLinkWrapper>
   );
 };

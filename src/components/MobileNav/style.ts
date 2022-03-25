@@ -2,7 +2,7 @@ import breakpoints from "../../theme/breakpoints";
 import styled from "styled-components";
 import { css } from "styled-components";
 
-export const Container = styled.div<{ open: boolean }>`
+export const MobileNavWrapper = styled.div<{ open: boolean }>`
 overflow: hidden;
 padding: 20px;
 display: flex;
@@ -27,7 +27,7 @@ z-index: 20;
 
 `;
 
-export const NavItems = styled.ul`
+export const MobileNavItems = styled.ul`
   list-style: none;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@ export const NavItems = styled.ul`
   display: flex;
 `;
 
-export const NavItem = styled.li<{ isActive: boolean }>`
+export const MobileNavItem = styled.li<{ isActive: boolean }>`
   text-decoration: none;
   font-size: 24px;
   color: white;

@@ -2,7 +2,12 @@ import React, { useEffect } from "react";
 import { useRouter } from "next/router";
 import { Button } from "../Button";
 import { useCallback } from "react";
-import { Container, NavItems, NavItem, CloseButton } from "./style";
+import {
+  MobileNavWrapper,
+  MobileNavItems,
+  MobileNavItem,
+  CloseButton,
+} from "./style";
 import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
 
 interface Props {
@@ -18,28 +23,28 @@ export const MobileNav = ({ open, setOpen }: Props) => {
   }, [router]);
 
   return (
-    <Container open={open}>
+    <MobileNavWrapper open={open}>
       <CloseButton onClick={() => setOpen(false)}>x</CloseButton>
-      <NavItems>
-        <NavItem
+      <MobileNavItems>
+        <MobileNavItem
           isActive={router.pathname == "/" ? true : false}
           onClick={() => router.push("/")}
         >
           <RiLayoutGridLine style={{ fill: "white" }} /> Home
-        </NavItem>
-        <NavItem
+        </MobileNavItem>
+        <MobileNavItem
           isActive={router.pathname == "/social" ? true : false}
           onClick={() => router.push("/social")}
         >
           <RiTeamLine style={{ fill: "white" }} /> Social
-        </NavItem>
-        <NavItem
+        </MobileNavItem>
+        <MobileNavItem
           isActive={router.pathname == "/addLink" ? true : false}
           onClick={() => router.push("/addLink")}
         >
           <RiAddCircleLine style={{ fill: "white" }} /> Add Link
-        </NavItem>
-      </NavItems>
-    </Container>
+        </MobileNavItem>
+      </MobileNavItems>
+    </MobileNavWrapper>
   );
 };

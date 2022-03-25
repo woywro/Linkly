@@ -3,7 +3,7 @@ import { hoverEffectBg, hoverEffectText } from "../../mixins/hoverEffects";
 import { Text } from "../Text";
 import breakpoints from "../../theme/breakpoints";
 
-export const Wrapper = styled.div`
+export const LinkWrapper = styled.div`
   display: grid;
   justify-content: start;
   align-items: center;
@@ -26,7 +26,7 @@ export const Wrapper = styled.div`
   }
 `;
 
-export const Label = styled.div`
+export const LinkLabel = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -41,7 +41,7 @@ export const Name = styled(Text)`
   color: ${(props) => props.theme.colors.primaryText};
 `;
 
-export const MoreButton = styled.button`
+export const LinkMenuButton = styled.button`
   background: none;
   border: none;
   cursor: pointer;

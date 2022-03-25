@@ -1,6 +1,6 @@
 import { RiCloseCircleLine } from "react-icons/ri";
 import { Portal } from "../../HOC/Portal";
-import { CloseButton, ModalTitle, Overlay, StyledModal } from "./style";
+import { CloseButton, ModalTitle, Overlay, ModalWrapper } from "./style";
 
 interface Props {
   title: string;
@@ -14,13 +14,13 @@ export const Modal = ({ title, open, onClose, children }: Props) => {
   return (
     <Portal selector="#portal">
       <Overlay>
-        <StyledModal>
+        <ModalWrapper>
           <ModalTitle>{title}</ModalTitle>
           <CloseButton>
             <RiCloseCircleLine onClick={onClose} />
           </CloseButton>
           {children}
-        </StyledModal>
+        </ModalWrapper>
       </Overlay>
     </Portal>
   );

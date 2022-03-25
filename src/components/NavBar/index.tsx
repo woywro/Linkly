@@ -4,13 +4,13 @@ import { useRouter } from "next/router";
 import { BiLogOut } from "react-icons/bi";
 import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
 import { Text } from "../Text";
-import { Container, Item, Links, LogoutBtn } from "./style";
+import { NavBarWrapper, Item, Links, LogoutBtn } from "./style";
 
 export const NavBar = () => {
   const router = useRouter();
   const { data: session } = useSession();
   return (
-    <Container>
+    <NavBarWrapper>
       <Links>
         <Link href={`/addLink`}>
           <Item isActive={router.pathname == "/addLink" ? true : false}>
@@ -37,6 +37,6 @@ export const NavBar = () => {
           </LogoutBtn>
         )}
       </Links>
-    </Container>
+    </NavBarWrapper>
   );
 };

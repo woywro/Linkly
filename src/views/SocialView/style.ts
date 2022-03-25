@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../theme/breakpoints";
+import breakpoints from "../../theme/breakpoints";
 export const PageContainer = styled.div`
   display: flex;
   justify-content: space-between;

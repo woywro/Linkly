@@ -1,16 +1,11 @@
-import styled from "styled-components";
+import { useCallback, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { generateHistory } from "../../../../utils/generateHistory";
-import { useState, useEffect, useCallback } from "react";
-import { LinkItem } from "../../../../components/LinkItem";
-import { LinkInterface } from "../../../../types/LinkInterface";
-import { HistoryItem } from "../HistoryItem";
-import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
-import { Text } from "../../../../components/Text";
-import { Scrollbars } from "react-custom-scrollbars-2";
-import breakpoints from "../../../../theme/breakpoints";
-import { Title } from "../../../style";
 import { EmptyState } from "../../../../components/EmptyState";
+import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
+import { generateHistory } from "../../../../utils/generateHistory";
+import { Title } from "../../../SocialView/style";
+import { HistoryItem } from "../HistoryItem";
+import { HistoryWrapper } from "./style";
 
 export const History = () => {
   const History = useSelector((state) => state.history);
@@ -28,7 +23,7 @@ export const History = () => {
   }, [History]);
 
   return (
-    <Wrapper>
+    <HistoryWrapper>
       {history.length == 0 ? (
         <EmptyState msg="Recently used links will appear here" />
       ) : (
@@ -39,18 +34,6 @@ export const History = () => {
           })}
         </>
       )}
-    </Wrapper>
+    </HistoryWrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-flow: column;
-  width: 100%;
-  height: 100%;
-  @media only screen and ${breakpoints.device.sm} {
-    overflow-y: scroll;
-  }
-`;

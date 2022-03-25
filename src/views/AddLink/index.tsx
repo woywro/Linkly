@@ -10,17 +10,9 @@ import { LinkInterface } from "../../types/LinkInterface";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { useRouter } from "next/router";
 import { useCallback } from "react";
+import { AddLinkWrapper } from "./style";
 
-const Container = styled.div`
-  height: 300px;
-  width: 300px;
-  display: flex;
-  justify-content: space-around;
-  flex-flow: column;
-  align-items: center;
-`;
-
-export const Add = () => {
+export const AddLink = () => {
   const [title, setTitle] = useState<string>("");
   const [url, setUrl] = useState<string>("");
   const [collections, setCollections] = useState<CollectionInterface[] | []>(
@@ -44,7 +36,7 @@ export const Add = () => {
   }, [title, url, collections]);
 
   return (
-    <Container>
+    <AddLinkWrapper>
       <Input
         placeholder="name"
         onChange={(e) => {
@@ -65,6 +57,6 @@ export const Add = () => {
         collections={collections}
       />
       <Button onClick={handleAdd}>add</Button>
-    </Container>
+    </AddLinkWrapper>
   );
 };

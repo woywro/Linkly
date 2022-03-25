@@ -1,4 +1,4 @@
-import { PageContainer, LeftWrapper, RightWrapper, Title } from "../style";
+import { PageContainer, LeftWrapper, RightWrapper, Title } from "./style";
 import { useRouter } from "next/router";
 import { Feed } from "./components/Feed";
 import { LoadingSpinner } from "../../components/LoadingSpinner";
@@ -13,7 +13,6 @@ import { getSharedWithYou } from "../../redux/actions";
 export const SocialView = () => {
   const loadingState = useSelector((state) => state.LoadingReducer);
   const [open, setOpen] = useState();
-  const router = useRouter();
   const dispatch = useDispatch();
 
   useEffect(() => {

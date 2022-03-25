@@ -1,16 +1,14 @@
 import { useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
-import { useStore } from "react-redux";
+import { CloseWrapperButton } from "../../components/CloseWrapperButton";
+import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import breakpoints from "../../theme/breakpoints";
-import { Divider, LeftWrapper, PageContainer, RightWrapper } from "../style";
+import { LeftWrapper, PageContainer, RightWrapper } from "../SocialView/style";
 import { CollectionList } from "./components/CollectionList";
 import { History } from "./components/History";
 import { LinkList } from "./components/LinkList";
 import { SearchBar } from "./components/Searchbar";
-import { Button } from "../../components/Button";
-import { OpenWrapperButton } from "../../components/OpenWrapperButton";
-import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 
 export const HomePage = () => {
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
