@@ -9,13 +9,20 @@ export const SearchBarWrapper = styled.div`
   justify-content: space-around;
   align-items: center;
   @media only screen and ${breakpoints.device.sm} {
-    background-image: ${(props) => props.theme.colors.gradient};
     padding: 0;
-    margin: 0;
-    width: 100%;
-    height: 120px;
-    border-bottom-right-radius: 30px;
-    border-bottom-left-radius: 30px;
+    border-radius: 30px;
+    height: 100px;
+    width: auto;
+    position: relative;
+    &:after {
+      content: "";
+      background: ${(props) => props.theme.colors.gradient};
+      width: 100%;
+      height: 100%;
+      bottom: 50%;
+      position: absolute;
+      z-index: 1;
+    }
   }
 `;
 
@@ -29,6 +36,7 @@ export const StyledSearchBar = styled.div`
   align-items: center;
   padding: 10px;
   position: relative;
+  z-index: 10;
   @media only screen and ${breakpoints.device.sm} {
     width: 90%;
   }

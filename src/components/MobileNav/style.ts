@@ -18,7 +18,7 @@ height: 100%;
 width: 100%;
 overflow; hidden;
 transition: transform 0.3s ease-in-out;
-z-index: 20;
+z-index: 100;
   @media only screen and ${breakpoints.device.sm} {
 
   }

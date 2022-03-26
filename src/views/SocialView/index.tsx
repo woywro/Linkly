@@ -1,4 +1,4 @@
-import { PageContainer, LeftWrapper, RightWrapper, Title } from "./style";
+import { PageContainer, LeftWrapper, RightWrapper, Title } from "../style";
 import { useRouter } from "next/router";
 import { Feed } from "./components/Feed";
 import { LoadingSpinner } from "../../components/LoadingSpinner";

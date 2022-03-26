@@ -20,9 +20,9 @@ export default function App({
   const [theme, setTheme] = useState(themeDefault);
   const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
 
-  useEffect(() => {
-    setTheme(choosenTheme);
-  }, [choosenTheme]);
+  // useEffect(() => {
+  //   setTheme(choosenTheme);
+  // }, [choosenTheme]);
 
   return (
     <SessionProvider session={session}>

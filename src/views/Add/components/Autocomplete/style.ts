@@ -53,7 +53,7 @@ export const Suggestion = styled.li`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  background: white;
+  background: ${(props) => props.theme.colors.secondaryBg};
 `;
 
 export const Add = styled.div`

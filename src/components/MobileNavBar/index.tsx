@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { AiOutlineMenu } from "react-icons/ai";
+import { Logo } from "../Logo";
 import { MobileNav } from "../MobileNav";
 import { MenuButton, MobileNavbarWrapper, Title } from "./style";
 
@@ -14,7 +15,7 @@ export const MobileNavBar = () => {
           onClick={() => setOpen(!open)}
         />
       </MenuButton>
-      <Title>Link.ly</Title>
+      <Logo mobile={true} />
       <MobileNav open={open} setOpen={setOpen} />
     </MobileNavbarWrapper>
   );

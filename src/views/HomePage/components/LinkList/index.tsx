@@ -5,7 +5,7 @@ import { LinkItem } from "../../../../components/LinkItem";
 import { Links } from "../../../../components/Links";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
 import breakpoints from "../../../../theme/breakpoints";
-import { Title } from "../../../SocialView/style";
+import { Title } from "../../../style";
 import { MobileSortButton } from "../MobileSortButton";
 import { SortBar } from "../SortBar";
 import { SortDropdown } from "../SortDropdown";

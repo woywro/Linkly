@@ -11,7 +11,6 @@ export const FeedWrapper = styled.div`
   justify-content: start;
   gap: 15px;
   align-items: start;
-  overflow-y: scroll;
   @media only screen and ${breakpoints.device.sm} {
     grid-template-columns: 1fr;
     gap: 10px;

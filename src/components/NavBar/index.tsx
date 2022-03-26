@@ -3,14 +3,11 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { BiLogOut } from "react-icons/bi";
 import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
+import styled, { useTheme } from "styled-components";
+import { Logo } from "../Logo";
 import { Text } from "../Text";
 import { ThemeSwitcher } from "../ThemeSwitcher";
-import { NavBarWrapper, Item, Links, LogoutBtn } from "./style";
-import styled from "styled-components";
-import logo1 from "../../static/img/logo1.png";
-import logo2 from "../../static/img/logo2.png";
-import Image from "next/image";
-import { useTheme } from "styled-components";
+import { Item, Links, LogoutBtn, NavBarWrapper } from "./style";
 
 export const NavBar = ({ setTheme }) => {
   const router = useRouter();
@@ -19,13 +16,7 @@ export const NavBar = ({ setTheme }) => {
   return (
     <NavBarWrapper>
       <Col>
-        <LogoWrapper>
-          {theme.colors.primaryBg == "#181818" ? (
-            <Logo src={logo2} />
-          ) : (
-            <Logo src={logo1} />
-          )}
-        </LogoWrapper>
+        <Logo mobile={false} />
         <ThemeSwitcher setTheme={setTheme} />
       </Col>
       <Links>
@@ -58,18 +49,9 @@ export const NavBar = ({ setTheme }) => {
   );
 };
 
-const LogoWrapper = styled.div`
-  width: 100px;
-  height: auto;
-  padding: 0;
-  margin-top: 20px;
-`;
 const Col = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
-`;
-const Logo = styled(Image)`
-  object-fit: contain;
 `;

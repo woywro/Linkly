@@ -4,7 +4,7 @@ import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import breakpoints from "../../theme/breakpoints";
-import { LeftWrapper, PageContainer, RightWrapper } from "../SocialView/style";
+import { LeftWrapper, PageContainer, RightWrapper } from "../style";
 import { CollectionList } from "./components/CollectionList";
 import { History } from "./components/History";
 import { LinkList } from "./components/LinkList";

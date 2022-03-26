@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { EmptyState } from "../../../../components/EmptyState";
 import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
 import { generateHistory } from "../../../../utils/generateHistory";
-import { Title } from "../../../SocialView/style";
+import { Title } from "../../../style";
 import { HistoryItem } from "../HistoryItem";
 import { HistoryWrapper } from "./style";
 

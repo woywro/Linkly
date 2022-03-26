@@ -42,6 +42,7 @@ export const ModalWrapper = styled.div`
 
 export const CloseButton = styled.button`
   background: none;
+  margin: 5px;
   padding: 5px;
   border: none;
   cursor: pointer;

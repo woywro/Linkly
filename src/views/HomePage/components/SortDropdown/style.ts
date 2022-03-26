@@ -18,7 +18,7 @@ export const IconButton = styled.button`
   border: none;
   margin: 0;
   padding: 0;
-  background: white;
+  background: ${(props) => props.theme.colors.secondaryBg};
   color: black;
   display: flex;
   justify-content: center;

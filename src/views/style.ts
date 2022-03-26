@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import breakpoints from "../../theme/breakpoints";
+import breakpoints from "../theme/breakpoints";
 export const PageContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -14,9 +14,9 @@ export const PageContainer = styled.div`
 `;
 export const LeftWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-flow: column;
-  align-items: start;
+  align-items: center;
   width: 75%;
   height: 100%;
   background: white;

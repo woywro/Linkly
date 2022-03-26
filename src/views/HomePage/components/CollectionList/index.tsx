@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getCollections } from "../../../../redux/actions";
 import { useEffect } from "react";
 import breakpoints from "../../../../theme/breakpoints";
-import { Title } from "../../../SocialView/style";
+import { Title } from "../../../style";
 import Scrollbars from "react-custom-scrollbars-2";
 import { EmptyState } from "../../../../components/EmptyState";
 import { CollectionsWrapper, CollectionsList } from "./style";

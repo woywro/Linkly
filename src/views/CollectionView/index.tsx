@@ -11,7 +11,7 @@ import {
   PageContainer,
   RightWrapper,
   Title,
-} from "../SocialView/style";
+} from "../style";
 import { CollectionInfo } from "./components/CollectionInfo";
 import { Sharing } from "./components/Sharing";
 

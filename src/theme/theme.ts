@@ -24,12 +24,12 @@ export const themeDefault = {
 };
 export const themePink = {
   colors: {
-    primary: "#c471f5",
-    secondary: "#fa71cd",
+    primary: "#b24592",
+    secondary: "#f15f79",
     yellow: "#ffc107",
     green: "#50C878",
     red: "#FF1919",
-    gradient: "linear-gradient(to top, #c471f5 0%, #fa71cd 100%);",
+    gradient: "linear-gradient(to right, #b24592, #f15f79)",
     primaryBg: "white",
     secondaryBg: "#f4f6fa",
     primaryText: "#233548",
