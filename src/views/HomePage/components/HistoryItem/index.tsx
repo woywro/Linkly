@@ -1,13 +1,9 @@
 import moment from "moment";
 import { Text } from "../../../../components/Text";
-import { HistoryLinkInterface } from "../../../../types/HistoryLinkInterface";
+import { LinkInterface } from "../../../../types/LinkInterface";
 import { HistoryItemWrapper } from "./style";
 
-interface Props {
-  item: HistoryLinkInterface;
-}
-
-export const HistoryItem = ({ item }: Props) => {
+export const HistoryItem = (item) => {
   return (
     <HistoryItemWrapper>
       <Text bold>{item.title}</Text>

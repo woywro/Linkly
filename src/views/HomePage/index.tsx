@@ -11,7 +11,6 @@ import { LinkList } from "./components/LinkList";
 import { SearchBar } from "./components/Searchbar";
 
 export const HomePage = () => {
-  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   const [open, setOpen] = useState(false);
 
   return (

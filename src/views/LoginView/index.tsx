@@ -1,6 +1,5 @@
 import { signIn } from "next-auth/react";
 import Image from "next/image";
-import GoogleButton from "react-google-button";
 import styled, { useTheme } from "styled-components";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";

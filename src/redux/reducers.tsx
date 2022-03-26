@@ -1,11 +1,10 @@
 import { AnyAction, combineReducers } from "redux";
 import { CollectionInterface } from "../types/CollectionInterface";
 import { HistoryInterface } from "../types/HistoryInterface";
-const initialState = [];
+import { LinkInterface } from "../types/LinkInterface";
+const initialLinksState: LinkInterface[] = [];
 
-const initialHistory: HistoryInterface[] = [];
-
-export const Links = (state = initialState, action: AnyAction) => {
+export const Links = (state = initialLinksState, action: AnyAction) => {
   switch (action.type) {
     case "ADD_LINK": {
       const linksSorted = [...state, action.payload.link].sort(
@@ -35,7 +34,9 @@ export const Links = (state = initialState, action: AnyAction) => {
   }
 };
 
-export const History = (state = initialHistory, action: AnyAction) => {
+const initialHistoryState: HistoryInterface[] = [];
+
+export const History = (state = initialHistoryState, action: AnyAction) => {
   switch (action.type) {
     case "UPDATE_HISTORY": {
       const newObj = { linkId: action.payload.link.id, timestamp: Date.now() };
@@ -90,7 +91,7 @@ const initial = {
   error: "",
 };
 
-export const LoadingReducer = (state = initial, action) => {
+export const LoadingReducer = (state = initial, action: AnyAction) => {
   switch (action.type) {
     case "LOAD_LOADING": {
       return {
@@ -122,7 +123,7 @@ const allReducers = combineReducers({
   links: Links,
   history: History,
   collections: collections,
-  LoadingReducer: LoadingReducer,
+  loadingReducer: LoadingReducer,
   sharedWithYou: sharedWithYou,
 });
 export default allReducers;

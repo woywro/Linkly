@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Text } from "../../../../components/Text";
+import { RootState } from "../../../../redux/store";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 import {
   Add,
@@ -24,7 +25,7 @@ export const AutoComplete = ({
   setCollections,
   collections,
 }: Props) => {
-  const savedCollections = useSelector((state) => state.collections);
+  const savedCollections = useSelector((state: RootState) => state.collections);
 
   const [filteredSuggestions, setFilteredSuggestions] = useState<
     CollectionInterface[] | []

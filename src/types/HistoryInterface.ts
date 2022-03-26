@@ -1,4 +1,6 @@
 export interface HistoryInterface {
-  id: number;
-  timestamp: number;
+  id: String;
+  linkId: String;
+  ownerId: String;
+  timestamp: String;
 }

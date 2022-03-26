@@ -9,15 +9,17 @@ import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getSharedWithYou } from "../../redux/actions";
+import { RootState } from "../../redux/store";
 
 export const SocialView = () => {
-  const loadingState = useSelector((state) => state.LoadingReducer);
-  const [open, setOpen] = useState();
+  const loadingState = useSelector((state: RootState) => state.loadingReducer);
+  const [open, setOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getSharedWithYou());
   }, []);
+
   return (
     <PageContainer>
       <LeftWrapper>

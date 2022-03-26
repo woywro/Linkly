@@ -1,26 +1,20 @@
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { DropdownMenu } from "../../../../components/DropdownMenu";
 import { Text } from "../../../../components/Text";
-import useMediaQuery from "../../../../hooks/useMediaQuery";
 import { setLinks, sortLinks } from "../../../../redux/actions";
-import breakpoints from "../../../../theme/breakpoints";
 import { Field, IconButton, SortDropdownWrapper } from "./style";
 
 export const SortDropdown = ({ show }) => {
   const [sortByName, setSortByName] = useState(false);
   const [sortByOwner, setSortByOwner] = useState(false);
   const [sortByModification, setSortByModification] = useState(false);
-  const [searchMode, setSearchMode] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   const theme = useTheme();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const handleSortByName = () => {
     setSortByName(!sortByName);
@@ -55,11 +49,6 @@ export const SortDropdown = ({ show }) => {
       });
   };
 
-  const handleStopSearch = () => {
-    setSearchMode(false);
-    setSearchValue("");
-  };
-
   useEffect(() => {
     handleSearchByName();
   }, [searchValue]);
@@ -67,26 +56,24 @@ export const SortDropdown = ({ show }) => {
   return (
     <SortDropdownWrapper>
       <DropdownMenu show={show}>
-        <>
-          <Field onClick={handleSortByName}>
-            <Text color={theme.colors.primaryText}>NAME</Text>
-            <IconButton>
-              {sortByName == true ? <BsChevronDown /> : <BsChevronUp />}
-            </IconButton>
-          </Field>
-          <Field onClick={handleSortByOwner}>
-            <Text color={theme.colors.primaryText}>OWNER</Text>
-            <IconButton>
-              {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
-            </IconButton>
-          </Field>
-          <Field onClick={handleSortByModification}>
-            <Text color={theme.colors.primaryText}>LAST MODIFIED</Text>
-            <IconButton>
-              {sortByModification == true ? <BsChevronDown /> : <BsChevronUp />}
-            </IconButton>
-          </Field>
-        </>
+        <Field onClick={handleSortByName}>
+          <Text color={theme.colors.primaryText}>NAME</Text>
+          <IconButton>
+            {sortByName == true ? <BsChevronDown /> : <BsChevronUp />}
+          </IconButton>
+        </Field>
+        <Field onClick={handleSortByOwner}>
+          <Text color={theme.colors.primaryText}>OWNER</Text>
+          <IconButton>
+            {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
+          </IconButton>
+        </Field>
+        <Field onClick={handleSortByModification}>
+          <Text color={theme.colors.primaryText}>LAST MODIFIED</Text>
+          <IconButton>
+            {sortByModification == true ? <BsChevronDown /> : <BsChevronUp />}
+          </IconButton>
+        </Field>
       </DropdownMenu>
     </SortDropdownWrapper>
   );

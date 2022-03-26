@@ -28,7 +28,6 @@ export const ShareRequests = () => {
   const getShareRequests = async () => {
     await axios.get("/api/getShareRequests").then((res) => {
       setShareRequests(res.data.result.shareRequestsReceived);
-      console.log(res.data.result);
     });
   };
 

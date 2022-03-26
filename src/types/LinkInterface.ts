@@ -1,7 +1,12 @@
+import { CollectionInterface } from "./CollectionInterface";
+import { UserInterface } from "./UserInterface";
+
 export interface LinkInterface {
+  id: string;
   title: string;
-  url: string;
-  categories: string[];
-  keywords: string[];
-  id?: string;
+  url: string | null;
+  ownerId: string;
+  modificationTimestamp: string;
+  collections?: CollectionInterface[];
+  owner?: UserInterface;
 }

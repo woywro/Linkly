@@ -23,7 +23,6 @@ export const SortBar = () => {
   const [sortByModification, setSortByModification] = useState(false);
   const [searchMode, setSearchMode] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   const theme = useTheme();
   const dispatch = useDispatch();
   const router = useRouter();

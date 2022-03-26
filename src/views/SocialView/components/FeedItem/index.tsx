@@ -5,15 +5,11 @@ import { useTheme } from "styled-components";
 import { Text } from "../../../../components/Text";
 import { Label, Name, FeedItemWrapper, Row, Timestamp } from "./style";
 import moment from "moment";
+import { SharedWithYouInterface } from "../../../../types/SharedWithYouInterface";
 
-interface Props {
-  item: LinkInterface;
-}
-
-export const FeedItem = ({ share }) => {
+export const FeedItem = (share: SharedWithYouInterface) => {
   const theme = useTheme();
   const router = useRouter();
-  const dispatch = useDispatch();
 
   return (
     <FeedItemWrapper

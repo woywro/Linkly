@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { updateLink } from "../../redux/actions";
+import { RootState } from "../../redux/store";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
 import { AutoComplete } from "../Add/components/Autocomplete";
@@ -31,7 +32,7 @@ export const EditLink = ({ link }: Props) => {
 
   const dispatch = useDispatch();
 
-  const allCollections = useSelector((state) => state.collections);
+  const allCollections = useSelector((state: RootState) => state.collections);
 
   useEffect(() => {
     setInputValues(JSON.parse(link));

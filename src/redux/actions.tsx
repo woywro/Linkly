@@ -2,6 +2,7 @@ import { LinkInterface } from "../types/LinkInterface";
 import axios from "axios";
 import { HistoryInterface } from "../types/HistoryInterface";
 import { CollectionInterface } from "../types/CollectionInterface";
+import { SharedWithYouInterface } from "../types/SharedWithYouInterface";
 
 export const addLink = (link: LinkInterface) => ({
   type: "ADD_LINK",
@@ -29,7 +30,7 @@ export const updateCollections = (collection: CollectionInterface) => ({
   },
 });
 
-export const setLinks = (links) => ({
+export const setLinks = (links: LinkInterface[]) => ({
   type: "SET_LINKS",
   payload: {
     links,
@@ -101,7 +102,7 @@ export const getHistory = () => {
   };
 };
 
-export const setCollections = (collections) => ({
+export const setCollections = (collections: CollectionInterface[]) => ({
   type: "SET_COLLECTIONS",
   payload: {
     collections,
@@ -118,16 +119,10 @@ export const getCollections = () => {
   };
 };
 
-export const createShare = (categoryId, sharedWith) => {
-  return function (dispatch) {
-    axios.post("/api/createShare", {
-      categoryId: categoryId,
-      sharedWith: sharedWith,
-    });
-  };
-};
-
-export const deleteCollection = (collections, collectionId) => {
+export const deleteCollection = (
+  collections: CollectionInterface[],
+  collectionId: string
+) => {
   return function (dispatch) {
     axios.post("/api/deleteCollection", { id: collectionId }).then((res) => {
       dispatch(
@@ -141,9 +136,8 @@ export const getSharedWithYou = () => {
   return function (dispatch) {
     dispatch({ type: "LOAD_LOADING" });
     axios.get("/api/getSharedWithYou").then((res) => {
-      console.log(res.data.result);
-      const shares = [];
-      res.data.result.map((share) => {
+      const shares: SharedWithYouInterface[] = [];
+      res.data.result.map((share: SharedWithYouInterface) => {
         shares.push(share);
       });
       dispatch(setSharedWithYou(shares));
@@ -152,14 +146,14 @@ export const getSharedWithYou = () => {
   };
 };
 
-export const setSharedWithYou = (shares) => ({
+export const setSharedWithYou = (shares: SharedWithYouInterface[]) => ({
   type: "SET_SHAREDWITHYOU",
   payload: {
     shares,
   },
 });
 
-export const updateSharedWithYou = (share) => ({
+export const updateSharedWithYou = (share: SharedWithYouInterface) => ({
   type: "UPDATE_SHAREDWITHYOU",
   payload: {
     share,
