@@ -46,7 +46,7 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   background: ${(props) => props.theme.colors.secondaryBg};
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
-    height: 70%;
+    height: 80%;
     bottom: 0;
     padding: 10px;
     border-bottom-left-radius: 0;

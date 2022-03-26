@@ -159,11 +159,11 @@ export const LoginView = () => {
         <Divider />
         <GoogleLoginButton
           style={{ width: "250px" }}
-          onClick={() => signIn()}
+          onClick={() => signIn("google")}
         />
         <GithubLoginButton
-          style={{ width: "250px" }}
-          onClick={() => signIn()}
+          style={{ width: "250px", color: "white" }}
+          onClick={() => signIn("github")}
         />
       </RightWrapper>
     </Wrapper>

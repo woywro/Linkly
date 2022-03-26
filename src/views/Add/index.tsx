@@ -40,7 +40,7 @@ export const Add = () => {
   const validationSchema = Yup.object({
     title: Yup.string()
       .min(2, "title is too short!")
-      .max(15, "title is too long!")
+      .max(50, "title is too long!")
       .required("title is required"),
     url: Yup.string()
       .min(3, "url is too short!")
