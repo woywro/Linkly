@@ -92,7 +92,6 @@ model User {
   links         Link[]
   history       History[]
   collections          Collection[]
-  shares         Share[]
   shareRequestsReceived ShareRequest[] @relation(name: "receiver")
   shareRequestsSent ShareRequest[] @relation( name: "owner")
 }

@@ -1,14 +1,4 @@
 -- CreateTable
-CREATE TABLE "Share" (
-    "id" TEXT NOT NULL,
-    "ownerId" TEXT NOT NULL,
-    "categoryId" TEXT NOT NULL,
-    "sharedWith" TEXT[],
-
-    CONSTRAINT "Share_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
 CREATE TABLE "Collection" (
     "id" TEXT NOT NULL,
     "value" TEXT NOT NULL,
@@ -107,9 +97,6 @@ CREATE TABLE "_CollectionToLink" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Share_categoryId_key" ON "Share"("categoryId");
-
--- CreateIndex
 CREATE UNIQUE INDEX "Collection_id_key" ON "Collection"("id");
 
 -- CreateIndex
@@ -144,12 +131,6 @@ CREATE UNIQUE INDEX "_CollectionToLink_AB_unique" ON "_CollectionToLink"("A", "B
 
 -- CreateIndex
 CREATE INDEX "_CollectionToLink_B_index" ON "_CollectionToLink"("B");
-
--- AddForeignKey
-ALTER TABLE "Share" ADD CONSTRAINT "Share_categoryId_fkey" FOREIGN KEY ("categoryId") REFERENCES "Collection"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "Share" ADD CONSTRAINT "Share_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Collection" ADD CONSTRAINT "Collection_ownerId_fkey" FOREIGN KEY ("ownerId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
