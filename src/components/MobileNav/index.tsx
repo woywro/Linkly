@@ -28,7 +28,7 @@ export const MobileNav = ({ open, setOpen }: Props) => {
       <MobileNavItems>
         <MobileNavItem
           isActive={router.pathname == "/" ? true : false}
-          onClick={() => router.push("/")}
+          onClick={() => router.back()}
         >
           <RiLayoutGridLine style={{ fill: "white" }} /> Home
         </MobileNavItem>

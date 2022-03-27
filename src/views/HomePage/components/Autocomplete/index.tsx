@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
 import useWindowDimensions from "../../../../hooks/useWindowDimensions";
-import { SuggestionInterface } from "../../../../types/SuggestionInterface";
 import { SugestionsWrapper, Suggestion } from "./style";
+import { Text } from "../../../../components/Text";
+import { AiOutlineLink } from "react-icons/ai";
+import { RiFolder5Fill } from "react-icons/ri";
+import Router, { useRouter } from "next/router";
+import { SuggestionInterface } from "../../../../types/SuggestionInterface";
 
 interface Props {
   input: string;
@@ -12,11 +16,16 @@ interface Props {
 export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
   const [hide, setHide] = useState<boolean>(true);
   const { height } = useWindowDimensions();
+  const router = useRouter();
 
-  const handleOnClick = useCallback((url) => {
+  const handleOnClick = useCallback((suggestion) => {
     setHide(true);
     setInput("");
-    window.open(url, "_blank");
+    if (suggestion.type === "link") {
+      window.open(suggestion.url, "_blank");
+    } else if (suggestion.type === "collection") {
+      router.push(`/collections/${suggestion.id}`);
+    }
   }, []);
 
   useEffect(() => {
@@ -34,10 +43,15 @@ export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
           {suggestions.map((suggestion) => {
             return (
               <Suggestion
-                key={suggestion.url}
-                onClick={() => handleOnClick(suggestion.url)}
+                key={suggestion.id}
+                onClick={() => handleOnClick(suggestion)}
               >
-                {suggestion.title}
+                {suggestion.type == "collection" ? (
+                  <RiFolder5Fill />
+                ) : (
+                  <AiOutlineLink />
+                )}
+                <Text> {suggestion.value}</Text>
               </Suggestion>
             );
           })}

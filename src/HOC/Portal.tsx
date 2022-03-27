@@ -1,7 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-export function Portal({ children, selector }) {
+interface Props {
+  children: JSX.Element[];
+}
+
+export function Portal({ children, selector }: Props) {
   const ref = useRef();
   const [mounted, setMounted] = useState(false);
 

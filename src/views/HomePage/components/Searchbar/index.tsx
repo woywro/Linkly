@@ -18,8 +18,25 @@ export const SearchBar = () => {
         },
       })
       .then((res) => {
-        setSuggestions(res.data.links);
-        console.log(res.data.links)
+        const allSuggestions = res.data.links.concat(res.data.collections);
+        const normalizedSuggestions: SuggestionInterface[] = allSuggestions.map(
+          (e) => {
+            if (e.title == undefined) {
+              return {
+                id: e.id,
+                value: e.value,
+                type: "collection",
+              };
+            } else {
+              return {
+                id: e.id,
+                value: e.title,
+                type: "link",
+              };
+            }
+          }
+        );
+        setSuggestions(normalizedSuggestions);
       });
   };
 
@@ -32,13 +49,13 @@ export const SearchBar = () => {
           onChange={handleChange}
           value={input}
         />
-        {/* {typeof window !== "undefined" && (
+        {typeof window !== "undefined" && (
           <AutoComplete
             input={input}
             setInput={setInput}
             suggestions={suggestions}
           />
-        )} */}
+        )}
       </StyledSearchBar>
     </SearchBarWrapper>
   );

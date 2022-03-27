@@ -1,6 +1,5 @@
 import { getSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
-import { CollectionShareLinks } from "../../types/CollectionShareLinks";
 import { CollectionView } from "../../views/CollectionView";
 
 interface Props {

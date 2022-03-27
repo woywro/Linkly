@@ -9,6 +9,7 @@ import { RootState } from "../../redux/store";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
 import { AutoComplete } from "../Add/components/Autocomplete";
+import { useRouter } from "next/router";
 
 const EditLinkWrapper = styled.div`
   height: 300px;
@@ -29,6 +30,8 @@ export const EditLink = ({ link }: Props) => {
   const [collections, setCollections] = useState<CollectionInterface[] | []>(
     []
   );
+
+  const router = useRouter();
 
   const dispatch = useDispatch();
 
@@ -59,7 +62,7 @@ export const EditLink = ({ link }: Props) => {
       .then((res) => {
         dispatch(updateLink(res.data));
       });
-    // router.push("/");
+    router.back();
   };
 
   return (

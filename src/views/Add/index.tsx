@@ -32,7 +32,7 @@ export const Add = () => {
         .then((res) => {
           dispatch(addLink(res.data));
         });
-      router.push("/");
+      router.back();
     },
     [collections]
   );

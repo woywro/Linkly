@@ -8,15 +8,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Share {
-    id         String   @id @default(cuid())
-    ownerId String
-    categoryId String @unique
-    category Collection?  @relation(fields: [categoryId], references: [id], onDelete: Cascade)
-    owner User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
-    sharedWith String[]
-}
-
 model Collection {
   id         String   @id @default(cuid()) @unique
   value      String 
@@ -24,7 +15,6 @@ model Collection {
   ownerId     String 
   owner       User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade) 
   links Link[]
-  share Share[]
   shareRequests ShareRequest[]
 }
 

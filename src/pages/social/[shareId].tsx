@@ -1,9 +1,8 @@
 import { getSession } from "next-auth/react";
 import { useRouter } from "next/router";
-import { LinkInterface } from "../../types/LinkInterface";
-import { SharedItemView } from "../../views/SharedItemView";
-import { Modal } from "../../components/Modal";
 import { prisma } from "../../../prisma/PrismaClient";
+import { Modal } from "../../components/Modal";
+import { SharedItemView } from "../../views/SharedItemView";
 
 export default function SharedItem({ share }) {
   const router = useRouter();
@@ -13,7 +12,7 @@ export default function SharedItem({ share }) {
       title={share.collection.value}
       open={true}
       onClose={() => {
-        router.push("/");
+        router.back();
       }}
     >
       <SharedItemView share={share} />

@@ -10,7 +10,7 @@ export default function AddLink() {
       title={"Add Link"}
       open={router.pathname == "/addLink" ? true : false}
       onClose={() => {
-        router.push("/");
+        router.back();
       }}
     >
       <Add />

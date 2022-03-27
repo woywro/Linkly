@@ -4,7 +4,6 @@ import { getSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
   const data = req.body;
   try {
     const result = await prisma.ShareRequest.update({
