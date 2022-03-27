@@ -46,7 +46,7 @@ export const ThemeSwitcher = ({ setTheme }) => {
           )}
         </ButtonIcon>
       </ThemeSwitcherButton>
-      <DropdownMenu show={show}>
+      <DropdownMenu show={show} fullWidth={true}>
         <ThemeChoiceButton onClick={handleChangeTheme}>
           default (light)
         </ThemeChoiceButton>

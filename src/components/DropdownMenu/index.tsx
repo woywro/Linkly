@@ -3,8 +3,13 @@ import { DropdownMenuWrapper } from "./style";
 interface Props {
   show: boolean;
   children: JSX.Element[];
+  fullWidth: boolean;
 }
 
-export const DropdownMenu = ({ show, children }: Props) => {
-  return <DropdownMenuWrapper show={show}>{children}</DropdownMenuWrapper>;
+export const DropdownMenu = ({ show, children, fullWidth }: Props) => {
+  return (
+    <DropdownMenuWrapper show={show} fullWidth={fullWidth}>
+      {children}
+    </DropdownMenuWrapper>
+  );
 };

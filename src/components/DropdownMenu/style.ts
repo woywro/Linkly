@@ -1,7 +1,10 @@
 import styled from "styled-components";
 import breakpoints from "../../theme/breakpoints";
 
-export const DropdownMenuWrapper = styled.div<{ show: boolean }>`
+export const DropdownMenuWrapper = styled.div<{
+  show: boolean;
+  fullWidth?: boolean;
+}>`
   justify-content: center;
   flex-flow: column;
   align-items: center;
@@ -22,4 +25,5 @@ export const DropdownMenuWrapper = styled.div<{ show: boolean }>`
   @media only screen and ${breakpoints.device.lg} {
     width: 60%;
   }
+  width: ${(props) => props.fullWidth == true && "100%"};
 `;
