@@ -14,6 +14,10 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       where: {
         owner: { email: session.user.email },
       },
+      select: {
+        link: true,
+        timestamp: true,
+      },
     });
     res.status(200).json({ history });
   } catch (err) {

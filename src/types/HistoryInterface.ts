@@ -1,6 +1,6 @@
+import { LinkInterface } from "./LinkInterface";
+
 export interface HistoryInterface {
-  id: String;
-  linkId: String;
-  ownerId: String;
+  link: LinkInterface;
   timestamp: String;
 }

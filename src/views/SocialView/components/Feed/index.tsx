@@ -10,6 +10,10 @@ import { RootState } from "../../../../redux/store";
 export const Feed = () => {
   const sharedWithYou = useSelector((state: RootState) => state.sharedWithYou);
 
+  useEffect(() => {
+    console.log(sharedWithYou);
+  }, [sharedWithYou]);
+
   return (
     <Scrollbars
       style={{
@@ -25,7 +29,7 @@ export const Feed = () => {
           <EmptyState msg="You don't have shares" />
         ) : (
           sharedWithYou.map((share: SharedWithYouInterface) => {
-            return <FeedItem share={share} key={share.id} />;
+            return <FeedItem sharedItem={share} key={share.id} />;
           })
         )}
       </FeedWrapper>

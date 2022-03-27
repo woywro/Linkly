@@ -8,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const result = await prisma.History.create({
       data: {
-        ...data,
+        link: { connect: { id: data.linkId } },
         owner: { connect: { email: session.user.email } },
         timestamp: JSON.stringify(Date.now()),
       },

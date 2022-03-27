@@ -6,8 +6,14 @@ import { Text } from "../../../../components/Text";
 import { Label, Name, FeedItemWrapper, Row, Timestamp } from "./style";
 import moment from "moment";
 import { SharedWithYouInterface } from "../../../../types/SharedWithYouInterface";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
+import { UserInterface } from "../../../../types/UserInterface";
 
-export const FeedItem = (share: SharedWithYouInterface) => {
+interface Props {
+  sharedItem: SharedWithYouInterface;
+}
+
+export const FeedItem = ({ sharedItem }: Props) => {
   const theme = useTheme();
   const router = useRouter();
 
@@ -15,19 +21,19 @@ export const FeedItem = (share: SharedWithYouInterface) => {
     <FeedItemWrapper
       onClick={() => {
         router.push({
-          pathname: `/social/${share.id}`,
+          pathname: `/social/${sharedItem.id}`,
         });
       }}
     >
       <Label>
         <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={"70px"} />
-        <Name>{share.collection.value}</Name>
+        <Name>{sharedItem.collection.value}</Name>
       </Label>
       <Text color={theme.colors.secondaryText}>
-        {share.collection.owner.email}
+        {sharedItem.collection.owner.email}
       </Text>
       <Timestamp color={theme.colors.secondaryText}>
-        {moment(parseInt(share.createdTimestamp)).format("LT")}
+        {moment(parseInt(sharedItem.createdTimestamp)).format("LT")}
       </Timestamp>
     </FeedItemWrapper>
   );
