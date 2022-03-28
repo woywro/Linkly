@@ -12,6 +12,9 @@ import { GlobalStyles } from "../theme/globalStyles";
 import { themeDefault } from "../theme/theme";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+const queryClient = new QueryClient();
 
 export default function App({
   Component,
@@ -28,20 +31,22 @@ export default function App({
 
   return (
     <SessionProvider session={session}>
-      <Provider store={store}>
-        <ThemeProvider theme={theme}>
-          <GlobalStyles />
-          <Wrapper>
-            <ViewBox>
-              <AuthGuard>
-                <MobileNavBar />
-                <NavBar setTheme={setTheme} />
-                <Component {...pageProps} />
-              </AuthGuard>
-            </ViewBox>
-          </Wrapper>
-        </ThemeProvider>
-      </Provider>
+      <QueryClientProvider client={queryClient}>
+        <Provider store={store}>
+          <ThemeProvider theme={theme}>
+            <GlobalStyles />
+            <Wrapper>
+              <ViewBox>
+                <AuthGuard>
+                  <MobileNavBar />
+                  <NavBar setTheme={setTheme} />
+                  <Component {...pageProps} />
+                </AuthGuard>
+              </ViewBox>
+            </Wrapper>
+          </ThemeProvider>
+        </Provider>
+      </QueryClientProvider>
     </SessionProvider>
   );
 }
