@@ -33,9 +33,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     // select c.*, l.* from "Collection" as c, "Link" as l
     // `;
     const [links, collections] = await prisma.$transaction([
-      prisma.Link.findMany({ where: { title: { contains: searchValue } } }),
+      prisma.Link.findMany({
+        where: { title: { contains: searchValue, mode: "insensitive" } },
+      }),
       prisma.Collection.findMany({
-        where: { value: { contains: searchValue } },
+        where: { value: { contains: searchValue, mode: "insensitive" } },
       }),
     ]);
     console.log(links, collections);

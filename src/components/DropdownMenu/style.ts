@@ -17,7 +17,7 @@ export const DropdownMenuWrapper = styled.div<{
   border-radius: 10px;
   padding: 10px;
   box-shadow: ${(props) => props.theme.shadow};
-  z-index: 100;
+  z-index: 150;
   display: ${(props) => (props.show ? "flex" : "none")};
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;

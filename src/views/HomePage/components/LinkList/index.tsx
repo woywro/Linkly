@@ -16,15 +16,18 @@ import { setLinks } from "../../../../redux/actions";
 export const LinkList = () => {
   const userLinks = useSelector((state: RootState) => state.links);
   const [showMobileSort, setShowMobileSort] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const handleLoadMore = useCallback(() => {
+    setLoading(true);
     axios
       .get("/api/getLinks", {
         params: { cursor: userLinks[userLinks.length - 1].id },
       })
       .then((res) => {
         dispatch(setLinks(userLinks.concat(res.data.link)));
+        setLoading(false);
       });
   }, [userLinks]);
 
@@ -46,6 +49,7 @@ export const LinkList = () => {
           {userLinks.map((e) => {
             return <LinkItem item={e} />;
           })}
+          {loading && <div>loading</div>}
           <Button onClick={handleLoadMore}>Load more</Button>
         </>
       )}

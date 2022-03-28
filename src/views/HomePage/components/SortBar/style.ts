@@ -14,7 +14,7 @@ export const SortBarWrapper = styled.div`
   padding: 5px;
   cursor: pointer;
   background: ${(props) => props.theme.colors.primaryBg};
-  z-index: 10;
+  z-index: 5;
   @media only screen and ${breakpoints.device.sm} {
     display: none;
   }
