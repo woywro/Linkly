@@ -95,8 +95,9 @@ export const setHistory = (links: HistoryInterface[]) => ({
 export const getHistory = () => {
   return function (dispatch) {
     dispatch({ type: "LOAD_LOADING" });
-    axios.get("/api/getHistory").then((res) => {
+    axios.get("/api/getHistory", { params: { cursor: "" } }).then((res) => {
       dispatch(setHistory(res.data.history));
+      console.log(res.data.history)
       dispatch({ type: "LOAD_SUCCESS" });
     });
   };

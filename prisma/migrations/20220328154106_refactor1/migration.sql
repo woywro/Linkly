@@ -106,6 +106,9 @@ CREATE UNIQUE INDEX "Collection_valId_key" ON "Collection"("valId");
 CREATE UNIQUE INDEX "Link_id_key" ON "Link"("id");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "History_timestamp_key" ON "History"("timestamp");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "ShareRequest_id_key" ON "ShareRequest"("id");
 
 -- CreateIndex

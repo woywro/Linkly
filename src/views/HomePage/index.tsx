@@ -33,7 +33,17 @@ export const HomePage = () => {
       </LeftWrapper>
       <RightWrapper open={open}>
         <CloseWrapperButton onClick={() => setOpen(false)} />
+        <Scrollbars
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
         <History />
+        </Scrollbars>
       </RightWrapper>
     </PageContainer>
   );

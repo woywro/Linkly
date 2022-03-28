@@ -2,15 +2,21 @@ import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
+    const limit = 5;
+    const cursor = req.query.cursor ?? "";
+    const cursorObj = cursor == "" ? undefined : { timestamp: cursor };
     const history = await prisma.History.findMany({
+      skip: cursor !== "" ? 1 : 0,
+      cursor: cursorObj,
+      take: limit,
       orderBy: {
         timestamp: "desc",
       },
-      take: 5,
       where: {
         owner: { email: session.user.email },
       },
@@ -21,6 +27,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
     res.status(200).json({ history });
   } catch (err) {
-    res.status(403).json({ err });
+    // res.status(403).json({ err });
+    if (err instanceof PrismaClientKnownRequestError) {
+      console.log(err);
+    }
   }
 };
