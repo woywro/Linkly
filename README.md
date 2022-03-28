@@ -33,6 +33,12 @@ This project enables you to manage your links just like in file manager. Most fu
 * Styled Components
 * MomentJS
 
+### Live version
+https://linklydep.vercel.app/
+
+### Info
+
+This project is in early stage of development. I'm still experimenting with technologies and different approaches to some problems. 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
