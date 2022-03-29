@@ -46,10 +46,12 @@ export const updateLink = (link: LinkInterface) => ({
 
 export const getLinks = () => {
   return function (dispatch) {
-    dispatch({ type: "LOAD_LOADING" });
+    // dispatch({ type: "LOAD_LOADING" });
+    dispatch(requestStarted("getLinks"));
     axios.get("/api/getLinks", { params: { cursor: "" } }).then((res) => {
       dispatch(setLinks(res.data.link));
-      dispatch({ type: "LOAD_SUCCESS" });
+      // dispatch({ type: "LOAD_SUCCESS" });
+      dispatch(requestFinished("getLinks"));
     });
   };
 };
@@ -94,11 +96,10 @@ export const setHistory = (links: HistoryInterface[]) => ({
 
 export const getHistory = () => {
   return function (dispatch) {
-    dispatch({ type: "LOAD_LOADING" });
+    dispatch(requestStarted("getHistory"));
     axios.get("/api/getHistory", { params: { cursor: "" } }).then((res) => {
       dispatch(setHistory(res.data.history));
-      console.log(res.data.history)
-      dispatch({ type: "LOAD_SUCCESS" });
+      dispatch(requestFinished("getHistory"));
     });
   };
 };
@@ -112,10 +113,10 @@ export const setCollections = (collections: CollectionInterface[]) => ({
 
 export const getCollections = () => {
   return function (dispatch) {
-    dispatch({ type: "LOAD_LOADING" });
+    dispatch(requestStarted("getCollections"));
     axios.get("/api/getCollections").then((res) => {
       dispatch(setCollections(res.data.collections));
-      dispatch({ type: "LOAD_SUCCESS" });
+      dispatch(requestFinished("getCollections"));
     });
   };
 };
@@ -135,14 +136,14 @@ export const deleteCollection = (
 
 export const getSharedWithYou = () => {
   return function (dispatch) {
-    dispatch({ type: "LOAD_LOADING" });
+    dispatch(requestStarted("getSharedWithYou"));
     axios.get("/api/getSharedWithYou").then((res) => {
       const shares: SharedWithYouInterface[] = [];
       res.data.result.map((share: SharedWithYouInterface) => {
         shares.push(share);
       });
       dispatch(setSharedWithYou(shares));
-      dispatch({ type: "LOAD_SUCCESS" });
+      dispatch(requestFinished("getSharedWithYou"));
     });
   };
 };
@@ -158,5 +159,21 @@ export const updateSharedWithYou = (share: SharedWithYouInterface) => ({
   type: "UPDATE_SHAREDWITHYOU",
   payload: {
     share,
+  },
+});
+
+export const requestStarted = (requestName: string) => ({
+  type: "REQUEST_STARTED",
+  request: {
+    requestName,
+    inProgress: true,
+  },
+});
+
+export const requestFinished = (requestName: string) => ({
+  type: "REQUEST_FINISHED",
+  request: {
+    requestName,
+    inProgress: false,
   },
 });

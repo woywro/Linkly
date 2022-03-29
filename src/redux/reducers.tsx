@@ -2,6 +2,7 @@ import { AnyAction, combineReducers } from "redux";
 import { CollectionInterface } from "../types/CollectionInterface";
 import { HistoryInterface } from "../types/HistoryInterface";
 import { LinkInterface } from "../types/LinkInterface";
+
 const initialLinksState: LinkInterface[] = [];
 
 export const Links = (state = initialLinksState, action: AnyAction) => {
@@ -91,26 +92,53 @@ const initial = {
   error: "",
 };
 
-export const LoadingReducer = (state = initial, action: AnyAction) => {
+const initialState = {
+  requests: [],
+};
+
+export const requestsLoading = (state = initialState, action) => {
   switch (action.type) {
-    case "LOAD_LOADING": {
+    case "REQUEST_STARTED": {
+      const existingCall = state.requests.find(
+        (request) => request.requestName === action.request.name
+      );
+
+      if (existingCall) {
+        return {
+          ...state,
+          requests: state.requests.map((request) =>
+            request.name === action.request.name
+              ? { ...request, inProgress: true, error: null }
+              : request
+          ),
+        };
+      }
+
       return {
         ...state,
-        loading: true,
-        error: "",
+        requests: [...state.requests, action.request],
       };
     }
-    case "LOAD_SUCCESS": {
+    case "REQUEST_FINISHED": {
       return {
         ...state,
-        loading: false,
+        requests: state.requests.filter(
+          (request) => request.name !== action.request.name
+        ),
       };
     }
-    case "LOAD_ERROR": {
+    case "REQUEST_FAILED": {
       return {
         ...state,
-        loading: false,
-        error: action.error,
+        requests: state.requests.map((request) =>
+          request.name === action.request.name
+            ? {
+                ...request,
+                error: action.request.error,
+                inProgress: false,
+              }
+            : request
+        ),
       };
     }
     default: {
@@ -123,7 +151,7 @@ const allReducers = combineReducers({
   links: Links,
   history: History,
   collections: collections,
-  loadingReducer: LoadingReducer,
   sharedWithYou: sharedWithYou,
+  requestsLoading: requestsLoading,
 });
 export default allReducers;
