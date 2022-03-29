@@ -14,48 +14,22 @@ import {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 30%;
+  height: 70%;
   background: ${(props) => props.theme.colors.primaryBg};
   border-radius: 30px;
   @media only screen and ${breakpoints.device.sm} {
     border-radius: 0px;
+    width: 100%;
+    height: 100%;
   }
   @media only screen and ${breakpoints.device.lg} {
     border-radius: 0px;
-  }
-`;
-const LeftWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-  @media only screen and ${breakpoints.device.sm} {
-    display: none;
-  }
-  @media only screen and ${breakpoints.device.lg} {
-    display: none;
-  }
-`;
-
-const RightWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-  background: ${(props) => props.theme.colors.priaryBg};
-  @media only screen and ${breakpoints.device.sm} {
     width: 100%;
-  }
-  @media only screen and ${breakpoints.device.lg} {
-    width: 80%;
+    height: 100%;
   }
 `;
 
@@ -139,32 +113,25 @@ export const LoginView = () => {
   const theme = useTheme();
   return (
     <Wrapper>
-      <LeftWrapper>
-        <ImageWrapper>
-          <LoginImage src={loginLogo} />
-        </ImageWrapper>
-      </LeftWrapper>
-      <RightWrapper>
-        <Logo mobile={false} />
-        <TextWrapper>
-          <Title color={theme.colors.primaryText}>Sign in</Title>
-          <Text color={theme.colors.primaryText}>
-            Sign in to continue to this application
-          </Text>
-        </TextWrapper>
-        <StyledInput placeholder="email" />
-        <StyledInput placeholder="password" />
-        <LoginButton>Log in</LoginButton>
-        <Divider />
-        <GoogleLoginButton
-          style={{ width: "250px" }}
-          onClick={() => signIn("google")}
-        />
-        <GithubLoginButton
-          style={{ width: "250px", color: "white" }}
-          onClick={() => signIn("github")}
-        />
-      </RightWrapper>
+      <Logo mobile={false} />
+      <TextWrapper>
+        <Title color={theme.colors.primaryText}>Sign in</Title>
+        <Text color={theme.colors.primaryText}>
+          Sign in to continue to this application
+        </Text>
+      </TextWrapper>
+      <StyledInput placeholder="email" />
+      <StyledInput placeholder="password" />
+      <LoginButton>Log in</LoginButton>
+      <Divider />
+      <GoogleLoginButton
+        style={{ width: "250px" }}
+        onClick={() => signIn("google")}
+      />
+      <GithubLoginButton
+        style={{ width: "250px" }}
+        onClick={() => signIn("github")}
+      />
     </Wrapper>
   );
 };

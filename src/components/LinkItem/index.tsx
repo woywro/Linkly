@@ -88,7 +88,7 @@ export const LinkItem = ({ item }: Props) => {
       <LinkMenuButton onClick={handleOpenMenu}>
         <CgMoreAlt size={"20px"} />
       </LinkMenuButton>
-      <DropdownMenu show={show}>
+      <DropdownMenu show={show} fullWidth={false}>
         <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
           Delete
         </DropDownButton>

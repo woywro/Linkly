@@ -13,6 +13,8 @@ import { themeDefault } from "../theme/theme";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { useRouter } from "next/router";
+import Login from "./login";
 
 const queryClient = new QueryClient();
 
@@ -20,14 +22,15 @@ export default function App({
   Component,
   pageProps: { session, status, ...pageProps },
 }: AppProps) {
+  const router = useRouter();
   const [theme, setTheme] = useState(themeDefault);
   const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
-
   useEffect(() => {
     if (choosenTheme !== "") {
       setTheme(choosenTheme);
     }
   }, [choosenTheme]);
+  console.log(router);
 
   return (
     <SessionProvider session={session}>
@@ -36,13 +39,13 @@ export default function App({
           <ThemeProvider theme={theme}>
             <GlobalStyles />
             <Wrapper>
-              <ViewBox>
-                <AuthGuard>
+              <AuthGuard>
+                <ViewBox>
                   <MobileNavBar />
                   <NavBar setTheme={setTheme} />
                   <Component {...pageProps} />
-                </AuthGuard>
-              </ViewBox>
+                </ViewBox>
+              </AuthGuard>
             </Wrapper>
           </ThemeProvider>
         </Provider>
