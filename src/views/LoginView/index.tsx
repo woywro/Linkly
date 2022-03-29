@@ -1,11 +1,9 @@
 import { signIn } from "next-auth/react";
-import Image from "next/image";
 import styled, { useTheme } from "styled-components";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Logo } from "../../components/Logo";
 import { Text } from "../../components/Text";
-import loginLogo from "../../static/img/loginLogo.png";
 import breakpoints from "../../theme/breakpoints";
 import {
   GoogleLoginButton,
@@ -95,18 +93,19 @@ const Divider = styled.div`
   }
 `;
 
-const LoginImage = styled(Image)`
-  border-radius: 20px;
-  object-fit: contain;
-`;
-
-const ImageWrapper = styled.div`
+const Row = styled.div`
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
+  padding: 5px;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  @media only screen and ${breakpoints.device.sm} {
+    width: 100%;
+  }
+  @media only screen and ${breakpoints.device.lg} {
+    margin: 5px;
+  }
 `;
 
 export const LoginView = () => {
@@ -124,14 +123,18 @@ export const LoginView = () => {
       <StyledInput placeholder="password" />
       <LoginButton>Log in</LoginButton>
       <Divider />
-      <GoogleLoginButton
-        style={{ width: "250px" }}
-        onClick={() => signIn("google")}
-      />
-      <GithubLoginButton
-        style={{ width: "250px" }}
-        onClick={() => signIn("github")}
-      />
+      <Row>
+        <GoogleLoginButton
+          onClick={() => signIn("google")}
+          style={{ background: theme.colors.primary }}
+          activeStyle={{ background: theme.colors.textSecondary }}
+        />
+        <GithubLoginButton
+          onClick={() => signIn("github")}
+          style={{ background: theme.colors.primary }}
+          activeStyle={{ background: theme.colors.textSecondary }}
+        />
+      </Row>
     </Wrapper>
   );
 };

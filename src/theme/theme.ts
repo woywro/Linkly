@@ -22,17 +22,17 @@ export const themeDefault = {
     large: "3em",
   },
 };
-export const themePink = {
+export const themeDefaultDark = {
   colors: {
-    primary: "#b24592",
-    secondary: "#f15f79",
+    primary: "#283c86",
+    secondary: "#45a247",
     yellow: "#ffc107",
     green: "#50C878",
     red: "#FF1919",
-    gradient: "linear-gradient(to right, #b24592, #f15f79)",
-    primaryBg: "white",
-    secondaryBg: "#f4f6fa",
-    primaryText: "#233548",
+    gradient: "linear-gradient(to right, #283c86, #45a247)",
+    primaryBg: "#181818",
+    secondaryBg: "#212121",
+    primaryText: "#e4e6eb",
     secondaryText: "#bec3c6",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
@@ -46,17 +46,17 @@ export const themePink = {
   },
 };
 
-export const themeDefaultDark = {
+export const themePink = {
   colors: {
-    primary: "#302b63",
-    secondary: "#302b63",
+    primary: "#c9ffbf",
+    secondary: "#ffafbd",
     yellow: "#ffc107",
     green: "#50C878",
     red: "#FF1919",
-    gradient: "linear-gradient(to right, #0f0c29, #302b63, #24243e)",
-    primaryBg: "#181818",
-    secondaryBg: "#212121",
-    primaryText: "#e4e6eb",
+    gradient: "linear-gradient(to right, #c9ffbf, #ffafbd)",
+    primaryBg: "white",
+    secondaryBg: "#f4f6fa",
+    primaryText: "#233548",
     secondaryText: "#bec3c6",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",

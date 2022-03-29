@@ -10,7 +10,7 @@ import { getHistory } from "../redux/actions/HistoryActions";
 import { getLinks } from "../redux/actions/LinkActions";
 
 interface Props {
-  children: JSX.Element[];
+  children: JSX.Element;
 }
 
 export const AuthGuard = ({ children }: Props) => {
