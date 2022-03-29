@@ -12,6 +12,7 @@ export const PageContainer = styled.div`
     flex-flow: column;
   }
 `;
+
 export const LeftWrapper = styled.div`
   display: flex;
   justify-content: center;
