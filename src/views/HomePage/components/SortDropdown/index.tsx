@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { DropdownMenu } from "../../../../components/DropdownMenu";
 import { Text } from "../../../../components/Text";
-import { setLinks, sortLinks } from "../../../../redux/actions";
+import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
 import { Field, IconButton, SortDropdownWrapper } from "./style";
 
 export const SortDropdown = ({ show }) => {

@@ -8,7 +8,7 @@ import * as Yup from "yup";
 import { Button } from "../../components/Button";
 import { InputStyling } from "../../components/Input";
 import { Text } from "../../components/Text";
-import { addLink } from "../../redux/actions";
+import { addLink } from "../../redux/actions/LinkActions";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { AutoComplete } from "./components/Autocomplete";
 import { AddLinkWrapper } from "./style";

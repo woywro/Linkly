@@ -6,7 +6,7 @@ import { HistoryItem } from "../HistoryItem";
 import { HistoryWrapper } from "./style";
 import axios from "axios";
 import { useCallback, useState } from "react";
-import { setHistory, setLinks } from "../../../../redux/actions";
+import { setHistory } from "../../../../redux/actions/HistoryActions";
 import { Button } from "../../../../components/Button";
 import { useEffect } from "react";
 import useLoading from "../../../../hooks/useLoading";
@@ -16,18 +16,18 @@ export const History = () => {
   const History = useSelector((state: RootState) => state.history);
   const requests = useSelector((state: RootState) => state.requestsLoading);
   const dispatch = useDispatch();
-  // const [loading, setLoading] = useState(false);
+  const [loadingList, setLoadingList] = useState(false);
   const loading = useLoading(requests, "getHistory");
 
   const handleLoadMore = useCallback(() => {
-    // setLoading(true);
+    setLoadingList(true);
     axios
       .get("/api/getHistory", {
         params: { cursor: History[History.length - 1].timestamp },
       })
       .then((res) => {
         dispatch(setHistory(History.concat(res.data.history)));
-        // setLoading(false);
+        setLoadingList(false);
       });
   }, [History]);
 
@@ -43,7 +43,7 @@ export const History = () => {
           {History.map((e) => {
             return <HistoryItem item={e} />;
           })}
-          {loading && <div>loading</div>}
+          {loadingList && <div>loading</div>}
           <Button onClick={handleLoadMore}>Load more</Button>
         </>
       )}

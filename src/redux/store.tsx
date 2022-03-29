@@ -13,5 +13,5 @@ export interface RootState {
   history: HistoryInterface[];
   collections: CollectionInterface[];
   sharedWithYou: SharedWithYouInterface[];
-  loadingReducer: any;
+  requestsLoading: any;
 }

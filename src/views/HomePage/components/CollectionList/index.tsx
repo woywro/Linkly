@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Collection } from "../Collection";
 import { useSelector, useDispatch } from "react-redux";
-import { getCollections } from "../../../../redux/actions";
+import { getCollections } from "../../../../redux/actions/CollectionActions";
 import { useEffect, useState } from "react";
 import { Title } from "../../../style";
 import { EmptyState } from "../../../../components/EmptyState";

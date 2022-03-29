@@ -11,7 +11,7 @@ import { SortBar } from "../SortBar";
 import { SortDropdown } from "../SortDropdown";
 import { Row } from "./style";
 import axios from "axios";
-import { setLinks } from "../../../../redux/actions";
+import { setLinks } from "../../../../redux/actions/LinkActions";
 import useLoading from "../../../../hooks/useLoading";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 
@@ -19,19 +19,19 @@ export const LinkList = () => {
   const userLinks = useSelector((state: RootState) => state.links);
   const [showMobileSort, setShowMobileSort] = useState(false);
   const dispatch = useDispatch();
-  const request = useSelector((state) => state.requestsLoading);
-  const loading = useLoading(request, "getLinks");
-  // const [loading, setLoading] = useState(false)
+  const requests = useSelector((state) => state.requestsLoading);
+  const loading = useLoading(requests, "getLinks");
+  const [loadingList, setLoadingList] = useState(false);
 
   const handleLoadMore = useCallback(() => {
-    // setLoading(true);
+    setLoadingList(true);
     axios
       .get("/api/getLinks", {
         params: { cursor: userLinks[userLinks.length - 1].id },
       })
       .then((res) => {
         dispatch(setLinks(userLinks.concat(res.data.link)));
-        // setLoading(false);
+        setLoadingList(false);
       });
   }, [userLinks]);
 
@@ -57,7 +57,7 @@ export const LinkList = () => {
               {userLinks.map((e) => {
                 return <LinkItem item={e} />;
               })}
-              {/* {loading && <div>loading</div>} */}
+              {loadingList && <div>loading</div>}
               <Button onClick={handleLoadMore}>Load more</Button>
             </>
           )}

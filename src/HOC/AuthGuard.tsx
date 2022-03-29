@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import Login from "../pages/login";
-import { getCollections, getHistory, getLinks } from "../redux/actions";
+import { getCollections } from "../redux/actions/CollectionActions";
+import { getHistory } from "../redux/actions/HistoryActions";
+import { getLinks } from "../redux/actions/LinkActions";
 
 interface Props {
   children: JSX.Element[];
