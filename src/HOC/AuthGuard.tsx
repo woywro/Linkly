@@ -5,10 +5,12 @@ import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { LoadingSpinner } from "../components/LoadingSpinner";
 import Login from "../pages/login";
-import { getCollections, getHistory, getLinks } from "../redux/actions";
+import { getCollections } from "../redux/actions/CollectionActions";
+import { getHistory } from "../redux/actions/HistoryActions";
+import { getLinks } from "../redux/actions/LinkActions";
 
 interface Props {
-  children: JSX.Element[];
+  children: JSX.Element;
 }
 
 export const AuthGuard = ({ children }: Props) => {
@@ -37,6 +39,14 @@ export const AuthGuard = ({ children }: Props) => {
 };
 
 const Center = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  height: 100%;
+`;
+const LoginWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;

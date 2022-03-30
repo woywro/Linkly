@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { Text } from "../../../../components/Text";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
-import { setLinks, sortLinks } from "../../../../redux/actions";
+import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
 import breakpoints from "../../../../theme/breakpoints";
 import {
   Field,

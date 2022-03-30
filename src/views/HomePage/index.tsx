@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
+import { useSelector } from "react-redux";
 import { CloseWrapperButton } from "../../components/CloseWrapperButton";
+import { LoadingSpinner } from "../../components/LoadingSpinner";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import useMediaQuery from "../../hooks/useMediaQuery";
 import breakpoints from "../../theme/breakpoints";
@@ -9,6 +11,7 @@ import { CollectionList } from "./components/CollectionList";
 import { History } from "./components/History";
 import { LinkList } from "./components/LinkList";
 import { SearchBar } from "./components/Searchbar";
+import useLoadingGlobal from "../../hooks/useLoadingGlobal";
 
 export const HomePage = () => {
   const [open, setOpen] = useState(false);
@@ -42,7 +45,7 @@ export const HomePage = () => {
             justifyContent: "center",
           }}
         >
-        <History />
+          <History />
         </Scrollbars>
       </RightWrapper>
     </PageContainer>

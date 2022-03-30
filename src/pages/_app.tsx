@@ -1,7 +1,7 @@
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
 import { Provider } from "react-redux";
-import styled, { ThemeProvider } from "styled-components";
+import styled, { ThemeContext, ThemeProvider } from "styled-components";
 import { MobileNavBar } from "../components/MobileNavBar";
 import { NavBar } from "../components/NavBar";
 import { AuthGuard } from "../HOC/AuthGuard";
@@ -13,6 +13,11 @@ import { themeDefault } from "../theme/theme";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { useRouter } from "next/router";
+import Login from "./login";
+import { createContext } from "react";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +25,7 @@ export default function App({
   Component,
   pageProps: { session, status, ...pageProps },
 }: AppProps) {
+  const router = useRouter();
   const [theme, setTheme] = useState(themeDefault);
   const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
 
@@ -28,6 +34,7 @@ export default function App({
       setTheme(choosenTheme);
     }
   }, [choosenTheme]);
+  console.log(router);
 
   return (
     <SessionProvider session={session}>
@@ -36,13 +43,13 @@ export default function App({
           <ThemeProvider theme={theme}>
             <GlobalStyles />
             <Wrapper>
-              <ViewBox>
-                <AuthGuard>
+              <AuthGuard>
+                <ViewBox>
                   <MobileNavBar />
                   <NavBar setTheme={setTheme} />
                   <Component {...pageProps} />
-                </AuthGuard>
-              </ViewBox>
+                </ViewBox>
+              </AuthGuard>
             </Wrapper>
           </ThemeProvider>
         </Provider>

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { Text } from "../../../../components/Text";
-import { deleteCollection } from "../../../../redux/actions";
+import { deleteCollection } from "../../../../redux/actions/CollectionActions";
 import { RootState } from "../../../../redux/store";
 import { Name, CollectionInfoWrapper } from "./style";
 

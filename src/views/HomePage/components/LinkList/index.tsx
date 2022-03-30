@@ -11,46 +11,53 @@ import { SortBar } from "../SortBar";
 import { SortDropdown } from "../SortDropdown";
 import { Row } from "./style";
 import axios from "axios";
-import { setLinks } from "../../../../redux/actions";
+import { setLinks } from "../../../../redux/actions/LinkActions";
+import useLoading from "../../../../hooks/useLoading";
+import { LoadingSpinner } from "../../../../components/LoadingSpinner";
+import { DropdownMenu } from "../../../../components/DropdownMenu";
 
 export const LinkList = () => {
   const userLinks = useSelector((state: RootState) => state.links);
   const [showMobileSort, setShowMobileSort] = useState(false);
-  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const requests = useSelector((state) => state.requestsLoading);
+  const loading = useLoading(requests, "getLinks");
+  const [loadingList, setLoadingList] = useState(false);
 
   const handleLoadMore = useCallback(() => {
-    setLoading(true);
+    setLoadingList(true);
     axios
       .get("/api/getLinks", {
         params: { cursor: userLinks[userLinks.length - 1].id },
       })
       .then((res) => {
         dispatch(setLinks(userLinks.concat(res.data.link)));
-        setLoading(false);
+        setLoadingList(false);
       });
   }, [userLinks]);
 
   return (
     <Links>
-      <Row>
-        <Title>Links</Title>
-        <MobileSortButton
-          onClick={() => setShowMobileSort(!showMobileSort)}
-          showMobileSort={showMobileSort}
-        />
-        <SortDropdown show={showMobileSort} />
-      </Row>
-      <SortBar />
-      {userLinks.length == 0 ? (
-        <EmptyState msg="You don't have links" />
+      {loading == true ? (
+        <LoadingSpinner />
       ) : (
         <>
-          {userLinks.map((e) => {
-            return <LinkItem item={e} />;
-          })}
-          {loading && <div>loading</div>}
-          <Button onClick={handleLoadMore}>Load more</Button>
+          <Row>
+            <Title>Links</Title>
+            <SortDropdown title={"sort"} />
+          </Row>
+          <SortBar />
+          {userLinks.length == 0 ? (
+            <EmptyState msg="You don't have links" />
+          ) : (
+            <>
+              {userLinks.map((e) => {
+                return <LinkItem item={e} />;
+              })}
+              {loadingList && <div>loading</div>}
+              <Button onClick={handleLoadMore}>Load more</Button>
+            </>
+          )}
         </>
       )}
     </Links>

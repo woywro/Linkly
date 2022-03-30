@@ -8,36 +8,21 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   let searchValue = req.query.search;
   const session = await getSession({ req });
   try {
-    // const links = await prisma.Link.findMany({
-    //   where: {
-    //     owner: { email: session.user.email },
-    //     OR: [
-    //       {
-    //         title: {
-    //           contains: `${searchValue}`,
-    //         },
-    //       },
-    //       {
-    //         url: {
-    //           startsWith: `${searchValue}`,
-    //         },
-    //       },
-    //     ],
-    //   },
-    //   select: {
-    //     url: true,
-    //     title: true,
-    //   },
-    // });
-    // const links = await prisma.$queryRaw`
-    // select c.*, l.* from "Collection" as c, "Link" as l
-    // `;
     const [links, collections] = await prisma.$transaction([
       prisma.Link.findMany({
-        where: { title: { contains: searchValue, mode: "insensitive" } },
+        where: {
+          title: { contains: searchValue, mode: "insensitive" },
+          owner: { email: session.user.email },
+        },
       }),
       prisma.Collection.findMany({
-        where: { value: { contains: searchValue, mode: "insensitive" } },
+        where: {
+          value: {
+            contains: searchValue,
+            mode: "insensitive",
+          },
+          owner: { email: session.user.email },
+        },
       }),
     ]);
     console.log(links, collections);

@@ -5,10 +5,13 @@ import { prisma } from "../../../prisma/PrismaClient";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const id = req.query["id"];
+  const session = await getSession({ req });
+
   try {
     const link = await prisma.Link.findUnique({
       where: {
         id: id,
+        owner: { email: session.user.email },
       },
       select: {
         id: true,

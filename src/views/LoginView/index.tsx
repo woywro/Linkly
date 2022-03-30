@@ -1,11 +1,9 @@
 import { signIn } from "next-auth/react";
-import Image from "next/image";
 import styled, { useTheme } from "styled-components";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
 import { Logo } from "../../components/Logo";
 import { Text } from "../../components/Text";
-import loginLogo from "../../static/img/loginLogo.png";
 import breakpoints from "../../theme/breakpoints";
 import {
   GoogleLoginButton,
@@ -14,48 +12,22 @@ import {
 
 const Wrapper = styled.div`
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 30%;
+  padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
   border-radius: 30px;
   @media only screen and ${breakpoints.device.sm} {
     border-radius: 0px;
+    width: 100%;
+    height: 100%;
   }
   @media only screen and ${breakpoints.device.lg} {
     border-radius: 0px;
-  }
-`;
-const LeftWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-  @media only screen and ${breakpoints.device.sm} {
-    display: none;
-  }
-  @media only screen and ${breakpoints.device.lg} {
-    display: none;
-  }
-`;
-
-const RightWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  height: 100%;
-  background: ${(props) => props.theme.colors.priaryBg};
-  @media only screen and ${breakpoints.device.sm} {
     width: 100%;
-  }
-  @media only screen and ${breakpoints.device.lg} {
-    width: 80%;
+    height: 100%;
   }
 `;
 
@@ -121,50 +93,48 @@ const Divider = styled.div`
   }
 `;
 
-const LoginImage = styled(Image)`
-  border-radius: 20px;
-  object-fit: contain;
-`;
-
-const ImageWrapper = styled.div`
+const Row = styled.div`
   display: flex;
-  flex-flow: column;
+  flex-flow: row;
+  padding: 5px;
   justify-content: center;
   align-items: center;
-  width: 70%;
-  height: 70%;
+  width: 80%;
+  @media only screen and ${breakpoints.device.sm} {
+    width: 100%;
+  }
+  @media only screen and ${breakpoints.device.lg} {
+    margin: 5px;
+  }
 `;
 
 export const LoginView = () => {
   const theme = useTheme();
   return (
     <Wrapper>
-      <LeftWrapper>
-        <ImageWrapper>
-          <LoginImage src={loginLogo} />
-        </ImageWrapper>
-      </LeftWrapper>
-      <RightWrapper>
-        <Logo mobile={false} />
-        <TextWrapper>
-          <Title color={theme.colors.primaryText}>Sign in</Title>
-          <Text color={theme.colors.primaryText}>
-            Sign in to continue to this application
-          </Text>
-        </TextWrapper>
-        <StyledInput placeholder="email" />
-        <StyledInput placeholder="password" />
-        <LoginButton>Log in</LoginButton>
-        <Divider />
+      <Logo mobile={false} />
+      <TextWrapper>
+        <Title color={theme.colors.primaryText}>Sign in</Title>
+        <Text color={theme.colors.primaryText}>
+          Sign in to continue to this application
+        </Text>
+      </TextWrapper>
+      <StyledInput placeholder="email" />
+      <StyledInput placeholder="password" />
+      <LoginButton>Log in</LoginButton>
+      <Divider />
+      <Row>
         <GoogleLoginButton
-          style={{ width: "250px" }}
           onClick={() => signIn("google")}
+          style={{ background: theme.colors.primary }}
+          activeStyle={{ background: theme.colors.textSecondary }}
         />
         <GithubLoginButton
-          style={{ width: "250px", color: "white" }}
           onClick={() => signIn("github")}
+          style={{ background: theme.colors.primary }}
+          activeStyle={{ background: theme.colors.textSecondary }}
         />
-      </RightWrapper>
+      </Row>
     </Wrapper>
   );
 };

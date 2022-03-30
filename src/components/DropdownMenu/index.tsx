@@ -1,15 +1,59 @@
-import { DropdownMenuWrapper } from "./style";
+import { DropdownMenuWrapper, DropdownItemList, Label } from "./style";
+import useClickOutside from "../../hooks/useClickOutside";
+import { useEffect, useState } from "react";
+import { useRef } from "react";
+import { Text } from "../Text";
+import { Button } from "../Button";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
+import styled from "styled-components";
 
 interface Props {
-  show: boolean;
   children: JSX.Element[];
-  fullWidth: boolean;
+  icon?: boolean;
+  title?: string;
+  fullWidth?: boolean;
 }
 
-export const DropdownMenu = ({ show, children, fullWidth }: Props) => {
+export const DropdownMenu = ({ children, title, icon, fullWidth }: Props) => {
+  const [show, setShow] = useState(false);
+  const ref = useRef();
+  useClickOutside(ref, () => {
+    setShow(false);
+  });
+
+  useEffect(() => {
+    if (icon == "arrow") {
+    }
+  }, []);
+
+  const handleShowList = (e) => {
+    e.stopPropagation();
+    setShow(!show);
+  };
+
   return (
-    <DropdownMenuWrapper show={show} fullWidth={fullWidth}>
-      {children}
+    <DropdownMenuWrapper ref={ref} onClick={handleShowList}>
+      {icon == true ? (
+        <Label>
+          <Text>{title}</Text>
+          <ButtonIcon>
+            {show == true ? <BsChevronDown /> : <BsChevronUp />}
+          </ButtonIcon>
+        </Label>
+      ) : (
+        <Text>{title}</Text>
+      )}
+      <DropdownItemList show={show} fullWidth={fullWidth}>
+        {children}
+      </DropdownItemList>
     </DropdownMenuWrapper>
   );
 };
+
+const ButtonIcon = styled.div`
+  margin-left: 5px;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;

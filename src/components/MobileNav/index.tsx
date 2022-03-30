@@ -9,6 +9,7 @@ import {
   CloseButton,
 } from "./style";
 import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 
 interface Props {
   open: boolean;
@@ -26,6 +27,7 @@ export const MobileNav = ({ open, setOpen }: Props) => {
     <MobileNavWrapper open={open}>
       <CloseButton onClick={() => setOpen(false)}>x</CloseButton>
       <MobileNavItems>
+        <ThemeSwitcher />
         <MobileNavItem
           isActive={router.pathname == "/" ? true : false}
           onClick={() => router.back()}

@@ -10,10 +10,12 @@ export default function elementPage({ collection }: Props) {
   return <CollectionView collection={collection} />;
 }
 
-export async function getServerSideProps({ params }) {
-  const collection = await prisma.Collection.findUnique({
+export async function getServerSideProps({ req, params }) {
+  const session = await getSession({ req });
+  const collection = await prisma.Collection.findFirst({
     where: {
       id: params.collectionId,
+      owner: { email: session.user.email },
     },
     include: {
       links: {
