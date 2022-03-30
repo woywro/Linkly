@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 30%;
-  height: 70%;
+  padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
   border-radius: 30px;
   @media only screen and ${breakpoints.device.sm} {

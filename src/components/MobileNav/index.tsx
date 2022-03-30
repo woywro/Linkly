@@ -9,6 +9,7 @@ import {
   CloseButton,
 } from "./style";
 import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
+import { ThemeSwitcher } from "../ThemeSwitcher";
 
 interface Props {
   open: boolean;
