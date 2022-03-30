@@ -2,7 +2,7 @@ import { combineReducers } from "redux";
 import { Links } from "./reducers/LinkReducer";
 import { History } from "./reducers/HistoryReducer";
 import { collections } from "./reducers/CollectionReducer";
-import { sharedWithYou } from "./reducers/SharedWIthYouReducer";
+import { sharedWithYou } from "./reducers/SharedReducer";
 import { requestsLoading } from "./reducers/RequestsLoadingReducer";
 
 const allReducers = combineReducers({

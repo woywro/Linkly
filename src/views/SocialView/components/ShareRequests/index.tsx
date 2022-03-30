@@ -7,7 +7,7 @@ import { useTheme } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
 import { Text } from "../../../../components/Text";
-import { updateSharedWithYou } from "../../../../redux/actions/SharedWithYouActions";
+import { updateSharedWithYou } from "../../../../redux/actions/SharedActions";
 import {
   Row,
   ShareRequest,

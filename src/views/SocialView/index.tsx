@@ -8,7 +8,7 @@ import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSharedWithYou } from "../../redux/actions/SharedWithYouActions";
+import { getSharedWithYou } from "../../redux/actions/SharedActions";
 import { RootState } from "../../redux/store";
 import useLoading from "../../hooks/useLoading";
 

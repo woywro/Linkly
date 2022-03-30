@@ -1,7 +1,4 @@
-import {
-  requestFinished,
-  requestStarted,
-} from "../actions/RequestsLoadingActions";
+import { requestFinished, requestStarted } from "./RequestsLoadingActions";
 import axios from "axios";
 import { SharedWithYouInterface } from "../../types/SharedWithYouInterface";
 
