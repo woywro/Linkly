@@ -8,7 +8,7 @@ import { Text } from "../../../../components/Text";
 import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
 import { Field, IconButton, SortDropdownWrapper } from "./style";
 
-export const SortDropdown = ({ show }) => {
+export const SortDropdown = ({ title }) => {
   const [sortByName, setSortByName] = useState(false);
   const [sortByOwner, setSortByOwner] = useState(false);
   const [sortByModification, setSortByModification] = useState(false);
@@ -55,7 +55,7 @@ export const SortDropdown = ({ show }) => {
 
   return (
     <SortDropdownWrapper>
-      <DropdownMenu show={show}>
+      <DropdownMenu icon={true} title={"sort"} fullWidth={true}>
         <Field onClick={handleSortByName}>
           <Text color={theme.colors.primaryText}>NAME</Text>
           <IconButton>

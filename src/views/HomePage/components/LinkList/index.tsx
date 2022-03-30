@@ -14,6 +14,7 @@ import axios from "axios";
 import { setLinks } from "../../../../redux/actions/LinkActions";
 import useLoading from "../../../../hooks/useLoading";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
+import { DropdownMenu } from "../../../../components/DropdownMenu";
 
 export const LinkList = () => {
   const userLinks = useSelector((state: RootState) => state.links);
@@ -43,11 +44,7 @@ export const LinkList = () => {
         <>
           <Row>
             <Title>Links</Title>
-            <MobileSortButton
-              onClick={() => setShowMobileSort(!showMobileSort)}
-              showMobileSort={showMobileSort}
-            />
-            <SortDropdown show={showMobileSort} />
+            <SortDropdown title={"sort"} />
           </Row>
           <SortBar />
           {userLinks.length == 0 ? (

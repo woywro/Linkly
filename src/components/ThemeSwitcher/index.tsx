@@ -36,17 +36,7 @@ export const ThemeSwitcher = ({ setTheme }) => {
   };
   return (
     <ThemeSwitcherWrapper>
-      <ThemeSwitcherButton onClick={() => setShow(!show)}>
-        theme{" "}
-        <ButtonIcon>
-          {show == true ? (
-            <TiArrowSortedDown style={{ fill: theme.colors.primaryText }} />
-          ) : (
-            <TiArrowSortedUp style={{ fill: theme.colors.primaryText }} />
-          )}
-        </ButtonIcon>
-      </ThemeSwitcherButton>
-      <DropdownMenu show={show} fullWidth={true}>
+      <DropdownMenu title={"theme"} icon={true} fullWidth={true}>
         <ThemeChoiceButton onClick={handleChangeTheme}>
           default (light)
         </ThemeChoiceButton>
@@ -65,26 +55,17 @@ export const ThemeSwitcher = ({ setTheme }) => {
 };
 
 const ThemeSwitcherWrapper = styled.div`
-  position: relative;
-`;
-const ThemeSwitcherButton = styled(Button)`
   width: 100%;
-  margin: 0;
-  padding: 5px 10px;
-  color: ${(props) => props.theme.colors.primaryText};
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
+
 const ThemeChoiceButton = styled(Button)`
   width: 100%;
   margin: 0;
   border-radius: none;
   background: none;
   color: ${(props) => props.theme.colors.primaryText};
-`;
-
-const ButtonIcon = styled.div`
-  margin-left: 5px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

@@ -35,6 +35,12 @@ export const LinkLabel = styled.div`
     ${hoverEffectText}
   }
 `;
+export const LinkDropdownWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+`;
 
 export const Name = styled(Text)`
   margin-left: 5px;

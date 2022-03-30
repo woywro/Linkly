@@ -15,6 +15,7 @@ import {
   DropDownButton,
   LinkLabel,
   LinkMenuButton,
+  LinkDropdownWrapper,
   Name,
   LinkWrapper,
 } from "./style";
@@ -29,7 +30,6 @@ export const LinkItem = ({ item }: Props) => {
   const theme = useTheme();
   const router = useRouter();
   const dispatch = useDispatch();
-  const [show, setShow] = useState(false);
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
 
   const handleOnClick = useCallback(
@@ -43,28 +43,15 @@ export const LinkItem = ({ item }: Props) => {
     [item]
   );
 
-  const handleOpenMenu = useCallback(
-    (e) => {
-      e.stopPropagation();
-      console.log("menu");
-      setShow(!show);
-    },
-    [show]
-  );
-
-  const handleDeleteLink = useCallback(
-    async (e, item) => {
-      e.stopPropagation();
-      dispatch(deleteLink(item));
-      await axios.post("/api/deleteLink", {
-        id: item.id,
-      });
-    },
-    [show]
-  );
+  const handleDeleteLink = useCallback(async (e, item) => {
+    e.stopPropagation();
+    dispatch(deleteLink(item));
+    await axios.post("/api/deleteLink", {
+      id: item.id,
+    });
+  }, []);
 
   const handleEditLink = () => {
-    console.log(item);
     router.push({
       pathname: `/editLink/${item.id}`,
       query: { data: JSON.stringify(item) },
@@ -85,22 +72,21 @@ export const LinkItem = ({ item }: Props) => {
           </Text>
         </>
       )}
-      <LinkMenuButton onClick={handleOpenMenu}>
-        <CgMoreAlt size={"20px"} />
-      </LinkMenuButton>
-      <DropdownMenu show={show} fullWidth={false}>
-        <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
-          Delete
-        </DropDownButton>
-        <DropDownButton
-          onClick={(e) => {
-            handleEditLink();
-            e.stopPropagation();
-          }}
-        >
-          Edit
-        </DropDownButton>
-      </DropdownMenu>
+      <LinkDropdownWrapper>
+        <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
+          <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
+            Delete
+          </DropDownButton>
+          <DropDownButton
+            onClick={(e) => {
+              handleEditLink();
+              e.stopPropagation();
+            }}
+          >
+            Edit
+          </DropDownButton>
+        </DropdownMenu>
+      </LinkDropdownWrapper>
     </LinkWrapper>
   );
 };

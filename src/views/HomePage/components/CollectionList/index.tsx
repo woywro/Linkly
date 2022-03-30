@@ -14,18 +14,9 @@ import useLoading from "../../../../hooks/useLoading";
 export const CollectionList = () => {
   const dispatch = useDispatch();
   const collections = useSelector((state: RootState) => state.collections);
-  // const [loading, setLoading] = useState(false);
-  // useEffect(() => {
-  //   dispatch(getCollections());
-  // }, []);
-  const request = useSelector((state) => state.requestsLoading);
-  const loadingState = useSelector((state) => state.loading);
-  const loading = useLoading(request, "getCollections");
 
-  useEffect(() => {
-    // console.log(namedRequestsInProgress(request, "getLinks"));
-    // setLoading(namedRequestsInProgress(request, "getLinks"));
-  }, [request]);
+  const request = useSelector((state) => state.requestsLoading);
+  const loading = useLoading(request, "getCollections");
 
   return (
     <CollectionsWrapper>

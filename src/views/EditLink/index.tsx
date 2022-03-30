@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { Button } from "../../components/Button";
 import { Input } from "../../components/Input";
-import { updateLink } from "../../redux/actions";
+import { updateLink } from "../../redux/actions/LinkActions";
 import { RootState } from "../../redux/store";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
