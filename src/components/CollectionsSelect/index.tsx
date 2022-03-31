@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Text } from "../../../../components/Text";
-import { RootState } from "../../../../redux/store";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
+import { Text } from "../Text";
+import { RootState } from "../../redux/store";
+import { CollectionInterface } from "../../types/CollectionInterface";
 import {
   Add,
   ChoosenSuggestion,
@@ -11,7 +11,7 @@ import {
   SuggesionsWrapper,
   Suggestion,
   TypeChoice,
-  AutocompleteWrapper,
+  SelectWrapper,
 } from "./style";
 
 interface Props {
@@ -20,7 +20,7 @@ interface Props {
   collections: CollectionInterface[];
 }
 
-export const AutoComplete = ({
+export const CollectionsSelect = ({
   suggestions,
   setCollections,
   collections,
@@ -45,9 +45,11 @@ export const AutoComplete = ({
     setShowSuggestions(true);
   };
 
-  const handleDeleteCollection = (e) => {
+  const handleDeleteCollection = (e: CollectionInterface) => {
     setCollections(
-      JSON.parse(JSON.stringify(collections)).filter((x) => x.value !== e.value)
+      JSON.parse(JSON.stringify(collections)).filter(
+        (x: CollectionInterface) => x.value !== e.value
+      )
     );
   };
 
@@ -92,7 +94,7 @@ export const AutoComplete = ({
   };
 
   return (
-    <AutocompleteWrapper>
+    <SelectWrapper>
       <ChoosenSuggestionList>
         {collections !== undefined &&
           collections.map((e) => {
@@ -110,6 +112,6 @@ export const AutoComplete = ({
         placeholder="enter collections"
       />
       {showSuggestions && input && <SuggestionsListComponent />}
-    </AutocompleteWrapper>
+    </SelectWrapper>
   );
 };

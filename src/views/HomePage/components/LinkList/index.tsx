@@ -6,7 +6,6 @@ import { LinkItem } from "../../../../components/LinkItem";
 import { Links } from "../../../../components/Links";
 import { RootState } from "../../../../redux/store";
 import { Title } from "../../../style";
-import { MobileSortButton } from "../MobileSortButton";
 import { SortBar } from "../SortBar";
 import { SortDropdown } from "../SortDropdown";
 import { Row } from "./style";
@@ -18,7 +17,6 @@ import { DropdownMenu } from "../../../../components/DropdownMenu";
 
 export const LinkList = () => {
   const userLinks = useSelector((state: RootState) => state.links);
-  const [showMobileSort, setShowMobileSort] = useState(false);
   const dispatch = useDispatch();
   const requests = useSelector((state) => state.requestsLoading);
   const loading = useLoading(requests, "getLinks");

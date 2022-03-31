@@ -10,7 +10,6 @@ export const LinkWrapper = styled.div`
   grid-template-columns: 2fr 2fr 2fr 1fr;
   width: 100%;
   padding: 10px;
-  margin: 5px;
   cursor: pointer;
   position: relative;
   border-radius: 20px;

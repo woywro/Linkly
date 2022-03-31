@@ -26,17 +26,6 @@ export default function App({
   Component,
   pageProps: { session, status, ...pageProps },
 }: AppProps) {
-  const router = useRouter();
-  // const [theme, setTheme] = useState(themeDefault);
-  // const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
-
-  // useEffect(() => {
-  //   if (choosenTheme !== "") {
-  //     setTheme(choosenTheme);
-  //   }
-  // }, [choosenTheme]);
-  // console.log(router);
-
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>

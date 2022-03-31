@@ -29,7 +29,6 @@ export const MobileNav = ({ open, setOpen }: Props) => {
     <MobileNavWrapper open={open}>
       <CloseButton onClick={() => setOpen(false)}>x</CloseButton>
       <MobileNavItems>
-        <ThemeSwitcher />
         <MobileNavItem
           isActive={router.pathname == "/" ? true : false}
           onClick={() => router.back()}
@@ -50,6 +49,9 @@ export const MobileNav = ({ open, setOpen }: Props) => {
         </MobileNavItem>
         <MobileNavItem isActive={false} onClick={() => signOut()}>
           <BiLogOut style={{ fill: "white" }} /> Sign out
+        </MobileNavItem>
+        <MobileNavItem isActive={false}>
+          <ThemeSwitcher />
         </MobileNavItem>
       </MobileNavItems>
     </MobileNavWrapper>

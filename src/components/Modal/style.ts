@@ -28,7 +28,7 @@ export const ModalWrapper = styled.div`
   align-items: center;
   flex-flow: column;
   width: 500px;
-  height: auto;
+  height: 60%;
   @media only screen and ${breakpoints.device.sm} {
     width: 95%;
     height: 55%;

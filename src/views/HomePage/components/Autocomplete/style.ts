@@ -16,11 +16,11 @@ export const SugestionsWrapper = styled.ul`
   position: absolute;
   color: black;
   top: 100%;
-  margin: 0;
-  max-height: 200px;
   overflow-y: scroll;
+  margin: 0;
+  max-height: 300px;
   left: 0;
-  z-index: 10;
+  z-index: 2000;
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
   }

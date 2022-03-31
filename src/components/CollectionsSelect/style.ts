@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Text } from "../../../../components/Text";
+import { Text } from "../Text";
 
 export const SuggesionsWrapper = styled.ul`
   list-style: none;
@@ -10,9 +10,8 @@ export const SuggesionsWrapper = styled.ul`
   position: absolute;
   top: 100%;
   right: 0;
-  background: ${(props) => props.theme.colors.secondary};
 `;
-export const AutocompleteWrapper = styled.div`
+export const SelectWrapper = styled.div`
   border: none;
   position: relative;
   background: ${(props) => props.theme.colors.secondaryBg};

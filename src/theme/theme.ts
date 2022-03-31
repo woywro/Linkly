@@ -6,7 +6,6 @@ export const themeDefault = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%)",
-    // gradient: " linear-gradient(to right, #000428, #004e92)",
     primaryBg: "white",
     secondaryBg: "#f4f6fa",
     primaryText: "#233548",

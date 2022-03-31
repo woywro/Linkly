@@ -46,6 +46,7 @@ export const LinkItem = ({ item }: Props) => {
   const handleDeleteLink = useCallback(async (e, item) => {
     e.stopPropagation();
     dispatch(deleteLink(item));
+    console.log(item);
     await axios.post("/api/deleteLink", {
       id: item.id,
     });

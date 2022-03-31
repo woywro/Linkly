@@ -4,6 +4,7 @@ import { LinkItem } from "../../components/LinkItem";
 import { Links } from "../../components/Links";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import { CollectionShareLinks } from "../../types/CollectionShareLinks";
+import Scrollbars from "react-custom-scrollbars-2";
 import { LinkInterface } from "../../types/LinkInterface";
 import {
   Divider,
@@ -27,11 +28,21 @@ export const CollectionView = ({ collection }: Props) => {
       <LeftWrapper>
         <OpenWrapperButton onClick={() => setOpen(true)} />
         <Title>{`categories/${collection.value}`}</Title>
-        <Links>
-          {collection.links.map((e: LinkInterface) => {
-            return <LinkItem item={e} />;
-          })}
-        </Links>
+        <Scrollbars
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Links>
+            {collection.links.map((e: LinkInterface) => {
+              return <LinkItem item={e} />;
+            })}
+          </Links>
+        </Scrollbars>
       </LeftWrapper>
       <RightWrapper open={open}>
         <CloseWrapperButton onClick={() => setOpen(false)} />

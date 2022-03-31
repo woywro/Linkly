@@ -5,6 +5,7 @@ import { LinkInterface } from "../../types/LinkInterface";
 import { SharedWithYouInterface } from "../../types/SharedWithYouInterface";
 import { SharedLink } from "./components/SharedLink";
 import { List, SharedItemViewWrapper } from "./style";
+import Scrollbars from "react-custom-scrollbars-2";
 
 interface Props {
   share: SharedWithYouInterface[];
@@ -20,11 +21,21 @@ export const SharedItemView = ({ share }: Props) => {
   return (
     <SharedItemViewWrapper>
       <Text color={theme.colors.secondary}>{share.collection.owner.email}</Text>
-      <List>
-        {share.collection.links.map((link) => {
-          return <SharedLink link={link} />;
-        })}
-      </List>
+      <Scrollbars
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <List>
+          {share.collection.links.map((link) => {
+            return <SharedLink link={link} />;
+          })}
+        </List>
+      </Scrollbars>
     </SharedItemViewWrapper>
   );
 };
