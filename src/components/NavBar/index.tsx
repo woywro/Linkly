@@ -9,7 +9,7 @@ import { Text } from "../Text";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { Item, Links, LogoutBtn, NavBarWrapper } from "./style";
 
-export const NavBar = ({ setTheme }) => {
+export const NavBar = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const theme = useTheme();
@@ -17,7 +17,7 @@ export const NavBar = ({ setTheme }) => {
     <NavBarWrapper>
       <Col>
         <Logo mobile={false} />
-        <ThemeSwitcher setTheme={setTheme} />
+        <ThemeSwitcher />
       </Col>
       <Links>
         <Link href={`/addLink`}>

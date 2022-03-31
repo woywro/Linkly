@@ -12,24 +12,27 @@ import {
   themePink,
 } from "../../theme/theme";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+import { switchTheme } from "../../redux/actions/themeActions";
+import { useDispatch } from "react-redux";
 
-export const ThemeSwitcher = ({ setTheme }) => {
+export const ThemeSwitcher = () => {
   const [show, setShow] = useState(false);
   const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
   const theme = useTheme();
+  const dispatch = useDispatch();
   const handleChangeTheme = (e) => {
     const value = e.target.innerText;
     if (value === "default (light)") {
-      setTheme(themeDefault);
+      dispatch(switchTheme(themeDefault));
       setChoosenTheme(themeDefault);
     } else if (value === "default (dark)") {
-      setTheme(themeDefaultDark);
+      dispatch(switchTheme(themeDefaultDark));
       setChoosenTheme(themeDefaultDark);
     } else if (value == "orange (dark)") {
-      setTheme(themeOrange);
+      dispatch(switchTheme(themeOrange));
       setChoosenTheme(themeOrange);
     } else if (value == "pink (light)") {
-      setTheme(themePink);
+      dispatch(switchTheme(themePink));
       setChoosenTheme(themePink);
     }
     setShow(false);
