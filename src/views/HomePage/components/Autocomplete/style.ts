@@ -17,7 +17,7 @@ export const SugestionsWrapper = styled.ul`
   color: black;
   top: 100%;
   margin: 0;
-  max-height: 300px;
+  max-height: 200px;
   overflow-y: scroll;
   left: 0;
   z-index: 10;
@@ -29,9 +29,9 @@ export const SugestionsWrapper = styled.ul`
 export const Suggestion = styled.li`
   cursor: pointer;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 16px;
-  height: 40px;
-  margin: 0;
+  padding: 10px;
+  width: 100%;
 `;

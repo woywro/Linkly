@@ -6,7 +6,7 @@ const initialCollections: CollectionInterface[] = [];
 export const collections = (state = initialCollections, action: AnyAction) => {
   switch (action.type) {
     case "UPDATE_COLLECTIONS": {
-      return [...state, action.payload.collection];
+      return [...state, ...action.payload.collections];
     }
     case "SET_COLLECTIONS": {
       return action.payload.collections;

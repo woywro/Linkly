@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Text } from "../Text";
 import breakpoints from "../../theme/breakpoints";
+import { hoverEffectBg } from "../../mixins/hoverEffects";
 
 export const Overlay = styled.div`
   position: fixed;
@@ -19,7 +20,7 @@ export const ModalWrapper = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.colors.primaryBg};
-  padding: 50px;
+  padding: 30px;
   z-index: 1000;
   border-radius: 20px;
   display: flex;
@@ -27,7 +28,7 @@ export const ModalWrapper = styled.div`
   align-items: center;
   flex-flow: column;
   width: 500px;
-  height: 500px;
+  height: auto;
   @media only screen and ${breakpoints.device.sm} {
     width: 95%;
     height: 55%;
@@ -44,15 +45,22 @@ export const CloseButton = styled.button`
   background: none;
   margin: 5px;
   padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
   border: none;
   cursor: pointer;
   font-size: 24px;
   top: 0;
   right: 0;
   position: absolute;
+  &:hover {
+    ${hoverEffectBg}
+  }
 `;
 
 export const ModalTitle = styled(Text)`
-  margin: 5px;
+  margin: 10px;
   font-size: 28px;
 `;

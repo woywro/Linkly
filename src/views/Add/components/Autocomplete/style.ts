@@ -6,6 +6,7 @@ export const SuggesionsWrapper = styled.ul`
   max-height: 150px;
   overflow-y: auto;
   width: 100%;
+  height: 100%;
   position: absolute;
   top: 100%;
   right: 0;
@@ -27,6 +28,7 @@ export const AutocompleteWrapper = styled.div`
 export const ChoosenSuggestionList = styled.ul`
   display: flex;
   flex-flow: row;
+  flex-wrap: wrap;
 `;
 
 export const ChoosenSuggestion = styled.li`

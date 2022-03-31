@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import { Button } from "../../components/Button";
 import { InputStyling } from "../../components/Input";
 import { Text } from "../../components/Text";
+import { updateCollections } from "../../redux/actions/CollectionActions";
 import { addLink } from "../../redux/actions/LinkActions";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { AutoComplete } from "./components/Autocomplete";
@@ -31,6 +32,7 @@ export const Add = () => {
         })
         .then((res) => {
           dispatch(addLink(res.data));
+          dispatch(updateCollections(res.data.collections));
         });
       router.back();
     },
