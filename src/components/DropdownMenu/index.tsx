@@ -35,13 +35,13 @@ export const DropdownMenu = ({ children, title, icon, fullWidth }: Props) => {
     <DropdownMenuWrapper ref={ref} onClick={handleShowList}>
       {icon == true ? (
         <Label>
-          <Text>{title}</Text>
+          <Title>{title}</Title>
           <ButtonIcon>
             {show == true ? <BsChevronDown /> : <BsChevronUp />}
           </ButtonIcon>
         </Label>
       ) : (
-        <Text>{title}</Text>
+        <Title>{title}</Title>
       )}
       <DropdownItemList show={show} fullWidth={fullWidth}>
         {children}
@@ -56,4 +56,8 @@ const ButtonIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const Title = styled(Text)`
+  color: ${(props) => props.theme.colors.primaryText};
 `;
