@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CloseWrapperButton } from "../../components/CloseWrapperButton";
-import { LinkItem } from "../../components/LinkItem";
+import { CollectionLinkItem } from "./components/CollectionLinkItem";
 import { Links } from "../../components/Links";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import { CollectionShareLinks } from "../../types/CollectionShareLinks";
@@ -22,6 +22,11 @@ interface Props {
 
 export const CollectionView = ({ collection }: Props) => {
   const [open, setOpen] = useState(false);
+  const [links, setLinks] = useState<LinkInterface[] | []>([]);
+
+  useEffect(() => {
+    setLinks(collection.links);
+  }, [collection]);
 
   return (
     <PageContainer>
@@ -38,8 +43,14 @@ export const CollectionView = ({ collection }: Props) => {
           }}
         >
           <Links>
-            {collection.links.map((e: LinkInterface) => {
-              return <LinkItem item={e} />;
+            {links.map((e: LinkInterface) => {
+              return (
+                <CollectionLinkItem
+                  item={e}
+                  setLinks={setLinks}
+                  links={links}
+                />
+              );
             })}
           </Links>
         </Scrollbars>

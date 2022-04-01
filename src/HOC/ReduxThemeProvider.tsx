@@ -3,7 +3,7 @@ import { ThemeProvider } from "styled-components";
 import { useLocalStorage } from "../hooks/useLocalStorage";
 import { themeDefault } from "../theme/theme";
 import { useDispatch, useSelector } from "react-redux";
-import { switchTheme } from "../redux/actions/themeActions";
+import { switchTheme } from "../redux/actions/ThemeActions";
 
 export const ReduxThemeProvider = ({ children }) => {
   const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
@@ -12,12 +12,7 @@ export const ReduxThemeProvider = ({ children }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("change");
-  }, [theme]);
-
-  useEffect(() => {
     if (choosenTheme !== "") {
-      // setTheme(choosenTheme);
       dispatch(switchTheme(choosenTheme));
     }
   }, [choosenTheme]);

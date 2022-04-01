@@ -20,7 +20,14 @@ export const DropdownMenu = ({ children, title, icon, fullWidth }: Props) => {
   const ref1 = useRef();
   const ref2 = useRef();
 
-  useClickInside(ref2, () => setShow(false));
+  useClickInside(
+    ref2,
+    () => {
+      setShow(false);
+      console.log("ccc");
+    },
+    show
+  );
 
   useClickOutside(ref1, () => {
     setShow(false);

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
-import { LinkItem } from "../../../../components/LinkItem";
+import { LinkItem } from "../LinkItem";
 import { Links } from "../../../../components/Links";
 import { RootState } from "../../../../redux/store";
 import { Title } from "../../../style";

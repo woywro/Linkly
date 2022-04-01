@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-export function useClickInside(elementRef, callback) {
+import { useRef } from "react";
+export function useClickInside(elementRef, callback, show) {
   useEffect(() => {
     const handleClickInside = (event) => {
       event.preventDefault();
@@ -12,7 +13,9 @@ export function useClickInside(elementRef, callback) {
       }
       return;
     };
-    document.addEventListener("click", handleClickInside, true);
+    if (show == true) {
+      document.addEventListener("click", handleClickInside, true);
+    }
     return () => {
       document.removeEventListener("click", handleClickInside, true);
     };

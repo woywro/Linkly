@@ -1,7 +1,8 @@
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { switchTheme } from "../../redux/actions/themeActions";
+import { switchTheme } from "../../redux/actions/ThemeActions";
 import breakpoints from "../../theme/breakpoints";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import {
   themeDefault,
   themeDefaultDark,
@@ -11,8 +12,11 @@ import {
 
 export const ThemeSwitcher = () => {
   const dispatch = useDispatch();
+  const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
+
   const handleChangeTheme = (e, theme) => {
     e.stopPropagation();
+    setChoosenTheme(theme);
     dispatch(switchTheme(theme));
   };
   return (
