@@ -28,10 +28,10 @@ export const ModalWrapper = styled.div`
   align-items: center;
   flex-flow: column;
   width: 500px;
-  height: 60%;
+  height: auto;
   @media only screen and ${breakpoints.device.sm} {
     width: 95%;
-    height: 55%;
+    height: auto;
     padding: 20px;
   }
   @media only screen and ${breakpoints.device.lg} {

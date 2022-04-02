@@ -59,7 +59,6 @@ export const Add = () => {
         }}
         onSubmit={(values) => {
           handleAdd(values.title, values.url);
-          console.log("add");
         }}
         validationSchema={validationSchema}
       >

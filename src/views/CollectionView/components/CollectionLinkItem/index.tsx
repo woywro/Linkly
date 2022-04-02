@@ -45,17 +45,20 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
     [item]
   );
 
-  const handleDeleteLink = useCallback(async (e, item) => {
-    e.stopPropagation();
-    dispatch(deleteLink(item));
-    await axios.post("/api/deleteLink", {
-      id: item.id,
-    });
-    const linksFiltered: LinkInterface[] = links.filter(
-      (x) => x.id !== item.id
-    );
-    setLinks(linksFiltered);
-  }, []);
+  const handleDeleteLink = useCallback(
+    async (e, item) => {
+      e.stopPropagation();
+      dispatch(deleteLink(item));
+      await axios.post("/api/deleteLink", {
+        id: item.id,
+      });
+      const linksFiltered: LinkInterface[] = links.filter(
+        (x) => x.id !== item.id
+      );
+      setLinks(linksFiltered);
+    },
+    [links]
+  );
 
   const handleEditLink = () => {
     router.push({

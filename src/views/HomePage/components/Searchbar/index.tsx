@@ -11,16 +11,21 @@ export const SearchBar = () => {
 
   const handleChange = (e: { target: HTMLInputElement }) => {
     setInput(e.target.value);
+    handleSearch(e.target.value);
+  };
+
+  const handleSearch = (toSearch: string) => {
+    setSuggestions([]);
     axios
       .get("/api/find", {
         params: {
-          search: e.target.value,
+          search: toSearch,
         },
       })
       .then((res) => {
         const allSuggestions = res.data.links.concat(res.data.collections);
         const normalizedSuggestions: SuggestionInterface[] = allSuggestions.map(
-          (e) => {
+          (e: SuggestionInterface) => {
             if (e.title == undefined) {
               return {
                 id: e.id,
@@ -36,7 +41,9 @@ export const SearchBar = () => {
             }
           }
         );
-        setSuggestions(normalizedSuggestions);
+        if (allSuggestions.length > 0) {
+          setSuggestions(normalizedSuggestions);
+        }
       });
   };
 

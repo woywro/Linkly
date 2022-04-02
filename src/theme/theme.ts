@@ -47,12 +47,12 @@ export const themeDefaultDark = {
 
 export const themePink = {
   colors: {
-    primary: "#209cff",
-    secondary: "#68e0cf",
+    primary: "#eaecc6",
+    secondary: "#2bc0e4",
     yellow: "#ffc107",
     green: "#50C878",
     red: "#FF1919",
-    gradient: "linear-gradient(to top, #209cff 0%, #68e0cf 100%);",
+    gradient: "linear-gradient(to right, #2bc0e4, #eaecc6);",
     primaryBg: "white",
     secondaryBg: "#f4f6fa",
     primaryText: "#233548",
