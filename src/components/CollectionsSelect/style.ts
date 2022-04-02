@@ -89,11 +89,6 @@ export const AddCollectionButton = styled(Button)`
   position: absolute;
   top: 0;
   right: 0;
-  background: none;
   font-size: 18px;
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.primary};
-    text-decoration-thickness: 3px;
-  }
+  padding: 3px 5px;
 `;
