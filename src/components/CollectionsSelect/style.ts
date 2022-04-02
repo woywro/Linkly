@@ -13,8 +13,9 @@ export const StyledForm = styled.form`
 `;
 
 export const SuggesionsWrapper = styled.ul`
+  border-top: 1px solid gray;
   list-style: none;
-  max-height: 150px;
+  min-height: 150px;
   overflow-y: auto;
   width: 100%;
   height: 100%;

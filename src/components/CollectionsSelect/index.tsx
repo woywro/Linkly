@@ -20,16 +20,11 @@ import {
 } from "./style";
 
 interface Props {
-  suggestions: CollectionInterface[];
   setCollections: (arg0: CollectionInterface[]) => void;
   collections: CollectionInterface[];
 }
 
-export const CollectionsSelect = ({
-  suggestions,
-  setCollections,
-  collections,
-}: Props) => {
+export const CollectionsSelect = ({ setCollections, collections }: Props) => {
   const savedCollections = useSelector((state: RootState) => state.collections);
 
   const [filteredSuggestions, setFilteredSuggestions] = useState<
@@ -63,7 +58,7 @@ export const CollectionsSelect = ({
       setFilteredSuggestions([]);
       setShowSuggestions(false);
       setCollections([...collections, { value: e.value }]);
-      setInput("");
+      formik.handleReset();
     }
   };
 
