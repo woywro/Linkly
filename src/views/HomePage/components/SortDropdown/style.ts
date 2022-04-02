@@ -6,6 +6,7 @@ export const SortDropdownWrapper = styled.div`
   display: none;
   @media only screen and ${breakpoints.device.sm} {
     display: flex;
+    z-index: 20;
   }
 `;
 
@@ -31,4 +32,5 @@ export const Field = styled.div`
   width: 100%;
   align-items: center;
   padding: 5px;
+  cursor: pointer;
 `;

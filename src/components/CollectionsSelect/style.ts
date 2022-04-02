@@ -1,21 +1,33 @@
 import styled from "styled-components";
-import { Text } from "../../../../components/Text";
+import { Button } from "../Button";
+import { Input } from "../Input";
+import { Text } from "../Text";
+
+export const StyledForm = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  width: 100%;
+  position: relative;
+`;
 
 export const SuggesionsWrapper = styled.ul`
+  border-top: 1px solid gray;
   list-style: none;
-  max-height: 150px;
+  min-height: 150px;
   overflow-y: auto;
   width: 100%;
+  height: 100%;
   position: absolute;
   top: 100%;
   right: 0;
-  background: ${(props) => props.theme.colors.secondary};
 `;
-export const AutocompleteWrapper = styled.div`
+export const SelectWrapper = styled.div`
   border: none;
   position: relative;
   background: ${(props) => props.theme.colors.secondaryBg};
-  padding: 25px 10px;
+  padding: 15px 5px;
   border-radius: 10px;
   font-size: 15px;
   width: 100%;
@@ -27,6 +39,12 @@ export const AutocompleteWrapper = styled.div`
 export const ChoosenSuggestionList = styled.ul`
   display: flex;
   flex-flow: row;
+  flex-wrap: wrap;
+`;
+
+export const Error = styled(Text)`
+  color: ${(props) => props.theme.colors.primary};
+  font-size: 12px;
 `;
 
 export const ChoosenSuggestion = styled.li`
@@ -67,10 +85,10 @@ export const Add = styled.div`
   justify-content: center;
 `;
 
-export const TypeChoice = styled(Text)`
-  &:hover {
-    text-decoration: underline;
-    text-decoration-color: ${(props) => props.theme.colors.primary};
-    text-decoration-thickness: 3px;
-  }
+export const AddCollectionButton = styled(Button)`
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 18px;
+  padding: 3px 5px;
 `;

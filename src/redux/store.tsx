@@ -14,4 +14,5 @@ export interface RootState {
   collections: CollectionInterface[];
   sharedWithYou: SharedWithYouInterface[];
   requestsLoading: any;
+  theme: any;
 }

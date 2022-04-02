@@ -6,7 +6,6 @@ export const themeDefault = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%)",
-    // gradient: " linear-gradient(to right, #000428, #004e92)",
     primaryBg: "white",
     secondaryBg: "#f4f6fa",
     primaryText: "#233548",
@@ -48,12 +47,12 @@ export const themeDefaultDark = {
 
 export const themePink = {
   colors: {
-    primary: "#c9ffbf",
-    secondary: "#ffafbd",
+    primary: "#eaecc6",
+    secondary: "#2bc0e4",
     yellow: "#ffc107",
     green: "#50C878",
     red: "#FF1919",
-    gradient: "linear-gradient(to right, #c9ffbf, #ffafbd)",
+    gradient: "linear-gradient(to right, #2bc0e4, #eaecc6);",
     primaryBg: "white",
     secondaryBg: "#f4f6fa",
     primaryText: "#233548",

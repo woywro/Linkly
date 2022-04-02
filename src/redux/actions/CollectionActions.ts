@@ -35,9 +35,9 @@ export const deleteCollection = (
   };
 };
 
-export const updateCollections = (collection: CollectionInterface) => ({
-  type: "UPDATE_CollectionS",
+export const updateCollections = (collections: CollectionInterface[]) => ({
+  type: "UPDATE_COLLECTIONS",
   payload: {
-    collection,
+    collections,
   },
 });

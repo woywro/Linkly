@@ -33,7 +33,7 @@ export const FeedItem = ({ sharedItem }: Props) => {
         {sharedItem.collection.owner.email}
       </Text>
       <Timestamp color={theme.colors.secondaryText}>
-        {moment(parseInt(sharedItem.createdTimestamp)).format("LT")}
+        {moment(parseInt(sharedItem.createdTimestamp)).fromNow()}
       </Timestamp>
     </FeedItemWrapper>
   );

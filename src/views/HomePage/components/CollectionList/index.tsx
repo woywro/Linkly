@@ -8,7 +8,6 @@ import { EmptyState } from "../../../../components/EmptyState";
 import { CollectionsWrapper, CollectionsList } from "./style";
 import { RootState } from "../../../../redux/store";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
-import { namedRequestsInProgress } from "../../../../redux/Loading/requestSelectors";
 import useLoading from "../../../../hooks/useLoading";
 
 export const CollectionList = () => {

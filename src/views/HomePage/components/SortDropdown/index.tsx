@@ -8,7 +8,7 @@ import { Text } from "../../../../components/Text";
 import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
 import { Field, IconButton, SortDropdownWrapper } from "./style";
 
-export const SortDropdown = ({ title }) => {
+export const SortDropdown = () => {
   const [sortByName, setSortByName] = useState(false);
   const [sortByOwner, setSortByOwner] = useState(false);
   const [sortByModification, setSortByModification] = useState(false);
@@ -17,6 +17,7 @@ export const SortDropdown = ({ title }) => {
   const dispatch = useDispatch();
 
   const handleSortByName = () => {
+    resetSorting();
     setSortByName(!sortByName);
     if (sortByName == true) {
       dispatch(sortLinks("asc"));
@@ -25,6 +26,7 @@ export const SortDropdown = ({ title }) => {
     }
   };
   const handleSortByOwner = () => {
+    resetSorting();
     setSortByOwner(!sortByOwner);
     if (sortByName == true) {
       dispatch(sortLinks("ownerAsc"));
@@ -33,6 +35,7 @@ export const SortDropdown = ({ title }) => {
     }
   };
   const handleSortByModification = () => {
+    resetSorting();
     setSortByModification(!sortByModification);
     if (sortByModification == true) {
       dispatch(sortLinks("modifiedAsc"));
@@ -47,6 +50,12 @@ export const SortDropdown = ({ title }) => {
       .then((res) => {
         dispatch(setLinks(res.data.link));
       });
+  };
+
+  const resetSorting = () => {
+    setSortByModification(false);
+    setSortByName(false);
+    setSortByOwner(false);
   };
 
   useEffect(() => {

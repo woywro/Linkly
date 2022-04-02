@@ -1,58 +1,54 @@
-import { useState } from "react";
-import { Button } from "../Button";
-import { DropdownMenu } from "../DropdownMenu";
-import { Text } from "../Text";
-import styled, { useTheme } from "styled-components";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import { switchTheme } from "../../redux/actions/ThemeActions";
+import breakpoints from "../../theme/breakpoints";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import {
   themeDefault,
   themeDefaultDark,
   themeOrange,
   themePink,
 } from "../../theme/theme";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 
-export const ThemeSwitcher = ({ setTheme }) => {
-  const [show, setShow] = useState(false);
+export const ThemeSwitcher = () => {
+  const dispatch = useDispatch();
   const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
-  const theme = useTheme();
-  const handleChangeTheme = (e) => {
-    const value = e.target.innerText;
-    if (value === "default (light)") {
-      setTheme(themeDefault);
-      setChoosenTheme(themeDefault);
-    } else if (value === "default (dark)") {
-      setTheme(themeDefaultDark);
-      setChoosenTheme(themeDefaultDark);
-    } else if (value == "orange (dark)") {
-      setTheme(themeOrange);
-      setChoosenTheme(themeOrange);
-    } else if (value == "pink (light)") {
-      setTheme(themePink);
-      setChoosenTheme(themePink);
-    }
-    setShow(false);
+
+  const handleChangeTheme = (e, theme) => {
+    e.stopPropagation();
+    setChoosenTheme(theme);
+    dispatch(switchTheme(theme));
   };
   return (
     <ThemeSwitcherWrapper>
-      <DropdownMenu title={"theme"} icon={true} fullWidth={true}>
-        <ThemeChoiceButton onClick={handleChangeTheme}>
-          default (light)
-        </ThemeChoiceButton>
-        <ThemeChoiceButton onClick={handleChangeTheme}>
-          pink (light)
-        </ThemeChoiceButton>
-        <ThemeChoiceButton onClick={handleChangeTheme}>
-          default (dark)
-        </ThemeChoiceButton>
-        <ThemeChoiceButton onClick={handleChangeTheme}>
-          orange (dark)
-        </ThemeChoiceButton>
-      </DropdownMenu>
+      <Row>
+        <ThemeChoiceButton
+          onClick={(e) => handleChangeTheme(e, themeDefault)}
+          background={themeDefault.colors.gradient}
+        ></ThemeChoiceButton>
+        <ThemeChoiceButton
+          onClick={(e) => handleChangeTheme(e, themePink)}
+          background={themePink.colors.gradient}
+        ></ThemeChoiceButton>
+        <ThemeChoiceButton
+          onClick={(e) => handleChangeTheme(e, themeDefaultDark)}
+          background={themeDefaultDark.colors.gradient}
+        ></ThemeChoiceButton>
+        <ThemeChoiceButton
+          onClick={(e) => handleChangeTheme(e, themeOrange)}
+          background={themeOrange.colors.gradient}
+        ></ThemeChoiceButton>
+      </Row>
     </ThemeSwitcherWrapper>
   );
 };
+
+const Row = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+`;
 
 const ThemeSwitcherWrapper = styled.div`
   width: 100%;
@@ -60,12 +56,25 @@ const ThemeSwitcherWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media only screen and ${breakpoints.device.sm} {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 30px;
+  }
+  @media only screen and ${breakpoints.device.lg} {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    border-radius: 30px;
+  }
 `;
 
-const ThemeChoiceButton = styled(Button)`
-  width: 100%;
-  margin: 0;
-  border-radius: none;
-  background: none;
-  color: ${(props) => props.theme.colors.primaryText};
+const ThemeChoiceButton = styled.button<{ background: string }>`
+  padding: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: none;
+  margin: 5px;
+  background: ${(props) => props.background};
+  cursor: pointer;
 `;

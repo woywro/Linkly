@@ -6,11 +6,11 @@ import { AiOutlineLink } from "react-icons/ai";
 import { CgMoreAlt } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
-import { deleteLink } from "../../redux/actions/LinkActions";
-import { updateHistory } from "../../redux/actions/HistoryActions";
-import { LinkInterface } from "../../types/LinkInterface";
-import { DropdownMenu } from "../DropdownMenu";
-import { Text } from "../Text";
+import { deleteLink } from "../../../../redux/actions/LinkActions";
+import { updateHistory } from "../../../../redux/actions/HistoryActions";
+import { LinkInterface } from "../../../../types/LinkInterface";
+import { DropdownMenu } from "../../../../components/DropdownMenu";
+import { Text } from "../../../../components/Text";
 import {
   DropDownButton,
   LinkLabel,
@@ -19,8 +19,8 @@ import {
   Name,
   LinkWrapper,
 } from "./style";
-import useMediaQuery from "../../hooks/useMediaQuery";
-import breakpoints from "../../theme/breakpoints";
+import useMediaQuery from "../../../../hooks/useMediaQuery";
+import breakpoints from "../../../../theme/breakpoints";
 
 interface Props {
   item: LinkInterface;

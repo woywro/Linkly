@@ -8,7 +8,7 @@ import { updateLink } from "../../redux/actions/LinkActions";
 import { RootState } from "../../redux/store";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
-import { AutoComplete } from "../Add/components/Autocomplete";
+import { CollectionsSelect } from "../../components/CollectionsSelect";
 import { useRouter } from "next/router";
 
 const EditLinkWrapper = styled.div`
@@ -81,7 +81,7 @@ export const EditLink = ({ link }: Props) => {
         }}
         value={url}
       />
-      <AutoComplete
+      <CollectionsSelect
         setCollections={setCollections}
         suggestions={allCollections}
         collections={collections}

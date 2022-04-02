@@ -16,11 +16,11 @@ export const SugestionsWrapper = styled.ul`
   position: absolute;
   color: black;
   top: 100%;
+  overflow-y: scroll;
   margin: 0;
   max-height: 300px;
-  overflow-y: scroll;
   left: 0;
-  z-index: 10;
+  z-index: 2000;
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
   }
@@ -29,9 +29,9 @@ export const SugestionsWrapper = styled.ul`
 export const Suggestion = styled.li`
   cursor: pointer;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   font-size: 16px;
-  height: 40px;
-  margin: 0;
+  padding: 10px;
+  width: 100%;
 `;

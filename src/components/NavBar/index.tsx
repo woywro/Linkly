@@ -9,16 +9,13 @@ import { Text } from "../Text";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { Item, Links, LogoutBtn, NavBarWrapper } from "./style";
 
-export const NavBar = ({ setTheme }) => {
+export const NavBar = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const theme = useTheme();
   return (
     <NavBarWrapper>
-      <Col>
-        <Logo mobile={false} />
-        <ThemeSwitcher setTheme={setTheme} />
-      </Col>
+      <Logo mobile={false} />
       <Links>
         <Link href={`/addLink`}>
           <Item isActive={router.pathname == "/addLink" ? true : false}>
@@ -39,19 +36,26 @@ export const NavBar = ({ setTheme }) => {
           </Item>
         </Link>
       </Links>
-      {session && (
-        <LogoutBtn isActive={false} onClick={() => signOut()}>
-          <BiLogOut />
-          <Text>Log out</Text>
-        </LogoutBtn>
-      )}
+      <BottomSection>
+        {session && (
+          <LogoutBtn isActive={false} onClick={() => signOut()}>
+            <BiLogOut />
+            <Text>Log out</Text>
+          </LogoutBtn>
+        )}
+        <ThemeSwitcher />
+      </BottomSection>
     </NavBarWrapper>
   );
 };
 
-const Col = styled.div`
+const BottomSection = styled.div`
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 30px;
+  background: ${(props) => props.theme.colors.primaryBg};
 `;

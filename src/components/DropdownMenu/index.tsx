@@ -6,6 +6,7 @@ import { Text } from "../Text";
 import { Button } from "../Button";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import styled from "styled-components";
+import { useClickInside } from "../../hooks/useClickInside";
 
 interface Props {
   children: JSX.Element[];
@@ -16,15 +17,21 @@ interface Props {
 
 export const DropdownMenu = ({ children, title, icon, fullWidth }: Props) => {
   const [show, setShow] = useState(false);
-  const ref = useRef();
-  useClickOutside(ref, () => {
+  const ref1 = useRef();
+  const ref2 = useRef();
+
+  useClickInside(
+    ref2,
+    () => {
+      setShow(false);
+      console.log("ccc");
+    },
+    show
+  );
+
+  useClickOutside(ref1, () => {
     setShow(false);
   });
-
-  useEffect(() => {
-    if (icon == "arrow") {
-    }
-  }, []);
 
   const handleShowList = (e) => {
     e.stopPropagation();
@@ -32,18 +39,18 @@ export const DropdownMenu = ({ children, title, icon, fullWidth }: Props) => {
   };
 
   return (
-    <DropdownMenuWrapper ref={ref} onClick={handleShowList}>
+    <DropdownMenuWrapper ref={ref1} onClick={handleShowList}>
       {icon == true ? (
         <Label>
-          <Text>{title}</Text>
+          <Title>{title}</Title>
           <ButtonIcon>
             {show == true ? <BsChevronDown /> : <BsChevronUp />}
           </ButtonIcon>
         </Label>
       ) : (
-        <Text>{title}</Text>
+        <Title>{title}</Title>
       )}
-      <DropdownItemList show={show} fullWidth={fullWidth}>
+      <DropdownItemList show={show} fullWidth={fullWidth} ref={ref2}>
         {children}
       </DropdownItemList>
     </DropdownMenuWrapper>
@@ -56,4 +63,8 @@ const ButtonIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const Title = styled(Text)`
+  color: ${(props) => props.theme.colors.primaryText};
 `;

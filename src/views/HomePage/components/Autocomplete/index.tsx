@@ -1,11 +1,11 @@
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import useWindowDimensions from "../../../../hooks/useWindowDimensions";
-import { SugestionsWrapper, Suggestion } from "./style";
-import { Text } from "../../../../components/Text";
 import { AiOutlineLink } from "react-icons/ai";
 import { RiFolder5Fill } from "react-icons/ri";
-import Router, { useRouter } from "next/router";
+import { Text } from "../../../../components/Text";
+import useWindowDimensions from "../../../../hooks/useWindowDimensions";
 import { SuggestionInterface } from "../../../../types/SuggestionInterface";
+import { SugestionsWrapper, Suggestion } from "./style";
 
 interface Props {
   input: string;
@@ -37,26 +37,25 @@ export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
   }, [height, input, suggestions]);
 
   return (
-    <>
-      {hide == false && suggestions.length > 0 && (
-        <SugestionsWrapper>
-          {suggestions.map((suggestion) => {
-            return (
-              <Suggestion
-                key={suggestion.id}
-                onClick={() => handleOnClick(suggestion)}
-              >
-                {suggestion.type == "collection" ? (
-                  <RiFolder5Fill />
-                ) : (
-                  <AiOutlineLink />
-                )}
-                <Text> {suggestion.value}</Text>
-              </Suggestion>
-            );
-          })}
-        </SugestionsWrapper>
-      )}
-    </>
+    hide == false &&
+    suggestions.length > 0 && (
+      <SugestionsWrapper>
+        {suggestions.map((suggestion) => {
+          return (
+            <Suggestion
+              key={suggestion.id}
+              onClick={() => handleOnClick(suggestion)}
+            >
+              {suggestion.type == "collection" ? (
+                <RiFolder5Fill />
+              ) : (
+                <AiOutlineLink />
+              )}
+              <Text> {suggestion.value}</Text>
+            </Suggestion>
+          );
+        })}
+      </SugestionsWrapper>
+    )
   );
 };

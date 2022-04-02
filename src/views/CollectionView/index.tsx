@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CloseWrapperButton } from "../../components/CloseWrapperButton";
-import { LinkItem } from "../../components/LinkItem";
+import { CollectionLinkItem } from "./components/CollectionLinkItem";
 import { Links } from "../../components/Links";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import { CollectionShareLinks } from "../../types/CollectionShareLinks";
+import Scrollbars from "react-custom-scrollbars-2";
 import { LinkInterface } from "../../types/LinkInterface";
 import {
   Divider,
@@ -21,17 +22,38 @@ interface Props {
 
 export const CollectionView = ({ collection }: Props) => {
   const [open, setOpen] = useState(false);
+  const [links, setLinks] = useState<LinkInterface[] | []>([]);
+
+  useEffect(() => {
+    setLinks(collection.links);
+  }, [collection]);
 
   return (
     <PageContainer>
       <LeftWrapper>
         <OpenWrapperButton onClick={() => setOpen(true)} />
         <Title>{`categories/${collection.value}`}</Title>
-        <Links>
-          {collection.links.map((e: LinkInterface) => {
-            return <LinkItem item={e} />;
-          })}
-        </Links>
+        <Scrollbars
+          style={{
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <Links>
+            {links.map((e: LinkInterface) => {
+              return (
+                <CollectionLinkItem
+                  item={e}
+                  setLinks={setLinks}
+                  links={links}
+                />
+              );
+            })}
+          </Links>
+        </Scrollbars>
       </LeftWrapper>
       <RightWrapper open={open}>
         <CloseWrapperButton onClick={() => setOpen(false)} />

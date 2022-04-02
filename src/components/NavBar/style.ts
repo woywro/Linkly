@@ -11,7 +11,7 @@ export const NavBarWrapper = styled.nav`
   border-radius: 20px;
   height: 100%;
   width: auto;
-  margin: 20px;
+  margin: 10px;
   @media only screen and ${breakpoints.device.sm} {
     display: none;
   }
@@ -54,7 +54,7 @@ export const Links = styled.div`
 `;
 
 export const LogoutBtn = styled(Button)`
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   width: 100%;
   background: ${(props) => props.theme.colors.secondary};
 `;

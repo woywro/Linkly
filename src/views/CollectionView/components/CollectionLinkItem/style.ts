@@ -1,7 +1,10 @@
 import styled from "styled-components";
-import { hoverEffectBg, hoverEffectText } from "../../mixins/hoverEffects";
-import { Text } from "../Text";
-import breakpoints from "../../theme/breakpoints";
+import {
+  hoverEffectBg,
+  hoverEffectText,
+} from "../../../../mixins/hoverEffects";
+import { Text } from "../../../../components/Text";
+import breakpoints from "../../../../theme/breakpoints";
 
 export const LinkWrapper = styled.div`
   display: grid;
@@ -10,7 +13,6 @@ export const LinkWrapper = styled.div`
   grid-template-columns: 2fr 2fr 2fr 1fr;
   width: 100%;
   padding: 10px;
-  margin: 5px;
   cursor: pointer;
   position: relative;
   border-radius: 20px;

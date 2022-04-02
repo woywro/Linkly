@@ -25,7 +25,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         title: true,
         url: true,
         collections: true,
-        ownerId: true,
         owner: true,
         modificationTimestamp: true,
       },

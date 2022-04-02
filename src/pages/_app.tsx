@@ -18,6 +18,7 @@ import Login from "./login";
 import { createContext } from "react";
 import { useMemo } from "react";
 import { useSelector } from "react-redux";
+import { ReduxThemeProvider } from "../HOC/ReduxThemeProvider";
 
 const queryClient = new QueryClient();
 
@@ -25,33 +26,22 @@ export default function App({
   Component,
   pageProps: { session, status, ...pageProps },
 }: AppProps) {
-  const router = useRouter();
-  const [theme, setTheme] = useState(themeDefault);
-  const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
-
-  useEffect(() => {
-    if (choosenTheme !== "") {
-      setTheme(choosenTheme);
-    }
-  }, [choosenTheme]);
-  console.log(router);
-
   return (
     <SessionProvider session={session}>
       <QueryClientProvider client={queryClient}>
         <Provider store={store}>
-          <ThemeProvider theme={theme}>
+          <ReduxThemeProvider>
             <GlobalStyles />
             <Wrapper>
               <AuthGuard>
                 <ViewBox>
                   <MobileNavBar />
-                  <NavBar setTheme={setTheme} />
+                  <NavBar />
                   <Component {...pageProps} />
                 </ViewBox>
               </AuthGuard>
             </Wrapper>
-          </ThemeProvider>
+          </ReduxThemeProvider>
         </Provider>
       </QueryClientProvider>
     </SessionProvider>

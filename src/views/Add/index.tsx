@@ -8,9 +8,10 @@ import * as Yup from "yup";
 import { Button } from "../../components/Button";
 import { InputStyling } from "../../components/Input";
 import { Text } from "../../components/Text";
+import { updateCollections } from "../../redux/actions/CollectionActions";
 import { addLink } from "../../redux/actions/LinkActions";
 import { CollectionInterface } from "../../types/CollectionInterface";
-import { AutoComplete } from "./components/Autocomplete";
+import { CollectionsSelect } from "../../components/CollectionsSelect";
 import { AddLinkWrapper } from "./style";
 
 export const Add = () => {
@@ -31,6 +32,7 @@ export const Add = () => {
         })
         .then((res) => {
           dispatch(addLink(res.data));
+          dispatch(updateCollections(res.data.collections));
         });
       router.back();
     },
@@ -57,7 +59,6 @@ export const Add = () => {
         }}
         onSubmit={(values) => {
           handleAdd(values.title, values.url);
-          console.log("add");
         }}
         validationSchema={validationSchema}
       >
@@ -73,7 +74,7 @@ export const Add = () => {
               <StyledInput name="url" placeholder="Website url" />
               {errors.url && touched.url ? <Error>{errors.url}</Error> : null}
             </InputWrapper>
-            <AutoComplete
+            <CollectionsSelect
               setCollections={setCollections}
               suggestions={collections}
               collections={collections}

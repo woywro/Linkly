@@ -6,9 +6,7 @@ import { BsChevronDown, BsChevronUp, BsXLg } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { Text } from "../../../../components/Text";
-import useMediaQuery from "../../../../hooks/useMediaQuery";
 import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
-import breakpoints from "../../../../theme/breakpoints";
 import {
   Field,
   SortBarWrapper,
@@ -25,9 +23,9 @@ export const SortBar = () => {
   const [searchValue, setSearchValue] = useState("");
   const theme = useTheme();
   const dispatch = useDispatch();
-  const router = useRouter();
 
   const handleSortByName = () => {
+    resetSorting();
     setSortByName(!sortByName);
     if (sortByName == true) {
       dispatch(sortLinks("asc"));
@@ -36,6 +34,7 @@ export const SortBar = () => {
     }
   };
   const handleSortByOwner = () => {
+    resetSorting();
     setSortByOwner(!sortByOwner);
     if (sortByName == true) {
       dispatch(sortLinks("ownerAsc"));
@@ -44,12 +43,19 @@ export const SortBar = () => {
     }
   };
   const handleSortByModification = () => {
+    resetSorting();
     setSortByModification(!sortByModification);
     if (sortByModification == true) {
       dispatch(sortLinks("modifiedAsc"));
     } else {
       dispatch(sortLinks("modifiedDesc"));
     }
+  };
+
+  const resetSorting = () => {
+    setSortByModification(false);
+    setSortByName(false);
+    setSortByOwner(false);
   };
 
   const handleSearchByName = () => {
