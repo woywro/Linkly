@@ -4,6 +4,7 @@ import {
 } from "../actions/RequestsLoadingActions";
 import axios from "axios";
 import { CollectionInterface } from "../../types/CollectionInterface";
+import { ShareRequestInterface } from "../../types/ShareRequestInterface";
 
 export const setCollections = (collections: CollectionInterface[]) => ({
   type: "SET_COLLECTIONS",
@@ -29,7 +30,7 @@ export const deleteCollection = (
   return function (dispatch) {
     axios.post("/api/deleteCollection", { id: collectionId }).then((res) => {
       dispatch(
-        setCollections(collections.filter((e) => e !== res.data.result))
+        setCollections(collections.filter((e) => e.id !== res.data.result.id))
       );
     });
   };
@@ -39,5 +40,16 @@ export const updateCollections = (collections: CollectionInterface[]) => ({
   type: "UPDATE_COLLECTIONS",
   payload: {
     collections,
+  },
+});
+
+export const updateShareStatus = (
+  collectionId: string,
+  shareRequests: ShareRequestInterface
+) => ({
+  type: "UPDATE_SHARESTATUS",
+  payload: {
+    collectionId,
+    shareRequests,
   },
 });

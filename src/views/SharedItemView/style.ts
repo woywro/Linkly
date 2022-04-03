@@ -12,7 +12,7 @@ export const List = styled.ul`
 `;
 
 export const SharedItemViewWrapper = styled.div`
-  height: 100%;
+  height: 400px;
   width: 100%;
   display: flex;
   justify-content: flex-start;

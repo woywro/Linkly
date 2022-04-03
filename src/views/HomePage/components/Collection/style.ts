@@ -26,6 +26,16 @@ export const CollectionWrapper = styled(motion.button)`
   }
 `;
 
+export const SharedIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+export const Icon = styled.div`
+  position: relative;
+`;
+
 export const Title = styled(Text)`
   margin-top: 5px;
   font-size: 20px;

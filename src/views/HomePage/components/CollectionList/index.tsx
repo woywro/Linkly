@@ -29,7 +29,13 @@ export const CollectionList = () => {
               <EmptyState msg="You don't have link collections" />
             ) : (
               collections.map((e) => {
-                return <Collection name={e.value} id={e.id} />;
+                return (
+                  <Collection
+                    name={e.value}
+                    id={e.id}
+                    shareRequests={e.shareRequests}
+                  />
+                );
               })
             )}
           </CollectionsList>

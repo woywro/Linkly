@@ -31,7 +31,7 @@ export const SharedItemView = ({ share }: Props) => {
         }}
       >
         <List>
-          {share.collection.links.map((link) => {
+          {share.collection.links.map((link: LinkInterface) => {
             return <SharedLink link={link} />;
           })}
         </List>

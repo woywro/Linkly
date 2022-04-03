@@ -14,6 +14,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         id: true,
         value: true,
         links: true,
+        shareRequests: true,
       },
     });
     res.status(200).json({ collections });

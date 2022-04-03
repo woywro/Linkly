@@ -2,7 +2,11 @@ import { AiOutlineLink } from "react-icons/ai";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { Label, Name, SharedLinkWrapper } from "./style";
 
-export const SharedLink = ({ link }: LinkInterface) => {
+interface Props {
+  link: LinkInterface;
+}
+
+export const SharedLink = ({ link }: Props) => {
   return (
     <SharedLinkWrapper>
       <Label>
