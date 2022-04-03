@@ -48,7 +48,11 @@ export const NavBar = () => {
       </Links>
       <BottomSection>
         {session && (
-          <LogoutBtn isActive={false} onClick={() => signOut()}>
+          <LogoutBtn
+            isActive={false}
+            onClick={() => signOut()}
+            whileTap={{ scale: 0.9 }}
+          >
             <BiLogOut />
             <Text>Log out</Text>
           </LogoutBtn>

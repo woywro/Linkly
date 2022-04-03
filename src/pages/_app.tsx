@@ -10,11 +10,12 @@ import { ReduxThemeProvider } from "../HOC/ReduxThemeProvider";
 import store from "../redux/store";
 import breakpoints from "../theme/breakpoints";
 import { GlobalStyles } from "../theme/globalStyles";
-
+import { motion } from "framer-motion";
 const queryClient = new QueryClient();
 
 export default function App({
   Component,
+  router,
   pageProps: { session, status, ...pageProps },
 }: AppProps) {
   return (
@@ -28,7 +29,21 @@ export default function App({
                 <ViewBox>
                   <MobileNavBar />
                   <NavBar />
-                  <Component {...pageProps} />
+                  <MotionWrapper
+                    key={router.pathname}
+                    initial="initial"
+                    animate="animate"
+                    variants={{
+                      initial: {
+                        opacity: 0,
+                      },
+                      animate: {
+                        opacity: 1,
+                      },
+                    }}
+                  >
+                    <Component {...pageProps} />
+                  </MotionWrapper>
                 </ViewBox>
               </AuthGuard>
             </Wrapper>
@@ -38,6 +53,11 @@ export default function App({
     </SessionProvider>
   );
 }
+
+const MotionWrapper = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+`;
 
 const Wrapper = styled.div`
   width: 100vw;

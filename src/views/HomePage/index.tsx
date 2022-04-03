@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
+import styled from "styled-components";
 import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import { LeftWrapper, PageContainer, RightWrapper } from "../style";
@@ -22,7 +23,15 @@ export const HomePage = () => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            overflowX: "hidden",
           }}
+          renderTrackHorizontal={(props) => (
+            <div
+              {...props}
+              style={{ display: "none" }}
+              className="track-horizontal"
+            />
+          )}
         >
           <SearchBar />
           <CollectionList />
