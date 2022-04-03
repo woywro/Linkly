@@ -32,25 +32,32 @@ export const MobileNav = ({ open, setOpen }: Props) => {
         <MobileNavItem
           isActive={router.pathname == "/" ? true : false}
           onClick={() => router.back()}
+          whileTap={{ scale: 0.9 }}
         >
           <RiLayoutGridLine style={{ fill: "white" }} /> Home
         </MobileNavItem>
         <MobileNavItem
           isActive={router.pathname == "/social" ? true : false}
           onClick={() => router.push("/social")}
+          whileTap={{ scale: 0.9 }}
         >
           <RiTeamLine style={{ fill: "white" }} /> Social
         </MobileNavItem>
         <MobileNavItem
           isActive={router.pathname == "/addLink" ? true : false}
           onClick={() => router.push("/addLink")}
+          whileTap={{ scale: 0.9 }}
         >
           <RiAddCircleLine style={{ fill: "white" }} /> Add Link
         </MobileNavItem>
-        <MobileNavItem isActive={false} onClick={() => signOut()}>
+        <MobileNavItem
+          isActive={false}
+          onClick={() => signOut()}
+          whileTap={{ scale: 0.9 }}
+        >
           <BiLogOut style={{ fill: "white" }} /> Sign out
         </MobileNavItem>
-        <MobileNavItem isActive={false}>
+        <MobileNavItem isActive={false} whileTap={{ scale: 0.9 }}>
           <ThemeSwitcher />
         </MobileNavItem>
       </MobileNavItems>
