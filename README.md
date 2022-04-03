@@ -34,7 +34,7 @@ This project enables you to manage your links just like in file manager. Most fu
 * MomentJS
 
 ### Live version
-https://linklydep.vercel.app/
+https://linkly.nersent.com/
 
 ### Info
 
