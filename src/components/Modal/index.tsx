@@ -10,11 +10,37 @@ interface Props {
 }
 
 export const Modal = ({ title, open, onClose, children }: Props) => {
+  const backdropVariant = {
+    hidden: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.2,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const modalVariant = {
+    visible: {
+      transition: {
+        scale: 0.75,
+      },
+    },
+  };
+
   if (!open) return null;
   return (
     <Portal selector="#portal">
-      <Overlay>
-        <ModalWrapper>
+      <Overlay
+        variants={backdropVariant}
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+      >
+        <ModalWrapper variants={modalVariant}>
           <ModalTitle>{title}</ModalTitle>
           <CloseButton>
             <RiCloseLine onClick={onClose} />
