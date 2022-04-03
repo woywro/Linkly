@@ -40,7 +40,7 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
       await axios.post("/api/addHistory", {
         linkId: item.id,
       });
-      // window.open(item.url, "_blank");
+      window.open(item.url, "_blank");
     },
     [item]
   );

@@ -1,4 +1,5 @@
 import moment from "moment";
+import { useCallback } from "react";
 import { Text } from "../../../../components/Text";
 import { HistoryInterface } from "../../../../types/HistoryInterface";
 import { LinkInterface } from "../../../../types/LinkInterface";
@@ -9,8 +10,15 @@ interface Props {
 }
 
 export const HistoryItem = ({ item }: Props) => {
+  const handleClick = useCallback(
+    (item) => {
+      window.open(item.url, "_blank");
+    },
+    [item]
+  );
+
   return (
-    <HistoryItemWrapper>
+    <HistoryItemWrapper onClick={handleClick}>
       <Text bold>{item.link.title}</Text>
       <Text>{moment(parseInt(item.timestamp)).format("LT")}</Text>
     </HistoryItemWrapper>
