@@ -11,7 +11,7 @@ export const StyledButton = styled(motion.button)`
     bottom: 10px;
     padding: 15px;
     right: 10px;
-    z-index: 20;
+    z-index: 3000;
     background: ${(props) => props.theme.colors.secondary};
     border: none;
     border-radius: 10px;

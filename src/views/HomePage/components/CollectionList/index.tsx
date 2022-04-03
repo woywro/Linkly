@@ -16,6 +16,9 @@ export const CollectionList = () => {
 
   const request = useSelector((state) => state.requestsLoading);
   const loading = useLoading(request, "getCollections");
+  useEffect(() => {
+    console.log(collections);
+  }, [collections]);
 
   return (
     <CollectionsWrapper>
