@@ -20,7 +20,7 @@ export const SugestionsWrapper = styled.ul`
   margin: 0;
   max-height: 300px;
   left: 0;
-  z-index: 2000;
+  z-index: 50;
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
   }

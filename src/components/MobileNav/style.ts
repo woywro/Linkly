@@ -1,6 +1,7 @@
 import breakpoints from "../../theme/breakpoints";
 import styled from "styled-components";
 import { css } from "styled-components";
+import { motion } from "framer-motion";
 
 export const MobileNavWrapper = styled.div<{ open: boolean }>`
 overflow: hidden;
@@ -35,7 +36,7 @@ export const MobileNavItems = styled.ul`
   display: flex;
 `;
 
-export const MobileNavItem = styled.li<{ isActive: boolean }>`
+export const MobileNavItem = styled(motion.li)<{ isActive: boolean }>`
   text-decoration: none;
   font-size: 24px;
   color: white;

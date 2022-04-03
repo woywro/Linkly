@@ -12,7 +12,7 @@ export const Collection = ({ name, id }: Props) => {
   const theme = useTheme();
   return (
     <Link href={`/collections/${id}`} passHref>
-      <CollectionWrapper>
+      <CollectionWrapper whileTap={{ scale: 0.9 }}>
         <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={"60px"} />
         <Title>{name}</Title>
       </CollectionWrapper>

@@ -53,7 +53,9 @@ export const LinkList = () => {
                 return <LinkItem item={e} />;
               })}
               {loadingList && <div>loading</div>}
-              <Button onClick={handleLoadMore}>Load more</Button>
+              <Button whileTap={{ scale: 0.9 }} onClick={handleLoadMore}>
+                Load more
+              </Button>
             </>
           )}
         </>

@@ -3,7 +3,7 @@ import { StyledButton } from "./style";
 
 export const OpenWrapperButton = ({ onClick }) => {
   return (
-    <StyledButton onClick={onClick}>
+    <StyledButton onClick={onClick} whileTap={{ scale: 0.9 }}>
       <CgDetailsMore size={25} />
     </StyledButton>
   );

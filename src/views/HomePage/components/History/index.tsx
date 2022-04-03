@@ -44,7 +44,9 @@ export const History = () => {
             return <HistoryItem item={e} />;
           })}
           {loadingList && <div>loading</div>}
-          <Button onClick={handleLoadMore}>Load more</Button>
+          <Button whileTap={{ scale: 0.9 }} onClick={handleLoadMore}>
+            Load more
+          </Button>
         </>
       )}
     </HistoryWrapper>
