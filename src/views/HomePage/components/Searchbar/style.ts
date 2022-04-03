@@ -8,6 +8,7 @@ export const SearchBarWrapper = styled.div`
   flex-flow: row;
   justify-content: space-around;
   align-items: center;
+  z-index: 60;
   @media only screen and ${breakpoints.device.sm} {
     padding: 0;
     border-radius: 30px;

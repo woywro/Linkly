@@ -9,6 +9,7 @@ import {
   themeOrange,
   themePink,
 } from "../../theme/theme";
+import { motion } from "framer-motion";
 
 export const ThemeSwitcher = () => {
   const dispatch = useDispatch();
@@ -23,18 +24,22 @@ export const ThemeSwitcher = () => {
     <ThemeSwitcherWrapper>
       <Row>
         <ThemeChoiceButton
+          whileTap={{ scale: 0.9 }}
           onClick={(e) => handleChangeTheme(e, themeDefault)}
           background={themeDefault.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
+          whileTap={{ scale: 0.9 }}
           onClick={(e) => handleChangeTheme(e, themePink)}
           background={themePink.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
+          whileTap={{ scale: 0.9 }}
           onClick={(e) => handleChangeTheme(e, themeDefaultDark)}
           background={themeDefaultDark.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
+          whileTap={{ scale: 0.9 }}
           onClick={(e) => handleChangeTheme(e, themeOrange)}
           background={themeOrange.colors.gradient}
         ></ThemeChoiceButton>
@@ -68,7 +73,7 @@ const ThemeSwitcherWrapper = styled.div`
   }
 `;
 
-const ThemeChoiceButton = styled.button<{ background: string }>`
+const ThemeChoiceButton = styled(motion.button)<{ background: string }>`
   padding: 0;
   width: 20px;
   height: 20px;

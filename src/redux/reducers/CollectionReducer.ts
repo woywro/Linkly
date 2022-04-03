@@ -17,6 +17,21 @@ export const collections = (state = initialCollections, action: AnyAction) => {
       }, []);
       return removedDuplicates;
     }
+    case "UPDATE_SHARESTATUS": {
+      const collectionsFiltered = state.filter(
+        (e) => e.id !== action.payload.collectionId
+      );
+      let collectionModified = state.filter(
+        (e) => e.id == action.payload.collectionId
+      )[0];
+
+      collectionModified.shareRequests = action.payload.shareRequests;
+      console.log(collectionModified);
+
+      const updatedCollections = [collectionModified, ...collectionsFiltered];
+      console.log(updatedCollections);
+      return updatedCollections;
+    }
     case "SET_COLLECTIONS": {
       return action.payload.collections;
     }

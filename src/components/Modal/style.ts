@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { Text } from "../Text";
 import breakpoints from "../../theme/breakpoints";
 import { hoverEffectBg } from "../../mixins/hoverEffects";
+import { motion } from "framer-motion";
 
-export const Overlay = styled.div`
+export const Overlay = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +15,7 @@ export const Overlay = styled.div`
   background-color: rgba(0, 0, 0, 0.7);
 `;
 
-export const ModalWrapper = styled.div`
+export const ModalWrapper = styled(motion.div)`
   position: fixed;
   top: 50%;
   left: 50%;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { css } from "styled-components";
 import breakpoints from "../../theme/breakpoints";
 import { Button } from "../Button";
+import { motion } from "framer-motion";
 
 export const NavBarWrapper = styled.nav`
   flex-flow: column;
@@ -20,11 +21,13 @@ export const NavBarWrapper = styled.nav`
   }
 `;
 
-export const Item = styled.a<{ isActive?: boolean }>`
+export const Item = styled(motion.button)<{ isActive?: boolean }>`
   text-decoration: none;
   color: black;
   padding: 20px;
   font-size: 24px;
+  background: none;
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;

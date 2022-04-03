@@ -16,6 +16,9 @@ export const CollectionList = () => {
 
   const request = useSelector((state) => state.requestsLoading);
   const loading = useLoading(request, "getCollections");
+  useEffect(() => {
+    console.log(collections);
+  }, [collections]);
 
   return (
     <CollectionsWrapper>
@@ -29,7 +32,13 @@ export const CollectionList = () => {
               <EmptyState msg="You don't have link collections" />
             ) : (
               collections.map((e) => {
-                return <Collection name={e.value} id={e.id} />;
+                return (
+                  <Collection
+                    name={e.value}
+                    id={e.id}
+                    shareRequests={e.shareRequests}
+                  />
+                );
               })
             )}
           </CollectionsList>

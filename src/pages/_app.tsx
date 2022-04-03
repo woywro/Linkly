@@ -1,29 +1,21 @@
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { Provider } from "react-redux";
-import styled, { ThemeContext, ThemeProvider } from "styled-components";
+import styled from "styled-components";
 import { MobileNavBar } from "../components/MobileNavBar";
 import { NavBar } from "../components/NavBar";
 import { AuthGuard } from "../HOC/AuthGuard";
-import useMediaQuery from "../hooks/useMediaQuery";
+import { ReduxThemeProvider } from "../HOC/ReduxThemeProvider";
 import store from "../redux/store";
 import breakpoints from "../theme/breakpoints";
 import { GlobalStyles } from "../theme/globalStyles";
-import { themeDefault } from "../theme/theme";
-import { useEffect, useState } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
-import { QueryClient, QueryClientProvider } from "react-query";
-import { useRouter } from "next/router";
-import Login from "./login";
-import { createContext } from "react";
-import { useMemo } from "react";
-import { useSelector } from "react-redux";
-import { ReduxThemeProvider } from "../HOC/ReduxThemeProvider";
-
+import { motion } from "framer-motion";
 const queryClient = new QueryClient();
 
 export default function App({
   Component,
+  router,
   pageProps: { session, status, ...pageProps },
 }: AppProps) {
   return (
@@ -37,7 +29,21 @@ export default function App({
                 <ViewBox>
                   <MobileNavBar />
                   <NavBar />
-                  <Component {...pageProps} />
+                  <MotionWrapper
+                    key={router.pathname}
+                    initial="initial"
+                    animate="animate"
+                    variants={{
+                      initial: {
+                        opacity: 0,
+                      },
+                      animate: {
+                        opacity: 1,
+                      },
+                    }}
+                  >
+                    <Component {...pageProps} />
+                  </MotionWrapper>
                 </ViewBox>
               </AuthGuard>
             </Wrapper>
@@ -47,6 +53,12 @@ export default function App({
     </SessionProvider>
   );
 }
+
+const MotionWrapper = styled(motion.div)`
+  width: 100%;
+  height: 100%;
+`;
+
 const Wrapper = styled.div`
   width: 100vw;
   height: 100vh;

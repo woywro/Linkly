@@ -11,6 +11,7 @@ import * as Yup from "yup";
 import styled from "styled-components";
 import { Text } from "../../../../components/Text";
 import { InputStyling } from "../../../../components/Input";
+import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
 
 interface Props {
   collection: CollectionInterface;
@@ -18,7 +19,6 @@ interface Props {
 
 export const Sharing = ({ collection }: Props) => {
   const router = useRouter();
-  // const [input, setInput] = useState("");
   const [sharedList, setSharedList] = useState([]);
   const dispatch = useDispatch();
 
@@ -51,7 +51,14 @@ export const Sharing = ({ collection }: Props) => {
         .catch((err) => {
           alert(err.response.data);
         });
-      // setInput("");
+      dispatch(
+        updateShareStatus(router.query.collectionId, [
+          {
+            email: email,
+            collectionId: router.query.collectionId,
+          },
+        ])
+      );
     },
     [router, sharedList]
   );
@@ -61,7 +68,9 @@ export const Sharing = ({ collection }: Props) => {
       email: e,
       collectionId: router.query.collectionId,
     });
-    setSharedList(sharedList.filter((x) => x.email !== e));
+    const listFiltered = sharedList.filter((x) => x.email !== e);
+    setSharedList(listFiltered);
+    dispatch(updateShareStatus(router.query.collectionId, listFiltered));
   };
 
   const validationSchema = Yup.object({
@@ -83,10 +92,6 @@ export const Sharing = ({ collection }: Props) => {
           }}
           validationSchema={validationSchema}
         >
-          {/* <StyledInput
-          placeholder="email"
-          onChange={(e) => setInput(e.target.value)}
-        /> */}
           {({ errors, touched }) => (
             <StyledForm>
               <InputWrapper>

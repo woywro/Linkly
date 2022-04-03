@@ -1,6 +1,7 @@
 import styled, { css } from "styled-components";
+import { motion } from "framer-motion";
 
-export const Button = styled.button`
+export const Button = styled(motion.button)`
   background: ${(props) => props.theme.colors.secondary};
   border-radius: 20px;
   color: #ffffff;

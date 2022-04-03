@@ -13,24 +13,34 @@ export const NavBar = () => {
   const router = useRouter();
   const { data: session } = useSession();
   const theme = useTheme();
+
   return (
     <NavBarWrapper>
       <Logo mobile={false} />
       <Links>
         <Link href={`/addLink`}>
-          <Item isActive={router.pathname == "/addLink" ? true : false}>
+          <Item
+            isActive={router.pathname == "/addLink" ? true : false}
+            whileTap={{ scale: 0.9 }}
+          >
             <RiAddCircleLine />
             <Text>Add</Text>
           </Item>
         </Link>
         <Link href="/" passHref>
-          <Item isActive={router.pathname == "/" ? true : false}>
+          <Item
+            isActive={router.pathname == "/" ? true : false}
+            whileTap={{ scale: 0.9 }}
+          >
             <RiLayoutGridLine />
             <Text>Home</Text>
           </Item>
         </Link>
         <Link href="/social" passHref>
-          <Item isActive={router.pathname == "/social" ? true : false}>
+          <Item
+            isActive={router.pathname == "/social" ? true : false}
+            whileTap={{ scale: 0.9 }}
+          >
             <RiTeamLine />
             <Text>Social</Text>
           </Item>
@@ -38,7 +48,11 @@ export const NavBar = () => {
       </Links>
       <BottomSection>
         {session && (
-          <LogoutBtn isActive={false} onClick={() => signOut()}>
+          <LogoutBtn
+            isActive={false}
+            onClick={() => signOut()}
+            whileTap={{ scale: 0.9 }}
+          >
             <BiLogOut />
             <Text>Log out</Text>
           </LogoutBtn>

@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { Text } from "../../../../components/Text";
-export const CollectionWrapper = styled.div`
+import { motion } from "framer-motion";
+
+export const CollectionWrapper = styled(motion.button)`
   padding: 5px;
   display: flex;
   height: 120px;
@@ -13,6 +15,8 @@ export const CollectionWrapper = styled.div`
   flex-flow: column;
   cursor: pointer;
   border-radius: 20px;
+  background: none;
+  border: none;
   flex: 0 0 auto;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
@@ -20,6 +24,16 @@ export const CollectionWrapper = styled.div`
     box-shadow: ${(props) => props.theme.shadow};
     color: white;
   }
+`;
+
+export const SharedIcon = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+export const Icon = styled.div`
+  position: relative;
 `;
 
 export const Title = styled(Text)`

@@ -3,7 +3,7 @@ import { hoverEffectText } from "../../../../mixins/hoverEffects";
 
 export const HistoryItemWrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   padding: 5px;
   opacity: 0.5;
