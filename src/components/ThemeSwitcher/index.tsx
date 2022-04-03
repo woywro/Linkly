@@ -24,34 +24,22 @@ export const ThemeSwitcher = () => {
     <ThemeSwitcherWrapper>
       <Row>
         <ThemeChoiceButton
-<<<<<<< HEAD
-=======
           whileTap={{ scale: 0.9 }}
->>>>>>> framer-motion
           onClick={(e) => handleChangeTheme(e, themeDefault)}
           background={themeDefault.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
-<<<<<<< HEAD
-=======
           whileTap={{ scale: 0.9 }}
->>>>>>> framer-motion
           onClick={(e) => handleChangeTheme(e, themePink)}
           background={themePink.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
-<<<<<<< HEAD
-=======
           whileTap={{ scale: 0.9 }}
->>>>>>> framer-motion
           onClick={(e) => handleChangeTheme(e, themeDefaultDark)}
           background={themeDefaultDark.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
-<<<<<<< HEAD
-=======
           whileTap={{ scale: 0.9 }}
->>>>>>> framer-motion
           onClick={(e) => handleChangeTheme(e, themeOrange)}
           background={themeOrange.colors.gradient}
         ></ThemeChoiceButton>
@@ -85,11 +73,7 @@ const ThemeSwitcherWrapper = styled.div`
   }
 `;
 
-<<<<<<< HEAD
-const ThemeChoiceButton = styled.button<{ background: string }>`
-=======
 const ThemeChoiceButton = styled(motion.button)<{ background: string }>`
->>>>>>> framer-motion
   padding: 0;
   width: 20px;
   height: 20px;
