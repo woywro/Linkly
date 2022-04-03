@@ -89,6 +89,6 @@ export const AddCollectionButton = styled(Button)`
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 18px;
-  padding: 3px 5px;
+  font-size: 13px;
+  padding: 5px;
 `;

@@ -22,7 +22,7 @@ export const Row = styled.div`
   width: 100%;
   display: flex;
   flex-flow: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 `;
 
@@ -47,7 +47,6 @@ export const ShareRequest = styled.div`
   flex-flow: column;
   position: relative;
   color: ${(props) => props.theme.colors.primaryText};
-  &:hover {
-    ${hoverEffectBg}
-  }
+  background: ${(props) => props.theme.colors.primaryBg};
+  margin-bottom: 10px;
 `;

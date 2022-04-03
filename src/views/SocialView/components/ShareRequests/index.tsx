@@ -15,6 +15,7 @@ import {
   Title,
   ShareRequestsWrapper,
 } from "./style";
+import { TiTick, TiTimes } from "react-icons/ti";
 
 export const ShareRequests = () => {
   const [shareRequests, setShareRequests] = useState([]);
@@ -66,19 +67,25 @@ export const ShareRequests = () => {
                   {moment(parseInt(request.createdTimestamp)).format("LT")}
                 </Text>
               </Row>
+              <StyledCategory>
+                <RiFolder5Fill
+                  style={{ fill: theme.colors.yellow }}
+                  size={"30px"}
+                />
+                <Text>{request.collection.value}</Text>
+              </StyledCategory>
               <Row>
-                <StyledCategory>
-                  <RiFolder5Fill
-                    style={{ fill: theme.colors.yellow }}
-                    size={"30px"}
-                  />
-                  <Text>{request.collection.value}</Text>
-                </StyledCategory>
-                <Button onClick={() => handleAcceptShareRequest(request)}>
-                  accept
+                <Button
+                  onClick={() => handleAcceptShareRequest(request)}
+                  style={{ background: theme.colors.green }}
+                >
+                  <TiTick />
                 </Button>
-                <Button onClick={() => handleDeleteShareRequest(request)}>
-                  x
+                <Button
+                  onClick={() => handleDeleteShareRequest(request)}
+                  style={{ background: theme.colors.red }}
+                >
+                  <TiTimes />
                 </Button>
               </Row>
             </ShareRequest>

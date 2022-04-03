@@ -15,6 +15,7 @@ import {
 } from "../style";
 import { CollectionInfo } from "./components/CollectionInfo";
 import { Sharing } from "./components/Sharing";
+import { EmptyState } from "../../components/EmptyState";
 
 interface Props {
   collection: CollectionShareLinks;
@@ -43,15 +44,19 @@ export const CollectionView = ({ collection }: Props) => {
           }}
         >
           <Links>
-            {links.map((e: LinkInterface) => {
-              return (
-                <CollectionLinkItem
-                  item={e}
-                  setLinks={setLinks}
-                  links={links}
-                />
-              );
-            })}
+            {links.length == 0 ? (
+              <EmptyState msg={"There are no links in this collection"} />
+            ) : (
+              links.map((e: LinkInterface) => {
+                return (
+                  <CollectionLinkItem
+                    item={e}
+                    setLinks={setLinks}
+                    links={links}
+                  />
+                );
+              })
+            )}
           </Links>
         </Scrollbars>
       </LeftWrapper>
