@@ -90,7 +90,7 @@ export const SortBar = () => {
             >
               NAME
             </Text>
-            <IconButton onClick={handleSortByName}>
+            <IconButton onClick={handleSortByName} whileTap={{ scale: 0.95 }}>
               {sortByName == true ? <BsChevronDown /> : <BsChevronUp />}
             </IconButton>
           </>
@@ -103,6 +103,7 @@ export const SortBar = () => {
               onChange={(e) => setSearchValue(e.target.value)}
             />
             <IconButton
+              whileTap={{ scale: 0.95 }}
               onClick={() => {
                 handleStopSearch();
               }}
@@ -116,7 +117,7 @@ export const SortBar = () => {
         <Text bold color={theme.colors.primaryText}>
           OWNER
         </Text>
-        <IconButton onClick={handleSortByOwner}>
+        <IconButton onClick={handleSortByOwner} whileTap={{ scale: 0.95 }}>
           {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
         </IconButton>
       </Field>
@@ -124,7 +125,10 @@ export const SortBar = () => {
         <Text bold color={theme.colors.primaryText}>
           LAST MODIFIED
         </Text>
-        <IconButton onClick={handleSortByModification}>
+        <IconButton
+          onClick={handleSortByModification}
+          whileTap={{ scale: 0.95 }}
+        >
           {sortByModification == true ? <BsChevronDown /> : <BsChevronUp />}
         </IconButton>
       </Field>

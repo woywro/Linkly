@@ -49,7 +49,7 @@ export const LinkList = () => {
           ) : (
             <>
               {userLinks.map((e) => {
-                return <LinkItem item={e} />;
+                return <LinkItem item={e} key={e.id} />;
               })}
               {loadingList && <div>loading</div>}
               <Button whileTap={{ scale: 0.9 }} onClick={handleLoadMore}>

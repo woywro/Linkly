@@ -10,6 +10,7 @@ import {
   GithubLoginButton,
 } from "react-social-login-buttons";
 import { ThemeInterface } from "../../types/ThemeInterface";
+import { motion } from "framer-motion";
 
 const Wrapper = styled.div`
   display: flex;
@@ -123,7 +124,7 @@ export const LoginView = () => {
       </TextWrapper>
       <StyledInput placeholder="email" />
       <StyledInput placeholder="password" />
-      <LoginButton>Log in</LoginButton>
+      <LoginButton whileTap={{ scale: 0.95 }}>Log in</LoginButton>
       <Divider />
       <Row>
         <GoogleLoginButton

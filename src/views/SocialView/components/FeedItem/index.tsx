@@ -20,6 +20,7 @@ export const FeedItem = ({ sharedItem }: Props) => {
 
   return (
     <FeedItemWrapper
+      whileTap={{ scale: 0.95 }}
       onClick={() => {
         router.push({
           pathname: `/social/${sharedItem.id}`,

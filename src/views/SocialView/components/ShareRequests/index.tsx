@@ -2,24 +2,28 @@ import axios from "axios";
 import moment from "moment";
 import { useEffect, useState } from "react";
 import { RiFolder5Fill } from "react-icons/ri";
+import { TiTick, TiTimes } from "react-icons/ti";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
 import { Text } from "../../../../components/Text";
 import { updateSharedWithYou } from "../../../../redux/actions/SharedActions";
+import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
 import {
   Row,
   ShareRequest,
+  ShareRequestsWrapper,
   StyledCategory,
   Title,
-  ShareRequestsWrapper,
 } from "./style";
-import { TiTick, TiTimes } from "react-icons/ti";
 
 export const ShareRequests = () => {
-  const [shareRequests, setShareRequests] = useState([]);
-  const theme = useTheme();
+  const [shareRequests, setShareRequests] = useState<
+    ShareRequestInterface[] | []
+  >([]);
+  const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +36,7 @@ export const ShareRequests = () => {
     });
   };
 
-  const handleAcceptShareRequest = async (request) => {
+  const handleAcceptShareRequest = async (request: ShareRequestInterface) => {
     await axios
       .post("/api/acceptShareRequest", { id: request.id })
       .then((res) => {
@@ -41,7 +45,7 @@ export const ShareRequests = () => {
       });
   };
 
-  const handleDeleteShareRequest = async (request) => {
+  const handleDeleteShareRequest = async (request: ShareRequestInterface) => {
     console.log(request);
     await axios
       .post("/api/deleteShareRequest", {
@@ -76,12 +80,14 @@ export const ShareRequests = () => {
               </StyledCategory>
               <Row>
                 <Button
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleAcceptShareRequest(request)}
                   style={{ background: theme.colors.green }}
                 >
                   <TiTick />
                 </Button>
                 <Button
+                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleDeleteShareRequest(request)}
                   style={{ background: theme.colors.red }}
                 >

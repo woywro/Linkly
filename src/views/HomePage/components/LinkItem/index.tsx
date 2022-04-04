@@ -73,10 +73,14 @@ export const LinkItem = ({ item }: Props) => {
       )}
       <LinkDropdownWrapper>
         <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
-          <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
+          <DropDownButton
+            onClick={(e) => handleDeleteLink(e, item)}
+            whileTap={{ scale: 0.95 }}
+          >
             Delete
           </DropDownButton>
           <DropDownButton
+            whileTap={{ scale: 0.95 }}
             onClick={(e) => {
               handleEditLink();
               e.stopPropagation();
