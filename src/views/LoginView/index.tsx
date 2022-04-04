@@ -111,6 +111,7 @@ const Row = styled.div`
 
 export const LoginView = () => {
   const theme = useTheme() as ThemeInterface;
+
   return (
     <Wrapper>
       <Logo mobile={false} />
