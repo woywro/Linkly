@@ -9,6 +9,7 @@ import {
   GoogleLoginButton,
   GithubLoginButton,
 } from "react-social-login-buttons";
+import { ThemeInterface } from "../../types/ThemeInterface";
 
 const Wrapper = styled.div`
   display: flex;
@@ -109,7 +110,7 @@ const Row = styled.div`
 `;
 
 export const LoginView = () => {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   return (
     <Wrapper>
       <Logo mobile={false} />
@@ -126,14 +127,18 @@ export const LoginView = () => {
       <Row>
         <GoogleLoginButton
           onClick={() => signIn("google")}
-          style={{ background: theme.colors.primary }}
-          activeStyle={{ background: theme.colors.textSecondary }}
-        />
+          style={{ display: "flex", justifyContent: "center" }}
+          preventActiveStyles={true}
+        >
+          <span style={{ color: "grey" }}>Google</span>
+        </GoogleLoginButton>
         <GithubLoginButton
           onClick={() => signIn("github")}
-          style={{ background: theme.colors.primary }}
-          activeStyle={{ background: theme.colors.textSecondary }}
-        />
+          preventActiveStyles={true}
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <span style={{ color: "white" }}>Github</span>
+        </GithubLoginButton>
       </Row>
     </Wrapper>
   );

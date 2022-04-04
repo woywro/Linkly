@@ -54,14 +54,11 @@ export const Sharing = ({ collection }: Props) => {
         .catch((err) => {
           alert(err.response.data);
         });
-      const collectionId: string = router.query?.collectionId?
       dispatch(
-        updateShareStatus(collectionId, [
-          {
-            email: email,
-            collectionId: collectionId,
-          },
-        ])
+        updateShareStatus(collection.id, {
+          email: email,
+          collectionId: collection.id,
+        })
       );
     },
     [router, sharedList]
@@ -74,7 +71,7 @@ export const Sharing = ({ collection }: Props) => {
     });
     const listFiltered = sharedList.filter((x) => x.email !== e);
     setSharedList(listFiltered);
-    dispatch(updateShareStatus(router.query.collectionId, listFiltered));
+    dispatch(updateShareStatus(collection.id, listFiltered));
   };
 
   const validationSchema = Yup.object({
