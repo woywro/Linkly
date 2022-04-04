@@ -1,3 +1,4 @@
+import { SharedWithYouInterface } from "./SharedWithYouInterface";
 import { UserInterface } from "./UserInterface";
 export interface ShareRequestInterface {
   id: string;
@@ -6,4 +7,5 @@ export interface ShareRequestInterface {
   createdTimestamp: string;
   owner: UserInterface;
   receiver: UserInterface;
+  receiverEmail: string;
 }

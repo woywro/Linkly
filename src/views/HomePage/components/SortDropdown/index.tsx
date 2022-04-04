@@ -1,19 +1,18 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { DropdownMenu } from "../../../../components/DropdownMenu";
 import { Text } from "../../../../components/Text";
-import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
+import { sortLinks } from "../../../../redux/actions/LinkActions";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
 import { Field, IconButton, SortDropdownWrapper } from "./style";
 
 export const SortDropdown = () => {
   const [sortByName, setSortByName] = useState(false);
   const [sortByOwner, setSortByOwner] = useState(false);
   const [sortByModification, setSortByModification] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
 
   const handleSortByName = () => {
@@ -25,6 +24,7 @@ export const SortDropdown = () => {
       dispatch(sortLinks("desc"));
     }
   };
+
   const handleSortByOwner = () => {
     resetSorting();
     setSortByOwner(!sortByOwner);
@@ -34,6 +34,7 @@ export const SortDropdown = () => {
       dispatch(sortLinks("ownerDesc"));
     }
   };
+
   const handleSortByModification = () => {
     resetSorting();
     setSortByModification(!sortByModification);
@@ -44,23 +45,11 @@ export const SortDropdown = () => {
     }
   };
 
-  const handleSearchByName = () => {
-    axios
-      .get("/api/searchLinksByName", { params: { search: searchValue } })
-      .then((res) => {
-        dispatch(setLinks(res.data.link));
-      });
-  };
-
   const resetSorting = () => {
     setSortByModification(false);
     setSortByName(false);
     setSortByOwner(false);
   };
-
-  useEffect(() => {
-    handleSearchByName();
-  }, [searchValue]);
 
   return (
     <SortDropdownWrapper>

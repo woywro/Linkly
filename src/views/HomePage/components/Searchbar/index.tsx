@@ -56,13 +56,11 @@ export const SearchBar = () => {
           onChange={handleChange}
           value={input}
         />
-        {typeof window !== "undefined" && (
-          <AutoComplete
-            input={input}
-            setInput={setInput}
-            suggestions={suggestions}
-          />
-        )}
+        <AutoComplete
+          input={input}
+          setInput={setInput}
+          suggestions={suggestions}
+        />
       </StyledSearchBar>
     </SearchBarWrapper>
   );

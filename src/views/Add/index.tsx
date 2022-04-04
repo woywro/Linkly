@@ -76,7 +76,6 @@ export const Add = () => {
             </InputWrapper>
             <CollectionsSelect
               setCollections={setCollections}
-              suggestions={collections}
               collections={collections}
             />
             <Button type="submit">Add</Button>

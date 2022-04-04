@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsChevronDown, BsChevronUp, BsXLg } from "react-icons/bs";
@@ -7,11 +6,12 @@ import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { Text } from "../../../../components/Text";
 import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
 import {
   Field,
-  SortBarWrapper,
   IconButton,
   SearchContainer,
+  SortBarWrapper,
   TextInput,
 } from "./style";
 
@@ -21,7 +21,7 @@ export const SortBar = () => {
   const [sortByModification, setSortByModification] = useState(false);
   const [searchMode, setSearchMode] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
 
   const handleSortByName = () => {

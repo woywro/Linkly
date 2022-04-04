@@ -5,6 +5,7 @@ import { LinkInterface } from "../types/LinkInterface";
 import { HistoryInterface } from "../types/HistoryInterface";
 import { CollectionInterface } from "../types/CollectionInterface";
 import { SharedWithYouInterface } from "../types/SharedWithYouInterface";
+import { LoadingRequestInterface } from "../types/LoadingRequestInterface";
 
 export default createStore(allReducers, applyMiddleware(thunk));
 
@@ -13,6 +14,6 @@ export interface RootState {
   history: HistoryInterface[];
   collections: CollectionInterface[];
   sharedWithYou: SharedWithYouInterface[];
-  requestsLoading: any;
+  requestsLoading: LoadingRequestInterface[];
   theme: any;
 }

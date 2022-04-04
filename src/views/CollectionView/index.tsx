@@ -3,7 +3,6 @@ import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 import { CollectionLinkItem } from "./components/CollectionLinkItem";
 import { Links } from "../../components/Links";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
-import { CollectionShareLinks } from "../../types/CollectionShareLinks";
 import Scrollbars from "react-custom-scrollbars-2";
 import { LinkInterface } from "../../types/LinkInterface";
 import {
@@ -16,13 +15,14 @@ import {
 import { CollectionInfo } from "./components/CollectionInfo";
 import { Sharing } from "./components/Sharing";
 import { EmptyState } from "../../components/EmptyState";
+import { CollectionInterface } from "../../types/CollectionInterface";
 
 interface Props {
-  collection: CollectionShareLinks;
+  collection: CollectionInterface;
 }
 
 export const CollectionView = ({ collection }: Props) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [links, setLinks] = useState<LinkInterface[] | []>([]);
 
   useEffect(() => {

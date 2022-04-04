@@ -8,13 +8,14 @@ import moment from "moment";
 import { SharedWithYouInterface } from "../../../../types/SharedWithYouInterface";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { UserInterface } from "../../../../types/UserInterface";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
 
 interface Props {
   sharedItem: SharedWithYouInterface;
 }
 
 export const FeedItem = ({ sharedItem }: Props) => {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   const router = useRouter();
 
   return (
@@ -30,7 +31,7 @@ export const FeedItem = ({ sharedItem }: Props) => {
         <Name>{sharedItem.collection.value}</Name>
       </Label>
       <Text color={theme.colors.secondaryText}>
-        {sharedItem.collection.owner.email}
+        {sharedItem.collection.owner?.email}
       </Text>
       <Timestamp color={theme.colors.secondaryText}>
         {moment(parseInt(sharedItem.createdTimestamp)).fromNow()}

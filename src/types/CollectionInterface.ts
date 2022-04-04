@@ -1,5 +1,5 @@
-import { Collection } from "@prisma/client";
 import { LinkInterface } from "./LinkInterface";
+import { ShareRequestInterface } from "./ShareRequestInterface";
 import { UserInterface } from "./UserInterface";
 
 export interface CollectionInterface {
@@ -9,4 +9,5 @@ export interface CollectionInterface {
   ownerId: string;
   links?: LinkInterface[];
   owner?: UserInterface;
+  shareRequests?: ShareRequestInterface[];
 }

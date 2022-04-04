@@ -1,16 +1,14 @@
-import { PageContainer, LeftWrapper, RightWrapper, Title } from "../style";
-import { useRouter } from "next/router";
-import { Feed } from "./components/Feed";
-import { LoadingSpinner } from "../../components/LoadingSpinner";
-import { ShareRequests } from "./components/ShareRequests";
-import { useState } from "react";
-import { OpenWrapperButton } from "../../components/OpenWrapperButton";
-import { CloseWrapperButton } from "../../components/CloseWrapperButton";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { CloseWrapperButton } from "../../components/CloseWrapperButton";
+import { LoadingSpinner } from "../../components/LoadingSpinner";
+import { OpenWrapperButton } from "../../components/OpenWrapperButton";
+import useLoading from "../../hooks/useLoading";
 import { getSharedWithYou } from "../../redux/actions/SharedActions";
 import { RootState } from "../../redux/store";
-import useLoading from "../../hooks/useLoading";
+import { LeftWrapper, PageContainer, RightWrapper, Title } from "../style";
+import { Feed } from "./components/Feed";
+import { ShareRequests } from "./components/ShareRequests";
 
 export const SocialView = () => {
   const requests = useSelector((state: RootState) => state.requestsLoading);

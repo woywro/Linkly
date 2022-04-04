@@ -4,6 +4,7 @@ import { useTheme } from "styled-components";
 import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
 import { CollectionWrapper, Title, SharedIcon, Icon } from "./style";
 import { AiFillCloud } from "react-icons/ai";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
 
 interface Props {
   name: string;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 export const Collection = ({ name, id, shareRequests }: Props) => {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   return (
     <Link href={`/collections/${id}`} passHref>
       <CollectionWrapper whileTap={{ scale: 0.9 }}>
