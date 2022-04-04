@@ -23,7 +23,7 @@ export const AuthGuard = ({ children }: Props) => {
       dispatch(getHistory());
       dispatch(getCollections());
     }
-  }, [status, Session]);
+  }, [status]);
 
   if (status == "loading") {
     return (

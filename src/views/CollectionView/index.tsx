@@ -3,7 +3,10 @@ import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 import { CollectionLinkItem } from "./components/CollectionLinkItem";
 import { Links } from "../../components/Links";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
+<<<<<<< HEAD
 import { CollectionShareLinks } from "../../types/CollectionShareLinks";
+=======
+>>>>>>> development
 import Scrollbars from "react-custom-scrollbars-2";
 import { LinkInterface } from "../../types/LinkInterface";
 import {
@@ -15,13 +18,15 @@ import {
 } from "../style";
 import { CollectionInfo } from "./components/CollectionInfo";
 import { Sharing } from "./components/Sharing";
+import { EmptyState } from "../../components/EmptyState";
+import { CollectionInterface } from "../../types/CollectionInterface";
 
 interface Props {
-  collection: CollectionShareLinks;
+  collection: CollectionInterface;
 }
 
 export const CollectionView = ({ collection }: Props) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [links, setLinks] = useState<LinkInterface[] | []>([]);
 
   useEffect(() => {
@@ -43,15 +48,19 @@ export const CollectionView = ({ collection }: Props) => {
           }}
         >
           <Links>
-            {links.map((e: LinkInterface) => {
-              return (
-                <CollectionLinkItem
-                  item={e}
-                  setLinks={setLinks}
-                  links={links}
-                />
-              );
-            })}
+            {links.length == 0 ? (
+              <EmptyState msg={"There are no links in this collection"} />
+            ) : (
+              links.map((e: LinkInterface) => {
+                return (
+                  <CollectionLinkItem
+                    item={e}
+                    setLinks={setLinks}
+                    links={links}
+                  />
+                );
+              })
+            )}
           </Links>
         </Scrollbars>
       </LeftWrapper>

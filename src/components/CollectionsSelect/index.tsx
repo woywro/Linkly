@@ -127,7 +127,7 @@ export const CollectionsSelect = ({ setCollections, collections }: Props) => {
               formik.handleSubmit();
             }}
           >
-            +
+            Add +
           </AddCollectionButton>
         )}
         {filteredSuggestions.length == 0 && (

@@ -1,35 +1,34 @@
 import axios from "axios";
 import moment from "moment";
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { AiOutlineLink } from "react-icons/ai";
-import { CgMoreAlt } from "react-icons/cg";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
-import { deleteLink } from "../../../../redux/actions/LinkActions";
-import { updateHistory } from "../../../../redux/actions/HistoryActions";
-import { LinkInterface } from "../../../../types/LinkInterface";
 import { DropdownMenu } from "../../../../components/DropdownMenu";
 import { Text } from "../../../../components/Text";
+import useMediaQuery from "../../../../hooks/useMediaQuery";
+import { updateHistory } from "../../../../redux/actions/HistoryActions";
+import { deleteLink } from "../../../../redux/actions/LinkActions";
+import breakpoints from "../../../../theme/breakpoints";
+import { LinkInterface } from "../../../../types/LinkInterface";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
 import {
   DropDownButton,
-  LinkLabel,
-  LinkMenuButton,
   LinkDropdownWrapper,
-  Name,
+  LinkLabel,
   LinkWrapper,
+  Name,
 } from "./style";
-import useMediaQuery from "../../../../hooks/useMediaQuery";
-import breakpoints from "../../../../theme/breakpoints";
 
 interface Props {
   item: LinkInterface;
-  setLinks: () => void;
+  setLinks: (arg0: LinkInterface[]) => void;
   links: LinkInterface[];
 }
 
 export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   const router = useRouter();
   const dispatch = useDispatch();
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
@@ -40,7 +39,7 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
       await axios.post("/api/addHistory", {
         linkId: item.id,
       });
-      // window.open(item.url, "_blank");
+      window.open(item?.url, "_blank");
     },
     [item]
   );
@@ -75,7 +74,7 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
       </LinkLabel>
       {!mediaQuerySm && (
         <>
-          <Text color={theme.colors.secondaryText}>{item.owner.email}</Text>
+          <Text color={theme.colors.secondaryText}>{item.owner?.email}</Text>
           <Text color={theme.colors.secondaryText}>
             {moment(parseInt(item.modificationTimestamp)).format("lll")}
           </Text>

@@ -28,7 +28,7 @@ export const DropdownItemList = styled.div<{
   background: ${(props) => props.theme.colors.secondaryBg};
   box-shadow: ${(props) => props.theme.shadow};
   display: ${(props) => (props.show ? "flex" : "none")};
-  z-index: 30;
+  z-index: 40;
   width: ${(props) => (props.fullWidth ? "100%" : "auto")};
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;

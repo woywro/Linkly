@@ -12,20 +12,26 @@ import styled from "styled-components";
 import { Text } from "../../../../components/Text";
 import { InputStyling } from "../../../../components/Input";
 import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
+import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
 
 interface Props {
   collection: CollectionInterface;
 }
 
+interface SharedListInterface {
+  email: string;
+  isAccepted: boolean;
+}
+
 export const Sharing = ({ collection }: Props) => {
   const router = useRouter();
-  const [sharedList, setSharedList] = useState([]);
+  const [sharedList, setSharedList] = useState<SharedListInterface[] | []>([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const sharedWith = [];
-    if (collection.shareRequests.length !== 0) {
-      collection.shareRequests.map((request) => {
+    if (collection.shareRequests?.length !== 0) {
+      const sharedWith: SharedListInterface[] = [];
+      collection.shareRequests?.map((request: ShareRequestInterface) => {
         sharedWith.push({
           email: request.receiverEmail,
           isAccepted: request.isAccepted,
@@ -36,28 +42,23 @@ export const Sharing = ({ collection }: Props) => {
   }, [collection, router]);
 
   const handleAdd = useCallback(
-    (email) => {
+    (email: string) => {
       axios
         .post("/api/createShareRequest", {
           collectionId: router.query.collectionId,
           email: email,
         })
         .then(() => {
-          setSharedList([
-            ...sharedList,
-            { email: email, collectionId: router.query.collectionId },
-          ]);
+          setSharedList([...sharedList, { email: email, isAccepted: false }]);
         })
         .catch((err) => {
           alert(err.response.data);
         });
       dispatch(
-        updateShareStatus(router.query.collectionId, [
-          {
-            email: email,
-            collectionId: router.query.collectionId,
-          },
-        ])
+        updateShareStatus(collection.id, {
+          email: email,
+          collectionId: collection.id,
+        })
       );
     },
     [router, sharedList]
@@ -70,7 +71,7 @@ export const Sharing = ({ collection }: Props) => {
     });
     const listFiltered = sharedList.filter((x) => x.email !== e);
     setSharedList(listFiltered);
-    dispatch(updateShareStatus(router.query.collectionId, listFiltered));
+    dispatch(updateShareStatus(collection.id, listFiltered));
   };
 
   const validationSchema = Yup.object({

@@ -9,6 +9,7 @@ import { CollectionsWrapper, CollectionsList } from "./style";
 import { RootState } from "../../../../redux/store";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import useLoading from "../../../../hooks/useLoading";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
 
 export const CollectionList = () => {
   const dispatch = useDispatch();
@@ -31,7 +32,7 @@ export const CollectionList = () => {
             {collections.length == 0 ? (
               <EmptyState msg="You don't have link collections" />
             ) : (
-              collections.map((e) => {
+              collections.map((e: CollectionInterface) => {
                 return (
                   <Collection
                     name={e.value}

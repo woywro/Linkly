@@ -3,8 +3,13 @@ import { useRouter } from "next/router";
 import { prisma } from "../../../prisma/PrismaClient";
 import { Modal } from "../../components/Modal";
 import { SharedItemView } from "../../views/SharedItemView";
+import { SharedWithYouInterface } from "../../types/SharedWithYouInterface";
 
-export default function SharedItem({ share }) {
+interface Props {
+  share: SharedWithYouInterface;
+}
+
+export default function SharedItem({ share }: Props) {
   const router = useRouter();
 
   return (

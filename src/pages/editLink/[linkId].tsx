@@ -19,7 +19,7 @@ export default function editLink({ link }: Props) {
         router.push("/");
       }}
     >
-      <EditLink link={link} />
+      <EditLink link={JSON.parse(link)} />
     </Modal>
   );
 }

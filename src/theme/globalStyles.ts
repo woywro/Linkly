@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-export const GlobalStyles = createGlobalStyle`
+import { ThemeInterface } from "../types/ThemeInterface";
+
+export const GlobalStyles = createGlobalStyle<{ theme: ThemeInterface }>`
 *{
   box-sizing:border-box;
   margin: 0;

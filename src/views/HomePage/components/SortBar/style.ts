@@ -4,6 +4,7 @@ import {
   hoverEffectBg,
   hoverEffectText,
 } from "../../../../mixins/hoverEffects";
+import { motion } from "framer-motion";
 
 export const SortBarWrapper = styled.div`
   display: grid;
@@ -40,7 +41,7 @@ export const SearchContainer = styled.div`
   }
 `;
 
-export const IconButton = styled.button`
+export const IconButton = styled(motion.button)`
   border: none;
   margin: 0;
   padding: 0;

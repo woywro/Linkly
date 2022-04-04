@@ -11,6 +11,7 @@ import { Button } from "../../../../components/Button";
 import { useEffect } from "react";
 import useLoading from "../../../../hooks/useLoading";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
+import { HistoryInterface } from "../../../../types/HistoryInterface";
 
 export const History = () => {
   const History = useSelector((state: RootState) => state.history);
@@ -40,7 +41,7 @@ export const History = () => {
       ) : (
         <>
           <Title>History</Title>
-          {History.map((e) => {
+          {History.map((e: HistoryInterface) => {
             return <HistoryItem item={e} />;
           })}
           {loadingList && <div>loading</div>}

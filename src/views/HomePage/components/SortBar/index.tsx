@@ -1,5 +1,4 @@
 import axios from "axios";
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsChevronDown, BsChevronUp, BsXLg } from "react-icons/bs";
@@ -7,11 +6,12 @@ import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { Text } from "../../../../components/Text";
 import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
 import {
   Field,
-  SortBarWrapper,
   IconButton,
   SearchContainer,
+  SortBarWrapper,
   TextInput,
 } from "./style";
 
@@ -21,7 +21,7 @@ export const SortBar = () => {
   const [sortByModification, setSortByModification] = useState(false);
   const [searchMode, setSearchMode] = useState(false);
   const [searchValue, setSearchValue] = useState("");
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
 
   const handleSortByName = () => {
@@ -90,7 +90,7 @@ export const SortBar = () => {
             >
               NAME
             </Text>
-            <IconButton onClick={handleSortByName}>
+            <IconButton onClick={handleSortByName} whileTap={{ scale: 0.95 }}>
               {sortByName == true ? <BsChevronDown /> : <BsChevronUp />}
             </IconButton>
           </>
@@ -103,6 +103,7 @@ export const SortBar = () => {
               onChange={(e) => setSearchValue(e.target.value)}
             />
             <IconButton
+              whileTap={{ scale: 0.95 }}
               onClick={() => {
                 handleStopSearch();
               }}
@@ -116,7 +117,7 @@ export const SortBar = () => {
         <Text bold color={theme.colors.primaryText}>
           OWNER
         </Text>
-        <IconButton onClick={handleSortByOwner}>
+        <IconButton onClick={handleSortByOwner} whileTap={{ scale: 0.95 }}>
           {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
         </IconButton>
       </Field>
@@ -124,7 +125,10 @@ export const SortBar = () => {
         <Text bold color={theme.colors.primaryText}>
           LAST MODIFIED
         </Text>
-        <IconButton onClick={handleSortByModification}>
+        <IconButton
+          onClick={handleSortByModification}
+          whileTap={{ scale: 0.95 }}
+        >
           {sortByModification == true ? <BsChevronDown /> : <BsChevronUp />}
         </IconButton>
       </Field>

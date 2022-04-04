@@ -10,15 +10,7 @@ import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
 import { CollectionsSelect } from "../../components/CollectionsSelect";
 import { useRouter } from "next/router";
-
-const EditLinkWrapper = styled.div`
-  height: 300px;
-  width: 300px;
-  display: flex;
-  justify-content: space-around;
-  flex-flow: column;
-  align-items: center;
-`;
+import { EditLinkWrapper } from "./style";
 
 interface Props {
   link: LinkInterface;
@@ -38,7 +30,7 @@ export const EditLink = ({ link }: Props) => {
   const allCollections = useSelector((state: RootState) => state.collections);
 
   useEffect(() => {
-    setInputValues(JSON.parse(link));
+    setInputValues(link);
   }, [link]);
 
   const setInputValues = useCallback(
@@ -51,10 +43,9 @@ export const EditLink = ({ link }: Props) => {
   );
 
   const handleSaveLink = async () => {
-    console.log(collections);
     await axios
       .post("/api/updateLink", {
-        id: JSON.parse(link).id,
+        id: link.id,
         title: title,
         url: url,
         collections: collections,
@@ -83,7 +74,6 @@ export const EditLink = ({ link }: Props) => {
       />
       <CollectionsSelect
         setCollections={setCollections}
-        suggestions={allCollections}
         collections={collections}
       />
       <Button onClick={handleSaveLink}>save</Button>

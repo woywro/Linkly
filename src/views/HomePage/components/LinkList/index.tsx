@@ -1,19 +1,18 @@
-import { useCallback, useEffect, useState } from "react";
+import axios from "axios";
+import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
-import { LinkItem } from "../LinkItem";
 import { Links } from "../../../../components/Links";
+import { LoadingSpinner } from "../../../../components/LoadingSpinner";
+import useLoading from "../../../../hooks/useLoading";
+import { setLinks } from "../../../../redux/actions/LinkActions";
 import { RootState } from "../../../../redux/store";
 import { Title } from "../../../style";
+import { LinkItem } from "../LinkItem";
 import { SortBar } from "../SortBar";
 import { SortDropdown } from "../SortDropdown";
 import { Row } from "./style";
-import axios from "axios";
-import { setLinks } from "../../../../redux/actions/LinkActions";
-import useLoading from "../../../../hooks/useLoading";
-import { LoadingSpinner } from "../../../../components/LoadingSpinner";
-import { DropdownMenu } from "../../../../components/DropdownMenu";
 
 export const LinkList = () => {
   const userLinks = useSelector((state: RootState) => state.links);
@@ -42,7 +41,7 @@ export const LinkList = () => {
         <>
           <Row>
             <Title>Links</Title>
-            <SortDropdown title={"sort"} />
+            <SortDropdown />
           </Row>
           <SortBar />
           {userLinks.length == 0 ? (
@@ -50,7 +49,7 @@ export const LinkList = () => {
           ) : (
             <>
               {userLinks.map((e) => {
-                return <LinkItem item={e} />;
+                return <LinkItem item={e} key={e.id} />;
               })}
               {loadingList && <div>loading</div>}
               <Button whileTap={{ scale: 0.9 }} onClick={handleLoadMore}>

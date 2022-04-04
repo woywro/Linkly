@@ -6,14 +6,16 @@ import { Button } from "../../../../components/Button";
 import { Text } from "../../../../components/Text";
 import { deleteCollection } from "../../../../redux/actions/CollectionActions";
 import { RootState } from "../../../../redux/store";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
 import { Name, CollectionInfoWrapper } from "./style";
 
 interface Props {
-  collection: CollectionShareLinks;
+  collection: CollectionInterface;
 }
 
 export const CollectionInfo = ({ collection }: Props) => {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   const router = useRouter();
   const dispatch = useDispatch();
   const collections = useSelector((state: RootState) => state.collections);
@@ -32,7 +34,7 @@ export const CollectionInfo = ({ collection }: Props) => {
         </Text>
       </Name>
       <Text size={"medium"} color={theme.colors.secondaryText}>
-        links: {collection.links.length}
+        links: {collection.links?.length}
       </Text>
       <Button onClick={handleDeleteCategory}>Delete Category</Button>
     </CollectionInfoWrapper>
