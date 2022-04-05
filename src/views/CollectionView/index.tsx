@@ -3,10 +3,6 @@ import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 import { CollectionLinkItem } from "./components/CollectionLinkItem";
 import { Links } from "../../components/Links";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
-<<<<<<< HEAD
-import { CollectionShareLinks } from "../../types/CollectionShareLinks";
-=======
->>>>>>> development
 import Scrollbars from "react-custom-scrollbars-2";
 import { LinkInterface } from "../../types/LinkInterface";
 import {

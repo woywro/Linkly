@@ -45,6 +45,7 @@ export const Add = () => {
       .max(50, "title is too long!")
       .required("title is required"),
     url: Yup.string()
+      .url()
       .min(3, "url is too short!")
       .max(50, "url is too long!")
       .required("url is required"),
