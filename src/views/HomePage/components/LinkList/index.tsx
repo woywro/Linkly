@@ -19,17 +19,17 @@ export const LinkList = () => {
   const dispatch = useDispatch();
   const requests = useSelector((state) => state.requestsLoading);
   const loading = useLoading(requests, "getLinks");
-  const [loadingList, setLoadingList] = useState(false);
+  const [loadingText, setLoadingText] = useState("load more");
 
   const handleLoadMore = useCallback(() => {
-    setLoadingList(true);
+    setLoadingText("loading");
     axios
       .get("/api/getLinks", {
         params: { cursor: userLinks[userLinks.length - 1].id },
       })
       .then((res) => {
         dispatch(setLinks(userLinks.concat(res.data.link)));
-        setLoadingList(false);
+        setLoadingText("load");
       });
   }, [userLinks]);
 
@@ -51,9 +51,8 @@ export const LinkList = () => {
               {userLinks.map((e) => {
                 return <LinkItem item={e} key={e.id} />;
               })}
-              {loadingList && <div>loading</div>}
               <Button whileTap={{ scale: 0.9 }} onClick={handleLoadMore}>
-                Load more
+                {loadingText}
               </Button>
             </>
           )}

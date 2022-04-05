@@ -73,7 +73,6 @@ const Wrapper = styled.div`
   @media only screen and ${breakpoints.device.sm} {
   }
   @media only screen and ${breakpoints.device.lg} {
-    background: blue;
   }
 `;
 const ViewBox = styled.div`
