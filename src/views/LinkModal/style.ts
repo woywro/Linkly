@@ -1,6 +1,6 @@
 import styled from "styled-components";
-export const EditLinkWrapper = styled.div`
-  height: 300px;
+export const AddLinkWrapper = styled.div`
+  height: 100%;
   width: 300px;
   display: flex;
   justify-content: space-around;
