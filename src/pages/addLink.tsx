@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { Add } from "../views/Add";
 import { Modal } from "../components/Modal";
+import { LinkModal } from "../views/LinkModal";
 
 export default function AddLink() {
   const router = useRouter();
@@ -13,7 +14,7 @@ export default function AddLink() {
         router.back();
       }}
     >
-      <Add />
+      <LinkModal />
     </Modal>
   );
 }

@@ -18,6 +18,7 @@ import {
   Add,
   AddCollectionButton,
 } from "./style";
+import { updateCollections } from "../../redux/actions/CollectionActions";
 
 interface Props {
   setCollections: (arg0: CollectionInterface[]) => void;

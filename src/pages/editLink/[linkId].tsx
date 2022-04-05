@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { EditLink } from "../../views/EditLink";
+import { LinkModal } from "../../views/LinkModal";
 import { Modal } from "../../components/Modal";
 import { LinkInterface } from "../../types/LinkInterface";
 import { PrismaClient } from "@prisma/client";
@@ -19,7 +19,7 @@ export default function editLink({ link }: Props) {
         router.push("/");
       }}
     >
-      <EditLink link={JSON.parse(link)} />
+      <LinkModal link={JSON.parse(link)} />
     </Modal>
   );
 }

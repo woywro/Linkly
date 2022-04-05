@@ -1,22 +1,21 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
+import { useDispatch } from "react-redux";
 import { Button } from "../../components/Button";
+import { CollectionsSelect } from "../../components/CollectionsSelect";
 import { Input } from "../../components/Input";
-import { updateLink } from "../../redux/actions/LinkActions";
-import { RootState } from "../../redux/store";
+import { updateCollections } from "../../redux/actions/CollectionActions";
+import { addLink, updateLink } from "../../redux/actions/LinkActions";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { LinkInterface } from "../../types/LinkInterface";
-import { CollectionsSelect } from "../../components/CollectionsSelect";
-import { useRouter } from "next/router";
 import { EditLinkWrapper } from "./style";
 
 interface Props {
-  link: LinkInterface;
+  link?: LinkInterface;
 }
 
-export const EditLink = ({ link }: Props) => {
+export const LinkModal = ({ link }: Props) => {
   const [title, setTitle] = useState("");
   const [url, setUrl] = useState("");
   const [collections, setCollections] = useState<CollectionInterface[] | []>(
@@ -27,10 +26,10 @@ export const EditLink = ({ link }: Props) => {
 
   const dispatch = useDispatch();
 
-  const allCollections = useSelector((state: RootState) => state.collections);
-
   useEffect(() => {
-    setInputValues(link);
+    if (link !== undefined) {
+      setInputValues(link);
+    }
   }, [link]);
 
   const setInputValues = useCallback(
@@ -39,19 +38,34 @@ export const EditLink = ({ link }: Props) => {
       setUrl(link.url);
       setCollections(link.collections);
     },
-    [link]
+    [link, collections]
   );
 
-  const handleSaveLink = async () => {
+  const handleSaveLinkOnEdit = async () => {
     await axios
       .post("/api/updateLink", {
-        id: link.id,
+        id: link?.id,
         title: title,
         url: url,
         collections: collections,
       })
       .then((res) => {
         dispatch(updateLink(res.data));
+        dispatch(updateCollections(res.data.collections));
+      });
+    router.back();
+  };
+
+  const handleAdd = async () => {
+    await axios
+      .post("/api/addLink", {
+        title,
+        url,
+        collections,
+      })
+      .then((res) => {
+        dispatch(addLink(res.data));
+        dispatch(updateCollections(res.data.collections));
       });
     router.back();
   };
@@ -76,7 +90,11 @@ export const EditLink = ({ link }: Props) => {
         setCollections={setCollections}
         collections={collections}
       />
-      <Button onClick={handleSaveLink}>save</Button>
+      {router.pathname !== "/addLink" ? (
+        <Button onClick={handleSaveLinkOnEdit}>save</Button>
+      ) : (
+        <Button onClick={handleAdd}>add</Button>
+      )}
     </EditLinkWrapper>
   );
 };
