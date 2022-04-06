@@ -12,7 +12,7 @@ interface Props {
   id: string;
   shareRequests: ShareRequestInterface[];
   item: any;
-  sortingMode: (arg: boolean) => void;
+  sortingMode: boolean;
 }
 
 export const Collection = ({
