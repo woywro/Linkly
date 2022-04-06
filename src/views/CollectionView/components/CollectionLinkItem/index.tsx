@@ -59,6 +59,21 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
     [links]
   );
 
+  const handleDeleteLinkFromCollection = useCallback(
+    async (e, item) => {
+      e.stopPropagation();
+      await axios.post("/api/deleteLinkFromCollection", {
+        id: item.id,
+        collectionId: router.query.collectionId,
+      });
+      const linksFiltered: LinkInterface[] = links.filter(
+        (x) => x.id !== item.id
+      );
+      setLinks(linksFiltered);
+    },
+    [links]
+  );
+
   const handleEditLink = () => {
     router.push({
       pathname: `/editLink/${item.id}`,
@@ -84,6 +99,11 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
         <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
           <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
             Delete
+          </DropDownButton>
+          <DropDownButton
+            onClick={(e) => handleDeleteLinkFromCollection(e, item)}
+          >
+            Delete from collection
           </DropDownButton>
           <DropDownButton
             onClick={(e) => {
