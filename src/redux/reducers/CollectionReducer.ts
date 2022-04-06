@@ -26,10 +26,7 @@ export const collections = (state = initialCollections, action: AnyAction) => {
       )[0];
 
       collectionModified.shareRequests = action.payload.shareRequests;
-      console.log(collectionModified);
-
       const updatedCollections = [collectionModified, ...collectionsFiltered];
-      console.log(updatedCollections);
       return updatedCollections;
     }
     case "SET_COLLECTIONS": {

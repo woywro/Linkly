@@ -1,12 +1,12 @@
 import styled from "styled-components";
 import { Text } from "../../../../components/Text";
 import { motion } from "framer-motion";
+import { Reorder } from "framer-motion";
 
-export const CollectionWrapper = styled(motion.button)`
+export const CollectionWrapper = styled(Reorder.Item)`
   padding: 5px;
   display: flex;
   height: 120px;
-  width: 120px;
   margin: 5px;
   font-size: 50px;
   align-items: center;
