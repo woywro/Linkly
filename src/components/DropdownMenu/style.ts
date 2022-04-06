@@ -29,7 +29,7 @@ export const DropdownItemList = styled.div<{
   box-shadow: ${(props) => props.theme.shadow};
   display: ${(props) => (props.show ? "flex" : "none")};
   z-index: 40;
-  width: ${(props) => (props.fullWidth ? "100%" : "auto")};
+  width: 100%;
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
   }

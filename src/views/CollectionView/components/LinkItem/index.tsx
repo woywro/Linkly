@@ -37,7 +37,11 @@ export const LinkItem = ({ item }: Props) => {
       await axios.post("/api/addHistory", {
         linkId: item.id,
       });
+<<<<<<< HEAD:src/views/CollectionView/components/LinkItem/index.tsx
       window.open(item.url?, "_blank")
+=======
+      window.open(item.url, "_blank");
+>>>>>>> development:src/views/HomePage/components/LinkItem/index.tsx
     },
     [item]
   );
@@ -73,10 +77,14 @@ export const LinkItem = ({ item }: Props) => {
       )}
       <LinkDropdownWrapper>
         <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
-          <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
+          <DropDownButton
+            onClick={(e) => handleDeleteLink(e, item)}
+            whileTap={{ scale: 0.95 }}
+          >
             Delete
           </DropDownButton>
           <DropDownButton
+            whileTap={{ scale: 0.95 }}
             onClick={(e) => {
               handleEditLink();
               e.stopPropagation();

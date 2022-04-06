@@ -17,18 +17,19 @@ export const History = () => {
   const History = useSelector((state: RootState) => state.history);
   const requests = useSelector((state: RootState) => state.requestsLoading);
   const dispatch = useDispatch();
-  const [loadingList, setLoadingList] = useState(false);
+  const [loadingText, setLoadingText] = useState("load more");
+
   const loading = useLoading(requests, "getHistory");
 
   const handleLoadMore = useCallback(() => {
-    setLoadingList(true);
+    setLoadingText("loading");
     axios
       .get("/api/getHistory", {
         params: { cursor: History[History.length - 1].timestamp },
       })
       .then((res) => {
         dispatch(setHistory(History.concat(res.data.history)));
-        setLoadingList(false);
+        setLoadingText("load more");
       });
   }, [History]);
 
@@ -44,9 +45,8 @@ export const History = () => {
           {History.map((e: HistoryInterface) => {
             return <HistoryItem item={e} />;
           })}
-          {loadingList && <div>loading</div>}
           <Button whileTap={{ scale: 0.9 }} onClick={handleLoadMore}>
-            Load more
+            {loadingText}
           </Button>
         </>
       )}

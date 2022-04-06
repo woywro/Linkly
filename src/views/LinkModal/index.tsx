@@ -1,7 +1,7 @@
 import axios from "axios";
 import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import * as Yup from "yup";
@@ -13,17 +13,55 @@ import { addLink } from "../../redux/actions/LinkActions";
 import { CollectionInterface } from "../../types/CollectionInterface";
 import { CollectionsSelect } from "../../components/CollectionsSelect";
 import { AddLinkWrapper } from "./style";
+import { LinkInterface } from "../../types/LinkInterface";
+import { updateLink } from "../../redux/actions/LinkActions";
 
-export const Add = () => {
+interface Props {
+  link?: LinkInterface;
+}
+
+export const LinkModal = ({ link }: Props) => {
   const [collections, setCollections] = useState<CollectionInterface[] | []>(
     []
   );
 
-  const dispatch = useDispatch();
   const router = useRouter();
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (link !== undefined) {
+      setInputValues(link);
+    }
+  }, [link]);
+
+  const setInputValues = useCallback(
+    (link) => {
+      setCollections(link.collections);
+    },
+    [link, collections]
+  );
+
+  const handleSaveLinkOnEdit = useCallback(
+    async (title: string, url: string) => {
+      await axios
+        .post("/api/updateLink", {
+          id: link?.id,
+          title: title,
+          url: url,
+          collections: collections,
+        })
+        .then((res) => {
+          dispatch(updateLink(res.data));
+          dispatch(updateCollections(res.data.collections));
+        });
+      router.back();
+    },
+    [link, collections]
+  );
+
   const handleAdd = useCallback(
-    async (title, url) => {
+    async (title: string, url: string) => {
       await axios
         .post("/api/addLink", {
           title,
@@ -36,7 +74,7 @@ export const Add = () => {
         });
       router.back();
     },
-    [collections]
+    [link, collections]
   );
 
   const validationSchema = Yup.object({
@@ -55,11 +93,15 @@ export const Add = () => {
     <AddLinkWrapper>
       <Formik
         initialValues={{
-          title: "",
-          url: "",
+          title: link !== undefined ? link.title : "",
+          url: link !== undefined ? link.url : "",
         }}
         onSubmit={(values) => {
-          handleAdd(values.title, values.url);
+          if (router.pathname == "/addLink") {
+            handleAdd(values.title, values.url);
+          } else {
+            handleSaveLinkOnEdit(values.title, values.url);
+          }
         }}
         validationSchema={validationSchema}
       >
@@ -79,7 +121,7 @@ export const Add = () => {
               setCollections={setCollections}
               collections={collections}
             />
-            <Button type="submit">Add</Button>
+            <Button type="submit">SAVE</Button>
           </StyledForm>
         )}
       </Formik>

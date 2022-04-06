@@ -32,7 +32,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         id: true,
         title: true,
         url: true,
-        collections: true,
+        collections: {
+          select: {
+            id: true,
+            owner: true,
+            value: true,
+            links: true,
+            shareRequests: true,
+          },
+        },
         ownerId: true,
         owner: true,
         modificationTimestamp: true,
