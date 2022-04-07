@@ -11,7 +11,7 @@ import { Text } from "../../components/Text";
 import { updateCollections } from "../../redux/actions/CollectionActions";
 import { addLink } from "../../redux/actions/LinkActions";
 import { CollectionInterface } from "../../types/CollectionInterface";
-import { CollectionsSelect } from "../../components/CollectionsSelect";
+import { CollectionsSelect } from "./components/CollectionsSelect";
 import { AddLinkWrapper } from "./style";
 import { LinkInterface } from "../../types/LinkInterface";
 import { updateLink } from "../../redux/actions/LinkActions";

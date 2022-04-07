@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Text } from "../Text";
-import { RootState } from "../../redux/store";
-import { CollectionInterface } from "../../types/CollectionInterface";
-import { Input } from "../../components/Input";
+import { Text } from "../../../../components/Text";
+import { RootState } from "../../../../redux/store";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
+import { Input } from "../../../../components/Input";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
@@ -18,7 +18,8 @@ import {
   Add,
   AddCollectionButton,
 } from "./style";
-import { updateCollections } from "../../redux/actions/CollectionActions";
+import { updateCollections } from "../../../../redux/actions/CollectionActions";
+import { Divider } from "../../../style";
 
 interface Props {
   setCollections: (arg0: CollectionInterface[]) => void;
@@ -138,6 +139,7 @@ export const CollectionsSelect = ({ setCollections, collections }: Props) => {
         )}
         {showSuggestions && input && <SuggestionsListComponent />}
       </StyledForm>
+      <Divider />
       <ChoosenSuggestionList>
         {collections !== undefined &&
           collections.map((e) => {

@@ -51,7 +51,7 @@ export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
               ) : (
                 <AiOutlineLink />
               )}
-              <Text> {suggestion.value}</Text>
+              <Text style={{ marginLeft: "4px" }}>{suggestion.value}</Text>
             </Suggestion>
           );
         })}
