@@ -23,7 +23,6 @@ export const SocialView = () => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <OpenWrapperButton onClick={() => setOpen(true)} />
         <Title>Social</Title>
         {loading == true ? <LoadingSpinner /> : <Feed />}
       </LeftWrapper>
@@ -32,6 +31,7 @@ export const SocialView = () => {
         <Title>Share requests</Title>
         <ShareRequests />
       </RightWrapper>
+      <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>
   );
 };

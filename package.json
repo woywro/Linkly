@@ -4,8 +4,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "docker:build": "docker build -t registry.gitlab.com/nersent/cloud/linkly:1.2.4 .",
-    "docker:push": "docker push registry.gitlab.com/nersent/cloud/linkly:1.2.4"
+    "docker:build": "docker build -t registry.gitlab.com/nersent/cloud/linkly:1.2.6 .",
+    "docker:push": "docker push registry.gitlab.com/nersent/cloud/linkly:1.2.6"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.1",

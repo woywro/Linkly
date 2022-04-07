@@ -32,7 +32,6 @@ export const CollectionView = ({ collection }: Props) => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <OpenWrapperButton onClick={() => setOpen(true)} />
         <Title>{`categories/${collection.value}`}</Title>
         <Scrollbars
           style={{
@@ -68,6 +67,7 @@ export const CollectionView = ({ collection }: Props) => {
         <Title>Sharing</Title>
         <Sharing collection={collection} />
       </RightWrapper>
+      <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>
   );
 };

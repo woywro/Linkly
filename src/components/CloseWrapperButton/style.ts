@@ -8,6 +8,6 @@ export const StyledButton = styled(Button)`
     position: absolute;
     top: 10px;
     right: 10px;
-    z-index: 4000;
+    z-index: 102;
   }
 `;

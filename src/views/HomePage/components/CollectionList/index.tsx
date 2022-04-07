@@ -7,10 +7,16 @@ import { RootState } from "../../../../redux/store";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { Title } from "../../../style";
 import { Collection } from "../Collection";
-import { CollectionsList, CollectionsWrapper, TopWrapper } from "./style";
+import {
+  CollectionsList,
+  CollectionsWrapper,
+  TopWrapper,
+  ListReorderButton,
+} from "./style";
 import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { collectionsOrderHelper } from "../../../../utils/collectionsOrderHelper";
 import { Button } from "../../../../components/Button";
+import { BiEdit } from "react-icons/bi";
 
 export const CollectionList = () => {
   const dispatch = useDispatch();
@@ -51,9 +57,12 @@ export const CollectionList = () => {
         <>
           <TopWrapper>
             <Title>Collections</Title>
-            <Button onClick={saveListOrder}>
+            <ListReorderButton
+              onClick={saveListOrder}
+              sortingMode={sortingMode}
+            >
               {sortingMode ? "save" : "edit"}
-            </Button>
+            </ListReorderButton>
           </TopWrapper>
           <CollectionsList
             axis="x"

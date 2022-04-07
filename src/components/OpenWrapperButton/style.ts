@@ -8,12 +8,12 @@ export const StyledButton = styled(motion.button)`
   @media only screen and ${breakpoints.device.sm} {
     display: flex;
     position: absolute;
-    bottom: 10px;
+    bottom: 15px;
     padding: 15px;
-    right: 10px;
-    z-index: 3000;
+    right: 15px;
     background: ${(props) => props.theme.colors.secondary};
     border: none;
     border-radius: 10px;
+    z-index: 100;
   }
 `;
