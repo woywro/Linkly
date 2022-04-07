@@ -1,5 +1,6 @@
 import Scrollbars from "react-custom-scrollbars-2";
 import { useTheme } from "styled-components";
+import { EmptyState } from "../../components/EmptyState";
 import { Text } from "../../components/Text";
 import { LinkInterface } from "../../types/LinkInterface";
 import { SharedWithYouInterface } from "../../types/SharedWithYouInterface";
@@ -19,21 +20,15 @@ export const SharedItemView = ({ share }: Props) => {
       <Text color={theme.colors.secondary}>
         {share.collection.owner?.email}
       </Text>
-      <Scrollbars
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
-        <List>
-          {share.collection.links?.map((link: LinkInterface) => {
+      <List>
+        {share.collection.links?.length == 0 ? (
+          <EmptyState msg="This collection is empty" />
+        ) : (
+          share.collection.links?.map((link: LinkInterface) => {
             return <SharedLink link={link} />;
-          })}
-        </List>
-      </Scrollbars>
+          })
+        )}
+      </List>
     </SharedItemViewWrapper>
   );
 };

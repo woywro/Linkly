@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Input } from "../../../../components/Input";
 import { hoverEffectText } from "../../../../mixins/hoverEffects";
+import breakpoints from "../../../../theme/breakpoints";
 
 export const StyledInput = styled(Input)`
   padding: 0 10px;

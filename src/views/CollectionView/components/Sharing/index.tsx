@@ -13,6 +13,7 @@ import { Text } from "../../../../components/Text";
 import { InputStyling } from "../../../../components/Input";
 import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
 import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
+import toast from "react-hot-toast";
 
 interface Props {
   collection: CollectionInterface;
@@ -52,7 +53,7 @@ export const Sharing = ({ collection }: Props) => {
           setSharedList([...sharedList, { email: email, isAccepted: false }]);
         })
         .catch((err) => {
-          alert(err.response.data);
+          toast.error(err.response.data);
         });
       dispatch(
         updateShareStatus(collection.id, {

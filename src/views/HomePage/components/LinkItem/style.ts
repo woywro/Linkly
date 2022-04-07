@@ -43,7 +43,7 @@ export const LinkDropdownWrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  width: 50%;
+  width: 100%;
   @media only screen and ${breakpoints.device.sm} {
     justify-content: flex-end;
   }

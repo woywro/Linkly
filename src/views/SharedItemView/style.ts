@@ -9,10 +9,12 @@ export const List = styled.ul`
   width: 100%;
   height: 100%;
   padding: 10px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 `;
 
 export const SharedItemViewWrapper = styled.div`
-  height: 400px;
+  max-height: 300px;
   width: 100%;
   display: flex;
   justify-content: flex-start;

@@ -85,7 +85,6 @@ export const LinkModal = ({ link }: Props) => {
     url: Yup.string()
       .url()
       .min(3, "url is too short!")
-      .max(50, "url is too long!")
       .required("url is required"),
   });
 
