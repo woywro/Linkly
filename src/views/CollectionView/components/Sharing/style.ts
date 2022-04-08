@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Button } from "../../../../components/Button";
 import { Input } from "../../../../components/Input";
 import { hoverEffectText } from "../../../../mixins/hoverEffects";
 import breakpoints from "../../../../theme/breakpoints";
@@ -41,10 +42,6 @@ export const SharedEmail = styled.div<{ isAccepted: boolean }>`
     content: "X";
     position: absolute;
     right: 20px;
-    display: none;
-  }
-  &:hover::after {
-    display: block;
   }
   &::before {
     content: "";
@@ -66,11 +63,14 @@ export const SharedEmail = styled.div<{ isAccepted: boolean }>`
 export const SharingWrapper = styled.div`
   width: 100%;
   height: 100%;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: flex-start;
-  overflow-y: scroll;
-  padding-top: 0;
+`;
+
+export const AddButton = styled(Button)`
+  padding: 5px;
+  border-radius: 10px;
 `;

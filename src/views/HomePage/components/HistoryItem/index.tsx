@@ -18,7 +18,9 @@ export const HistoryItem = ({ item }: Props) => {
 
   return (
     <HistoryItemWrapper onClick={handleClick}>
-      <Text bold>{item.link.title}</Text>
+      <Text style={{ wordBreak: "break-all", width: "50%" }} bold>
+        {item.link.title}
+      </Text>
       <Text>{moment(parseInt(item.timestamp)).format("LT")}</Text>
     </HistoryItemWrapper>
   );

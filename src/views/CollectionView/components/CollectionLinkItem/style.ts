@@ -11,6 +11,7 @@ export const LinkWrapper = styled.div`
   justify-content: start;
   align-items: center;
   grid-template-columns: 2fr 2fr 2fr 1fr;
+  gap: 10px;
   width: 100%;
   padding: 10px;
   cursor: pointer;
@@ -54,6 +55,7 @@ export const LinkDropdownWrapper = styled.div`
 export const Name = styled(Text)`
   margin-left: 5px;
   color: ${(props) => props.theme.colors.primaryText};
+  word-break: break-all;
 `;
 
 export const LinkMenuButton = styled.button`

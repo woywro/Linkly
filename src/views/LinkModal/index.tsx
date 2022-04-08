@@ -144,7 +144,7 @@ const InputWrapper = styled.div`
 `;
 
 const Error = styled(Text)`
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.red};
   font-size: 12px;
   padding: 5px;
 `;

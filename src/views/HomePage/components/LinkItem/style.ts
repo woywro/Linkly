@@ -17,6 +17,7 @@ export const LinkWrapper = styled.div`
   cursor: pointer;
   position: relative;
   border-radius: 20px;
+  gap: 10px;
   &:hover {
     ${hoverEffectBg}
   }
@@ -33,6 +34,7 @@ export const LinkLabel = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
     ${hoverEffectText}
@@ -55,6 +57,8 @@ export const LinkDropdownWrapper = styled.div`
 export const Name = styled(Text)`
   margin-left: 5px;
   color: ${(props) => props.theme.colors.primaryText};
+  word-break: break-all;
+  width: 100%;
 `;
 
 export const LinkMenuButton = styled.button`

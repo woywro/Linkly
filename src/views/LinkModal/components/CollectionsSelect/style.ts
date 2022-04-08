@@ -43,7 +43,7 @@ export const ChoosenSuggestionList = styled.ul`
 `;
 
 export const Error = styled(Text)`
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.red};
   font-size: 12px;
 `;
 

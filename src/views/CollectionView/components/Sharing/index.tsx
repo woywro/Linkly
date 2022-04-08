@@ -5,7 +5,15 @@ import { useDispatch } from "react-redux";
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
-import { AddWrapper, SharingWrapper, SharedEmail, SharedList } from "./style";
+import Scrollbars from "react-custom-scrollbars-2";
+
+import {
+  AddWrapper,
+  SharingWrapper,
+  SharedEmail,
+  SharedList,
+  AddButton,
+} from "./style";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import styled from "styled-components";
@@ -102,27 +110,37 @@ export const Sharing = ({ collection }: Props) => {
                   <Error>{errors.email}</Error>
                 ) : null}
               </InputWrapper>
-              <Button type="submit">Add</Button>
+              <AddButton type="submit">+</AddButton>
             </StyledForm>
           )}
         </Formik>
       </AddWrapper>
-      <SharedList>
-        {sharedList.length > 0 ? (
-          sharedList.map((e) => {
-            return (
-              <SharedEmail
-                onClick={() => handleDelete(e.email)}
-                isAccepted={e.isAccepted}
-              >
-                {e.email}
-              </SharedEmail>
-            );
-          })
-        ) : (
-          <EmptyState msg="add people to start sharing this collection!" />
-        )}
-      </SharedList>
+      <Scrollbars
+        style={{
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <SharedList>
+          {sharedList.length > 0 ? (
+            sharedList.map((e) => {
+              return (
+                <SharedEmail
+                  onClick={() => handleDelete(e.email)}
+                  isAccepted={e.isAccepted}
+                >
+                  {e.email}
+                </SharedEmail>
+              );
+            })
+          ) : (
+            <EmptyState msg="add people to start sharing this collection!" />
+          )}
+        </SharedList>
+      </Scrollbars>
     </SharingWrapper>
   );
 };
@@ -133,7 +151,6 @@ const StyledForm = styled(Form)`
   align-items: center;
   flex-flow: row;
   width: 100%;
-  padding: 5px;
 `;
 
 const InputWrapper = styled.div`
@@ -144,7 +161,7 @@ const InputWrapper = styled.div`
 `;
 
 const Error = styled(Text)`
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.red};
   font-size: 12px;
   padding: 5px;
   position: absolute;
