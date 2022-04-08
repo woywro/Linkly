@@ -57,8 +57,10 @@ export const LinkDropdownWrapper = styled.div`
 export const Name = styled(Text)`
   margin-left: 5px;
   color: ${(props) => props.theme.colors.primaryText};
-  word-break: break-all;
-  width: 100%;
+`;
+
+export const FieldText = styled(Text)`
+  word-break: break-word;
 `;
 
 export const LinkMenuButton = styled.button`

@@ -19,6 +19,7 @@ import {
   LinkLabel,
   LinkWrapper,
   Name,
+  FieldText,
 } from "./style";
 
 interface Props {
@@ -89,10 +90,12 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
       </LinkLabel>
       {!mediaQuerySm && (
         <>
-          <Text color={theme.colors.secondaryText}>{item.owner?.email}</Text>
-          <Text color={theme.colors.secondaryText}>
+          <FieldText color={theme.colors.secondaryText}>
+            {item.owner?.email}
+          </FieldText>
+          <FieldText color={theme.colors.secondaryText}>
             {moment(parseInt(item.modificationTimestamp)).format("lll")}
-          </Text>
+          </FieldText>
         </>
       )}
       <LinkDropdownWrapper>

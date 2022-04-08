@@ -38,6 +38,11 @@ export const LinkLabel = styled.div`
     ${hoverEffectText}
   }
 `;
+
+export const FieldText = styled(Text)`
+  word-break: break-word;
+`;
+
 export const LinkDropdownWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
