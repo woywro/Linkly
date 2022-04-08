@@ -1,17 +1,16 @@
-import { useDispatch } from "react-redux";
-import { useState, useCallback, useEffect } from "react";
 import axios from "axios";
-import { deleteLink } from "../../../../redux/actions/LinkActions";
-import { LinkInterface } from "../../../../types/LinkInterface";
 import { useRouter } from "next/router";
-import { LinkDropdownWrapper } from "./style";
-import { DropDownButton } from "./style";
+import { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { DropdownMenu } from "../../../../components/DropdownMenu";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
+import { deleteLink } from "../../../../redux/actions/LinkActions";
+import { LinkInterface } from "../../../../types/LinkInterface";
+import { DropDownButton, LinkDropdownWrapper } from "./style";
 
 interface Props {
   item: LinkInterface;
-  setLinks: (arg0: LinkInterface) => void;
+  setLinks: (arg0: LinkInterface[]) => void;
   links: LinkInterface[];
 }
 

@@ -5,16 +5,13 @@ import { useCallback } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
-import { DropdownMenu } from "../../../../components/DropdownMenu";
-import { Text } from "../../../../components/Text";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
 import { updateHistory } from "../../../../redux/actions/HistoryActions";
-import { deleteLink } from "../../../../redux/actions/LinkActions";
 import breakpoints from "../../../../theme/breakpoints";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
 import { CollectionLinkDropdown } from "../CollcetionLinkDropdown";
-import { LinkLabel, LinkWrapper, Name, FieldText } from "./style";
+import { FieldText, LinkLabel, LinkWrapper, Name } from "./style";
 
 interface Props {
   item: LinkInterface;

@@ -6,20 +6,20 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
-    const request = await prisma.User.findMany({
+    const result = await prisma.ShareRequest.findMany({
       where: {
-        email: session.user.email,
+        ownerId: session?.user.id,
+        isAccepted: true,
       },
       select: {
-        friendUserFriends: {
+        receiver: {
           select: {
-            user: true,
+            email: true,
           },
         },
       },
     });
-    res.status(200).json({ request });
-    res.end();
+    res.status(200).json({ result });
   } catch (err) {
     res.status(403).json({ err });
   }

@@ -36,6 +36,7 @@ export const Sharing = ({ collection }: Props) => {
   const router = useRouter();
   const [sharedList, setSharedList] = useState<SharedListInterface[] | []>([]);
   const dispatch = useDispatch();
+  const [friends, setFriends] = useState([]);
 
   useEffect(() => {
     if (collection.shareRequests?.length !== 0) {
@@ -83,6 +84,14 @@ export const Sharing = ({ collection }: Props) => {
     dispatch(updateShareStatus(collection.id, listFiltered));
   };
 
+  const handleGetFriends = async () => {
+    axios.get("/api/getFriends").then((res) => {
+      const friends = res.data.result.map((e) => e.receiver.email);
+      let uniqueFriends = [...new Set(friends)];
+      setFriends(uniqueFriends);
+    });
+  };
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email()
@@ -93,6 +102,7 @@ export const Sharing = ({ collection }: Props) => {
   return (
     <SharingWrapper>
       <AddWrapper>
+        <Button onClick={handleGetFriends}>get</Button>
         <Formik
           initialValues={{
             email: "",
