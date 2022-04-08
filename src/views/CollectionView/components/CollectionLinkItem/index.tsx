@@ -13,14 +13,8 @@ import { deleteLink } from "../../../../redux/actions/LinkActions";
 import breakpoints from "../../../../theme/breakpoints";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
-import {
-  DropDownButton,
-  LinkDropdownWrapper,
-  LinkLabel,
-  LinkWrapper,
-  Name,
-  FieldText,
-} from "./style";
+import { CollectionLinkDropdown } from "../CollcetionLinkDropdown";
+import { LinkLabel, LinkWrapper, Name, FieldText } from "./style";
 
 interface Props {
   item: LinkInterface;
@@ -45,43 +39,6 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
     [item]
   );
 
-  const handleDeleteLink = useCallback(
-    async (e, item) => {
-      e.stopPropagation();
-      dispatch(deleteLink(item));
-      await axios.post("/api/deleteLink", {
-        id: item.id,
-      });
-      const linksFiltered: LinkInterface[] = links.filter(
-        (x) => x.id !== item.id
-      );
-      setLinks(linksFiltered);
-    },
-    [links]
-  );
-
-  const handleDeleteLinkFromCollection = useCallback(
-    async (e, item) => {
-      e.stopPropagation();
-      await axios.post("/api/deleteLinkFromCollection", {
-        id: item.id,
-        collectionId: router.query.collectionId,
-      });
-      const linksFiltered: LinkInterface[] = links.filter(
-        (x) => x.id !== item.id
-      );
-      setLinks(linksFiltered);
-    },
-    [links]
-  );
-
-  const handleEditLink = () => {
-    router.push({
-      pathname: `/editLink/${item.id}`,
-      query: { data: JSON.stringify(item) },
-    });
-  };
-
   return (
     <LinkWrapper onClick={() => handleOnClick(item)}>
       <LinkLabel>
@@ -98,26 +55,7 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
           </FieldText>
         </>
       )}
-      <LinkDropdownWrapper>
-        <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
-          <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
-            Delete
-          </DropDownButton>
-          <DropDownButton
-            onClick={(e) => handleDeleteLinkFromCollection(e, item)}
-          >
-            Delete from collection
-          </DropDownButton>
-          <DropDownButton
-            onClick={(e) => {
-              handleEditLink();
-              e.stopPropagation();
-            }}
-          >
-            Edit
-          </DropDownButton>
-        </DropdownMenu>
-      </LinkDropdownWrapper>
+      <CollectionLinkDropdown item={item} setLinks={setLinks} links={links} />
     </LinkWrapper>
   );
 };

@@ -1,26 +1,16 @@
 import axios from "axios";
 import moment from "moment";
-import { useRouter } from "next/router";
 import { useCallback } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
-import { DropdownMenu } from "../../../../components/DropdownMenu";
-import { Text } from "../../../../components/Text";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
 import { updateHistory } from "../../../../redux/actions/HistoryActions";
-import { deleteLink } from "../../../../redux/actions/LinkActions";
 import breakpoints from "../../../../theme/breakpoints";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
-import {
-  DropDownButton,
-  LinkDropdownWrapper,
-  LinkLabel,
-  LinkWrapper,
-  Name,
-  FieldText,
-} from "./style";
+import { HomeLinkDropdown } from "../HomeLinkDropdown";
+import { FieldText, LinkLabel, LinkWrapper, Name } from "./style";
 
 interface Props {
   item: LinkInterface;
@@ -28,7 +18,6 @@ interface Props {
 
 export const LinkItem = ({ item }: Props) => {
   const theme = useTheme() as ThemeInterface;
-  const router = useRouter();
   const dispatch = useDispatch();
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
 
@@ -42,21 +31,6 @@ export const LinkItem = ({ item }: Props) => {
     },
     [item]
   );
-
-  const handleDeleteLink = useCallback(async (e, item) => {
-    e.stopPropagation();
-    dispatch(deleteLink(item));
-    await axios.post("/api/deleteLink", {
-      id: item.id,
-    });
-  }, []);
-
-  const handleEditLink = () => {
-    router.push({
-      pathname: `/editLink/${item.id}`,
-      query: { data: JSON.stringify(item) },
-    });
-  };
 
   return (
     <LinkWrapper onClick={() => handleOnClick(item)}>
@@ -74,25 +48,7 @@ export const LinkItem = ({ item }: Props) => {
           </FieldText>
         </>
       )}
-      <LinkDropdownWrapper>
-        <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
-          <DropDownButton
-            onClick={(e) => handleDeleteLink(e, item)}
-            whileTap={{ scale: 0.95 }}
-          >
-            Delete
-          </DropDownButton>
-          <DropDownButton
-            whileTap={{ scale: 0.95 }}
-            onClick={(e) => {
-              handleEditLink();
-              e.stopPropagation();
-            }}
-          >
-            Edit
-          </DropDownButton>
-        </DropdownMenu>
-      </LinkDropdownWrapper>
+      <HomeLinkDropdown item={item} />
     </LinkWrapper>
   );
 };

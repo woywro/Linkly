@@ -1,7 +1,6 @@
-import breakpoints from "../../theme/breakpoints";
-import { Button } from "../Button";
-import styled from "styled-components";
 import { motion } from "framer-motion";
+import styled from "styled-components";
+import breakpoints from "../../theme/breakpoints";
 
 export const StyledButton = styled(motion.button)`
   display: none;

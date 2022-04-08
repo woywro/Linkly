@@ -1,12 +1,10 @@
-import { DropdownMenuWrapper, DropdownItemList, Label } from "./style";
-import useClickOutside from "../../hooks/useClickOutside";
-import { useEffect, useState } from "react";
-import { useRef } from "react";
-import { Text } from "../Text";
-import { Button } from "../Button";
+import { useRef, useState } from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import styled from "styled-components";
 import { useClickInside } from "../../hooks/useClickInside";
+import useClickOutside from "../../hooks/useClickOutside";
+import { Text } from "../Text";
+import { DropdownItemList, DropdownMenuWrapper, Label } from "./style";
 
 interface Props {
   children: JSX.Element[];
@@ -24,7 +22,6 @@ export const DropdownMenu = ({ children, title, icon, fullWidth }: Props) => {
     ref2,
     () => {
       setShow(false);
-      console.log("ccc");
     },
     show
   );

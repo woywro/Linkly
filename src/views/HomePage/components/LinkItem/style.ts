@@ -40,19 +40,6 @@ export const LinkLabel = styled.div`
     ${hoverEffectText}
   }
 `;
-export const LinkDropdownWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  width: 100%;
-  @media only screen and ${breakpoints.device.sm} {
-    justify-content: flex-end;
-  }
-  @media only screen and ${breakpoints.device.lg} {
-    justify-content: flex-end;
-  }
-`;
 
 export const Name = styled(Text)`
   margin-left: 5px;
@@ -70,13 +57,4 @@ export const LinkMenuButton = styled.button`
   display: flex;
   justify-content: flex-start;
   color: ${(props) => props.theme.colors.secondaryText};
-`;
-
-export const DropDownButton = styled(motion.button)`
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: none;
-  cursor: pointer;
-  border-radius: 20px;
 `;
