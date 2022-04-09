@@ -110,6 +110,12 @@ const Row = styled.div`
   }
 `;
 
+const TestButton = styled.button`
+  background: none;
+  border: none;
+  padding: 5px;
+`;
+
 export const LoginView = () => {
   const theme = useTheme() as ThemeInterface;
 
@@ -124,7 +130,9 @@ export const LoginView = () => {
       </TextWrapper>
       <StyledInput placeholder="email" />
       <StyledInput placeholder="password" />
-      <LoginButton whileTap={{ scale: 0.95 }}>Log in</LoginButton>
+      <LoginButton whileTap={{ scale: 0.95 }} onClick={signIn}>
+        Log in
+      </LoginButton>
       <Divider />
       <Row>
         <GoogleLoginButton
@@ -142,6 +150,14 @@ export const LoginView = () => {
           <span style={{ color: "white" }}>Github</span>
         </GithubLoginButton>
       </Row>
+      <Divider />
+      <TestButton
+        onClick={() =>
+          signIn("email", { register: false, email: "linklytest@gmail.com" })
+        }
+      >
+        Test
+      </TestButton>
     </Wrapper>
   );
 };

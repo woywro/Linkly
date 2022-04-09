@@ -1,27 +1,26 @@
 import axios from "axios";
+import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
+import Scrollbars from "react-custom-scrollbars-2";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import * as Yup from "yup";
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
+import { InputStyling } from "../../../../components/Input";
+import { Text } from "../../../../components/Text";
+import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
-import Scrollbars from "react-custom-scrollbars-2";
-
+import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
 import {
+  AddButton,
   AddWrapper,
-  SharingWrapper,
   SharedEmail,
   SharedList,
-  AddButton,
+  SharingWrapper,
 } from "./style";
-import { Field, Form, Formik } from "formik";
-import * as Yup from "yup";
-import styled from "styled-components";
-import { Text } from "../../../../components/Text";
-import { InputStyling } from "../../../../components/Input";
-import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
-import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
-import toast from "react-hot-toast";
 
 interface Props {
   collection: CollectionInterface;
@@ -36,7 +35,7 @@ export const Sharing = ({ collection }: Props) => {
   const router = useRouter();
   const [sharedList, setSharedList] = useState<SharedListInterface[] | []>([]);
   const dispatch = useDispatch();
-  const [friends, setFriends] = useState([]);
+  const [friends, setFriends] = useState<string[] | []>([]);
 
   useEffect(() => {
     if (collection.shareRequests?.length !== 0) {
@@ -87,7 +86,7 @@ export const Sharing = ({ collection }: Props) => {
   const handleGetFriends = async () => {
     axios.get("/api/getFriends").then((res) => {
       const friends = res.data.result.map((e) => e.receiver.email);
-      let uniqueFriends = [...new Set(friends)];
+      let uniqueFriends: string[] = [...new Set<string>(friends)];
       setFriends(uniqueFriends);
     });
   };
