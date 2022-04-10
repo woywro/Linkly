@@ -11,6 +11,8 @@ import {
 } from "react-social-login-buttons";
 import { ThemeInterface } from "../../types/ThemeInterface";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Wrapper = styled.div`
   display: flex;
@@ -110,8 +112,15 @@ const Row = styled.div`
   }
 `;
 
+const TestButton = styled.button`
+  background: none;
+  border: none;
+  padding: 5px;
+`;
+
 export const LoginView = () => {
   const theme = useTheme() as ThemeInterface;
+  const [email, setEmail] = useState("");
 
   return (
     <Wrapper>
@@ -122,9 +131,18 @@ export const LoginView = () => {
           Sign in to continue to this application
         </Text>
       </TextWrapper>
-      <StyledInput placeholder="email" />
-      <StyledInput placeholder="password" />
-      <LoginButton whileTap={{ scale: 0.95 }}>Log in</LoginButton>
+      <StyledInput
+        placeholder="email"
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
+      <LoginButton
+        whileTap={{ scale: 0.95 }}
+        onClick={() => signIn("email", { email })}
+      >
+        Log in
+      </LoginButton>
       <Divider />
       <Row>
         <GoogleLoginButton

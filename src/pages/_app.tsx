@@ -52,6 +52,7 @@ export default function App({
                   </MotionWrapper>
                 </ViewBox>
               </AuthGuard>
+              <Toaster position="bottom-right" reverseOrder={false} />
             </Wrapper>
           </ReduxThemeProvider>
         </Provider>

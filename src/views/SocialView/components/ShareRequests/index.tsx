@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
+import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import { Text } from "../../../../components/Text";
 import { updateSharedWithYou } from "../../../../redux/actions/SharedActions";
 import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
@@ -23,6 +24,7 @@ export const ShareRequests = () => {
   const [shareRequests, setShareRequests] = useState<
     ShareRequestInterface[] | []
   >([]);
+  const [loading, setLoading] = useState(false);
   const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
 
@@ -31,8 +33,10 @@ export const ShareRequests = () => {
   }, []);
 
   const getShareRequests = async () => {
+    setLoading(true);
     await axios.get("/api/getShareRequests").then((res) => {
       setShareRequests(res.data.result.shareRequestsReceived);
+      setLoading(false);
     });
   };
 
@@ -59,7 +63,9 @@ export const ShareRequests = () => {
 
   return (
     <ShareRequestsWrapper>
-      {shareRequests.length == 0 ? (
+      {loading ? (
+        <LoadingSpinner />
+      ) : shareRequests.length == 0 ? (
         <EmptyState msg="You don't have share requests" />
       ) : (
         shareRequests.map((request) => {

@@ -1,7 +1,11 @@
 import axios from "axios";
+import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
+import Scrollbars from "react-custom-scrollbars-2";
+import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
@@ -16,12 +20,24 @@ import {
 } from "./style";
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
+=======
+>>>>>>> development
 import styled from "styled-components";
-import { Text } from "../../../../components/Text";
+import * as Yup from "yup";
+import { EmptyState } from "../../../../components/EmptyState";
 import { InputStyling } from "../../../../components/Input";
+import { Text } from "../../../../components/Text";
 import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
-import toast from "react-hot-toast";
+import { FriendsAutocomplete } from "../FriendsAutocomplete";
+import {
+  AddButton,
+  AddWrapper,
+  SharedEmail,
+  SharedList,
+  SharingWrapper,
+} from "./style";
 
 interface Props {
   collection: CollectionInterface;
@@ -36,7 +52,7 @@ export const Sharing = ({ collection }: Props) => {
   const router = useRouter();
   const [sharedList, setSharedList] = useState<SharedListInterface[] | []>([]);
   const dispatch = useDispatch();
-  const [friends, setFriends] = useState([]);
+  const [friends, setFriends] = useState<string[] | []>([]);
 
   useEffect(() => {
     if (collection.shareRequests?.length !== 0) {
@@ -84,12 +100,20 @@ export const Sharing = ({ collection }: Props) => {
     dispatch(updateShareStatus(collection.id, listFiltered));
   };
 
-  const handleGetFriends = async () => {
-    axios.get("/api/getFriends").then((res) => {
-      const friends = res.data.result.map((e) => e.receiver.email);
-      let uniqueFriends = [...new Set(friends)];
-      setFriends(uniqueFriends);
-    });
+  const handleSearch = (toSearch: string) => {
+    setFriends([]);
+    console.log(toSearch);
+    axios
+      .get("/api/getFriends", {
+        params: {
+          search: toSearch,
+        },
+      })
+      .then((res) => {
+        const friends = res.data.result.map((e) => e.receiverEmail);
+        let uniqueFriends = [...new Set(friends)];
+        setFriends(uniqueFriends);
+      });
   };
 
   const validationSchema = Yup.object({
@@ -112,10 +136,20 @@ export const Sharing = ({ collection }: Props) => {
           }}
           validationSchema={validationSchema}
         >
-          {({ errors, touched }) => (
-            <StyledForm>
+          {({ errors, touched, values, setFieldValue }) => (
+            <StyledForm
+              autocomplete="off"
+              onChange={() => {
+                handleSearch(values.email);
+              }}
+            >
               <InputWrapper>
                 <StyledInput name="email" placeholder="email" />
+                <FriendsAutocomplete
+                  friend={values.email}
+                  friends={friends}
+                  setFieldValue={setFieldValue}
+                />
                 {errors.email && touched.email ? (
                   <Error>{errors.email}</Error>
                 ) : null}
