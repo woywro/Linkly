@@ -1,10 +1,7 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { AiOutlineLink } from "react-icons/ai";
-import { RiFolder5Fill } from "react-icons/ri";
 import { Text } from "../../../../components/Text";
 import useWindowDimensions from "../../../../hooks/useWindowDimensions";
-import { SuggestionInterface } from "../../../../types/SuggestionInterface";
 import { SugestionsWrapper, Suggestion } from "./style";
 
 interface Props {
@@ -20,7 +17,6 @@ export const FriendsAutocomplete = ({
 }: Props) => {
   const [hide, setHide] = useState<boolean>(true);
   const { height } = useWindowDimensions();
-  const router = useRouter();
 
   const handleOnClick = useCallback(
     (friend) => {

@@ -30,7 +30,7 @@ export const LinkList = () => {
       })
       .then((res) => {
         dispatch(setLinks(userLinks.concat(res.data.link)));
-        setLoadingText("load");
+        setLoadingText("load more");
       });
   }, [userLinks]);
 

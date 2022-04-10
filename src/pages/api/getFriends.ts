@@ -6,7 +6,6 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   let searchValue = req.query.search;
-  console.log(searchValue);
   try {
     const result = await prisma.ShareRequest.findMany({
       where: {
