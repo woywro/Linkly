@@ -5,23 +5,6 @@ import { useCallback, useEffect, useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-<<<<<<< HEAD
-import { Button } from "../../../../components/Button";
-import { EmptyState } from "../../../../components/EmptyState";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
-import Scrollbars from "react-custom-scrollbars-2";
-
-import {
-  AddWrapper,
-  SharingWrapper,
-  SharedEmail,
-  SharedList,
-  AddButton,
-} from "./style";
-import { Field, Form, Formik } from "formik";
-import * as Yup from "yup";
-=======
->>>>>>> development
 import styled from "styled-components";
 import * as Yup from "yup";
 import { EmptyState } from "../../../../components/EmptyState";
