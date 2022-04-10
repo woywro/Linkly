@@ -5,21 +5,13 @@ import { useCallback } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { useTheme } from "styled-components";
-import { DropdownMenu } from "../../../../components/DropdownMenu";
-import { Text } from "../../../../components/Text";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
 import { updateHistory } from "../../../../redux/actions/HistoryActions";
-import { deleteLink } from "../../../../redux/actions/LinkActions";
 import breakpoints from "../../../../theme/breakpoints";
 import { LinkInterface } from "../../../../types/LinkInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
-import {
-  DropDownButton,
-  LinkDropdownWrapper,
-  LinkLabel,
-  LinkWrapper,
-  Name,
-} from "./style";
+import { CollectionLinkDropdown } from "../CollcetionLinkDropdown";
+import { FieldText, LinkLabel, LinkWrapper, Name } from "./style";
 
 interface Props {
   item: LinkInterface;
@@ -44,43 +36,6 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
     [item]
   );
 
-  const handleDeleteLink = useCallback(
-    async (e, item) => {
-      e.stopPropagation();
-      dispatch(deleteLink(item));
-      await axios.post("/api/deleteLink", {
-        id: item.id,
-      });
-      const linksFiltered: LinkInterface[] = links.filter(
-        (x) => x.id !== item.id
-      );
-      setLinks(linksFiltered);
-    },
-    [links]
-  );
-
-  const handleDeleteLinkFromCollection = useCallback(
-    async (e, item) => {
-      e.stopPropagation();
-      await axios.post("/api/deleteLinkFromCollection", {
-        id: item.id,
-        collectionId: router.query.collectionId,
-      });
-      const linksFiltered: LinkInterface[] = links.filter(
-        (x) => x.id !== item.id
-      );
-      setLinks(linksFiltered);
-    },
-    [links]
-  );
-
-  const handleEditLink = () => {
-    router.push({
-      pathname: `/editLink/${item.id}`,
-      query: { data: JSON.stringify(item) },
-    });
-  };
-
   return (
     <LinkWrapper onClick={() => handleOnClick(item)}>
       <LinkLabel>
@@ -89,32 +44,15 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
       </LinkLabel>
       {!mediaQuerySm && (
         <>
-          <Text color={theme.colors.secondaryText}>{item.owner?.email}</Text>
-          <Text color={theme.colors.secondaryText}>
+          <FieldText color={theme.colors.secondaryText}>
+            {item.owner?.email}
+          </FieldText>
+          <FieldText color={theme.colors.secondaryText}>
             {moment(parseInt(item.modificationTimestamp)).format("lll")}
-          </Text>
+          </FieldText>
         </>
       )}
-      <LinkDropdownWrapper>
-        <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
-          <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
-            Delete
-          </DropDownButton>
-          <DropDownButton
-            onClick={(e) => handleDeleteLinkFromCollection(e, item)}
-          >
-            Delete from collection
-          </DropDownButton>
-          <DropDownButton
-            onClick={(e) => {
-              handleEditLink();
-              e.stopPropagation();
-            }}
-          >
-            Edit
-          </DropDownButton>
-        </DropdownMenu>
-      </LinkDropdownWrapper>
+      <CollectionLinkDropdown item={item} setLinks={setLinks} links={links} />
     </LinkWrapper>
   );
 };

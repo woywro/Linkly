@@ -11,7 +11,7 @@ import { Text } from "../../components/Text";
 import { updateCollections } from "../../redux/actions/CollectionActions";
 import { addLink } from "../../redux/actions/LinkActions";
 import { CollectionInterface } from "../../types/CollectionInterface";
-import { CollectionsSelect } from "../../components/CollectionsSelect";
+import { CollectionsSelect } from "./components/CollectionsSelect";
 import { AddLinkWrapper } from "./style";
 import { LinkInterface } from "../../types/LinkInterface";
 import { updateLink } from "../../redux/actions/LinkActions";
@@ -85,7 +85,6 @@ export const LinkModal = ({ link }: Props) => {
     url: Yup.string()
       .url()
       .min(3, "url is too short!")
-      .max(50, "url is too long!")
       .required("url is required"),
   });
 
@@ -145,7 +144,7 @@ const InputWrapper = styled.div`
 `;
 
 const Error = styled(Text)`
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.red};
   font-size: 12px;
   padding: 5px;
 `;

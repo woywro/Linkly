@@ -11,6 +11,7 @@ export const LinkWrapper = styled.div`
   justify-content: start;
   align-items: center;
   grid-template-columns: 2fr 2fr 2fr 1fr;
+  gap: 10px;
   width: 100%;
   padding: 10px;
   cursor: pointer;
@@ -22,6 +23,7 @@ export const LinkWrapper = styled.div`
   @media only screen and ${breakpoints.device.sm} {
     display: flex;
     justify-content: space-between;
+    flex-flow: row;
   }
   @media only screen and ${breakpoints.device.lg} {
     gap: 20px;
@@ -37,23 +39,16 @@ export const LinkLabel = styled.div`
     ${hoverEffectText}
   }
 `;
-export const LinkDropdownWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  width: 80%;
-  @media only screen and ${breakpoints.device.sm} {
-    justify-content: flex-end;
-  }
-  @media only screen and ${breakpoints.device.lg} {
-    justify-content: flex-end;
-  }
+
+export const FieldText = styled(Text)`
+  word-break: break-word;
 `;
 
 export const Name = styled(Text)`
   margin-left: 5px;
   color: ${(props) => props.theme.colors.primaryText};
+  word-break: break-word;
+  width: 100%;
 `;
 
 export const LinkMenuButton = styled.button`
@@ -63,13 +58,4 @@ export const LinkMenuButton = styled.button`
   display: flex;
   justify-content: flex-start;
   color: ${(props) => props.theme.colors.secondaryText};
-`;
-
-export const DropDownButton = styled.button`
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: none;
-  cursor: pointer;
-  border-radius: 20px;
 `;

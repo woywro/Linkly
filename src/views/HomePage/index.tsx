@@ -15,7 +15,6 @@ export const HomePage = () => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <OpenWrapperButton onClick={() => setOpen(true)} />
         <Scrollbars
           style={{
             width: "100%",
@@ -52,6 +51,7 @@ export const HomePage = () => {
           <History />
         </Scrollbars>
       </RightWrapper>
+      <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>
   );
 };

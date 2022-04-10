@@ -7,7 +7,7 @@ import styled, { useTheme } from "styled-components";
 import { Logo } from "../Logo";
 import { Text } from "../Text";
 import { ThemeSwitcher } from "../ThemeSwitcher";
-import { Item, Links, LogoutBtn, NavBarWrapper } from "./style";
+import { Item, Links, LogoutBtn, NavBarWrapper, NavItemText } from "./style";
 
 export const NavBar = () => {
   const router = useRouter();
@@ -24,7 +24,7 @@ export const NavBar = () => {
             whileTap={{ scale: 0.9 }}
           >
             <RiAddCircleLine />
-            <Text>Add</Text>
+            <NavItemText>Add</NavItemText>
           </Item>
         </Link>
         <Link href="/" passHref>
@@ -33,7 +33,7 @@ export const NavBar = () => {
             whileTap={{ scale: 0.9 }}
           >
             <RiLayoutGridLine />
-            <Text>Home</Text>
+            <NavItemText>Home</NavItemText>
           </Item>
         </Link>
         <Link href="/social" passHref>
@@ -42,7 +42,7 @@ export const NavBar = () => {
             whileTap={{ scale: 0.9 }}
           >
             <RiTeamLine />
-            <Text>Social</Text>
+            <NavItemText>Social</NavItemText>
           </Item>
         </Link>
       </Links>
@@ -54,7 +54,7 @@ export const NavBar = () => {
             whileTap={{ scale: 0.9 }}
           >
             <BiLogOut />
-            <Text>Log out</Text>
+            <NavItemText>Log out</NavItemText>
           </LogoutBtn>
         )}
         <ThemeSwitcher />

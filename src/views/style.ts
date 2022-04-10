@@ -55,7 +55,7 @@ export const RightWrapper = styled.div<{ open: boolean }>`
     position: absolute;
     background: ${(props) => props.theme.colors.secondaryBg};
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    z-index: 3500;
+    z-index: 102;
     display: ${({ open }) => (open ? "flex" : "none")};
     transform: ${({ open }) => (open ? "translateX(0)" : "translate(-100%)")};
     transition: transform 0.3s ease-in-out;

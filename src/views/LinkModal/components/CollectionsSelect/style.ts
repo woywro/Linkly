@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { Button } from "../Button";
-import { Input } from "../Input";
-import { Text } from "../Text";
+import { Button } from "../../../../components/Button";
+import { Input } from "../../../../components/Input";
+import { Text } from "../../../../components/Text";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -43,7 +43,7 @@ export const ChoosenSuggestionList = styled.ul`
 `;
 
 export const Error = styled(Text)`
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.colors.red};
   font-size: 12px;
 `;
 
@@ -57,6 +57,7 @@ export const ChoosenSuggestion = styled.li`
   cursor: pointer;
   border-radius: 20px;
   margin: 2px;
+  margin-top: 10px;
 `;
 export const StyledInput = styled.input`
   border: none;

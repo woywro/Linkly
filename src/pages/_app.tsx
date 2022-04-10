@@ -11,7 +11,12 @@ import store from "../redux/store";
 import breakpoints from "../theme/breakpoints";
 import { GlobalStyles } from "../theme/globalStyles";
 import { motion } from "framer-motion";
-const queryClient = new QueryClient();
+import {
+  OnlineStatusProvider,
+  useOnlineStatus,
+} from "../hooks/useOnlineStatus";
+import { useEffect } from "react";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function App({
   Component,
@@ -20,7 +25,7 @@ export default function App({
 }: AppProps) {
   return (
     <SessionProvider session={session}>
-      <QueryClientProvider client={queryClient}>
+      <OnlineStatusProvider>
         <Provider store={store}>
           <ReduxThemeProvider>
             <GlobalStyles />
@@ -43,13 +48,14 @@ export default function App({
                     }}
                   >
                     <Component {...pageProps} />
+                    <Toaster position="bottom-right" reverseOrder={false} />
                   </MotionWrapper>
                 </ViewBox>
               </AuthGuard>
             </Wrapper>
           </ReduxThemeProvider>
         </Provider>
-      </QueryClientProvider>
+      </OnlineStatusProvider>
     </SessionProvider>
   );
 }

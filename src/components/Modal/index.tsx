@@ -1,6 +1,9 @@
 import { RiCloseLine } from "react-icons/ri";
 import { Portal } from "../../HOC/Portal";
 import { CloseButton, ModalTitle, Overlay, ModalWrapper } from "./style";
+import useClickOutside from "../../hooks/useClickOutside";
+import { useRef } from "react";
+import Router, { useRouter } from "next/router";
 
 interface Props {
   title: string;
@@ -10,6 +13,12 @@ interface Props {
 }
 
 export const Modal = ({ title, open, onClose, children }: Props) => {
+  const ref = useRef();
+  const router = useRouter();
+  useClickOutside(ref, () => {
+    onClose();
+    router.push("/");
+  });
   const backdropVariant = {
     hidden: {
       opacity: 0,
@@ -40,7 +49,7 @@ export const Modal = ({ title, open, onClose, children }: Props) => {
         animate="visible"
         exit="hidden"
       >
-        <ModalWrapper variants={modalVariant}>
+        <ModalWrapper variants={modalVariant} ref={ref}>
           <ModalTitle>{title}</ModalTitle>
           <CloseButton>
             <RiCloseLine onClick={onClose} />

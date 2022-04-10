@@ -17,6 +17,7 @@ export const LinkWrapper = styled.div`
   cursor: pointer;
   position: relative;
   border-radius: 20px;
+  gap: 10px;
   &:hover {
     ${hoverEffectBg}
   }
@@ -33,28 +34,20 @@ export const LinkLabel = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 100%;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
     ${hoverEffectText}
-  }
-`;
-export const LinkDropdownWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  width: 50%;
-  @media only screen and ${breakpoints.device.sm} {
-    justify-content: flex-end;
-  }
-  @media only screen and ${breakpoints.device.lg} {
-    justify-content: flex-end;
   }
 `;
 
 export const Name = styled(Text)`
   margin-left: 5px;
   color: ${(props) => props.theme.colors.primaryText};
+`;
+
+export const FieldText = styled(Text)`
+  word-break: break-word;
 `;
 
 export const LinkMenuButton = styled.button`
@@ -64,13 +57,4 @@ export const LinkMenuButton = styled.button`
   display: flex;
   justify-content: flex-start;
   color: ${(props) => props.theme.colors.secondaryText};
-`;
-
-export const DropDownButton = styled(motion.button)`
-  padding: 10px;
-  width: 100%;
-  border: none;
-  background: none;
-  cursor: pointer;
-  border-radius: 20px;
 `;

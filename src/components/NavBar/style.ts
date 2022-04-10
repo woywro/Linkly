@@ -3,6 +3,7 @@ import { css } from "styled-components";
 import breakpoints from "../../theme/breakpoints";
 import { Button } from "../Button";
 import { motion } from "framer-motion";
+import { Text } from "../Text";
 
 export const NavBarWrapper = styled.nav`
   flex-flow: column;
@@ -60,4 +61,8 @@ export const LogoutBtn = styled(Button)`
   margin-bottom: 10px;
   width: 100%;
   background: ${(props) => props.theme.colors.secondary};
+`;
+
+export const NavItemText = styled(Text)`
+  margin-left: 4px;
 `;

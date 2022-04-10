@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "../../../../components/Button";
@@ -20,7 +21,7 @@ export const LinkList = () => {
   const requests = useSelector((state) => state.requestsLoading);
   const loading = useLoading(requests, "getLinks");
   const [loadingText, setLoadingText] = useState("load more");
-
+  const router = useRouter();
   const handleLoadMore = useCallback(() => {
     setLoadingText("loading");
     axios
@@ -45,7 +46,11 @@ export const LinkList = () => {
           </Row>
           <SortBar />
           {userLinks.length == 0 ? (
-            <EmptyState msg="You don't have links" />
+            <EmptyState
+              msg="You don't have links"
+              buttonText={"create one +"}
+              onClick={() => router.push("/addLink")}
+            />
           ) : (
             <>
               {userLinks.map((e) => {

@@ -1,14 +1,18 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { ThemeProvider } from "styled-components";
 import { useLocalStorage } from "../hooks/useLocalStorage";
-import { themeDefault } from "../theme/theme";
-import { useDispatch, useSelector } from "react-redux";
 import { switchTheme } from "../redux/actions/ThemeActions";
+import { RootState } from "../redux/store";
 
-export const ReduxThemeProvider = ({ children }) => {
+interface Props {
+  children: JSX.Element[];
+}
+
+export const ReduxThemeProvider = ({ children }: Props) => {
   const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
 
-  const theme = useSelector((state) => state.theme);
+  const theme = useSelector((state: RootState) => state.theme);
   const dispatch = useDispatch();
 
   useEffect(() => {
