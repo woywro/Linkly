@@ -109,7 +109,6 @@ export const Sharing = ({ collection }: Props) => {
   return (
     <SharingWrapper>
       <AddWrapper>
-        <Button onClick={handleGetFriends}>get</Button>
         <Formik
           initialValues={{
             email: "",
