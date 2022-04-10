@@ -40,7 +40,7 @@ export const AuthGuard = ({ children }: Props) => {
 
   return (
     <>
-      {router.pathname == "/" && <Login />}
+      {router.asPath == "/" && <Login />}
       {router.asPath == "/auth/verify" && <Verify />}
     </>
   );
