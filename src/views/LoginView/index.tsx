@@ -11,6 +11,8 @@ import {
 } from "react-social-login-buttons";
 import { ThemeInterface } from "../../types/ThemeInterface";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 const Wrapper = styled.div`
   display: flex;
@@ -118,6 +120,7 @@ const TestButton = styled.button`
 
 export const LoginView = () => {
   const theme = useTheme() as ThemeInterface;
+  const [email, setEmail] = useState("");
 
   return (
     <Wrapper>
@@ -128,9 +131,16 @@ export const LoginView = () => {
           Sign in to continue to this application
         </Text>
       </TextWrapper>
-      <StyledInput placeholder="email" />
-      <StyledInput placeholder="password" />
-      <LoginButton whileTap={{ scale: 0.95 }} onClick={signIn}>
+      <StyledInput
+        placeholder="email"
+        onChange={(e) => {
+          setEmail(e.target.value);
+        }}
+      />
+      <LoginButton
+        whileTap={{ scale: 0.95 }}
+        onClick={() => signIn("email", { email })}
+      >
         Log in
       </LoginButton>
       <Divider />
@@ -150,14 +160,6 @@ export const LoginView = () => {
           <span style={{ color: "white" }}>Github</span>
         </GithubLoginButton>
       </Row>
-      <Divider />
-      <TestButton
-        onClick={() =>
-          signIn("email", { register: false, email: "linklytest@gmail.com" })
-        }
-      >
-        Test
-      </TestButton>
     </Wrapper>
   );
 };

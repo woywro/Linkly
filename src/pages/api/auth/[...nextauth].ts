@@ -2,9 +2,9 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import { NextApiHandler } from "next";
 import NextAuth from "next-auth";
+import EmailProvider from "next-auth/providers/email";
 import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import EmailProvider from "next-auth/providers/email";
 
 const prisma = new PrismaClient();
 
@@ -12,6 +12,9 @@ const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 export default authHandler;
 
 const options = {
+  pages: {
+    verifyRequest: "/auth/verify",
+  },
   providers: [
     EmailProvider({
       server: process.env.EMAIL_SERVER,
