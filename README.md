@@ -33,7 +33,8 @@ This project enables you to manage your links just like in file manager. Most fu
 * Styled Components
 
 ## Live version
-https://linkly.nersent.com/
+https://linkly.nersent.com/ <br/>
+If you don't want to authenticate with google/github you can use your email for passwordless login. Simply type in your email, click login button and check your inbox for login token.
 
 ## Installation
 
