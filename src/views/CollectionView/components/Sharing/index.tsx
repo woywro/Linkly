@@ -1,28 +1,26 @@
 import axios from "axios";
+import { Field, Form, Formik } from "formik";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { Button } from "../../../../components/Button";
-import { EmptyState } from "../../../../components/EmptyState";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
 import Scrollbars from "react-custom-scrollbars-2";
-
+import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import styled from "styled-components";
+import * as Yup from "yup";
+import { EmptyState } from "../../../../components/EmptyState";
+import { InputStyling } from "../../../../components/Input";
+import { Text } from "../../../../components/Text";
+import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
+import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
+import { FriendsAutocomplete } from "../FriendsAutocomplete";
 import {
+  AddButton,
   AddWrapper,
-  SharingWrapper,
   SharedEmail,
   SharedList,
-  AddButton,
+  SharingWrapper,
 } from "./style";
-import { Field, Form, Formik, useFormikContext } from "formik";
-import * as Yup from "yup";
-import styled from "styled-components";
-import { Text } from "../../../../components/Text";
-import { InputStyling } from "../../../../components/Input";
-import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
-import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
-import toast from "react-hot-toast";
-import { FriendsAutocomplete } from "../FriendsAutocomplete";
 
 interface Props {
   collection: CollectionInterface;
@@ -37,7 +35,7 @@ export const Sharing = ({ collection }: Props) => {
   const router = useRouter();
   const [sharedList, setSharedList] = useState<SharedListInterface[] | []>([]);
   const dispatch = useDispatch();
-  const [friends, setFriends] = useState([]);
+  const [friends, setFriends] = useState<string[] | []>([]);
 
   useEffect(() => {
     if (collection.shareRequests?.length !== 0) {

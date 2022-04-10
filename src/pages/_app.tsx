@@ -48,10 +48,10 @@ export default function App({
                     }}
                   >
                     <Component {...pageProps} />
-                    <Toaster position="bottom-right" reverseOrder={false} />
                   </MotionWrapper>
                 </ViewBox>
               </AuthGuard>
+              <Toaster position="bottom-right" reverseOrder={false} />
             </Wrapper>
           </ReduxThemeProvider>
         </Provider>
