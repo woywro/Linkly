@@ -19,15 +19,15 @@ export const Feed = () => {
         justifyContent: "center",
       }}
     >
-      <FeedWrapper>
-        {sharedWithYou.length == 0 ? (
-          <EmptyState msg="You don't have shares" />
-        ) : (
-          sharedWithYou.map((share: SharedWithYouInterface) => {
-            return <FeedItem sharedItem={share} key={share.id} />;
-          })
-        )}
-      </FeedWrapper>
+      {sharedWithYou.length == 0 ? (
+        <EmptyState msg="You don't have shares" />
+      ) : (
+        <FeedWrapper>
+          {sharedWithYou.map((share: SharedWithYouInterface) => {
+            <FeedItem sharedItem={share} key={share.id} />;
+          })}
+        </FeedWrapper>
+      )}
     </Scrollbars>
   );
 };

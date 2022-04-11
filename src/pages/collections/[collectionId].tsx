@@ -3,7 +3,7 @@ import { prisma } from "../../../prisma/PrismaClient";
 import { CollectionView } from "../../views/CollectionView";
 
 interface Props {
-  collection: CollectionShareLinks;
+  collection: any;
 }
 
 export default function elementPage({ collection }: Props) {
@@ -12,7 +12,7 @@ export default function elementPage({ collection }: Props) {
 
 export async function getServerSideProps({ req, params }) {
   const session = await getSession({ req });
-  const collection = await prisma.Collection.findFirst({
+  const result = await prisma.Collection.findFirst({
     where: {
       id: params.collectionId,
       owner: { email: session.user.email },
@@ -31,6 +31,7 @@ export async function getServerSideProps({ req, params }) {
       shareRequests: true,
     },
   });
+  const collection = JSON.parse(JSON.stringify(result));
 
   if (!collection) {
     return {

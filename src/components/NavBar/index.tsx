@@ -19,7 +19,7 @@ export const NavBar = () => {
     <NavBarWrapper>
       <Logo mobile={false} />
       <Links>
-        <Link href={`/addLink`}>
+        <Link href={`/addLink`} passHref>
           <Item
             isActive={router.pathname == "/addLink" ? true : false}
             whileTap={{ scale: 0.9 }}
@@ -48,7 +48,7 @@ export const NavBar = () => {
         </Link>
       </Links>
       <BottomSection>
-        <Link href={`/account`}>
+        <Link href={`/account`} passHref>
           <Item
             style={{ padding: "5px", borderRadius: "10px" }}
             isActive={router.pathname == "/account" ? true : false}

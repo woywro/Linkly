@@ -25,7 +25,9 @@ export const AuthGuard = ({ children }: Props) => {
       dispatch(getHistory());
       dispatch(getCollections());
     } else {
-      router.push("/");
+      if (router.asPath !== "/auth/verify") {
+        router.push("/");
+      }
     }
   }, [status]);
 
