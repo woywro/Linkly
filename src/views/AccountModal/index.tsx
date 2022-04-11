@@ -27,6 +27,16 @@ export const AccountModal = () => {
     });
   };
 
+  const handleClearData = () => {
+    axios.post("/api/clearData");
+    window.location.reload();
+  };
+
+  const handleClearLs = () => {
+    localStorage.clear();
+    router.push("/");
+  };
+
   return (
     <div>
       <Text>
@@ -40,6 +50,12 @@ export const AccountModal = () => {
       />
       <Button onClick={handleDeleteAccount} disabled={disabled}>
         delete account
+      </Button>
+      <Button onClick={handleClearData} disabled={disabled}>
+        clear data
+      </Button>
+      <Button onClick={handleClearLs} disabled={disabled}>
+        clear local memory
       </Button>
     </div>
   );
