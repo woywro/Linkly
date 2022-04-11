@@ -50,7 +50,9 @@ export const NavBar = () => {
         {session && (
           <LogoutBtn
             isActive={false}
-            onClick={() => signOut()}
+            onClick={() => {
+              signOut();
+            }}
             whileTap={{ scale: 0.9 }}
           >
             <BiLogOut />

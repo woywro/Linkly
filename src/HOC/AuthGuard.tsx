@@ -24,6 +24,8 @@ export const AuthGuard = ({ children }: Props) => {
       dispatch(getLinks());
       dispatch(getHistory());
       dispatch(getCollections());
+    } else {
+      router.push("/");
     }
   }, [status]);
 
