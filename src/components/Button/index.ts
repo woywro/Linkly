@@ -16,4 +16,8 @@ export const Button = styled(motion.button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  &: disabled {
+    background: #dddddd;
+    cursor: auto;
+  }
 `;

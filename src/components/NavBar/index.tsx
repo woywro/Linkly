@@ -8,6 +8,7 @@ import { Logo } from "../Logo";
 import { Text } from "../Text";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { Item, Links, LogoutBtn, NavBarWrapper, NavItemText } from "./style";
+import { BiUser } from "react-icons/bi";
 
 export const NavBar = () => {
   const router = useRouter();
@@ -47,6 +48,16 @@ export const NavBar = () => {
         </Link>
       </Links>
       <BottomSection>
+        <Link href={`/account`}>
+          <Item
+            style={{ padding: "5px" }}
+            isActive={router.pathname == "/account" ? true : false}
+            whileTap={{ scale: 0.9 }}
+          >
+            <BiUser />
+            <NavItemText>Account</NavItemText>
+          </Item>
+        </Link>
         {session && (
           <LogoutBtn
             isActive={false}
