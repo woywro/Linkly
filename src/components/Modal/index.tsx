@@ -4,6 +4,7 @@ import { CloseButton, ModalTitle, Overlay, ModalWrapper } from "./style";
 import useClickOutside from "../../hooks/useClickOutside";
 import { useRef } from "react";
 import Router, { useRouter } from "next/router";
+import Scrollbars from "react-custom-scrollbars-2";
 
 interface Props {
   title: string;

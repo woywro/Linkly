@@ -42,7 +42,7 @@ export const DangerSettings = () => {
     <Wrapper>
       <Text style={{ marginBottom: "10px" }}>
         Type in <span style={{ fontWeight: "bold" }}>{session.user.email}</span>{" "}
-        to delete
+        to proceed
       </Text>
       <Input
         placeholder="type in your email"

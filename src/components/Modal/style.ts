@@ -29,15 +29,15 @@ export const ModalWrapper = styled(motion.div)`
   align-items: center;
   flex-flow: column;
   width: 500px;
-  height: auto;
+  overflow-y: hidden;
   @media only screen and ${breakpoints.device.sm} {
     width: 95%;
-    height: auto;
+    max-height: 95%;
     padding: 20px;
   }
   @media only screen and ${breakpoints.device.lg} {
     width: 95%;
-    height: auto;
+    max-height: 95%;
     padding: 20px;
   }
 `;
