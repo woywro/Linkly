@@ -50,7 +50,7 @@ export const NavBar = () => {
       <BottomSection>
         <Link href={`/account`}>
           <Item
-            style={{ padding: "5px" }}
+            style={{ padding: "5px", borderRadius: "10px" }}
             isActive={router.pathname == "/account" ? true : false}
             whileTap={{ scale: 0.9 }}
           >

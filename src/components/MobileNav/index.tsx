@@ -12,6 +12,7 @@ import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
 import { ThemeSwitcher } from "../ThemeSwitcher";
 import { BiLogOut } from "react-icons/bi";
 import { signOut, useSession } from "next-auth/react";
+import { BiUser } from "react-icons/bi";
 
 interface Props {
   open: boolean;
@@ -49,6 +50,13 @@ export const MobileNav = ({ open, setOpen }: Props) => {
           whileTap={{ scale: 0.9 }}
         >
           <RiAddCircleLine style={{ fill: "white" }} /> Add Link
+        </MobileNavItem>
+        <MobileNavItem
+          isActive={router.pathname == "/account" ? true : false}
+          onClick={() => router.push("/account")}
+          whileTap={{ scale: 0.9 }}
+        >
+          <BiUser style={{ fill: "white" }} /> Account
         </MobileNavItem>
         <MobileNavItem
           isActive={false}
