@@ -24,7 +24,7 @@ export const Feed = () => {
       ) : (
         <FeedWrapper>
           {sharedWithYou.map((share: SharedWithYouInterface) => {
-            <FeedItem sharedItem={share} key={share.id} />;
+            return <FeedItem sharedItem={share} key={share.id} />;
           })}
         </FeedWrapper>
       )}

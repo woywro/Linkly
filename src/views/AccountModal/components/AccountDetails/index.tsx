@@ -1,13 +1,13 @@
-import styled from "styled-components";
-import { BiUser } from "react-icons/bi";
-import { useSession } from "next-auth/react";
-import { Text } from "../../../../components/Text";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { AiOutlineLink } from "react-icons/ai";
-import { RiFolder5Fill } from "react-icons/ri";
-import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
-import { Wrapper, Stats, Stat } from "./style";
+import { BiUser } from "react-icons/bi";
+import { RiFolder5Fill, RiTeamLine } from "react-icons/ri";
+import { useTheme } from "styled-components";
+import { Text } from "../../../../components/Text";
+import { ThemeInterface } from "../../../../types/ThemeInterface";
+import { Stat, Stats, Wrapper } from "./style";
 
 export const AccountDetails = () => {
   const { data: session, status } = useSession();
@@ -16,6 +16,7 @@ export const AccountDetails = () => {
     links: 0,
     shareRequests: 0,
   });
+  const theme = useTheme() as ThemeInterface;
 
   const getStats = () => {
     axios.get("/api/countStats").then((res) => {
@@ -29,8 +30,12 @@ export const AccountDetails = () => {
 
   return (
     <Wrapper>
-      <BiUser size={"60px"} />
-      <Text size={"big"}>{session?.user?.name}</Text>
+      <BiUser size={"60px"} style={{ fill: theme.colors.secondary }} />
+      <Text size={"big"}>
+        {session?.user?.name !== null
+          ? session?.user?.name
+          : session?.user?.email}
+      </Text>
       <Stats>
         <Stat>
           <AiOutlineLink />

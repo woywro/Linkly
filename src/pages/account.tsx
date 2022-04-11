@@ -9,7 +9,7 @@ export default function Account() {
       title={"Account"}
       open={router.pathname == "/account" ? true : false}
       onClose={() => {
-        router.back();
+        router.push("/");
       }}
     >
       <AccountModal />

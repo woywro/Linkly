@@ -31,6 +31,7 @@ export const SelectWrapper = styled.div`
   border-radius: 10px;
   font-size: 15px;
   width: 100%;
+
   &:focus {
     outline: none;
   }
@@ -40,6 +41,8 @@ export const ChoosenSuggestionList = styled.ul`
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
+  max-height: 100px;
+  overflow-y: auto;
 `;
 
 export const Error = styled(Text)`
@@ -58,6 +61,7 @@ export const ChoosenSuggestion = styled.li`
   border-radius: 20px;
   margin: 2px;
   margin-top: 10px;
+  color: white;
 `;
 export const StyledInput = styled.input`
   border: none;

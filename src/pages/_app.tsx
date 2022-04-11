@@ -17,6 +17,7 @@ import {
 } from "../hooks/useOnlineStatus";
 import { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
+import Verify from "./api/auth/verify";
 
 export default function App({
   Component,

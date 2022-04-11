@@ -72,7 +72,7 @@ export const LinkModal = ({ link }: Props) => {
           dispatch(addLink(res.data));
           dispatch(updateCollections(res.data.collections));
         });
-      router.back();
+      router.push("/");
     },
     [link, collections]
   );

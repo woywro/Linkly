@@ -51,7 +51,7 @@ export const NavBar = () => {
         <Link href={`/account`} passHref>
           <Item
             style={{ padding: "5px", borderRadius: "10px" }}
-            isActive={router.pathname == "/account" ? true : false}
+            isActive={false}
             whileTap={{ scale: 0.9 }}
           >
             <BiUser />

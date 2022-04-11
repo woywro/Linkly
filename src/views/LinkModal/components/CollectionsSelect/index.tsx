@@ -20,6 +20,7 @@ import {
 } from "./style";
 import { updateCollections } from "../../../../redux/actions/CollectionActions";
 import { Divider } from "../../../style";
+import { BsFillTrashFill } from "react-icons/bs";
 
 interface Props {
   setCollections: (arg0: CollectionInterface[]) => void;
@@ -146,6 +147,7 @@ export const CollectionsSelect = ({ setCollections, collections }: Props) => {
             return (
               <ChoosenSuggestion onClick={() => handleDeleteCollection(e)}>
                 {e.value}
+                <BsFillTrashFill style={{ fill: "white", marginLeft: "2px" }} />
               </ChoosenSuggestion>
             );
           })}
