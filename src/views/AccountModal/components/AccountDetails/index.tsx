@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { AiOutlineLink } from "react-icons/ai";
 import { RiFolder5Fill } from "react-icons/ri";
 import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
+import { Wrapper, Stats, Stat } from "./style";
 
 export const AccountDetails = () => {
   const { data: session, status } = useSession();
@@ -47,28 +48,3 @@ export const AccountDetails = () => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  padding: 30px;
-  width: 100%;
-  position: relative;
-`;
-const Stats = styled.div`
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  flex-flow: row;
-  width: 100%;
-  padding: 5px;
-  margin-top: 10px;
-`;
-
-const Stat = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;

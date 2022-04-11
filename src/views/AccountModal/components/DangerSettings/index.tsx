@@ -1,12 +1,11 @@
-import styled from "styled-components";
 import axios from "axios";
-import Router, { useRouter } from "next/router";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import { useSession } from "next-auth/react";
 import { Button } from "../../../../components/Button";
-import { Text } from "../../../../components/Text";
 import { Input } from "../../../../components/Input";
+import { Text } from "../../../../components/Text";
+import { Wrapper } from "./style";
 
 export const DangerSettings = () => {
   const [input, setInput] = useState("");
@@ -61,12 +60,3 @@ export const DangerSettings = () => {
     </Wrapper>
   );
 };
-
-const Wrapper = styled.div`
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-`;
