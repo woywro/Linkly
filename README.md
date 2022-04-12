@@ -18,7 +18,7 @@ Linkly is an open source tool for managing your website urls like in file manage
   </div>
 
 
-This project enables you to manage your links just like in file manager. Most functions and interactions work as in any file manager. Each link keeps it's last modification timestamp, so you can sort your links alphabetically, by owner or by last modification. You can create collections of your links and share them with other users. If at least one of your share requests is accepted, you become friend's with the receiver.  You can even customize and save collections order on the list.
+This project enables you to manage your links just like in file manager. Most functions and interactions work as in any file manager. Each link keeps it's last modification timestamp, so you can sort your links alphabetically, by owner or by last modification. You can create collections of your links and share them with other users. If at least one of your share requests is accepted, your friend's email should appear on the list when sharing. Collections are sorted by modification by default, however you can set worting to your own custom order by dragging collections.
 
 ## Built With
 
