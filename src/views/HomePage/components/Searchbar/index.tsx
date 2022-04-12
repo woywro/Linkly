@@ -36,6 +36,7 @@ export const SearchBar = () => {
               return {
                 id: e.id,
                 value: e.title,
+                url: e.url,
                 type: "link",
               };
             }
