@@ -9,6 +9,7 @@ import { RootState } from "../../../../redux/store";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
 import { Name, CollectionInfoWrapper } from "./style";
+import moment from "moment";
 
 interface Props {
   collection: CollectionInterface;
@@ -35,6 +36,9 @@ export const CollectionInfo = ({ collection }: Props) => {
       </Name>
       <Text size={"medium"} color={theme.colors.secondaryText}>
         links: {collection.links?.length}
+      </Text>
+      <Text size={"medium"} color={theme.colors.secondaryText}>
+        {moment(parseInt(collection.modificationTimestamp)).fromNow()}
       </Text>
       <Button onClick={handleDeleteCategory}>Delete Category</Button>
     </CollectionInfoWrapper>

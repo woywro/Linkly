@@ -4,6 +4,7 @@ CREATE TABLE "Collection" (
     "value" TEXT NOT NULL,
     "valId" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
+    "modificationTimestamp" TEXT NOT NULL,
 
     CONSTRAINT "Collection_pkey" PRIMARY KEY ("id")
 );
@@ -104,6 +105,9 @@ CREATE UNIQUE INDEX "Collection_valId_key" ON "Collection"("valId");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Link_id_key" ON "Link"("id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "Link_modificationTimestamp_key" ON "Link"("modificationTimestamp");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "History_timestamp_key" ON "History"("timestamp");

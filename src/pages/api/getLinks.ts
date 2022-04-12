@@ -7,15 +7,16 @@ import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
-    const limit = 5;
+    const limit = 3;
     const cursor = req.query.cursor ?? "";
-    const cursorObj = cursor == "" ? undefined : { id: cursor as string };
+    const cursorObj =
+      cursor == "" ? undefined : { modificationTimestamp: cursor as string };
     const link = await prisma.Link.findMany({
       skip: cursor !== "" ? 1 : 0,
       cursor: cursorObj,
       take: limit,
       orderBy: {
-        id: "desc",
+        modificationTimestamp: "desc",
       },
       where: {
         owner: { email: session.user.email },

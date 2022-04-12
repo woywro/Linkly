@@ -15,7 +15,11 @@ export const collections = (state = initialCollections, action: AnyAction) => {
           return acc;
         }
       }, []);
-      return removedDuplicates;
+      console.log(removedDuplicates);
+      const sorted = removedDuplicates.sort((a, b) => {
+        return b.modificationTimestamp - a.modificationTimestamp;
+      });
+      return sorted;
     }
     case "UPDATE_SHARESTATUS": {
       const collectionsFiltered = state.filter(

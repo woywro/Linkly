@@ -31,7 +31,6 @@ export const SelectWrapper = styled.div`
   border-radius: 10px;
   font-size: 15px;
   width: 100%;
-
   &:focus {
     outline: none;
   }

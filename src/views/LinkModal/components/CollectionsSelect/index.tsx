@@ -1,26 +1,23 @@
+import { useFormik } from "formik";
 import { useState } from "react";
+import { BsFillTrashFill } from "react-icons/bs";
 import { useDispatch, useSelector } from "react-redux";
+import * as Yup from "yup";
+import { Input } from "../../../../components/Input";
 import { Text } from "../../../../components/Text";
 import { RootState } from "../../../../redux/store";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
-import { Input } from "../../../../components/Input";
-import { useFormik } from "formik";
-import * as Yup from "yup";
+import { Divider } from "../../../style";
 import {
-  StyledForm,
-  SuggesionsWrapper,
-  SelectWrapper,
+  AddCollectionButton,
+  ChoosenSuggestion,
   ChoosenSuggestionList,
   Error,
-  ChoosenSuggestion,
-  StyledInput,
+  SelectWrapper,
+  StyledForm,
+  SuggesionsWrapper,
   Suggestion,
-  Add,
-  AddCollectionButton,
 } from "./style";
-import { updateCollections } from "../../../../redux/actions/CollectionActions";
-import { Divider } from "../../../style";
-import { BsFillTrashFill } from "react-icons/bs";
 
 interface Props {
   setCollections: (arg0: CollectionInterface[]) => void;

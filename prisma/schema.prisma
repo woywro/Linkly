@@ -13,6 +13,7 @@ model Collection {
   value      String 
   valId String @unique
   ownerId     String 
+  modificationTimestamp String 
   owner       User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade) 
   links Link[]
   shareRequests ShareRequest[]
@@ -23,7 +24,7 @@ model Link {
   title      String
   url        String?
   ownerId    String
-  modificationTimestamp String
+  modificationTimestamp String @unique
   owner      User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   collections Collection[]
   history History[]
