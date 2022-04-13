@@ -1,8 +1,7 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
@@ -35,7 +34,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
     res.end();
   } catch (err) {
-    // res.status(403).json({ err });
     if (err instanceof PrismaClientKnownRequestError) {
       console.log(err);
     }

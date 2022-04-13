@@ -43,6 +43,13 @@ export const updateCollections = (collections: CollectionInterface[]) => ({
   },
 });
 
+export const updateCollection = (collection: CollectionInterface) => ({
+  type: "UPDATE_COLLECTION",
+  payload: {
+    collection,
+  },
+});
+
 export const updateShareStatus = (
   collectionId: string,
   shareRequests: ShareRequestInterface

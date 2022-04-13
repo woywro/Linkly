@@ -15,6 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         owner: { connect: { email: session?.user?.email } },
         modificationTimestamp: Date.now().toString(),
         collections: {
+          set: [],
           connectOrCreate: data.collectionValues.map(
             (collectionValue: string) => ({
               create: {

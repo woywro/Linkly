@@ -25,7 +25,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         },
       }),
     ]);
-    console.log(links, collections);
     res.status(200).json({ links, collections });
   } catch (err) {
     // res.status(403).json({ err });

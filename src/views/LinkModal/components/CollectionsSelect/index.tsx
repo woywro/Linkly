@@ -44,7 +44,6 @@ export const CollectionsSelect = ({
     );
     setInput(e.target.value);
     setFilteredSuggestions(unLinked);
-    console.log(unLinked);
     setShowSuggestions(true);
   };
 

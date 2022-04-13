@@ -86,7 +86,6 @@ export const Sharing = ({ collection }: Props) => {
 
   const handleSearch = (toSearch: string) => {
     setFriends([]);
-    console.log(toSearch);
     axios
       .get("/api/getFriends", {
         params: {

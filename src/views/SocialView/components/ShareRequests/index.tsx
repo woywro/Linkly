@@ -50,7 +50,6 @@ export const ShareRequests = () => {
   };
 
   const handleDeleteShareRequest = async (request: ShareRequestInterface) => {
-    console.log(request);
     await axios
       .post("/api/deleteShareRequest", {
         collectionId: request.collection.id,
