@@ -27,6 +27,7 @@ export const LinkItem = ({ item }: Props) => {
       await axios.post("/api/addHistory", {
         linkId: item.id,
       });
+      window.open(item?.url, "_blank");
     },
     [item]
   );
