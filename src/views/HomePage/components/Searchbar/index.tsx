@@ -1,9 +1,12 @@
 import axios from "axios";
 import { useState } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { CollectionInterface } from "../../../../types/CollectionInterface";
+import { LinkInterface } from "../../../../types/LinkInterface";
 import { SuggestionInterface } from "../../../../types/SuggestionInterface";
 import { AutoComplete } from "../Autocomplete";
 import { Input, StyledSearchBar, SearchBarWrapper } from "./style";
+import { createSuggestions } from "../../../../utils/createSuggestions";
 
 export const SearchBar = () => {
   const [input, setInput] = useState<string>("");
@@ -23,28 +26,9 @@ export const SearchBar = () => {
         },
       })
       .then((res) => {
-        const allSuggestions = res.data.links.concat(res.data.collections);
-        const normalizedSuggestions: SuggestionInterface[] = allSuggestions.map(
-          (e: SuggestionInterface) => {
-            if (e.title == undefined) {
-              return {
-                id: e.id,
-                value: e.value,
-                type: "collection",
-              };
-            } else {
-              return {
-                id: e.id,
-                value: e.title,
-                url: e.url,
-                type: "link",
-              };
-            }
-          }
-        );
-        if (allSuggestions.length > 0) {
-          setSuggestions(normalizedSuggestions);
-        }
+        const links: LinkInterface[] = res.data.links;
+        const collections: CollectionInterface[] = res.data.collections;
+        setSuggestions(createSuggestions(links, collections));
       });
   };
 

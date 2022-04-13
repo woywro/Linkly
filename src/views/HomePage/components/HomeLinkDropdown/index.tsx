@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { DropdownMenu } from "../../../../components/DropdownMenu";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
@@ -19,20 +19,23 @@ export const HomeLinkDropdown = ({ item }: Props) => {
   const router = useRouter();
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
 
-  const handleDeleteLink = useCallback(async (e, item) => {
-    e.stopPropagation();
-    dispatch(deleteLink(item));
-    await axios.post("/api/deleteLink", {
-      id: item.id,
-    });
-  }, []);
+  const handleDeleteLink = useCallback(
+    async (e: React.MouseEvent, item: LinkInterface) => {
+      e.stopPropagation();
+      dispatch(deleteLink(item));
+      await axios.post("/api/deleteLink", {
+        id: item.id,
+      });
+    },
+    [item]
+  );
 
-  const handleEditLink = () => {
+  const handleEditLink = useCallback(() => {
     router.push({
       pathname: `/editLink/${item.id}`,
       query: { data: JSON.stringify(item) },
     });
-  };
+  }, [item]);
 
   return (
     <LinkDropdownWrapper>

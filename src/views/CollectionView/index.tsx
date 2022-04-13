@@ -23,7 +23,7 @@ interface Props {
 
 export const CollectionView = ({ collection }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
-  const [links, setLinks] = useState<LinkInterface[] | []>([]);
+  const [links, setLinks] = useState<LinkInterface[] | undefined>([]);
 
   useEffect(() => {
     setLinks(collection.links);
@@ -43,19 +43,21 @@ export const CollectionView = ({ collection }: Props) => {
           }}
         >
           <Links>
-            {links.length == 0 ? (
-              <EmptyState msg={"There are no links in this collection"} />
-            ) : (
-              links.map((e: LinkInterface) => {
-                return (
-                  <CollectionLinkItem
-                    item={e}
-                    setLinks={setLinks}
-                    links={links}
-                  />
-                );
-              })
-            )}
+            <>
+              {links?.length == 0 ? (
+                <EmptyState msg={"There are no links in this collection"} />
+              ) : (
+                links?.map((link: LinkInterface) => {
+                  return (
+                    <CollectionLinkItem
+                      item={link}
+                      setLinks={setLinks}
+                      links={links}
+                    />
+                  );
+                })
+              )}
+            </>
           </Links>
         </Scrollbars>
       </LeftWrapper>

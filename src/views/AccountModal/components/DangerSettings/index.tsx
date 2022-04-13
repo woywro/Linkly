@@ -10,7 +10,7 @@ import { Wrapper } from "./style";
 export const DangerSettings = () => {
   const [input, setInput] = useState("");
   const router = useRouter();
-  const { data: session, status } = useSession();
+  const { data: session } = useSession();
   const [disabled, setDisabled] = useState<boolean>(false);
 
   useEffect(() => {

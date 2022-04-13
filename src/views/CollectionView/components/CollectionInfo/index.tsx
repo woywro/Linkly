@@ -10,6 +10,7 @@ import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
 import { Name, CollectionInfoWrapper } from "./style";
 import moment from "moment";
+import { useCallback } from "react";
 
 interface Props {
   collection: CollectionInterface;
@@ -21,10 +22,10 @@ export const CollectionInfo = ({ collection }: Props) => {
   const dispatch = useDispatch();
   const collections = useSelector((state: RootState) => state.collections);
 
-  const handleDeleteCategory = () => {
+  const handleDeleteCategory = useCallback(() => {
     dispatch(deleteCollection(collections, collection.id));
     router.push("/");
-  };
+  }, [collections, collection]);
 
   return (
     <CollectionInfoWrapper>

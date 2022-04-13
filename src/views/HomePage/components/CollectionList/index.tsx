@@ -3,28 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { EmptyState } from "../../../../components/EmptyState";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import useLoading from "../../../../hooks/useLoading";
+import { useLocalStorage } from "../../../../hooks/useLocalStorage";
 import { RootState } from "../../../../redux/store";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
+import { collectionsOrderHelper } from "../../../../utils/collectionsOrderHelper";
 import { Title } from "../../../style";
 import { Collection } from "../Collection";
 import {
   CollectionsList,
   CollectionsWrapper,
-  TopWrapper,
   ListReorderButton,
+  TopWrapper,
 } from "./style";
-import { useLocalStorage } from "../../../../hooks/useLocalStorage";
-import { collectionsOrderHelper } from "../../../../utils/collectionsOrderHelper";
-import { Button } from "../../../../components/Button";
-import { BiEdit } from "react-icons/bi";
 
 export const CollectionList = () => {
-  const dispatch = useDispatch();
   const collections = useSelector((state: RootState) => state.collections);
 
-  const request = useSelector((state) => state.requestsLoading);
+  const request = useSelector((state: RootState) => state.requestsLoading);
   const loading = useLoading(request, "getCollections");
-  const [list, setList] = useState(collections);
+  const [list, setList] = useState<CollectionInterface[]>(collections);
   const [collectionsOrder, setCollectionsOrder] = useLocalStorage(
     "collectionsOrder",
     ""

@@ -1,7 +1,7 @@
 import { useFormik } from "formik";
 import { useState } from "react";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import * as Yup from "yup";
 import { Input } from "../../../../components/Input";
 import { Text } from "../../../../components/Text";
@@ -20,11 +20,14 @@ import {
 } from "./style";
 
 interface Props {
-  setCollections: (arg0: CollectionInterface[]) => void;
-  collections: CollectionInterface[];
+  setCollectionValues: (arg0: string[]) => void;
+  collectionValues: string[];
 }
 
-export const CollectionsSelect = ({ setCollections, collections }: Props) => {
+export const CollectionsSelect = ({
+  setCollectionValues,
+  collectionValues,
+}: Props) => {
   const savedCollections = useSelector((state: RootState) => state.collections);
 
   const [filteredSuggestions, setFilteredSuggestions] = useState<
@@ -32,7 +35,6 @@ export const CollectionsSelect = ({ setCollections, collections }: Props) => {
   >([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
   const [input, setInput] = useState<string>("");
-  const dispatch = useDispatch();
 
   const onChange = (e: { target: HTMLInputElement }) => {
     const userInput = e.target.value;
@@ -42,30 +44,31 @@ export const CollectionsSelect = ({ setCollections, collections }: Props) => {
     );
     setInput(e.target.value);
     setFilteredSuggestions(unLinked);
+    console.log(unLinked);
     setShowSuggestions(true);
   };
 
-  const handleDeleteCollection = (e: CollectionInterface) => {
-    setCollections(
-      JSON.parse(JSON.stringify(collections)).filter(
-        (x: CollectionInterface) => x.value !== e.value
+  const handleDeleteCollection = (collectionValue: string) => {
+    setCollectionValues(
+      JSON.parse(JSON.stringify(collectionValues)).filter(
+        (x: string) => x !== collectionValue
       )
     );
   };
 
   const handleAddSuggestion = (e: CollectionInterface) => {
-    if (!collections.map((e) => e.value).includes(e.value)) {
+    if (!collectionValues.includes(e.value)) {
       setFilteredSuggestions([]);
       setShowSuggestions(false);
-      setCollections([...collections, { value: e.value }]);
+      setCollectionValues([...collectionValues, e.value]);
       formik.handleReset();
     }
   };
 
-  const handleAddCollection = async (collection) => {
-    if (!collections.map((e) => e.value).includes(collection)) {
+  const handleAddCollection = async (collectionValue: string) => {
+    if (!collectionValues.includes(collectionValue)) {
       setShowSuggestions(false);
-      setCollections([...collections, { value: collection }]);
+      setCollectionValues([...collectionValues, collectionValue]);
     }
   };
 
@@ -88,24 +91,22 @@ export const CollectionsSelect = ({ setCollections, collections }: Props) => {
   });
 
   const SuggestionsListComponent = () => {
-    return (
-      filteredSuggestions.length !== 0 && (
-        <SuggesionsWrapper>
-          {filteredSuggestions.map((suggestion) => {
-            return (
-              <Suggestion
-                key={suggestion.value}
-                onClick={() => handleAddSuggestion(suggestion)}
-              >
-                <Text size={"small"} bold>
-                  {suggestion.value}
-                </Text>
-              </Suggestion>
-            );
-          })}
-        </SuggesionsWrapper>
-      )
-    );
+    return filteredSuggestions.length !== 0 ? (
+      <SuggesionsWrapper>
+        {filteredSuggestions.map((suggestion) => {
+          return (
+            <Suggestion
+              key={suggestion.value}
+              onClick={() => handleAddSuggestion(suggestion)}
+            >
+              <Text size={"small"} bold>
+                {suggestion.value}
+              </Text>
+            </Suggestion>
+          );
+        })}
+      </SuggesionsWrapper>
+    ) : null;
   };
 
   return (
@@ -139,11 +140,11 @@ export const CollectionsSelect = ({ setCollections, collections }: Props) => {
       </StyledForm>
       <Divider />
       <ChoosenSuggestionList>
-        {collections !== undefined &&
-          collections.map((e) => {
+        {collectionValues !== undefined &&
+          collectionValues.map((e) => {
             return (
               <ChoosenSuggestion onClick={() => handleDeleteCollection(e)}>
-                {e.value}
+                {e}
                 <BsFillTrashFill style={{ fill: "white", marginLeft: "2px" }} />
               </ChoosenSuggestion>
             );

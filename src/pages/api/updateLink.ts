@@ -12,21 +12,22 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       data: {
         title: data.title,
         url: data.url,
-        owner: { connect: { email: session.user.email } },
+        owner: { connect: { email: session?.user?.email } },
         modificationTimestamp: Date.now().toString(),
         collections: {
-          connectOrCreate: data.collections.map((collection) => ({
-            create: {
-              value: collection.value,
-              valId: `${session.user.email}/${collection.value}`,
-              type: collection.type,
-              modificationTimestamp: Date.now().toString(),
-              owner: { connect: { email: session.user.email } },
-            },
-            where: {
-              valId: `${session.user.email}/${collection.value}`,
-            },
-          })),
+          connectOrCreate: data.collectionValues.map(
+            (collectionValue: string) => ({
+              create: {
+                value: collectionValue,
+                valId: `${session?.user?.email}/${collectionValue}`,
+                modificationTimestamp: Date.now().toString(),
+                owner: { connect: { email: session?.user?.email } },
+              },
+              where: {
+                valId: `${session?.user?.email}/${collectionValue}`,
+              },
+            })
+          ),
         },
       },
       select: {
