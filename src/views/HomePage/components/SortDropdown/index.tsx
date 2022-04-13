@@ -18,7 +18,7 @@ export const SortDropdown = () => {
   const handleSortByName = () => {
     resetSorting();
     setSortByName(!sortByName);
-    if (sortByName == true) {
+    if (sortByName == false) {
       dispatch(sortLinks("asc"));
     } else {
       dispatch(sortLinks("desc"));

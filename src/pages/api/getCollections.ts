@@ -10,10 +10,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       where: {
         owner: { email: session.user.email },
       },
+      orderBy: {
+        modificationTimestamp: "desc",
+      },
       select: {
         id: true,
         value: true,
         links: true,
+        modificationTimestamp: true,
         shareRequests: true,
       },
     });

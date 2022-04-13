@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { LoadingSpinner } from "../components/LoadingSpinner";
+import { Modal } from "../components/Modal";
 import Verify from "../pages/api/auth/verify";
 import Login from "../pages/login";
 import { getCollections } from "../redux/actions/CollectionActions";
@@ -38,12 +39,7 @@ export const AuthGuard = ({ children }: Props) => {
     return <>{children}</>;
   }
 
-  return (
-    <>
-      {router.asPath == "/" && <Login />}
-      {router.asPath == "/auth/verify" && <Verify />}
-    </>
-  );
+  return <Login />;
 };
 
 const Center = styled.div`

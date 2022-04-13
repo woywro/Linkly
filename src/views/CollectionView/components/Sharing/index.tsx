@@ -136,7 +136,7 @@ export const Sharing = ({ collection }: Props) => {
                   <Error>{errors.email}</Error>
                 ) : null}
               </InputWrapper>
-              <AddButton type="submit">+</AddButton>
+              <AddButton type="submit">add</AddButton>
             </StyledForm>
           )}
         </Formik>

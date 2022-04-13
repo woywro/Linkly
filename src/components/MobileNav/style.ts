@@ -56,6 +56,9 @@ export const MobileNavItem = styled(motion.li)<{ isActive: boolean }>`
     height: 100%;
     border-radius: 20px;
   }
+  @media only screen and ${breakpoints.device.lg} {
+    margin: 5px;
+  }
 `;
 
 export const CloseButton = styled.button`

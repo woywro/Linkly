@@ -1,19 +1,18 @@
+import { AccountModal } from "../views/AccountModal";
 import { useRouter } from "next/router";
 import { Modal } from "../components/Modal";
-import { LinkModal } from "../views/LinkModal";
 
-export default function AddLink() {
+export default function Account() {
   const router = useRouter();
-
   return (
     <Modal
-      title={"Add Link"}
-      open={router.pathname == "/addLink" ? true : false}
+      title={"Account"}
+      open={router.pathname == "/account" ? true : false}
       onClose={() => {
         router.push("/");
       }}
     >
-      <LinkModal />
+      <AccountModal />
     </Modal>
   );
 }

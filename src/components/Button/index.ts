@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const Button = styled(motion.button)`
   background: ${(props) => props.theme.colors.secondary};
-  border-radius: 20px;
+  border-radius: 15px;
   color: #ffffff;
   cursor: pointer;
   font-size: 16px;
@@ -16,4 +16,8 @@ export const Button = styled(motion.button)`
   display: flex;
   justify-content: center;
   align-items: center;
+  &: disabled {
+    background: #404040;
+    cursor: auto;
+  }
 `;

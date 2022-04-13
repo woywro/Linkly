@@ -18,7 +18,7 @@ import { Row } from "./style";
 export const LinkList = () => {
   const userLinks = useSelector((state: RootState) => state.links);
   const dispatch = useDispatch();
-  const requests = useSelector((state) => state.requestsLoading);
+  const requests = useSelector((state: RootState) => state.requestsLoading);
   const loading = useLoading(requests, "getLinks");
   const [loadingText, setLoadingText] = useState("load more");
   const router = useRouter();
@@ -26,7 +26,9 @@ export const LinkList = () => {
     setLoadingText("loading");
     axios
       .get("/api/getLinks", {
-        params: { cursor: userLinks[userLinks.length - 1].id },
+        params: {
+          cursor: userLinks[userLinks.length - 1].modificationTimestamp,
+        },
       })
       .then((res) => {
         dispatch(setLinks(userLinks.concat(res.data.link)));

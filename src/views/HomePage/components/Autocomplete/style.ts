@@ -24,6 +24,9 @@ export const SugestionsWrapper = styled.ul`
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
   }
+  @media only screen and ${breakpoints.device.lg} {
+    width: 100%;
+  }
 `;
 
 export const Suggestion = styled.li`

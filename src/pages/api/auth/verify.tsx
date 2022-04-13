@@ -24,8 +24,9 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 30%;
-  padding: 50px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
   border-radius: 30px;
   @media only screen and ${breakpoints.device.sm} {

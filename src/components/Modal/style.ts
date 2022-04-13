@@ -30,6 +30,7 @@ export const ModalWrapper = styled(motion.div)`
   flex-flow: column;
   width: 500px;
   height: auto;
+  overflow-y: hidden;
   @media only screen and ${breakpoints.device.sm} {
     width: 95%;
     height: auto;

@@ -2,13 +2,14 @@ import styled, { useTheme } from "styled-components";
 import logo1 from "../../static/img/logo1.png";
 import logo2 from "../../static/img/logo2.png";
 import Image from "next/image";
+import { ThemeInterface } from "../../types/ThemeInterface";
 
 interface Props {
   mobile: boolean;
 }
 
 export const Logo = ({ mobile }: Props) => {
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
   return (
     <LogoWrapper>
       {mobile == false ? (
