@@ -6,10 +6,10 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
-    const limit = 3;
+    const limit = 5;
     const cursor = req.query.cursor ?? "";
     const cursorObj =
-      cursor == "" ? undefined : { modificationTimestamp: cursor as string };
+      cursor == "" ? undefined : { modificationTimestamp: cursor };
     const link = await prisma.Link.findMany({
       skip: cursor !== "" ? 1 : 0,
       cursor: cursorObj,

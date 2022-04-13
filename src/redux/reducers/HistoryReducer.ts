@@ -11,7 +11,7 @@ export const History = (state = initialHistoryState, action: AnyAction) => {
       return newHistory;
     }
     case "SET_HISTORY": {
-      return action.payload.links;
+      return action.payload.historyLinks;
     }
     default: {
       return state;
