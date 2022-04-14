@@ -6,9 +6,11 @@ import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import useLoading from "../../hooks/useLoading";
 import { getSharedWithYou } from "../../redux/actions/SharedActions";
 import { RootState } from "../../redux/store";
-import { LeftWrapper, PageContainer, RightWrapper, Title } from "../style";
+import { LeftWrapper, PageContainer, RightWrapper, Row, Title } from "../style";
 import { Feed } from "./components/Feed";
 import { ShareRequests } from "./components/ShareRequests";
+import { BiRefresh } from "react-icons/bi";
+import { getShareRequests } from "../../redux/actions/ShareRequestsActions";
 
 export const SocialView = () => {
   const requests = useSelector((state: RootState) => state.requestsLoading);
@@ -23,12 +25,24 @@ export const SocialView = () => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <Title>Social</Title>
+        <Row>
+          <Title>Social</Title>
+          <BiRefresh
+            size={"30px"}
+            onClick={() => dispatch(getSharedWithYou())}
+          />
+        </Row>
         {loading == true ? <LoadingSpinner /> : <Feed />}
       </LeftWrapper>
       <RightWrapper open={open}>
         <CloseWrapperButton onClick={() => setOpen(false)} />
-        <Title>Share requests</Title>
+        <Row>
+          <Title>Share Requests</Title>
+          <BiRefresh
+            size={"30px"}
+            onClick={() => dispatch(getShareRequests())}
+          />
+        </Row>
         <ShareRequests />
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />

@@ -79,3 +79,11 @@ export const Divider = styled.div`
   opacity: 0.5;
   background: ${(props) => props.theme.colors.secondary};
 `;
+
+export const Row = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: row;
+`;
