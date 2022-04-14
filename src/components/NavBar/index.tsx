@@ -82,7 +82,9 @@ const BottomSection = styled.div`
   justify-content: center;
   align-items: center;
   padding: 10px;
+  padding-bottom: 40px;
   margin-bottom: 10px;
   border-radius: 30px;
+  position: relative;
   background: ${(props) => props.theme.colors.primaryBg};
 `;
