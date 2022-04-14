@@ -14,9 +14,11 @@ import {
   themeDeepBlue,
 } from "../../theme/theme";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { ThemeInterface } from "../../types/ThemeInterface";
+import useClickOutside from "../../hooks/useClickOutside";
+import { useClickInside } from "../../hooks/useClickInside";
 
 export const ThemeSwitcher = () => {
   const dispatch = useDispatch();
@@ -27,6 +29,7 @@ export const ThemeSwitcher = () => {
   const handleChangeTheme = (e, theme) => {
     e.stopPropagation();
     setChoosenTheme(theme);
+    setVisible(false);
     dispatch(switchTheme(theme));
   };
   return (
@@ -89,21 +92,32 @@ export const ThemeSwitcher = () => {
       <ThemeExpandButton
         whileTap={{ scale: 0.9 }}
         onClick={() => setVisible(!visible)}
-        background={theme.colors.gradient}
       >
-        {visible ? <BsChevronDown /> : <BsChevronUp />}
+        {visible ? (
+          <BsChevronDown size={"18px"} />
+        ) : (
+          <BsChevronUp size={"18px"} />
+        )}
       </ThemeExpandButton>
     </ThemeSwitcherWrapper>
   );
 };
 
-const ThemeExpandButton = styled.button`
+const ThemeExpandButton = styled(motion.button)`
   background: none;
   border: none;
   padding: 0;
   position: absolute;
   bottom: 0;
+  padding: 2px;
   cursor: pointer;
+  @media only screen and ${breakpoints.device.sm} {
+    bottom 5px;
+  }
+  @media only screen and ${breakpoints.device.lg} {
+    bottom 5px;
+
+  }
 `;
 
 const Row = styled(motion.div)<{ isVisible?: boolean }>`
@@ -124,13 +138,12 @@ const ThemeSwitcherWrapper = styled.div<{ isVisible?: boolean }>`
   justify-content: flex-end;
   flex-flow: column;
   align-items: center;
-  z-index: 2000;
   border-radius: 30px;
-  padding-bottom: 15px;
+  padding-bottom: 16px;
   bottom: 0;
   @media only screen and ${breakpoints.device.sm} {
     background: rgba(255, 255, 255, 0.3);
-    padding: 10px;
+    padding: 20px;
     border-radius: 30px;
     position: static;
   }

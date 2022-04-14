@@ -65,11 +65,25 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   }
 `;
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  position: relative;
+  @media only screen and ${breakpoints.device.sm} {
+    justify-content: space-between;
+  }
+  @media only screen and ${breakpoints.device.lg} {
+    justify-content: space-between;
+  }
+`;
+
 export const Title = styled.h1`
   font-size: 30px;
   padding: 10px;
   opacity: 0.8;
-  width: 100%;
   color: ${(props) => props.theme.colors.primaryText};
 `;
 

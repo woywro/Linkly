@@ -1,10 +1,10 @@
-import { CollectionInterface } from "../../types/CollectionInterface";
+import { ShareRequestInterface } from "../../types/ShareRequestInterface";
 import { AnyAction } from "redux";
 
-const initialCollections: CollectionInterface[] = [];
+const initialShareRequests: ShareRequestInterface[] = [];
 
 export const shareRequests = (
-  state = initialCollections,
+  state = initialShareRequests,
   action: AnyAction
 ) => {
   switch (action.type) {
@@ -12,7 +12,9 @@ export const shareRequests = (
       return action.payload.shareRequests;
     }
     case "DELETE_SHAREREQUEST": {
-      const shareRequests = state.filter((e) => e.id !== action.payload.id);
+      const shareRequests: ShareRequestInterface[] = state.filter(
+        (e) => e.id !== action.payload.id
+      );
       return shareRequests;
     }
     default: {

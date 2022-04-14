@@ -6,17 +6,27 @@ import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import useLoading from "../../hooks/useLoading";
 import { getSharedWithYou } from "../../redux/actions/SharedActions";
 import { RootState } from "../../redux/store";
-import { LeftWrapper, PageContainer, RightWrapper, Row, Title } from "../style";
+import {
+  LeftWrapper,
+  PageContainer,
+  RightWrapper,
+  Row,
+  Title,
+  TitleWrapper,
+} from "../style";
 import { Feed } from "./components/Feed";
 import { ShareRequests } from "./components/ShareRequests";
 import { BiRefresh } from "react-icons/bi";
 import { getShareRequests } from "../../redux/actions/ShareRequestsActions";
+import { useTheme } from "styled-components";
+import { ThemeInterface } from "../../types/ThemeInterface";
 
 export const SocialView = () => {
   const requests = useSelector((state: RootState) => state.requestsLoading);
   const loading = useLoading(requests, "getSharedWithYou");
   const [open, setOpen] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const theme = useTheme() as ThemeInterface;
 
   useEffect(() => {
     dispatch(getSharedWithYou());
@@ -25,24 +35,26 @@ export const SocialView = () => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <Row>
+        <TitleWrapper>
           <Title>Social</Title>
           <BiRefresh
+            style={{ fill: theme.colors.primaryText }}
             size={"30px"}
             onClick={() => dispatch(getSharedWithYou())}
           />
-        </Row>
+        </TitleWrapper>
         {loading == true ? <LoadingSpinner /> : <Feed />}
       </LeftWrapper>
       <RightWrapper open={open}>
         <CloseWrapperButton onClick={() => setOpen(false)} />
-        <Row>
+        <TitleWrapper>
           <Title>Share Requests</Title>
           <BiRefresh
+            style={{ fill: theme.colors.primaryText }}
             size={"30px"}
             onClick={() => dispatch(getShareRequests())}
           />
-        </Row>
+        </TitleWrapper>
         <ShareRequests />
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />

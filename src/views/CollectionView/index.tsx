@@ -11,6 +11,7 @@ import {
   PageContainer,
   RightWrapper,
   Title,
+  TitleWrapper,
 } from "../style";
 import { CollectionInfo } from "./components/CollectionInfo";
 import { Sharing } from "./components/Sharing";
@@ -32,7 +33,9 @@ export const CollectionView = ({ collection }: Props) => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <Title>{`categories/${collection.value}`}</Title>
+        <TitleWrapper>
+          <Title>{`categories/${collection.value}`}</Title>
+        </TitleWrapper>
         <Scrollbars
           style={{
             width: "100%",

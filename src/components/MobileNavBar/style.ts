@@ -30,3 +30,12 @@ export const MenuButton = styled.button`
   left: 15px;
   cursor: pointer;
 `;
+
+export const AddLinkButton = styled.button`
+  background: none;
+  border: none;
+  padding: 5px;
+  position: absolute;
+  right: 15px;
+  cursor: pointer;
+`;
