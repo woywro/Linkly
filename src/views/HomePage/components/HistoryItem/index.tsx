@@ -9,12 +9,9 @@ interface Props {
 }
 
 export const HistoryItem = ({ item }: Props) => {
-  const handleClick = useCallback(
-    (item) => {
-      window.open(item.url, "_blank");
-    },
-    [item]
-  );
+  const handleClick = useCallback(() => {
+    window.open(item.link.url, "_blank");
+  }, [item]);
 
   return (
     <HistoryItemWrapper onClick={handleClick}>
