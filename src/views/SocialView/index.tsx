@@ -38,7 +38,7 @@ export const SocialView = () => {
         <TitleWrapper>
           <Title>Social</Title>
           <BiRefresh
-            style={{ fill: theme.colors.primaryText }}
+            style={{ fill: theme.colors.primaryText, cursor: "pointer" }}
             size={"30px"}
             onClick={() => dispatch(getSharedWithYou())}
           />
@@ -50,7 +50,7 @@ export const SocialView = () => {
         <TitleWrapper>
           <Title>Share Requests</Title>
           <BiRefresh
-            style={{ fill: theme.colors.primaryText }}
+            style={{ fill: theme.colors.primaryText, cursor: "pointer" }}
             size={"30px"}
             onClick={() => dispatch(getShareRequests())}
           />

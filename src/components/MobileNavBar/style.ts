@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import breakpoints from "../../theme/breakpoints";
+import { motion } from "framer-motion";
 
 export const MobileNavbarWrapper = styled.nav`
   display: none;
@@ -22,7 +23,7 @@ export const Title = styled.h1`
   color: white;
 `;
 
-export const MenuButton = styled.button`
+export const MenuButton = styled(motion.button)`
   background: none;
   border: none;
   padding: 5px;
@@ -31,7 +32,7 @@ export const MenuButton = styled.button`
   cursor: pointer;
 `;
 
-export const AddLinkButton = styled.button`
+export const AddLinkButton = styled(motion.button)`
   background: none;
   border: none;
   padding: 5px;

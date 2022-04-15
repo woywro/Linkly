@@ -11,7 +11,7 @@ export const MobileNavBar = () => {
   const router = useRouter();
   return (
     <MobileNavbarWrapper>
-      <MenuButton>
+      <MenuButton whileTap={{ scale: 0.9 }}>
         <AiOutlineMenu
           size={25}
           style={{ fill: "white" }}
@@ -19,7 +19,7 @@ export const MobileNavBar = () => {
         />
       </MenuButton>
       <Logo mobile={true} />
-      <AddLinkButton>
+      <AddLinkButton whileTap={{ scale: 0.9 }}>
         <AiOutlinePlus
           size={25}
           style={{ fill: "white" }}

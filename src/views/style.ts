@@ -72,12 +72,6 @@ export const TitleWrapper = styled.div`
   width: 100%;
   padding: 5px;
   position: relative;
-  @media only screen and ${breakpoints.device.sm} {
-    justify-content: space-between;
-  }
-  @media only screen and ${breakpoints.device.lg} {
-    justify-content: space-between;
-  }
 `;
 
 export const Title = styled.h1`
