@@ -42,8 +42,10 @@ export const History = () => {
       ) : (
         <>
           <Title>History</Title>
-          {History.map((e: HistoryInterface) => {
-            return <HistoryItem item={e} key={e.timestamp} />;
+          {History.map((historyItem: HistoryInterface) => {
+            return (
+              <HistoryItem item={historyItem} key={historyItem.timestamp} />
+            );
           })}
           <Button whileTap={{ scale: 0.9 }} onClick={handleLoadMore}>
             {loadingText}
