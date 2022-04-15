@@ -43,6 +43,7 @@ export const MobileNavItem = styled(motion.li)<{ isActive: boolean }>`
   padding: 10px;
   margin: 10px;
   cursor: pointer;
+  position: relative;
   ${({ isActive }) =>
     isActive &&
     css`

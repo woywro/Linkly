@@ -1,15 +1,12 @@
 import axios from "axios";
-import { Field, Form, Formik } from "formik";
+import { Formik } from "formik";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
 import toast from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import styled from "styled-components";
 import * as Yup from "yup";
 import { EmptyState } from "../../../../components/EmptyState";
-import { InputStyling } from "../../../../components/Input";
-import { Text } from "../../../../components/Text";
 import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
@@ -17,9 +14,13 @@ import { FriendsAutocomplete } from "../FriendsAutocomplete";
 import {
   AddButton,
   AddWrapper,
+  Error,
+  InputWrapper,
   SharedEmail,
   SharedList,
   SharingWrapper,
+  StyledForm,
+  StyledInput,
 } from "./style";
 
 interface Props {
@@ -85,7 +86,6 @@ export const Sharing = ({ collection }: Props) => {
 
   const handleSearch = (toSearch: string) => {
     setFriends([]);
-    console.log(toSearch);
     axios
       .get("/api/getFriends", {
         params: {
@@ -170,33 +170,3 @@ export const Sharing = ({ collection }: Props) => {
     </SharingWrapper>
   );
 };
-
-const StyledForm = styled(Form)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: row;
-  width: 100%;
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-  position: relative;
-`;
-
-const Error = styled(Text)`
-  color: ${(props) => props.theme.colors.red};
-  font-size: 12px;
-  padding: 5px;
-  position: absolute;
-  top: 100%;
-`;
-
-const StyledInput = styled(Field)`
-  ${InputStyling}
-  margin: 0;
-  padding: 10px;
-  background: ${(props) => props.theme.colors.primaryBg};
-`;

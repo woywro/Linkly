@@ -9,7 +9,7 @@ import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import useLoading from "../../../../hooks/useLoading";
 import { setLinks } from "../../../../redux/actions/LinkActions";
 import { RootState } from "../../../../redux/store";
-import { Title } from "../../../style";
+import { Title, TitleWrapper } from "../../../style";
 import { LinkItem } from "../LinkItem";
 import { SortBar } from "../SortBar";
 import { SortDropdown } from "../SortDropdown";
@@ -42,10 +42,10 @@ export const LinkList = () => {
         <LoadingSpinner />
       ) : (
         <>
-          <Row>
+          <TitleWrapper>
             <Title>Links</Title>
             <SortDropdown />
-          </Row>
+          </TitleWrapper>
           <SortBar />
           {userLinks.length == 0 ? (
             <EmptyState

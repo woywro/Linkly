@@ -21,12 +21,9 @@ interface Props {
 }
 
 export const LinkModal = ({ link }: Props) => {
-  const [collections, setCollections] = useState<CollectionInterface[] | []>(
-    []
-  );
+  const [collectionValues, setCollectionValues] = useState<string[] | []>([]);
 
   const router = useRouter();
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,9 +34,13 @@ export const LinkModal = ({ link }: Props) => {
 
   const setInputValues = useCallback(
     (link) => {
-      setCollections(link.collections);
+      setCollectionValues(
+        link.collections.map((e: CollectionInterface) => {
+          return e.value;
+        })
+      );
     },
-    [link, collections]
+    [link, collectionValues]
   );
 
   const handleSaveLinkOnEdit = useCallback(
@@ -49,7 +50,7 @@ export const LinkModal = ({ link }: Props) => {
           id: link?.id,
           title: title,
           url: url,
-          collections: collections,
+          collectionValues: collectionValues,
         })
         .then((res) => {
           dispatch(updateLink(res.data));
@@ -57,7 +58,7 @@ export const LinkModal = ({ link }: Props) => {
         });
       router.back();
     },
-    [link, collections]
+    [link, collectionValues]
   );
 
   const handleAdd = useCallback(
@@ -66,7 +67,7 @@ export const LinkModal = ({ link }: Props) => {
         .post("/api/addLink", {
           title,
           url,
-          collections,
+          collectionValues,
         })
         .then((res) => {
           dispatch(addLink(res.data));
@@ -74,7 +75,7 @@ export const LinkModal = ({ link }: Props) => {
         });
       router.push("/");
     },
-    [link, collections]
+    [link, collectionValues]
   );
 
   const validationSchema = Yup.object({
@@ -93,7 +94,7 @@ export const LinkModal = ({ link }: Props) => {
       <Formik
         initialValues={{
           title: link !== undefined ? link.title : "",
-          url: link !== undefined ? link.url : "",
+          url: link !== undefined ? link?.url : "",
         }}
         onSubmit={(values) => {
           if (router.pathname == "/addLink") {
@@ -117,8 +118,8 @@ export const LinkModal = ({ link }: Props) => {
               {errors.url && touched.url ? <Error>{errors.url}</Error> : null}
             </InputWrapper>
             <CollectionsSelect
-              setCollections={setCollections}
-              collections={collections}
+              setCollectionValues={setCollectionValues}
+              collectionValues={collectionValues}
             />
             <Button type="submit">SAVE</Button>
           </StyledForm>

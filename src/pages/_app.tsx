@@ -1,23 +1,17 @@
+import { motion } from "framer-motion";
 import { SessionProvider } from "next-auth/react";
 import { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "react-query";
+import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
 import styled from "styled-components";
 import { MobileNavBar } from "../components/MobileNavBar";
 import { NavBar } from "../components/NavBar";
 import { AuthGuard } from "../HOC/AuthGuard";
 import { ReduxThemeProvider } from "../HOC/ReduxThemeProvider";
+import { OnlineStatusProvider } from "../hooks/useOnlineStatus";
 import store from "../redux/store";
 import breakpoints from "../theme/breakpoints";
 import { GlobalStyles } from "../theme/globalStyles";
-import { motion } from "framer-motion";
-import {
-  OnlineStatusProvider,
-  useOnlineStatus,
-} from "../hooks/useOnlineStatus";
-import { useEffect } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import Verify from "./api/auth/verify";
 
 export default function App({
   Component,

@@ -11,6 +11,7 @@ import {
   PageContainer,
   RightWrapper,
   Title,
+  TitleWrapper,
 } from "../style";
 import { CollectionInfo } from "./components/CollectionInfo";
 import { Sharing } from "./components/Sharing";
@@ -23,7 +24,7 @@ interface Props {
 
 export const CollectionView = ({ collection }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
-  const [links, setLinks] = useState<LinkInterface[] | []>([]);
+  const [links, setLinks] = useState<LinkInterface[] | undefined>([]);
 
   useEffect(() => {
     setLinks(collection.links);
@@ -32,7 +33,9 @@ export const CollectionView = ({ collection }: Props) => {
   return (
     <PageContainer>
       <LeftWrapper>
-        <Title>{`categories/${collection.value}`}</Title>
+        <TitleWrapper>
+          <Title>{`categories/${collection.value}`}</Title>
+        </TitleWrapper>
         <Scrollbars
           style={{
             width: "100%",
@@ -43,19 +46,21 @@ export const CollectionView = ({ collection }: Props) => {
           }}
         >
           <Links>
-            {links.length == 0 ? (
-              <EmptyState msg={"There are no links in this collection"} />
-            ) : (
-              links.map((e: LinkInterface) => {
-                return (
-                  <CollectionLinkItem
-                    item={e}
-                    setLinks={setLinks}
-                    links={links}
-                  />
-                );
-              })
-            )}
+            <>
+              {links?.length == 0 ? (
+                <EmptyState msg={"There are no links in this collection"} />
+              ) : (
+                links?.map((link: LinkInterface) => {
+                  return (
+                    <CollectionLinkItem
+                      item={link}
+                      setLinks={setLinks}
+                      links={links}
+                    />
+                  );
+                })
+              )}
+            </>
           </Links>
         </Scrollbars>
       </LeftWrapper>

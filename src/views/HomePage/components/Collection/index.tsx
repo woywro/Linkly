@@ -6,6 +6,9 @@ import { useTheme } from "styled-components";
 import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
 import { CollectionWrapper, Icon, SharedIcon, Title } from "./style";
+import { updateCollection } from "../../../../redux/actions/CollectionActions";
+import { useDispatch } from "react-redux";
+import axios from "axios";
 
 interface Props {
   name: string;
@@ -25,8 +28,15 @@ export const Collection = ({
   const theme = useTheme() as ThemeInterface;
   const controls = useDragControls();
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleOpenCategory = () => {
+    axios
+      .post("/api/updateCollectionTimestamp", { id: item.id })
+      .then((res) => {
+        dispatch(updateCollection(res.data));
+        console.log(res.data);
+      });
     router.push(`/collections/${item.id}`);
   };
 

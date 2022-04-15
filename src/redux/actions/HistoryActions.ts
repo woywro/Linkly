@@ -5,10 +5,10 @@ import {
   requestStarted,
   requestFinished,
 } from "../actions/RequestsLoadingActions";
-export const setHistory = (links: HistoryInterface[]) => ({
+export const setHistory = (historyLinks: HistoryInterface[]) => ({
   type: "SET_HISTORY",
   payload: {
-    links,
+    historyLinks,
   },
 });
 

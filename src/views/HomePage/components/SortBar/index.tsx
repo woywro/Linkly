@@ -58,7 +58,7 @@ export const SortBar = () => {
     setSortByOwner(false);
   };
 
-  const handleSearchByName = () => {
+  const handleSearchByName = (searchValue) => {
     axios
       .get("/api/searchLinksByName", { params: { search: searchValue } })
       .then((res) => {
@@ -70,10 +70,6 @@ export const SortBar = () => {
     setSearchMode(false);
     setSearchValue("");
   };
-
-  useEffect(() => {
-    handleSearchByName();
-  }, [searchValue]);
 
   return (
     <SortBarWrapper>
@@ -99,8 +95,7 @@ export const SortBar = () => {
             <TextInput
               autoFocus
               placeholder="search"
-              value={searchValue}
-              onChange={(e) => setSearchValue(e.target.value)}
+              onChange={(e) => handleSearchByName(e.target.value)}
             />
             <IconButton
               whileTap={{ scale: 0.95 }}

@@ -1,5 +1,4 @@
 import { CollectionInterface } from "./CollectionInterface";
-import { SharedWithYouInterface } from "./SharedWithYouInterface";
 import { UserInterface } from "./UserInterface";
 export interface ShareRequestInterface {
   id: string;

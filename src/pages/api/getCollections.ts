@@ -16,7 +16,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       select: {
         id: true,
         value: true,
-        links: true,
         modificationTimestamp: true,
         shareRequests: true,
       },

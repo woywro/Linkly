@@ -45,6 +45,100 @@ export const themeDefaultDark = {
   },
 };
 
+export const themeDarkBlue = {
+  colors: {
+    primary: "#141e30",
+    secondary: "#243b55",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #141e30, #243b55)",
+    primaryBg: "#181818",
+    secondaryBg: "#212121",
+    primaryText: "#e4e6eb",
+    secondaryText: "#bec3c6",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+
+export const themeKashmir = {
+  colors: {
+    primary: "#516395",
+    secondary: "#614385",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #614385, #516395)",
+    primaryBg: "#181818",
+    secondaryBg: "#212121",
+    primaryText: "#e4e6eb",
+    secondaryText: "#bec3c6",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+export const themeSocial = {
+  colors: {
+    primary: "#48b1bf",
+    secondary: "#06beb6",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #06beb6, #48b1bf)",
+    primaryBg: "white",
+    secondaryBg: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#bec3c6",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+export const themeDeepBlue = {
+  colors: {
+    primary: "#ff5f6d",
+    secondary: "#ffc371",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #ff5f6d, #ffc371)",
+    primaryBg: "white",
+    secondaryBg: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#bec3c6",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+
 export const themePink = {
   colors: {
     primary: "#eaecc6",

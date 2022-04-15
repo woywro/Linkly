@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Scrollbars from "react-custom-scrollbars-2";
-import styled from "styled-components";
 import { CloseWrapperButton } from "../../components/CloseWrapperButton";
 import { OpenWrapperButton } from "../../components/OpenWrapperButton";
 import { LeftWrapper, PageContainer, RightWrapper } from "../style";

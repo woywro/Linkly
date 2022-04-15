@@ -1,6 +1,6 @@
 import { CollectionInterface } from "../types/CollectionInterface";
 
-export const collectionsOrderHelper = (collections) => {
+export const collectionsOrderHelper = (collections: CollectionInterface[]) => {
   const savedCollectionsOrder = JSON.parse(
     localStorage.getItem("collectionsOrder")
   );

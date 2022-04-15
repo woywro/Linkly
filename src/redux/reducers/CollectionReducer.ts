@@ -15,7 +15,6 @@ export const collections = (state = initialCollections, action: AnyAction) => {
           return acc;
         }
       }, []);
-      console.log(removedDuplicates);
       const sorted = removedDuplicates.sort((a, b) => {
         return b.modificationTimestamp - a.modificationTimestamp;
       });
@@ -30,6 +29,17 @@ export const collections = (state = initialCollections, action: AnyAction) => {
       )[0];
 
       collectionModified.shareRequests = action.payload.shareRequests;
+      const updatedCollections = [collectionModified, ...collectionsFiltered];
+      return updatedCollections;
+    }
+    case "UPDATE_COLLECTION": {
+      const collectionsFiltered = state.filter(
+        (e) => e.id !== action.payload.collection.id
+      );
+      let collectionModified = state.filter(
+        (e) => e.id == action.payload.collection.id
+      )[0];
+
       const updatedCollections = [collectionModified, ...collectionsFiltered];
       return updatedCollections;
     }

@@ -65,11 +65,19 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   }
 `;
 
+export const TitleWrapper = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  position: relative;
+`;
+
 export const Title = styled.h1`
   font-size: 30px;
   padding: 10px;
   opacity: 0.8;
-  width: 100%;
   color: ${(props) => props.theme.colors.primaryText};
 `;
 
@@ -78,4 +86,12 @@ export const Divider = styled.div`
   height: 2px;
   opacity: 0.5;
   background: ${(props) => props.theme.colors.secondary};
+`;
+
+export const Row = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  flex-flow: row;
 `;

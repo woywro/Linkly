@@ -3,13 +3,14 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { RiFolder5Fill } from "react-icons/ri";
 import { TiTick, TiTimes } from "react-icons/ti";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "styled-components";
 import { Button } from "../../../../components/Button";
 import { EmptyState } from "../../../../components/EmptyState";
 import { LoadingSpinner } from "../../../../components/LoadingSpinner";
 import { Text } from "../../../../components/Text";
 import { updateSharedWithYou } from "../../../../redux/actions/SharedActions";
+import { deleteShareRequest } from "../../../../redux/actions/ShareRequestsActions";
 import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
 import {
@@ -19,45 +20,38 @@ import {
   StyledCategory,
   Title,
 } from "./style";
+import { getShareRequests } from "../../../../redux/actions/ShareRequestsActions";
+import useLoading from "../../../../hooks/useLoading";
+import { RootState } from "../../../../redux/store";
 
 export const ShareRequests = () => {
-  const [shareRequests, setShareRequests] = useState<
-    ShareRequestInterface[] | []
-  >([]);
-  const [loading, setLoading] = useState(false);
   const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
+  const requests = useSelector((state: RootState) => state.requestsLoading);
+  const shareRequests = useSelector((state: RootState) => state.shareRequests);
+  const loading = useLoading(requests, "getShareRequests");
 
   useEffect(() => {
-    getShareRequests();
+    dispatch(getShareRequests());
   }, []);
-
-  const getShareRequests = async () => {
-    setLoading(true);
-    await axios.get("/api/getShareRequests").then((res) => {
-      setShareRequests(res.data.result.shareRequestsReceived);
-      setLoading(false);
-    });
-  };
 
   const handleAcceptShareRequest = async (request: ShareRequestInterface) => {
     await axios
       .post("/api/acceptShareRequest", { id: request.id })
       .then((res) => {
         dispatch(updateSharedWithYou(res.data.result));
-        setShareRequests(shareRequests.filter((e) => e.id !== request.id));
+        dispatch(deleteShareRequest(request.id));
       });
   };
 
   const handleDeleteShareRequest = async (request: ShareRequestInterface) => {
-    console.log(request);
     await axios
       .post("/api/deleteShareRequest", {
         collectionId: request.collection.id,
         email: request.receiver.email,
       })
       .then(() => {
-        setShareRequests(shareRequests.filter((e) => e.id !== request.id));
+        dispatch(deleteShareRequest(request.id));
       });
   };
 

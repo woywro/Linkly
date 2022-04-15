@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import { useCallback } from "react";
+import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { DropdownMenu } from "../../../../components/DropdownMenu";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
@@ -20,7 +20,7 @@ export const CollectionLinkDropdown = ({ item, setLinks, links }: Props) => {
   const mediaQuerySm = useMediaQuery("sm");
 
   const handleDeleteLink = useCallback(
-    async (e, item) => {
+    async (e: React.MouseEvent, item: LinkInterface) => {
       e.stopPropagation();
       dispatch(deleteLink(item));
       await axios.post("/api/deleteLink", {
@@ -35,7 +35,7 @@ export const CollectionLinkDropdown = ({ item, setLinks, links }: Props) => {
   );
 
   const handleDeleteLinkFromCollection = useCallback(
-    async (e, item) => {
+    async (e: React.MouseEvent, item: LinkInterface) => {
       e.stopPropagation();
       await axios.post("/api/deleteLinkFromCollection", {
         id: item.id,
@@ -49,12 +49,12 @@ export const CollectionLinkDropdown = ({ item, setLinks, links }: Props) => {
     [links]
   );
 
-  const handleEditLink = () => {
+  const handleEditLink = useCallback(() => {
     router.push({
       pathname: `/editLink/${item.id}`,
       query: { data: JSON.stringify(item) },
     });
-  };
+  }, [item]);
 
   return (
     <LinkDropdownWrapper>
