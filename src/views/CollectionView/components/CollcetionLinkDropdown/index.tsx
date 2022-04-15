@@ -6,7 +6,7 @@ import { DropdownMenu } from "../../../../components/DropdownMenu";
 import useMediaQuery from "../../../../hooks/useMediaQuery";
 import { deleteLink } from "../../../../redux/actions/LinkActions";
 import { LinkInterface } from "../../../../types/LinkInterface";
-import { DropDownButton, LinkDropdownWrapper } from "./style";
+import { DropDownButton } from "./style";
 
 interface Props {
   item: LinkInterface;
@@ -57,25 +57,21 @@ export const CollectionLinkDropdown = ({ item, setLinks, links }: Props) => {
   }, [item]);
 
   return (
-    <LinkDropdownWrapper>
-      <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
-        <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
-          Delete
-        </DropDownButton>
-        <DropDownButton
-          onClick={(e) => handleDeleteLinkFromCollection(e, item)}
-        >
-          Delete from collection
-        </DropDownButton>
-        <DropDownButton
-          onClick={(e) => {
-            handleEditLink();
-            e.stopPropagation();
-          }}
-        >
-          Edit
-        </DropDownButton>
-      </DropdownMenu>
-    </LinkDropdownWrapper>
+    <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
+      <DropDownButton onClick={(e) => handleDeleteLink(e, item)}>
+        Delete
+      </DropDownButton>
+      <DropDownButton onClick={(e) => handleDeleteLinkFromCollection(e, item)}>
+        Delete from collection
+      </DropDownButton>
+      <DropDownButton
+        onClick={(e) => {
+          handleEditLink();
+          e.stopPropagation();
+        }}
+      >
+        Edit
+      </DropDownButton>
+    </DropdownMenu>
   );
 };

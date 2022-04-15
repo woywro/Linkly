@@ -38,24 +38,22 @@ export const HomeLinkDropdown = ({ item }: Props) => {
   }, [item]);
 
   return (
-    <LinkDropdownWrapper>
-      <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
-        <DropDownButton
-          onClick={(e) => handleDeleteLink(e, item)}
-          whileTap={{ scale: 0.95 }}
-        >
-          Delete
-        </DropDownButton>
-        <DropDownButton
-          whileTap={{ scale: 0.95 }}
-          onClick={(e) => {
-            handleEditLink();
-            e.stopPropagation();
-          }}
-        >
-          Edit
-        </DropDownButton>
-      </DropdownMenu>
-    </LinkDropdownWrapper>
+    <DropdownMenu icon={true} fullWidth={mediaQuerySm ? true : false}>
+      <DropDownButton
+        onClick={(e) => handleDeleteLink(e, item)}
+        whileTap={{ scale: 0.95 }}
+      >
+        Delete
+      </DropDownButton>
+      <DropDownButton
+        whileTap={{ scale: 0.95 }}
+        onClick={(e) => {
+          handleEditLink();
+          e.stopPropagation();
+        }}
+      >
+        Edit
+      </DropDownButton>
+    </DropdownMenu>
   );
 };
