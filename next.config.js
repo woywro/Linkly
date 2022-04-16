@@ -1,10 +1,6 @@
-const withPWA = require("next-pwa");
-
-module.exports = withPWA({
+module.exports = {
   pwa: {
     dest: "public",
-    register: true,
-    skipWaiting: true,
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -12,4 +8,4 @@ module.exports = withPWA({
   experimental: {
     outputStandalone: true,
   },
-});
+};
