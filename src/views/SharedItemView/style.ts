@@ -9,7 +9,6 @@ export const List = styled.ul`
   width: 100%;
   height: 100%;
   padding: 10px;
-  overflow-y: scroll;
   overflow-x: hidden;
 `;
 

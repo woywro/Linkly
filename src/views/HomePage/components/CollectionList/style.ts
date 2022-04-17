@@ -15,7 +15,6 @@ export const CollectionsList = styled(Reorder.Group)`
   max-width: 100%;
   height: 100%;
   -moz-scrollbars-horizontal: touch;
-  overflow-x: scroll;
 `;
 export const TopWrapper = styled.div`
   display: flex;

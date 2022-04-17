@@ -12,11 +12,10 @@ export const SugestionsWrapper = styled.ul`
   list-style: none;
   justify-content: center;
   align-items: flex-start;
-  padding: 20px;
+  padding: 10px;
   position: absolute;
   color: black;
   top: 100%;
-  overflow-y: scroll;
   margin: 0;
   max-height: 300px;
   left: 0;
