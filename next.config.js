@@ -4,6 +4,8 @@ module.exports = withPWA({
   pwa: {
     dest: "public",
     scope: "/",
+    register: true,
+    skipWaiting: true,
   },
   typescript: {
     ignoreBuildErrors: true,

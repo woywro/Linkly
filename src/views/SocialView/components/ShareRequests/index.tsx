@@ -23,6 +23,7 @@ import {
 import { getShareRequests } from "../../../../redux/actions/ShareRequestsActions";
 import useLoading from "../../../../hooks/useLoading";
 import { RootState } from "../../../../redux/store";
+import Scrollbars from "react-custom-scrollbars-2";
 
 export const ShareRequests = () => {
   const theme = useTheme() as ThemeInterface;
@@ -56,48 +57,50 @@ export const ShareRequests = () => {
   };
 
   return (
-    <ShareRequestsWrapper>
-      {loading ? (
-        <LoadingSpinner />
-      ) : shareRequests.length == 0 ? (
-        <EmptyState msg="You don't have share requests" />
-      ) : (
-        shareRequests.map((request) => {
-          return (
-            <ShareRequest>
-              <Row>
-                <Title>{request.owner.email}</Title>
-                <Text color={theme.colors.secondaryText}>
-                  {moment(parseInt(request.createdTimestamp)).format("LT")}
-                </Text>
-              </Row>
-              <StyledCategory>
-                <RiFolder5Fill
-                  style={{ fill: theme.colors.yellow }}
-                  size={"30px"}
-                />
-                <Text>{request.collection.value}</Text>
-              </StyledCategory>
-              <Row>
-                <Button
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleAcceptShareRequest(request)}
-                  style={{ background: theme.colors.green }}
-                >
-                  <TiTick />
-                </Button>
-                <Button
-                  whileTap={{ scale: 0.95 }}
-                  onClick={() => handleDeleteShareRequest(request)}
-                  style={{ background: theme.colors.red }}
-                >
-                  <TiTimes />
-                </Button>
-              </Row>
-            </ShareRequest>
-          );
-        })
-      )}
-    </ShareRequestsWrapper>
+    <Scrollbars style={{ height: "100%" }}>
+      <ShareRequestsWrapper>
+        {loading ? (
+          <LoadingSpinner />
+        ) : shareRequests.length == 0 ? (
+          <EmptyState msg="You don't have share requests" />
+        ) : (
+          shareRequests.map((request) => {
+            return (
+              <ShareRequest>
+                <Row>
+                  <Title>{request.owner.email}</Title>
+                  <Text color={theme.colors.secondaryText}>
+                    {moment(parseInt(request.createdTimestamp)).format("LT")}
+                  </Text>
+                </Row>
+                <StyledCategory>
+                  <RiFolder5Fill
+                    style={{ fill: theme.colors.yellow }}
+                    size={"30px"}
+                  />
+                  <Text>{request.collection.value}</Text>
+                </StyledCategory>
+                <Row>
+                  <Button
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleAcceptShareRequest(request)}
+                    style={{ background: theme.colors.green }}
+                  >
+                    <TiTick />
+                  </Button>
+                  <Button
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => handleDeleteShareRequest(request)}
+                    style={{ background: theme.colors.red }}
+                  >
+                    <TiTimes />
+                  </Button>
+                </Row>
+              </ShareRequest>
+            );
+          })
+        )}
+      </ShareRequestsWrapper>
+    </Scrollbars>
   );
 };
