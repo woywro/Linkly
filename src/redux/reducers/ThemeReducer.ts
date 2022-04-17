@@ -1,6 +1,5 @@
 import { AnyAction } from "redux";
 import { themeDefault } from "../../theme/theme";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const initial = themeDefault;
 

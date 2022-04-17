@@ -1,18 +1,22 @@
+import { AnyAction } from "redux";
+import { LoadingRequestInterface } from "../../types/LoadingRequestInterface";
+
 const initialState = {
   requests: [],
 };
 
-export const requestsLoading = (state = initialState, action) => {
+export const requestsLoading = (state = initialState, action: AnyAction) => {
   switch (action.type) {
     case "REQUEST_STARTED": {
       const existingCall = state.requests.find(
-        (request) => request.requestName === action.request.name
+        (request: LoadingRequestInterface) =>
+          request.name === action.request.name
       );
 
       if (existingCall) {
         return {
           ...state,
-          requests: state.requests.map((request) =>
+          requests: state.requests.map((request: LoadingRequestInterface) =>
             request.name === action.request.name
               ? { ...request, inProgress: true, error: null }
               : request
@@ -29,14 +33,15 @@ export const requestsLoading = (state = initialState, action) => {
       return {
         ...state,
         requests: state.requests.filter(
-          (request) => request.name !== action.request.name
+          (request: LoadingRequestInterface) =>
+            request.name !== action.request.name
         ),
       };
     }
     case "REQUEST_FAILED": {
       return {
         ...state,
-        requests: state.requests.map((request) =>
+        requests: state.requests.map((request: LoadingRequestInterface) =>
           request.name === action.request.name
             ? {
                 ...request,

@@ -1,15 +1,15 @@
-export const requestStarted = (requestName: string) => ({
+export const requestStarted = (name: string) => ({
   type: "REQUEST_STARTED",
   request: {
-    requestName,
+    name,
     inProgress: true,
   },
 });
 
-export const requestFinished = (requestName: string) => ({
+export const requestFinished = (name: string) => ({
   type: "REQUEST_FINISHED",
   request: {
-    requestName,
+    name,
     inProgress: false,
   },
 });

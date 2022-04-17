@@ -21,6 +21,10 @@ export const History = () => {
 
   const loading = useLoading(requests, "getHistory");
 
+  useEffect(() => {
+    console.log(requests);
+  }, [requests]);
+
   const handleLoadMore = useCallback(() => {
     setLoadingText("loading");
     axios

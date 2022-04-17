@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 
-const useMediaQuery = (query) => {
+type query = "sm" | "md" | "xl";
+
+const useMediaQuery = (query: query) => {
   const [matches, setMatches] = useState(false);
 
   useEffect(() => {
