@@ -9,6 +9,7 @@ export const MyDocument = () => {
 
         <link rel="manifest" href="/manifest.json" />
         <link rel="apple-touch-icon" href="/img/logo.png"></link>
+        <link rel="logo" href="/img/logo.png"></link>
 
         <link
           href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;1,100;1,300;1,900&display=swap"
