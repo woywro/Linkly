@@ -25,7 +25,7 @@ export const DropdownItemList = styled.div<{
   right: 0;
   padding: 10px;
   height: auto;
-  background: ${(props) => props.theme.colors.secondaryBg};
+  background: ${(props) => props.theme.colors.primaryBgNoTransparent};
   box-shadow: ${(props) => props.theme.shadow};
   display: ${(props) => (props.show ? "flex" : "none")};
   z-index: 40;

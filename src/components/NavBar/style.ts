@@ -10,10 +10,12 @@ export const NavBarWrapper = styled.nav`
   align-items: center;
   display: flex;
   justify-content: space-between;
-  border-radius: 20px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
   height: 100%;
   width: auto;
-  margin: 10px;
+  padding: 10px;
+  background: ${(props) => props.theme.colors.secondaryBg};
   @media only screen and ${breakpoints.device.sm} {
     display: none;
   }

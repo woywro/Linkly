@@ -4,10 +4,10 @@ import { switchTheme } from "../../redux/actions/ThemeActions";
 import breakpoints from "../../theme/breakpoints";
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 import {
-  themeDefault,
-  themeDefaultDark,
-  themeOrange,
-  themePink,
+  themeFirst,
+  themeThree,
+  themeFour,
+  themeSecond,
   themeDarkBlue,
   themeSocial,
   themeKashmir,
@@ -70,23 +70,23 @@ export const ThemeSwitcher = () => {
       <Row isVisible={true}>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeDefault)}
-          background={themeDefault.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeFirst)}
+          background={themeFirst.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themePink)}
-          background={themePink.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeSecond)}
+          background={themeSecond.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeDefaultDark)}
-          background={themeDefaultDark.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeThree)}
+          background={themeThree.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeOrange)}
-          background={themeOrange.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeFour)}
+          background={themeFour.colors.gradient}
         ></ThemeChoiceButton>
       </Row>
       <ThemeExpandButton

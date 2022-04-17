@@ -40,7 +40,8 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   flex-flow: column;
   width: 25%;
   height: 100%;
-  border-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
   background: white;
   text-align: left;
   padding: 10px;

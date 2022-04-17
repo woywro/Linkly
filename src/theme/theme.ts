@@ -1,4 +1,5 @@
-export const themeDefault = {
+export const themeFirst = {
+  mode: "light",
   colors: {
     primary: "#8ec5fc",
     secondary: "#e0c3fc",
@@ -6,32 +7,11 @@ export const themeDefault = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%)",
-    primaryBg: "white",
-    secondaryBg: "#f4f6fa",
+    primaryBg: "rgba(255,255,255,0.8)",
+    secondaryBg: "rgba(255,255,255,0.6)",
+    primaryBgNoTransparent: "#ffffff",
+    secondaryBgNoTransparent: "#f4f6fa",
     primaryText: "#233548",
-    secondaryText: "#bec3c6",
-    active: "#F76E11",
-    active2: "rgba(0, 0, 0, 0.05)",
-  },
-  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
-  fonts: ["sans-serif", "Roboto"],
-  fontSizes: {
-    small: "1em",
-    medium: "2em",
-    large: "3em",
-  },
-};
-export const themeDefaultDark = {
-  colors: {
-    primary: "#283c86",
-    secondary: "#45a247",
-    yellow: "#ffc107",
-    green: "#50C878",
-    red: "#FF1919",
-    gradient: "linear-gradient(to right, #283c86, #45a247)",
-    primaryBg: "#181818",
-    secondaryBg: "#212121",
-    primaryText: "#e4e6eb",
     secondaryText: "#bec3c6",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
@@ -139,7 +119,10 @@ export const themeDeepBlue = {
   },
 };
 
-export const themePink = {
+///////////////////////////////
+
+export const themeSecond = {
+  mode: "light",
   colors: {
     primary: "#eaecc6",
     secondary: "#2bc0e4",
@@ -147,8 +130,10 @@ export const themePink = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(to right, #2bc0e4, #eaecc6);",
-    primaryBg: "white",
-    secondaryBg: "#f4f6fa",
+    primaryBg: "rgba(255,255,255,0.8)",
+    secondaryBg: "rgba(255,255,255,0.6)",
+    primaryBgNoTransparent: "#ffffff",
+    secondaryBgNoTransparent: "#f4f6fa",
     primaryText: "#233548",
     secondaryText: "#bec3c6",
     active: "#F76E11",
@@ -162,7 +147,34 @@ export const themePink = {
     large: "3em",
   },
 };
-export const themeOrange = {
+export const themeThree = {
+  mode: "dark",
+  colors: {
+    primary: "#283c86",
+    secondary: "#45a247",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #283c86, #45a247)",
+    primaryBg: "rgba(0,0,0,0.85)",
+    secondaryBg: "rgba(0,0,0,0.8)",
+    primaryBgNoTransparent: "#181818",
+    secondaryBgNoTransparent: "#212121",
+    primaryText: "#e4e6eb",
+    secondaryText: "#bec3c6",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+export const themeFour = {
+  mode: "dark",
   colors: {
     primary: "rgb(254, 140, 48)",
     secondary: "rgb(255, 53, 109)",
@@ -171,8 +183,10 @@ export const themeOrange = {
     red: "#FF1919",
     gradient:
       "linear-gradient(113.1deg, rgb(254, 140, 48) 14%, rgb(253, 75, 101) 80.5%, rgb(255, 53, 109) 100.6%)",
-    primaryBg: "#181818",
-    secondaryBg: "#212121",
+    primaryBg: "rgba(0,0,0,0.9)",
+    secondaryBg: "rgba(0,0,0,0.85)",
+    primaryBgNoTransparent: "#181818",
+    secondaryBgNoTransparent: "#212121",
     primaryText: "#e4e6eb",
     secondaryText: "#bec3c6",
     active: "#F76E11",

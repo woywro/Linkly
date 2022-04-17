@@ -86,5 +86,5 @@ const BottomSection = styled.div`
   margin-bottom: 10px;
   border-radius: 30px;
   position: relative;
-  background: ${(props) => props.theme.colors.primaryBg};
+  background: ${(props) => props.theme.colors.secondaryBg};
 `;

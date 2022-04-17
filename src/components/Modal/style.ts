@@ -20,7 +20,7 @@ export const ModalWrapper = styled(motion.div)`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background: ${(props) => props.theme.colors.primaryBg};
+  background: ${(props) => props.theme.colors.primaryBgNoTransparent};
   padding: 30px;
   z-index: 1000;
   border-radius: 20px;

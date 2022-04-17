@@ -13,7 +13,7 @@ export const Logo = ({ mobile }: Props) => {
   return (
     <LogoWrapper>
       {mobile == false ? (
-        theme.colors.primaryBg == "#181818" ? (
+        theme.mode == "dark" ? (
           <StyledLogo src={logo2} />
         ) : (
           <StyledLogo src={logo1} />
