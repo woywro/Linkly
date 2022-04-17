@@ -35,7 +35,7 @@ export const LinkItem = ({ item }: Props) => {
   return (
     <LinkWrapper onClick={() => handleOnClick(item)}>
       <LinkLabel>
-        <AiOutlineLink />
+        <AiOutlineLink size={15} />
         <Name>{item.title}</Name>
       </LinkLabel>
       {!mediaQuerySm && (

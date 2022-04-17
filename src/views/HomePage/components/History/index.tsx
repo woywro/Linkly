@@ -21,6 +21,10 @@ export const History = () => {
 
   const loading = useLoading(requests, "getHistory");
 
+  useEffect(() => {
+    console.log(requests);
+  }, [requests]);
+
   const handleLoadMore = useCallback(() => {
     setLoadingText("loading");
     axios
@@ -42,10 +46,8 @@ export const History = () => {
       ) : (
         <>
           <Title>History</Title>
-          {History.map((historyItem: HistoryInterface) => {
-            return (
-              <HistoryItem item={historyItem} key={historyItem.timestamp} />
-            );
+          {History.map((e: HistoryInterface) => {
+            return <HistoryItem item={e} key={e.timestamp} />;
           })}
           <Button whileTap={{ scale: 0.9 }} onClick={handleLoadMore}>
             {loadingText}

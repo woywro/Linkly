@@ -52,13 +52,6 @@ export const MobileNav = ({ open, setOpen }: Props) => {
           <BiUser style={{ fill: "white" }} /> Account
         </MobileNavItem>
         <MobileNavItem
-          isActive={router.pathname == "/account" ? true : false}
-          onClick={() => router.push("/account")}
-          whileTap={{ scale: 0.9 }}
-        >
-          <BiUser style={{ fill: "white" }} /> Account
-        </MobileNavItem>
-        <MobileNavItem
           isActive={false}
           onClick={() => signOut()}
           whileTap={{ scale: 0.9 }}

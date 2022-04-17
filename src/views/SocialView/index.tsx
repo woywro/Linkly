@@ -46,8 +46,7 @@ export const SocialView = () => {
         {loading == true ? <LoadingSpinner /> : <Feed />}
       </LeftWrapper>
       <RightWrapper open={open}>
-        <CloseWrapperButton onClick={() => setOpen(false)} />
-        <TitleWrapper>
+        <TitleWrapper style={{ justifyContent: "flex-start" }}>
           <Title>Share Requests</Title>
           <BiRefresh
             style={{ fill: theme.colors.primaryText, cursor: "pointer" }}
@@ -55,6 +54,7 @@ export const SocialView = () => {
             onClick={() => dispatch(getShareRequests())}
           />
         </TitleWrapper>
+        <CloseWrapperButton onClick={() => setOpen(false)} />
         <ShareRequests />
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />

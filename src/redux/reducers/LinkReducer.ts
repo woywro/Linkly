@@ -6,7 +6,7 @@ const initialLinksState: LinkInterface[] = [];
 export const Links = (state = initialLinksState, action: AnyAction) => {
   switch (action.type) {
     case "ADD_LINK": {
-      const linksSorted = [...state, action.payload.link].sort(
+      const linksSorted: LinkInterface[] = [...state, action.payload.link].sort(
         (a, b) => b.modificationTimestamp - a.modificationTimestamp
       );
       return linksSorted;
@@ -18,10 +18,10 @@ export const Links = (state = initialLinksState, action: AnyAction) => {
       return action.payload.links;
     }
     case "UPDATE_LINK": {
-      const filtered = [...state].filter(
+      const filtered: LinkInterface[] = [...state].filter(
         (e) => e.id !== action.payload.link.id
       );
-      const sorted = [...filtered, action.payload.link].sort(
+      const sorted: LinkInterface[] = [...filtered, action.payload.link].sort(
         (a, b) => b.modificationTimestamp - a.modificationTimestamp
       );
       return sorted;

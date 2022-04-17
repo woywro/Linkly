@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
+import { LoadingRequestInterface } from "../types/LoadingRequestInterface";
 
-export function checkIfLoading(state, requestName) {
-  const requestsInProgress = [];
-  const result = state.requests.map((request) => {
+export function checkIfLoading(state, name: string) {
+  const requestsInProgress: string[] = [];
+  state.requests.map((request: LoadingRequestInterface) => {
     if (request.inProgress == true) {
-      requestsInProgress.push(request.requestName);
+      requestsInProgress.push(request.name);
     }
   });
   const res = () => {
-    if (requestsInProgress.includes(requestName)) {
+    if (requestsInProgress.includes(name)) {
       return true;
     } else {
       return false;
@@ -17,12 +18,12 @@ export function checkIfLoading(state, requestName) {
   return res();
 }
 
-export default function useLoading(state, requestName) {
+export default function useLoading(state, name: string) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(checkIfLoading(state, requestName));
-  }, [state, loading, requestName]);
+    setLoading(checkIfLoading(state, name));
+  }, [state, loading, name]);
 
   return loading;
 }

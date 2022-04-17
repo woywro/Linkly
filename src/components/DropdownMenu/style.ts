@@ -22,19 +22,19 @@ export const DropdownItemList = styled.div<{
   align-items: center;
   position: absolute;
   top: 100%;
-  left: 0;
+  right: 0;
   padding: 10px;
   height: auto;
   background: ${(props) => props.theme.colors.secondaryBg};
   box-shadow: ${(props) => props.theme.shadow};
   display: ${(props) => (props.show ? "flex" : "none")};
   z-index: 40;
-  width: 100%;
+  width: 30%;
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
   }
   @media only screen and ${breakpoints.device.lg} {
-    width: 100%;
+    width: 60%;
   }
 `;
 
