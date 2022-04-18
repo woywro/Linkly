@@ -1,4 +1,5 @@
 export interface ThemeInterface {
+  mode: "dark" | "light";
   colors: {
     primary: string;
     secondary: string;

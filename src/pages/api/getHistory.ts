@@ -27,9 +27,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     });
     res.status(200).json({ history });
   } catch (err) {
-    // res.status(403).json({ err });
-    if (err instanceof PrismaClientKnownRequestError) {
-      console.log(err);
-    }
+    // if (err instanceof PrismaClientKnownRequestError) {
+    //   console.log(err);
+    // }
   }
 };

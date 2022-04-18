@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Text } from "../../../../components/Text";
 import { motion } from "framer-motion";
 
-export const FeedItemWrapper = styled(motion.div)`
+export const FeedItemWrapper = styled(motion.div)<{ color: string }>`
   padding: 20px;
   display: flex;
   font-size: 50px;
@@ -13,8 +13,8 @@ export const FeedItemWrapper = styled(motion.div)`
   border-radius: 20px;
   position: relative;
   color: ${(props) => props.theme.colors.primaryText};
+  background-color: ${(props) => props.color};
   &:hover {
-    background: ${(props) => props.theme.colors.primary};
     box-shadow: ${(props) => props.theme.shadow};
     color: white;
   }

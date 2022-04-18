@@ -46,6 +46,7 @@ export const LinkLabel = styled.div`
 
 export const Name = styled(Text)`
   margin-left: 5px;
+  font-size: 17px;
   color: ${(props) => props.theme.colors.primaryText};
 `;
 

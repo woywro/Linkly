@@ -35,7 +35,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.end();
   } catch (err) {
     if (err instanceof PrismaClientKnownRequestError) {
-      console.log(err);
     }
   }
 };

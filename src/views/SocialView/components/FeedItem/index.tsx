@@ -9,6 +9,7 @@ import { SharedWithYouInterface } from "../../../../types/SharedWithYouInterface
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { UserInterface } from "../../../../types/UserInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
+import { useEffect } from "react";
 
 interface Props {
   sharedItem: SharedWithYouInterface;
@@ -20,6 +21,7 @@ export const FeedItem = ({ sharedItem }: Props) => {
 
   return (
     <FeedItemWrapper
+      color={sharedItem.collection.color}
       whileTap={{ scale: 0.95 }}
       onClick={() => {
         router.push({
