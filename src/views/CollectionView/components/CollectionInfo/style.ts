@@ -18,6 +18,8 @@ export const Name = styled.div`
 
 export const Icon = styled.div`
   position: relative;
+  width: auto;
+  height: auto;
 `;
 
 export const ColorTag = styled.div<{ background: string }>`

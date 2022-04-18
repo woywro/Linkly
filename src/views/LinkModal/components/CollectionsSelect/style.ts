@@ -25,7 +25,7 @@ export const SuggesionsWrapper = styled.ul`
 export const SelectWrapper = styled.div`
   border: none;
   position: relative;
-  background: ${(props) => props.theme.colors.secondaryBg};
+  background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
   padding: 15px 5px;
   border-radius: 10px;
   font-size: 15px;
