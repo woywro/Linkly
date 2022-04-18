@@ -13,8 +13,8 @@ Linkly is an open source tool for managing your website urls like in file manage
 ## About The Project
 
   <div align="center">
-    <img src="https://github.com/woywro/Linkly/blob/main/screenshots/mockupLight.png" alt="Mockup" width="45%">
-    <img src="https://github.com/woywro/Linkly/blob/main/screenshots/mockupDark.png" alt="Mockup" width="45%">
+    <img src="https://github.com/woywro/Linkly/blob/main/screenshots/mockupLight.png" alt="Mockup" width="100%">
+    <img src="https://github.com/woywro/Linkly/blob/main/screenshots/mockupDark.png" alt="Mockup" width="100%">
   </div>
 
 
