@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
+import Scrollbars from "react-custom-scrollbars-2";
 import { AiOutlineLink } from "react-icons/ai";
 import { RiFolder5Fill } from "react-icons/ri";
 import { Text } from "../../../../components/Text";
@@ -38,23 +39,25 @@ export const AutoComplete = ({ input, suggestions, setInput }: Props) => {
     <>
       {hide == false && suggestions.length > 0 && (
         <SugestionsWrapper>
-          {suggestions.map((suggestion) => {
-            return (
-              <Suggestion
-                key={suggestion.id}
-                onClick={() => handleOnClick(suggestion)}
-              >
-                {suggestion.type == "collection" ? (
-                  <RiFolder5Fill />
-                ) : (
-                  <AiOutlineLink />
-                )}
-                <Text style={{ marginLeft: "4px", wordBreak: "break-all" }}>
-                  {suggestion.value}
-                </Text>
-              </Suggestion>
-            );
-          })}
+          <Scrollbars autoHeight>
+            {suggestions.map((suggestion) => {
+              return (
+                <Suggestion
+                  key={suggestion.id}
+                  onClick={() => handleOnClick(suggestion)}
+                >
+                  {suggestion.type == "collection" ? (
+                    <RiFolder5Fill />
+                  ) : (
+                    <AiOutlineLink />
+                  )}
+                  <Text style={{ marginLeft: "4px", wordBreak: "break-all" }}>
+                    {suggestion.value}
+                  </Text>
+                </Suggestion>
+              );
+            })}
+          </Scrollbars>
         </SugestionsWrapper>
       )}
     </>

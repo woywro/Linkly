@@ -14,7 +14,6 @@ export const SortBarWrapper = styled.div`
   width: 100%;
   padding: 5px;
   cursor: pointer;
-  background: ${(props) => props.theme.colors.primaryBg};
   z-index: 5;
   @media only screen and ${breakpoints.device.sm} {
     display: none;
@@ -45,7 +44,7 @@ export const IconButton = styled(motion.button)`
   border: none;
   margin: 0;
   padding: 0;
-  background: ${(props) => props.theme.colors.primaryBg};
+  background: none;
   color: black;
   display: flex;
   justify-content: center;

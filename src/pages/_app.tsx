@@ -69,9 +69,7 @@ const Wrapper = styled.div`
   align-items: center;
   position: relative;
   padding: 0;
-  background-color: #8ec5fc;
-  background-image: ${(props) => props.theme.colors.gradient};
-
+  background: ${(props) => props.theme.colors.gradient};
   @media only screen and ${breakpoints.device.sm} {
   }
   @media only screen and ${breakpoints.device.lg} {
@@ -84,7 +82,6 @@ const ViewBox = styled.div`
   justify-content: flex-start;
   position: relative;
   align-items: center;
-  background: ${(props) => props.theme.colors.secondaryBg};
   border-radius: 30px;
   box-shadow: 0px 0px 0px 18px rgba(255, 255, 255, 0.3);
   @media only screen and ${breakpoints.device.sm} {

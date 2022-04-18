@@ -46,28 +46,14 @@ export const collections = (state = initialCollections, action: AnyAction) => {
       return updatedCollections;
     }
     case "UPDATE_COLLECTION": {
-      const collectionsFiltered: CollectionInterface[] = state.filter(
+      const newState: CollectionInterface[] = [...state];
+      const collectionsFiltered: CollectionInterface[] = newState.filter(
         (e) => e.id !== action.payload.collection.id
       );
-      let collectionModified: CollectionInterface = state.filter(
-        (e) => e.id == action.payload.collection.id
-      )[0];
-
       const updatedCollections: CollectionInterface[] = [
-        collectionModified,
+        action.payload.collection,
         ...collectionsFiltered,
       ];
-      return updatedCollections;
-    }
-    case "UPDATE_COLLECTION": {
-      const collectionsFiltered = state.filter(
-        (e) => e.id !== action.payload.collection.id
-      );
-      let collectionModified = state.filter(
-        (e) => e.id == action.payload.collection.id
-      )[0];
-
-      const updatedCollections = [collectionModified, ...collectionsFiltered];
       return updatedCollections;
     }
     case "SET_COLLECTIONS": {

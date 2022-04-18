@@ -1,24 +1,22 @@
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import styled, { useTheme } from "styled-components";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { switchTheme } from "../../redux/actions/ThemeActions";
 import breakpoints from "../../theme/breakpoints";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import {
-  themeDefault,
-  themeDefaultDark,
-  themeOrange,
-  themePink,
-  themeDarkBlue,
-  themeSocial,
-  themeKashmir,
-  themeDeepBlue,
+  themeFive,
+  themeEight,
+  themeFirst,
+  themeFour,
+  themeSix,
+  themeSecond,
+  themeSeven,
+  themeThree,
 } from "../../theme/theme";
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { ThemeInterface } from "../../types/ThemeInterface";
-import useClickOutside from "../../hooks/useClickOutside";
-import { useClickInside } from "../../hooks/useClickInside";
 
 export const ThemeSwitcher = () => {
   const dispatch = useDispatch();
@@ -48,45 +46,45 @@ export const ThemeSwitcher = () => {
       >
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeDarkBlue)}
-          background={themeDarkBlue.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeFive)}
+          background={themeFive.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeKashmir)}
-          background={themeKashmir.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeSix)}
+          background={themeSix.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeDeepBlue)}
-          background={themeDeepBlue.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeEight)}
+          background={themeEight.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeSocial)}
-          background={themeSocial.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeSeven)}
+          background={themeSeven.colors.gradient}
         ></ThemeChoiceButton>
       </Row>
       <Row isVisible={true}>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeDefault)}
-          background={themeDefault.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeFirst)}
+          background={themeFirst.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themePink)}
-          background={themePink.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeSecond)}
+          background={themeSecond.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeDefaultDark)}
-          background={themeDefaultDark.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeThree)}
+          background={themeThree.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeOrange)}
-          background={themeOrange.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, themeFour)}
+          background={themeFour.colors.gradient}
         ></ThemeChoiceButton>
       </Row>
       <ThemeExpandButton

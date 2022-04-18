@@ -33,7 +33,7 @@ export const StyledSearchBar = styled.div`
   border-radius: 16px;
   display: flex;
   justify-content: center;
-  background: ${(props) => props.theme.colors.secondaryBg};
+  background: ${(props) => props.theme.colors.primaryBgNoTransparent};
   align-items: center;
   padding: 10px;
   position: relative;
@@ -52,7 +52,7 @@ export const Input = styled.input`
   font-size: 14px;
   line-height: 21px;
   transition: all 0.3s ease;
-  background: ${(props) => props.theme.colors.secondaryBg};
+  background: none;
   border-radius: 16px;
   &:focus {
     outline: none;

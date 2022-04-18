@@ -1,13 +1,14 @@
 import { getSession } from "next-auth/react";
 import { prisma } from "../../../prisma/PrismaClient";
+import { CollectionInterface } from "../../types/CollectionInterface";
 import { CollectionView } from "../../views/CollectionView";
 
 interface Props {
-  collection: any;
+  collection: CollectionInterface;
 }
 
 export default function elementPage({ collection }: Props) {
-  return <CollectionView collection={collection} />;
+  return <CollectionView collectionFetched={collection} />;
 }
 
 export async function getServerSideProps({ req, params }) {

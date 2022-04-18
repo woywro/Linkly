@@ -1,10 +1,8 @@
+import { useRouter } from "next/router";
+import { useRef } from "react";
 import { RiCloseLine } from "react-icons/ri";
 import { Portal } from "../../HOC/Portal";
-import { CloseButton, ModalTitle, Overlay, ModalWrapper } from "./style";
-import useClickOutside from "../../hooks/useClickOutside";
-import { useRef } from "react";
-import Router, { useRouter } from "next/router";
-import Scrollbars from "react-custom-scrollbars-2";
+import { CloseButton, ModalTitle, ModalWrapper, Overlay } from "./style";
 
 interface Props {
   title: string;

@@ -13,11 +13,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         modificationTimestamp: Date.now().toString(),
       },
       select: {
-            id: true,
-            value: true,
-            links: true,
-            modificationTimestamp: true,
-            shareRequests: true,
+        id: true,
+        value: true,
+        links: true,
+        modificationTimestamp: true,
+        shareRequests: true,
+        color: true,
       },
     });
     res.status(200).json(result);

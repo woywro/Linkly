@@ -40,7 +40,8 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   flex-flow: column;
   width: 25%;
   height: 100%;
-  border-radius: 30px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
   background: white;
   text-align: left;
   padding: 10px;
@@ -53,7 +54,7 @@ export const RightWrapper = styled.div<{ open: boolean }>`
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     position: absolute;
-    background: ${(props) => props.theme.colors.secondaryBg};
+    background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 102;
     display: ${({ open }) => (open ? "flex" : "none")};

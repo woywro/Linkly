@@ -29,7 +29,7 @@ export const FriendsAutocomplete = ({
     } else {
       setHide(true);
     }
-  }, [friend, friends]);
+  }, [friend]);
 
   return (
     hide == false &&

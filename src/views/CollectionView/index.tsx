@@ -19,22 +19,29 @@ import { EmptyState } from "../../components/EmptyState";
 import { CollectionInterface } from "../../types/CollectionInterface";
 
 interface Props {
-  collection: CollectionInterface;
+  collectionFetched: CollectionInterface;
 }
 
-export const CollectionView = ({ collection }: Props) => {
+export const CollectionView = ({ collectionFetched }: Props) => {
   const [open, setOpen] = useState<boolean>(false);
   const [links, setLinks] = useState<LinkInterface[] | undefined>([]);
+  const [collection, setCollection] = useState<
+    CollectionInterface | undefined
+  >();
 
   useEffect(() => {
-    setLinks(collection.links);
-  }, [collection]);
+    setLinks(collectionFetched.links);
+  }, [collectionFetched]);
+
+  useEffect(() => {
+    setCollection(collectionFetched);
+  }, [collectionFetched]);
 
   return (
     <PageContainer>
       <LeftWrapper>
         <TitleWrapper>
-          <Title>{`categories/${collection.value}`}</Title>
+          <Title>{`categories/${collection?.value}`}</Title>
         </TitleWrapper>
         <Scrollbars
           style={{
@@ -65,12 +72,19 @@ export const CollectionView = ({ collection }: Props) => {
         </Scrollbars>
       </LeftWrapper>
       <RightWrapper open={open}>
-        <CloseWrapperButton onClick={() => setOpen(false)} />
-        <Title>Info</Title>
-        <CollectionInfo collection={collection} />
-        <Divider />
-        <Title>Sharing</Title>
-        <Sharing collection={collection} />
+        {collection !== undefined && (
+          <>
+            <CloseWrapperButton onClick={() => setOpen(false)} />
+            <Title>Info</Title>
+            <CollectionInfo
+              collection={collection}
+              setCollection={setCollection}
+            />
+            <Divider />
+            <Title>Sharing</Title>
+            <Sharing collection={collection} />
+          </>
+        )}
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>

@@ -20,15 +20,17 @@ export const SharedItemView = ({ share }: Props) => {
       <Text color={theme.colors.secondary}>
         {share.collection.owner?.email}
       </Text>
-      <List>
-        {share.collection.links?.length == 0 ? (
-          <EmptyState msg="This collection is empty" />
-        ) : (
-          share.collection.links?.map((link: LinkInterface) => {
-            return <SharedLink link={link} />;
-          })
-        )}
-      </List>
+      <Scrollbars autoHeight>
+        <List>
+          {share.collection.links?.length == 0 ? (
+            <EmptyState msg="This collection is empty" />
+          ) : (
+            share.collection.links?.map((link: LinkInterface) => {
+              return <SharedLink link={link} />;
+            })
+          )}
+        </List>
+      </Scrollbars>
     </SharedItemViewWrapper>
   );
 };

@@ -34,7 +34,6 @@ export const ShareRequestsWrapper = styled.div`
   align-items: center;
   flex-flow: column;
   height: 100%;
-  overflow-y: scroll;
 `;
 
 export const ShareRequest = styled.div`

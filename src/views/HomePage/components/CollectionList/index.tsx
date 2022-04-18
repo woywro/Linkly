@@ -15,6 +15,7 @@ import {
   ListReorderButton,
   TopWrapper,
 } from "./style";
+import { Scrollbars } from "react-custom-scrollbars-2";
 
 export const CollectionList = () => {
   const collections = useSelector((state: RootState) => state.collections);
@@ -61,28 +62,30 @@ export const CollectionList = () => {
               {sortingMode ? "save" : "edit"}
             </ListReorderButton>
           </TopWrapper>
-          <CollectionsList
-            axis="x"
-            values={list}
-            onReorder={setList}
-            layoutScroll
-          >
-            {list.length == 0 ? (
-              <EmptyState msg="You don't have link collections" />
-            ) : (
-              list.map((e: CollectionInterface) => {
-                return (
-                  <Collection
-                    name={e.value}
-                    item={e}
-                    key={e.id}
-                    shareRequests={e.shareRequests}
-                    sortingMode={sortingMode}
-                  />
-                );
-              })
-            )}
-          </CollectionsList>
+          <Scrollbars autoHeight>
+            <CollectionsList
+              axis="x"
+              values={list}
+              onReorder={setList}
+              layoutScroll
+            >
+              {list.length == 0 ? (
+                <EmptyState msg="You don't have link collections" />
+              ) : (
+                list.map((e: CollectionInterface) => {
+                  return (
+                    <Collection
+                      name={e.value}
+                      item={e}
+                      key={e.id}
+                      shareRequests={e.shareRequests}
+                      sortingMode={sortingMode}
+                    />
+                  );
+                })
+              )}
+            </CollectionsList>
+          </Scrollbars>
         </>
       )}
     </CollectionsWrapper>

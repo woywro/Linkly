@@ -15,10 +15,9 @@ export const StyledForm = styled.form`
 export const SuggesionsWrapper = styled.ul`
   border-top: 1px solid gray;
   list-style: none;
-  min-height: 150px;
+  max-height: 100px;
   overflow-y: auto;
   width: 100%;
-  height: 100%;
   position: absolute;
   top: 100%;
   right: 0;
@@ -26,7 +25,7 @@ export const SuggesionsWrapper = styled.ul`
 export const SelectWrapper = styled.div`
   border: none;
   position: relative;
-  background: ${(props) => props.theme.colors.secondaryBg};
+  background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
   padding: 15px 5px;
   border-radius: 10px;
   font-size: 15px;
