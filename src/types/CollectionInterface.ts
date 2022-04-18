@@ -8,6 +8,7 @@ export interface CollectionInterface {
   valId: string;
   ownerId: string;
   modificationTimestamp: string;
+  color: string;
   links?: LinkInterface[];
   owner?: UserInterface;
   shareRequests?: ShareRequestInterface[];

@@ -1,24 +1,22 @@
+import { motion } from "framer-motion";
+import { useState } from "react";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import styled, { useTheme } from "styled-components";
+import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { switchTheme } from "../../redux/actions/ThemeActions";
 import breakpoints from "../../theme/breakpoints";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
 import {
-  themeFirst,
-  themeThree,
-  themeFour,
-  themeSecond,
   themeDarkBlue,
-  themeSocial,
-  themeKashmir,
   themeDeepBlue,
+  themeFirst,
+  themeFour,
+  themeKashmir,
+  themeSecond,
+  themeSocial,
+  themeThree,
 } from "../../theme/theme";
-import { motion } from "framer-motion";
-import { useRef, useState } from "react";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { ThemeInterface } from "../../types/ThemeInterface";
-import useClickOutside from "../../hooks/useClickOutside";
-import { useClickInside } from "../../hooks/useClickInside";
 
 export const ThemeSwitcher = () => {
   const dispatch = useDispatch();

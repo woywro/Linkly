@@ -29,25 +29,11 @@ export const CollectionList = () => {
   );
   const [sortingMode, setSortingMode] = useState(false);
 
-  const colors = [
-    "#ee616a",
-    "#f283d2",
-    "#32aefd",
-    "#e7c331",
-    "#7f4ebf",
-    "#19cdaa",
-    "#4f66c3",
-  ];
-
   useEffect(() => {
-    const collectionsColorized = collections.map((e) => ({
-      ...e,
-      color: colors[Math.floor(Math.random() * colors.length)],
-    }));
     if (collectionsOrder == "") {
-      setList(collectionsColorized);
+      setList(collections);
     } else {
-      const collectionsSorted = collectionsOrderHelper(collectionsColorized);
+      const collectionsSorted = collectionsOrderHelper(collections);
       setList(collectionsSorted);
     }
   }, [collections]);

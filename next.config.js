@@ -6,6 +6,7 @@ module.exports = withPWA({
     scope: "/",
     register: true,
     skipWaiting: true,
+    disable: true,
   },
   typescript: {
     ignoreBuildErrors: true,

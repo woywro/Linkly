@@ -8,15 +8,17 @@ import { deleteCollection } from "../../../../redux/actions/CollectionActions";
 import { RootState } from "../../../../redux/store";
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
-import { Name, CollectionInfoWrapper } from "./style";
+import { Name, CollectionInfoWrapper, Icon, ColorTag } from "./style";
 import moment from "moment";
 import { useCallback } from "react";
+import { ColorTagSwitcher } from "../ColorTagSwitcher";
 
 interface Props {
   collection: CollectionInterface;
+  setCollection: (arg0: CollectionInterface) => void;
 }
 
-export const CollectionInfo = ({ collection }: Props) => {
+export const CollectionInfo = ({ collection, setCollection }: Props) => {
   const theme = useTheme() as ThemeInterface;
   const router = useRouter();
   const dispatch = useDispatch();
@@ -30,7 +32,10 @@ export const CollectionInfo = ({ collection }: Props) => {
   return (
     <CollectionInfoWrapper>
       <Name>
-        <RiFolder5Fill size={"80px"} style={{ fill: theme.colors.yellow }} />
+        <Icon>
+          <RiFolder5Fill size={"80px"} style={{ fill: theme.colors.yellow }} />
+          <ColorTag background={collection.color} />
+        </Icon>
         <Text size={"big"} color={theme.colors.primaryText}>
           {collection.value}
         </Text>
@@ -41,6 +46,7 @@ export const CollectionInfo = ({ collection }: Props) => {
       <Text size={"medium"} color={theme.colors.secondaryText}>
         {moment(parseInt(collection.modificationTimestamp)).fromNow()}
       </Text>
+      <ColorTagSwitcher setCollection={setCollection} />
       <Button onClick={handleDeleteCategory}>Delete Category</Button>
     </CollectionInfoWrapper>
   );

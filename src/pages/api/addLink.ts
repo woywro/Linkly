@@ -20,6 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 valId: `${session?.user?.email}/${collectionValue}`,
                 modificationTimestamp: Date.now().toString(),
                 owner: { connect: { email: session?.user?.email } },
+                color: "",
               },
               where: {
                 valId: `${session?.user?.email}/${collectionValue}`,
@@ -40,6 +41,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             links: true,
             modificationTimestamp: true,
             shareRequests: true,
+            color: true,
           },
         },
         ownerId: true,

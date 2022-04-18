@@ -37,7 +37,6 @@ export const Collection = ({
       .post("/api/updateCollectionTimestamp", { id: item.id })
       .then((res) => {
         dispatch(updateCollection(res.data));
-        console.log(res.data);
       });
     router.push(`/collections/${item.id}`);
   };

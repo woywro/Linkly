@@ -5,6 +5,7 @@ CREATE TABLE "Collection" (
     "valId" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
     "modificationTimestamp" TEXT NOT NULL,
+    "color" TEXT NOT NULL,
 
     CONSTRAINT "Collection_pkey" PRIMARY KEY ("id")
 );

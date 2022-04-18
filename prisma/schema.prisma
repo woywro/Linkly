@@ -14,6 +14,7 @@ model Collection {
   valId String @unique
   ownerId     String 
   modificationTimestamp String 
+  color String
   owner       User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade) 
   links Link[]
   shareRequests ShareRequest[]
