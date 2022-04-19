@@ -6,7 +6,7 @@ import { prisma } from "../../../prisma/PrismaClient";
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
-    const limit = 5;
+    const limit = 3;
     const cursor = req.query.cursor ?? "";
     const cursorObj =
       cursor == "" ? undefined : { modificationTimestamp: cursor };
@@ -35,7 +35,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     res.end();
   } catch (err) {
     if (err instanceof PrismaClientKnownRequestError) {
-      console.log(err);
     }
   }
 };

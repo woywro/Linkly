@@ -1,7 +1,7 @@
 import { AnyAction } from "redux";
-import { themeFirst } from "../../theme/theme";
+import { theme1 } from "../../theme/theme";
 
-const initial = themeFirst;
+const initial = theme1;
 
 export const Theme = (state = initial, action: AnyAction) => {
   switch (action.type) {

@@ -7,6 +7,7 @@ import { CollectionInterface } from "../types/CollectionInterface";
 import { SharedWithYouInterface } from "../types/SharedWithYouInterface";
 import { LoadingRequestInterface } from "../types/LoadingRequestInterface";
 import { ShareRequestInterface } from "../types/ShareRequestInterface";
+import { ThemeInterface } from "../types/ThemeInterface";
 
 export default createStore(allReducers, applyMiddleware(thunk));
 
@@ -17,5 +18,5 @@ export interface RootState {
   sharedWithYou: SharedWithYouInterface[];
   shareRequests: ShareRequestInterface[];
   requestsLoading: LoadingRequestInterface[];
-  theme: any;
+  theme: ThemeInterface;
 }

@@ -112,6 +112,12 @@ const Row = styled.div`
   }
 `;
 
+const TestButton = styled.button`
+  background: none;
+  border: none;
+  padding: 5px;
+`;
+
 export const LoginView = () => {
   const theme = useTheme() as ThemeInterface;
   const [email, setEmail] = useState("");

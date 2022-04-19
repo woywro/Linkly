@@ -5,6 +5,7 @@ import {
   hoverEffectText,
 } from "../../../../mixins/hoverEffects";
 import { motion } from "framer-motion";
+import { Input } from "../../../../components/Input";
 
 export const SortBarWrapper = styled.div`
   display: grid;
@@ -58,10 +59,10 @@ export const IconButton = styled(motion.button)`
   }
 `;
 
-export const TextInput = styled.input`
-  border: none;
+export const TextInput = styled(Input)`
   font-size: 16px;
-  background: ${(props) => props.theme.colors.primaryBg};
+  padding: 0px;
+  background: none;
 `;
 
 export const Field = styled.div`

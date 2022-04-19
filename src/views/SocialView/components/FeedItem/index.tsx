@@ -9,6 +9,7 @@ import { SharedWithYouInterface } from "../../../../types/SharedWithYouInterface
 import { CollectionInterface } from "../../../../types/CollectionInterface";
 import { UserInterface } from "../../../../types/UserInterface";
 import { ThemeInterface } from "../../../../types/ThemeInterface";
+import { useEffect } from "react";
 
 interface Props {
   sharedItem: SharedWithYouInterface;

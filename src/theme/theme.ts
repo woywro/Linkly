@@ -1,4 +1,4 @@
-export const themeFirst = {
+export const theme1 = {
   mode: "light",
   colors: {
     primary: "#8ec5fc",
@@ -7,12 +7,12 @@ export const themeFirst = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(62deg, #8ec5fc 0%, #e0c3fc 100%)",
-    primaryBg: "rgba(255,255,255,0.8)",
+    primaryBg: "rgba(255,255,255,0.5)",
     secondaryBg: "rgba(255,255,255,0.6)",
     primaryBgNoTransparent: "#ffffff",
     secondaryBgNoTransparent: "#f4f6fa",
     primaryText: "#233548",
-    secondaryText: "#bec3c6",
+    secondaryText: "#5a5a5a",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
   },
@@ -25,7 +25,7 @@ export const themeFirst = {
   },
 };
 
-export const themeSecond = {
+export const theme2 = {
   mode: "light",
   colors: {
     primary: "#eaecc6",
@@ -34,12 +34,12 @@ export const themeSecond = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(to right, #2bc0e4, #eaecc6);",
-    primaryBg: "rgba(255,255,255,0.8)",
+    primaryBg: "rgba(255,255,255,0.5)",
     secondaryBg: "rgba(255,255,255,0.6)",
     primaryBgNoTransparent: "#ffffff",
     secondaryBgNoTransparent: "#f4f6fa",
     primaryText: "#233548",
-    secondaryText: "#bec3c6",
+    secondaryText: "#5a5a5a",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
   },
@@ -51,7 +51,7 @@ export const themeSecond = {
     large: "3em",
   },
 };
-export const themeThree = {
+export const theme3 = {
   mode: "dark",
   colors: {
     primary: "#283c86",
@@ -60,12 +60,12 @@ export const themeThree = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(to right, #283c86, #45a247)",
-    primaryBg: "rgba(0,0,0,0.85)",
-    secondaryBg: "rgba(0,0,0,0.8)",
+    primaryBg: "rgba(0,0,0,0.8)",
+    secondaryBg: "rgba(0,0,0,0.4)",
     primaryBgNoTransparent: "#181818",
     secondaryBgNoTransparent: "#212121",
     primaryText: "#e4e6eb",
-    secondaryText: "#bec3c6",
+    secondaryText: "#5a5a5a",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
   },
@@ -77,7 +77,7 @@ export const themeThree = {
     large: "3em",
   },
 };
-export const themeFour = {
+export const theme4 = {
   mode: "dark",
   colors: {
     primary: "rgb(254, 140, 48)",
@@ -88,11 +88,11 @@ export const themeFour = {
     gradient:
       "linear-gradient(113.1deg, rgb(254, 140, 48) 14%, rgb(253, 75, 101) 80.5%, rgb(255, 53, 109) 100.6%)",
     primaryBg: "rgba(0,0,0,0.9)",
-    secondaryBg: "rgba(0,0,0,0.85)",
+    secondaryBg: "rgba(0,0,0,0.3)",
     primaryBgNoTransparent: "#181818",
     secondaryBgNoTransparent: "#212121",
     primaryText: "#e4e6eb",
-    secondaryText: "#bec3c6",
+    secondaryText: "#5a5a5a",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
   },
@@ -105,7 +105,7 @@ export const themeFour = {
   },
 };
 
-export const themeFive = {
+export const theme5 = {
   mode: "dark",
   colors: {
     primary: "#141e30",
@@ -114,12 +114,12 @@ export const themeFive = {
     green: "#50C878",
     red: "#FF1919",
     gradient: "linear-gradient(to right, #141e30, #243b55)",
-    primaryBg: "rgba(0,0,0,0.6)",
+    primaryBg: "rgba(0,0,0,0.7)",
     secondaryBg: "rgba(0,0,0,0.5)",
     primaryBgNoTransparent: "#181818",
     secondaryBgNoTransparent: "#212121",
     primaryText: "#e4e6eb",
-    secondaryText: "#bec3c6",
+    secondaryText: "#5a5a5a",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
   },
@@ -132,7 +132,7 @@ export const themeFive = {
   },
 };
 
-export const themeSix = {
+export const theme6 = {
   mode: "dark",
   colors: {
     primary: "#516395",
@@ -142,11 +142,171 @@ export const themeSix = {
     red: "#FF1919",
     gradient: "linear-gradient(to right, #614385, #516395)",
     primaryBg: "rgba(0,0,0,0.8)",
-    secondaryBg: "rgba(0,0,0,0.7)",
+    secondaryBg: "rgba(0,0,0,0.1)",
     primaryBgNoTransparent: "#181818",
     secondaryBgNoTransparent: "#212121",
     primaryText: "#e4e6eb",
-    secondaryText: "#bec3c6",
+    secondaryText: "#5a5a5a",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+
+export const theme7 = {
+  mode: "light",
+  colors: {
+    primary: "#FFFF99",
+    secondary: "#06beb6",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #06beb6, #48b1bf)",
+    primaryBg: "rgba(255,255,255,0.5)",
+    secondaryBg: "rgba(255,255,255,0.6)",
+    primaryBgNoTransparent: "#ffffff",
+    secondaryBgNoTransparent: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#5a5a5a",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+
+export const theme8 = {
+  mode: "light",
+  colors: {
+    primary: "#3f5efb",
+    secondary: "#fc466b",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #fc466b, #3f5efb)",
+    primaryBg: "rgba(255,255,255,0.5)",
+    secondaryBg: "rgba(255,255,255,0.6)",
+    primaryBgNoTransparent: "#ffffff",
+    secondaryBgNoTransparent: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#5a5a5a",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+
+export const theme9 = {
+  mode: "light",
+  colors: {
+    primary: "#FBAB7E",
+    secondary: "#F7CE68",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)",
+    primaryBg: "rgba(255,255,255,0.5)",
+    secondaryBg: "rgba(255,255,255,0.6)",
+    primaryBgNoTransparent: "#ffffff",
+    secondaryBgNoTransparent: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#5a5a5a",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+
+export const theme10 = {
+  mode: "light",
+  colors: {
+    primary: "#4a00e0",
+    secondary: "#8e2de2",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #8e2de2, #4a00e0)",
+    primaryBg: "rgba(255,255,255,0.5)",
+    secondaryBg: "rgba(255,255,255,0.6)",
+    primaryBgNoTransparent: "#ffffff",
+    secondaryBgNoTransparent: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#5a5a5a",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+export const theme11 = {
+  mode: "light",
+  colors: {
+    primary: "#136a8a",
+    secondary: "#267871",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #136a8a, #267871)",
+    primaryBg: "rgba(255,255,255,0.5)",
+    secondaryBg: "rgba(255,255,255,0.6)",
+    primaryBgNoTransparent: "#ffffff",
+    secondaryBgNoTransparent: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#5a5a5a",
+    active: "#F76E11",
+    active2: "rgba(0, 0, 0, 0.05)",
+  },
+  shadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px;",
+  fonts: ["sans-serif", "Roboto"],
+  fontSizes: {
+    small: "1em",
+    medium: "2em",
+    large: "3em",
+  },
+};
+export const theme12 = {
+  mode: "light",
+  colors: {
+    primary: "#4bc0c8",
+    secondary: "#c779d0",
+    yellow: "#ffc107",
+    green: "#50C878",
+    red: "#FF1919",
+    gradient: "linear-gradient(to right, #feac5e, #c779d0, #4bc0c8)",
+    primaryBg: "rgba(255,255,255,0.5)",
+    secondaryBg: "rgba(255,255,255,0.6)",
+    primaryBgNoTransparent: "#ffffff",
+    secondaryBgNoTransparent: "#f4f6fa",
+    primaryText: "#233548",
+    secondaryText: "#5a5a5a",
     active: "#F76E11",
     active2: "rgba(0, 0, 0, 0.05)",
   },

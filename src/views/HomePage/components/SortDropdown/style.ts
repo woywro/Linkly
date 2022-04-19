@@ -3,8 +3,10 @@ import breakpoints from "../../../../theme/breakpoints";
 
 export const SortDropdownWrapper = styled.div`
   display: none;
+  z-index: 31;
   @media only screen and ${breakpoints.device.sm} {
     display: flex;
+    z-index: 20;
   }
 `;
 

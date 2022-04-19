@@ -5,17 +5,10 @@ CREATE TABLE "Collection" (
     "valId" TEXT NOT NULL,
     "ownerId" TEXT NOT NULL,
     "modificationTimestamp" TEXT NOT NULL,
-<<<<<<< HEAD
 <<<<<<< HEAD:prisma/migrations/20220418072207_refactor/migration.sql
     "color" TEXT NOT NULL,
 =======
 >>>>>>> main:prisma/migrations/20220410122740_refactor/migration.sql
-=======
-<<<<<<< HEAD:prisma/migrations/20220404193152_refactor/migration.sql
-=======
-    "color" TEXT NOT NULL,
->>>>>>> development:prisma/migrations/20220418072207_refactor/migration.sql
->>>>>>> main
 
     CONSTRAINT "Collection_pkey" PRIMARY KEY ("id")
 );

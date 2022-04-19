@@ -4,6 +4,8 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import { LoadingSpinner } from "../components/LoadingSpinner";
+import { Modal } from "../components/Modal";
+import Verify from "../pages/api/auth/verify";
 import Login from "../pages/login";
 import { getCollections } from "../redux/actions/CollectionActions";
 import { getHistory } from "../redux/actions/HistoryActions";

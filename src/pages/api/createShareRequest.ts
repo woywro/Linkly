@@ -29,7 +29,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           .status(500)
           .json("This collection is already shared with this user");
       }
-      console.log(err);
     }
   }
 };

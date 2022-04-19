@@ -22,7 +22,6 @@ export const LinkList = () => {
   const loading = useLoading(requests, "getLinks");
   const [loadingText, setLoadingText] = useState("load more");
   const router = useRouter();
-
   const handleLoadMore = useCallback(() => {
     setLoadingText("loading");
     axios

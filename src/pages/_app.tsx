@@ -43,6 +43,7 @@ export default function App({
                     }}
                   >
                     <Component {...pageProps} />
+                    <Toaster position="bottom-right" reverseOrder={false} />
                   </MotionWrapper>
                 </ViewBox>
               </AuthGuard>
@@ -83,6 +84,7 @@ const ViewBox = styled.div`
   align-items: center;
   border-radius: 30px;
   box-shadow: 0px 0px 0px 18px rgba(255, 255, 255, 0.3);
+  background: ${(props) => props.theme.colors.primaryBg};
   @media only screen and ${breakpoints.device.sm} {
     width: 100vw;
     height: 100%;

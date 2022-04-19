@@ -22,6 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             id: true,
             value: true,
             owner: true,
+            color: true,
             links: true,
           },
         },

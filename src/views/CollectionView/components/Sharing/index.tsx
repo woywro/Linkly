@@ -74,7 +74,7 @@ export const Sharing = ({ collection }: Props) => {
     [router, sharedList]
   );
 
-  const handleDelete = (e) => {
+  const handleDelete = (e: string) => {
     axios.post("/api/deleteShareRequest", {
       email: e,
       collectionId: router.query.collectionId,
