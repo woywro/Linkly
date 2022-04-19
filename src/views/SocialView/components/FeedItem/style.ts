@@ -13,8 +13,8 @@ export const FeedItemWrapper = styled(motion.div)<{ color: string }>`
   border-radius: 20px;
   position: relative;
   color: ${(props) => props.theme.colors.primaryText};
-  background-color: ${(props) => props.color};
   &:hover {
+    background-color: ${(props) => props.theme.colors.primary};
     box-shadow: ${(props) => props.theme.shadow};
     color: white;
   }

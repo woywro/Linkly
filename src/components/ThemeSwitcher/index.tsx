@@ -7,14 +7,18 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 import { switchTheme } from "../../redux/actions/ThemeActions";
 import breakpoints from "../../theme/breakpoints";
 import {
-  themeFive,
-  themeEight,
-  themeFirst,
-  themeFour,
-  themeSix,
-  themeSecond,
-  themeSeven,
-  themeThree,
+  theme5,
+  theme8,
+  theme1,
+  theme4,
+  theme6,
+  theme2,
+  theme7,
+  theme3,
+  theme9,
+  theme10,
+  theme11,
+  theme12,
 } from "../../theme/theme";
 import { ThemeInterface } from "../../types/ThemeInterface";
 
@@ -32,59 +36,91 @@ export const ThemeSwitcher = () => {
   };
   return (
     <ThemeSwitcherWrapper isVisible={visible}>
-      <Row
-        isVisible={visible}
-        key={visible}
-        initial="initial"
-        animate="animate"
-        variants={{
-          initial: { opacity: 0 },
-          animate: {
-            opacity: 1,
-          },
-        }}
-      >
-        <ThemeChoiceButton
-          whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeFive)}
-          background={themeFive.colors.gradient}
-        ></ThemeChoiceButton>
-        <ThemeChoiceButton
-          whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeSix)}
-          background={themeSix.colors.gradient}
-        ></ThemeChoiceButton>
-        <ThemeChoiceButton
-          whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeEight)}
-          background={themeEight.colors.gradient}
-        ></ThemeChoiceButton>
-        <ThemeChoiceButton
-          whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeSeven)}
-          background={themeSeven.colors.gradient}
-        ></ThemeChoiceButton>
-      </Row>
+      <Column isVisible={visible}>
+        <Row
+          initial="initial"
+          animate="animate"
+          variants={{
+            initial: { opacity: 0 },
+            animate: {
+              opacity: 1,
+            },
+          }}
+        >
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, theme9)}
+            background={theme9.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, theme10)}
+            background={theme10.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, theme11)}
+            background={theme11.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, theme12)}
+            background={theme12.colors.gradient}
+          ></ThemeChoiceButton>
+        </Row>
+        <Row
+          isVisible={visible}
+          initial="initial"
+          animate="animate"
+          variants={{
+            initial: { opacity: 0 },
+            animate: {
+              opacity: 1,
+            },
+          }}
+        >
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, theme5)}
+            background={theme5.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, theme6)}
+            background={theme6.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, theme8)}
+            background={theme8.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, theme7)}
+            background={theme7.colors.gradient}
+          ></ThemeChoiceButton>
+        </Row>
+      </Column>
       <Row isVisible={true}>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeFirst)}
-          background={themeFirst.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, theme1)}
+          background={theme1.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeSecond)}
-          background={themeSecond.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, theme2)}
+          background={theme2.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeThree)}
-          background={themeThree.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, theme3)}
+          background={theme3.colors.gradient}
         ></ThemeChoiceButton>
         <ThemeChoiceButton
           whileTap={{ scale: 0.9 }}
-          onClick={(e) => handleChangeTheme(e, themeFour)}
-          background={themeFour.colors.gradient}
+          onClick={(e) => handleChangeTheme(e, theme4)}
+          background={theme4.colors.gradient}
         ></ThemeChoiceButton>
       </Row>
       <ThemeExpandButton
@@ -118,10 +154,18 @@ const ThemeExpandButton = styled(motion.button)`
   }
 `;
 
-const Row = styled(motion.div)<{ isVisible?: boolean }>`
+const Row = styled(motion.div)`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
+`;
+
+const Column = styled.div<{ isVisible?: boolean }>`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-flow: column;
   width: 100%;
   display: ${(props) => (props.isVisible ? "flex" : "none")};
 `;

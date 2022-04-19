@@ -15,7 +15,6 @@ export const NavBarWrapper = styled.nav`
   height: 100%;
   width: auto;
   padding: 10px;
-  background: ${(props) => props.theme.colors.secondaryBg};
   @media only screen and ${breakpoints.device.sm} {
     display: none;
   }

@@ -21,7 +21,6 @@ export const FeedItem = ({ sharedItem }: Props) => {
 
   return (
     <FeedItemWrapper
-      color={sharedItem.collection.color}
       whileTap={{ scale: 0.95 }}
       onClick={() => {
         router.push({

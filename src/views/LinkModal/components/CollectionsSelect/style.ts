@@ -19,6 +19,7 @@ export const SuggesionsWrapper = styled.ul`
   overflow-y: auto;
   width: 100%;
   position: absolute;
+  background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
   top: 100%;
   right: 0;
 `;
