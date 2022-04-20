@@ -22,6 +22,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 value: collectionValue,
                 valId: `${session?.user?.email}/${collectionValue}`,
                 modificationTimestamp: Date.now().toString(),
+                color: '',
                 owner: { connect: { email: session?.user?.email } },
               },
               where: {
