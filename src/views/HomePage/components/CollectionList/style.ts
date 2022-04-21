@@ -10,7 +10,7 @@ export const CollectionsWrapper = styled(motion.div)`
   width: 100%;
 `;
 
-export const CollectionsList = styled(Reorder.Group)<{ sortingMode: boolean }>`
+export const CollectionsList = styled(Reorder.Group)`
   display: flex;
   flex-flow: row;
   justify-content: flex-start;
@@ -18,9 +18,6 @@ export const CollectionsList = styled(Reorder.Group)<{ sortingMode: boolean }>`
   max-width: 100%;
   height: 100%;
   -moz-scrollbars-horizontal: touch;
-  background: ${(props) =>
-    props.sortingMode ? props.theme.colors.gradient : 'none'};
-  border-radius: 20px;
 `;
 export const TopWrapper = styled.div`
   display: flex;

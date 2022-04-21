@@ -39,6 +39,7 @@ export const Collection = ({ item, sortingMode }: Props) => {
       }}
       whileTap={{ scale: 0.9 }}
       value={item}
+      sortingMode={sortingMode}
       dragListener={false}
       dragControls={controls}
       onPointerDown={(e) => {

@@ -17,6 +17,7 @@ import {
 } from './style';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import { ColorTagDropdown } from '../ColorTagDropdown';
+import { Button } from '../../../../components/Button';
 
 export const CollectionList = () => {
   const collections = useSelector((state: RootState) => state.collections);
@@ -48,6 +49,12 @@ export const CollectionList = () => {
     );
   };
 
+  const handleResetSorting = () => {
+    setSortingMode(!sortingMode);
+    setCollectionsOrder('');
+    setList(collections);
+  };
+
   return (
     <CollectionsWrapper
       animate={{ x: [-50, 0] }}
@@ -60,6 +67,9 @@ export const CollectionList = () => {
           <TopWrapper>
             <Title>Collections</Title>
             <Row style={{ width: 'auto' }}>
+              {sortingMode && (
+                <Button onClick={handleResetSorting}>reset</Button>
+              )}
               <ListReorderButton
                 onClick={saveListOrder}
                 sortingMode={sortingMode}
@@ -71,7 +81,6 @@ export const CollectionList = () => {
           </TopWrapper>
           <Scrollbars autoHeight>
             <CollectionsList
-              sortingMode={sortingMode}
               axis="x"
               values={list}
               onReorder={setList}

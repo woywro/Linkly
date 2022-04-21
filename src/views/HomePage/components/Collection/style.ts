@@ -3,7 +3,7 @@ import { Text } from '../../../../components/Text';
 import { motion } from 'framer-motion';
 import { Reorder } from 'framer-motion';
 
-export const CollectionWrapper = styled(Reorder.Item)`
+export const CollectionWrapper = styled(Reorder.Item)<{ sortingMode: boolean }>`
   padding: 5px;
   display: flex;
   height: 120px;
@@ -14,7 +14,8 @@ export const CollectionWrapper = styled(Reorder.Item)`
   flex-flow: column;
   cursor: pointer;
   border-radius: 20px;
-  background: none;
+  background: ${(props) =>
+    props.sortingMode ? props.theme.colors.primary : 'none'};
   border: none;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
