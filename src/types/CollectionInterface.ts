@@ -1,6 +1,6 @@
-import { LinkInterface } from "./LinkInterface";
-import { ShareRequestInterface } from "./ShareRequestInterface";
-import { UserInterface } from "./UserInterface";
+import { LinkInterface } from './LinkInterface';
+import { ShareRequestInterface } from './ShareRequestInterface';
+import { UserInterface } from './UserInterface';
 
 export interface CollectionInterface {
   id: string;
@@ -9,6 +9,7 @@ export interface CollectionInterface {
   ownerId: string;
   modificationTimestamp: string;
   color: string;
+  isShared: boolean;
   links?: LinkInterface[];
   owner?: UserInterface;
   shareRequests?: ShareRequestInterface[];

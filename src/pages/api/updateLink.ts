@@ -1,6 +1,6 @@
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import { prisma } from "../../../prisma/PrismaClient";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
+import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
@@ -22,7 +22,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 value: collectionValue,
                 valId: `${session?.user?.email}/${collectionValue}`,
                 modificationTimestamp: Date.now().toString(),
-                color: "",
+                color: '',
+                isShared: false,
                 owner: { connect: { email: session?.user?.email } },
               },
               where: {
@@ -43,8 +44,9 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             value: true,
             links: true,
             modificationTimestamp: true,
-            color: "",
+            color: true,
             shareRequests: true,
+            isShared: true,
           },
         },
         ownerId: true,

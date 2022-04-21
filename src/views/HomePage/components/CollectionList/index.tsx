@@ -31,6 +31,7 @@ export const CollectionList = () => {
   const [sortingMode, setSortingMode] = useState(false);
 
   useEffect(() => {
+    console.log(collections);
     if (collectionsOrder == '') {
       setList(collections);
     } else {
@@ -76,13 +77,11 @@ export const CollectionList = () => {
               {list.length == 0 ? (
                 <EmptyState msg="You don't have link collections" />
               ) : (
-                list.map((e: CollectionInterface) => {
+                list.map((collection: CollectionInterface) => {
                   return (
                     <Collection
-                      name={e.value}
-                      item={e}
-                      key={e.id}
-                      shareRequests={e.shareRequests}
+                      key={collection.id}
+                      item={collection}
                       sortingMode={sortingMode}
                     />
                   );
