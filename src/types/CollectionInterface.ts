@@ -9,7 +9,6 @@ export interface CollectionInterface {
   ownerId: string;
   modificationTimestamp: string;
   color: string;
-  isShared: boolean;
   links?: LinkInterface[];
   owner?: UserInterface;
   shareRequests?: ShareRequestInterface[];

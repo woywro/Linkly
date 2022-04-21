@@ -15,7 +15,6 @@ model Collection {
   ownerId     String 
   modificationTimestamp String 
   color String
-  isShared Boolean
   owner       User?    @relation(fields: [ownerId], references: [id], onDelete: Cascade) 
   links Link[]
   shareRequests ShareRequest[]

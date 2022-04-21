@@ -1,10 +1,9 @@
-import {
-  requestStarted,
-  requestFinished,
-} from '../actions/RequestsLoadingActions';
 import axios from 'axios';
 import { CollectionInterface } from '../../types/CollectionInterface';
-import { ShareRequestInterface } from '../../types/ShareRequestInterface';
+import {
+  requestFinished,
+  requestStarted,
+} from '../actions/RequestsLoadingActions';
 
 export const setCollections = (collections: CollectionInterface[]) => ({
   type: 'SET_COLLECTIONS',

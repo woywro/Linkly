@@ -6,7 +6,6 @@ CREATE TABLE "Collection" (
     "ownerId" TEXT NOT NULL,
     "modificationTimestamp" TEXT NOT NULL,
     "color" TEXT NOT NULL,
-    "isShared" BOOLEAN NOT NULL,
 
     CONSTRAINT "Collection_pkey" PRIMARY KEY ("id")
 );

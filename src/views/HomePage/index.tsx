@@ -1,12 +1,12 @@
-import { useState } from "react";
-import Scrollbars from "react-custom-scrollbars-2";
-import { CloseWrapperButton } from "../../components/CloseWrapperButton";
-import { OpenWrapperButton } from "../../components/OpenWrapperButton";
-import { LeftWrapper, PageContainer, RightWrapper } from "../style";
-import { CollectionList } from "./components/CollectionList";
-import { History } from "./components/History";
-import { LinkList } from "./components/LinkList";
-import { SearchBar } from "./components/Searchbar";
+import { useState } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
+import { CloseWrapperButton } from '../../components/CloseWrapperButton';
+import { OpenWrapperButton } from '../../components/OpenWrapperButton';
+import { LeftWrapper, PageContainer, RightWrapper } from '../style';
+import { CollectionList } from './components/CollectionList';
+import { History } from './components/History';
+import { LinkList } from './components/LinkList';
+import { SearchBar } from './components/Searchbar';
 
 export const HomePage = () => {
   const [open, setOpen] = useState(false);
@@ -16,17 +16,17 @@ export const HomePage = () => {
       <LeftWrapper>
         <Scrollbars
           style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflowX: "hidden",
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            overflowX: 'hidden',
           }}
           renderTrackHorizontal={(props) => (
             <div
               {...props}
-              style={{ display: "none" }}
+              style={{ display: 'none' }}
               className="track-horizontal"
             />
           )}
@@ -40,11 +40,11 @@ export const HomePage = () => {
         <CloseWrapperButton onClick={() => setOpen(false)} />
         <Scrollbars
           style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <History />

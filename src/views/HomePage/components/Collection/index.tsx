@@ -1,16 +1,14 @@
+import axios from 'axios';
 import { useDragControls } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { AiFillCloud } from 'react-icons/ai';
 import { RiFolder5Fill } from 'react-icons/ri';
-import { useTheme } from 'styled-components';
-import { ShareRequestInterface } from '../../../../types/ShareRequestInterface';
+import { useDispatch } from 'react-redux';
+import styled, { useTheme } from 'styled-components';
+import { updateCollection } from '../../../../redux/actions/CollectionActions';
+import { CollectionInterface } from '../../../../types/CollectionInterface';
 import { ThemeInterface } from '../../../../types/ThemeInterface';
 import { CollectionWrapper, Icon, SharedIcon, Title } from './style';
-import { updateCollection } from '../../../../redux/actions/CollectionActions';
-import { useDispatch } from 'react-redux';
-import axios from 'axios';
-import { CollectionInterface } from '../../../../types/CollectionInterface';
-import styled from 'styled-components';
 
 interface Props {
   item: CollectionInterface;
@@ -50,7 +48,7 @@ export const Collection = ({ item, sortingMode }: Props) => {
       }}
     >
       <Icon>
-        {item.isShared == true && (
+        {item?.shareRequests !== undefined && item.shareRequests.length > 0 && (
           <SharedIcon>
             <AiFillCloud
               size={'20px'}

@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { EmptyState } from '../../../../components/EmptyState';
 import { updateCollection } from '../../../../redux/actions/CollectionActions';
-import { shareRequests } from '../../../../redux/reducers/ShareRequestsReducer';
 import { CollectionInterface } from '../../../../types/CollectionInterface';
 import { ShareRequestInterface } from '../../../../types/ShareRequestInterface';
 import { FriendsAutocomplete } from '../FriendsAutocomplete';
@@ -61,7 +60,6 @@ export const Sharing = ({ collection }: Props) => {
         })
         .then((res) => {
           setSharedList([...sharedList, { email: email, isAccepted: false }]);
-          console.log(res.data);
           dispatch(updateCollection(res.data.collection));
         })
         .catch((err) => {
@@ -77,20 +75,14 @@ export const Sharing = ({ collection }: Props) => {
         email: e,
         collectionId: router.query.collectionId,
       })
-      .then(() => {
+      .then((res) => {
         const listFiltered = sharedList.filter((x) => x.email !== e);
         setSharedList(listFiltered);
-        if (listFiltered.length == 0) {
-          const updatedCollection: CollectionInterface = {
-            ...collection,
-            isShared: false,
-          };
-          axios.post('/api/updateCollectionShareStatus', {
-            id: collection.id,
-            isShared: false,
-          });
-          dispatch(updateCollection(updatedCollection));
-        }
+        // const updatedCollection: CollectionInterface = {
+        //   ...collection,
+        //   shareRequests: res.data.collection
+        // };
+        dispatch(updateCollection(res.data.collection));
       });
   };
 

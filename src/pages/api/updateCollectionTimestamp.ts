@@ -19,7 +19,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         modificationTimestamp: true,
         shareRequests: true,
         color: true,
-        isShared: true,
       },
     });
     res.status(200).json(result);
