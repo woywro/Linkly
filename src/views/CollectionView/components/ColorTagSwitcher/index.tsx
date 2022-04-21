@@ -1,10 +1,11 @@
-import axios from "axios";
-import { motion } from "framer-motion";
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import { updateCollection } from "../../../../redux/actions/CollectionActions";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
+import axios from 'axios';
+import { motion } from 'framer-motion';
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { updateCollection } from '../../../../redux/actions/CollectionActions';
+import { CollectionInterface } from '../../../../types/CollectionInterface';
+import { colorTags } from '../../../../constants/colorTags';
 
 interface Props {
   setCollection: (arg0: CollectionInterface) => void;
@@ -15,7 +16,7 @@ export const ColorTagSwitcher = ({ setCollection }: Props) => {
   const router = useRouter();
   const handleChangeTag = (color: string) => {
     axios
-      .post("/api/updateCollectionTag", {
+      .post('/api/updateCollectionTag', {
         id: router.query.collectionId,
         color: color,
       })
@@ -24,18 +25,10 @@ export const ColorTagSwitcher = ({ setCollection }: Props) => {
         setCollection(res.data);
       });
   };
-  const colors: string[] = [
-    "#ee616a",
-    "#f283d2",
-    "#32aefd",
-    "#e7c331",
-    "#7f4ebf",
-    "#19cdaa",
-    "#4f66c3",
-  ];
+
   return (
     <ColorSwitcherWrapper>
-      {colors.map((e) => {
+      {colorTags.map((e) => {
         return (
           <ColorTag
             whileTap={{ scale: 0.9 }}

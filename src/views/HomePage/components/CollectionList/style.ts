@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import breakpoints from "../../../../theme/breakpoints";
-import { Reorder } from "framer-motion";
-import { Button } from "../../../../components/Button";
+import styled from 'styled-components';
+import breakpoints from '../../../../theme/breakpoints';
+import { Reorder } from 'framer-motion';
+import { Button } from '../../../../components/Button';
 
 export const CollectionsWrapper = styled.div`
   display: flex;
@@ -23,10 +23,12 @@ export const TopWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-right: 10px;
+  z-index: 300;
+  position: relative;
 `;
 export const ListReorderButton = styled(Button)<{ sortingMode: boolean }>`
   border-radius: 10px;
-  background: ${(props) => !props.sortingMode && "none"};
+  background: ${(props) => !props.sortingMode && 'none'};
   color: ${(props) => props.theme.colors.primaryText};
   @media only screen and ${breakpoints.device.sm} {
     display: none;

@@ -1,23 +1,15 @@
-import { useEffect } from "react";
-import { useRef } from "react";
-export function useClickInside(elementRef, callback, show) {
-  useEffect(() => {
-    const handleClickInside = (event) => {
-      event.preventDefault();
-      if (
-        elementRef &&
-        elementRef.current &&
-        elementRef.current.contains(event.target)
-      ) {
-        callback();
-      }
-      return;
-    };
-    if (show == true) {
-      document.addEventListener("click", handleClickInside, true);
+import { useEffect } from 'react';
+
+export const useClickInside = (ref, callback) => {
+  const handleClick = (e) => {
+    if (ref.current && ref.current.contains(e.target)) {
+      callback();
     }
+  };
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
     return () => {
-      document.removeEventListener("click", handleClickInside, true);
+      document.removeEventListener('click', handleClick);
     };
-  }, [elementRef, callback]);
-}
+  });
+};

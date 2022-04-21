@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { hoverEffectBg } from "../../mixins/hoverEffects";
-import breakpoints from "../../theme/breakpoints";
+import styled from 'styled-components';
+import { hoverEffectBg } from '../../mixins/hoverEffects';
+import breakpoints from '../../theme/breakpoints';
 
 export const DropdownMenuWrapper = styled.div`
   border-radius: 10px;
@@ -27,9 +27,9 @@ export const DropdownItemList = styled.div<{
   height: auto;
   background: ${(props) => props.theme.colors.primaryBgNoTransparent};
   box-shadow: ${(props) => props.theme.shadow};
-  display: ${(props) => (props.show ? "flex" : "none")};
+  display: ${(props) => (props.show ? 'flex' : 'none')};
   z-index: 40;
-  width: 30%;
+  width: auto;
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
   }
