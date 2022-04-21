@@ -1,16 +1,17 @@
-import axios from "axios";
-import { Formik } from "formik";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
-import Scrollbars from "react-custom-scrollbars-2";
-import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import * as Yup from "yup";
-import { EmptyState } from "../../../../components/EmptyState";
-import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
-import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
-import { FriendsAutocomplete } from "../FriendsAutocomplete";
+import axios from 'axios';
+import { Formik } from 'formik';
+import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
+import { EmptyState } from '../../../../components/EmptyState';
+import { updateCollection } from '../../../../redux/actions/CollectionActions';
+import { shareRequests } from '../../../../redux/reducers/ShareRequestsReducer';
+import { CollectionInterface } from '../../../../types/CollectionInterface';
+import { ShareRequestInterface } from '../../../../types/ShareRequestInterface';
+import { FriendsAutocomplete } from '../FriendsAutocomplete';
 import {
   AddButton,
   AddWrapper,
@@ -21,7 +22,7 @@ import {
   SharingWrapper,
   StyledForm,
   StyledInput,
-} from "./style";
+} from './style';
 
 interface Props {
   collection: CollectionInterface;
@@ -54,40 +55,49 @@ export const Sharing = ({ collection }: Props) => {
   const handleAdd = useCallback(
     (email: string) => {
       axios
-        .post("/api/createShareRequest", {
+        .post('/api/createShareRequest', {
           collectionId: router.query.collectionId,
           email: email,
         })
-        .then(() => {
+        .then((res) => {
           setSharedList([...sharedList, { email: email, isAccepted: false }]);
+          console.log(res.data);
+          dispatch(updateCollection(res.data.collection));
         })
         .catch((err) => {
           toast.error(err.response.data);
         });
-      dispatch(
-        updateShareStatus(collection.id, {
-          email: email,
-          collectionId: collection.id,
-        })
-      );
     },
     [router, sharedList]
   );
 
   const handleDelete = (e: string) => {
-    axios.post("/api/deleteShareRequest", {
-      email: e,
-      collectionId: router.query.collectionId,
-    });
-    const listFiltered = sharedList.filter((x) => x.email !== e);
-    setSharedList(listFiltered);
-    dispatch(updateShareStatus(collection.id, listFiltered));
+    axios
+      .post('/api/deleteShareRequest', {
+        email: e,
+        collectionId: router.query.collectionId,
+      })
+      .then(() => {
+        const listFiltered = sharedList.filter((x) => x.email !== e);
+        setSharedList(listFiltered);
+        if (listFiltered.length == 0) {
+          const updatedCollection: CollectionInterface = {
+            ...collection,
+            isShared: false,
+          };
+          axios.post('/api/updateCollectionShareStatus', {
+            id: collection.id,
+            isShared: false,
+          });
+          dispatch(updateCollection(updatedCollection));
+        }
+      });
   };
 
   const handleSearch = (toSearch: string) => {
     setFriends([]);
     axios
-      .get("/api/getFriends", {
+      .get('/api/getFriends', {
         params: {
           search: toSearch,
         },
@@ -102,8 +112,8 @@ export const Sharing = ({ collection }: Props) => {
   const validationSchema = Yup.object({
     email: Yup.string()
       .email()
-      .min(3, "email is too short!")
-      .required("email is required"),
+      .min(3, 'email is too short!')
+      .required('email is required'),
   });
 
   return (
@@ -111,7 +121,7 @@ export const Sharing = ({ collection }: Props) => {
       <AddWrapper>
         <Formik
           initialValues={{
-            email: "",
+            email: '',
           }}
           onSubmit={(values) => {
             handleAdd(values.email);
@@ -143,11 +153,11 @@ export const Sharing = ({ collection }: Props) => {
       </AddWrapper>
       <Scrollbars
         style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
+          width: '100%',
+          height: '100%',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}
       >
         <SharedList>
