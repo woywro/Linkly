@@ -1,23 +1,21 @@
-import styled from "styled-components";
-import { Text } from "../../../../components/Text";
-import { motion } from "framer-motion";
-import { Reorder } from "framer-motion";
+import styled from 'styled-components';
+import { Text } from '../../../../components/Text';
+import { motion } from 'framer-motion';
+import { Reorder } from 'framer-motion';
 
 export const CollectionWrapper = styled(Reorder.Item)`
   padding: 5px;
   display: flex;
   height: 120px;
   margin: 5px;
-  font-size: 50px;
   align-items: center;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-flow: column;
   cursor: pointer;
   border-radius: 20px;
   background: none;
   border: none;
-  flex: 0 0 auto;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
     background: ${(props) => props.theme.colors.primary};

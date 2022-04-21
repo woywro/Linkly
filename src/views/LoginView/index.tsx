@@ -1,18 +1,18 @@
-import { signIn } from "next-auth/react";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { signIn } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 import {
   GithubLoginButton,
   GoogleLoginButton,
-} from "react-social-login-buttons";
-import styled, { useTheme } from "styled-components";
-import { Button } from "../../components/Button";
-import { Input } from "../../components/Input";
-import { Logo } from "../../components/Logo";
-import { Text } from "../../components/Text";
-import Verify from "../../pages/api/auth/verify";
-import breakpoints from "../../theme/breakpoints";
-import { ThemeInterface } from "../../types/ThemeInterface";
+} from 'react-social-login-buttons';
+import styled, { useTheme } from 'styled-components';
+import { Button } from '../../components/Button';
+import { Input } from '../../components/Input';
+import { Logo } from '../../components/Logo';
+import { Text } from '../../components/Text';
+import Verify from '../../pages/api/auth/verify';
+import breakpoints from '../../theme/breakpoints';
+import { ThemeInterface } from '../../types/ThemeInterface';
 
 const Wrapper = styled.div`
   display: flex;
@@ -22,7 +22,7 @@ const Wrapper = styled.div`
   width: 30%;
   padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
-  border-radius: 30px;
+  border-radius: 20px;
   @media only screen and ${breakpoints.device.sm} {
     border-radius: 0px;
     width: 100%;
@@ -70,7 +70,7 @@ const Title = styled(Text)`
 `;
 
 const LoginButton = styled(Button)`
-  border-radius: 10px;
+  border-radius: 20px;
   width: 50%;
   padding: 15px;
   margin: 0;
@@ -120,13 +120,13 @@ const TestButton = styled.button`
 
 export const LoginView = () => {
   const theme = useTheme() as ThemeInterface;
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   const router = useRouter();
 
   return (
     <Wrapper>
       <Logo mobile={false} />
-      {router.asPath == "/auth/verify" ? (
+      {router.asPath == '/auth/verify' ? (
         <Verify />
       ) : (
         <>
@@ -144,25 +144,25 @@ export const LoginView = () => {
           />
           <LoginButton
             whileTap={{ scale: 0.95 }}
-            onClick={() => signIn("email", { email: email })}
+            onClick={() => signIn('email', { email: email })}
           >
             Log in
           </LoginButton>
           <Divider />
           <Row>
             <GoogleLoginButton
-              onClick={() => signIn("google")}
-              style={{ display: "flex", justifyContent: "center" }}
+              onClick={() => signIn('google')}
+              style={{ display: 'flex', justifyContent: 'center' }}
               preventActiveStyles={true}
             >
-              <span style={{ color: "grey" }}>Google</span>
+              <span style={{ color: 'grey' }}>Google</span>
             </GoogleLoginButton>
             <GithubLoginButton
-              onClick={() => signIn("github")}
+              onClick={() => signIn('github')}
               preventActiveStyles={true}
-              style={{ display: "flex", justifyContent: "center" }}
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
-              <span style={{ color: "white" }}>Github</span>
+              <span style={{ color: 'white' }}>Github</span>
             </GithubLoginButton>
           </Row>
         </>

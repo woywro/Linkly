@@ -84,6 +84,7 @@ export const Title = styled.h1`
   font-size: 30px;
   padding: 10px;
   opacity: 0.8;
+  word-break: break-all;
   color: ${(props) => props.theme.colors.primaryText};
 `;
 

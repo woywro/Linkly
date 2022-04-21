@@ -3,7 +3,7 @@ import { hoverEffectBg } from '../../mixins/hoverEffects';
 import breakpoints from '../../theme/breakpoints';
 
 export const DropdownMenuWrapper = styled.div`
-  border-radius: 10px;
+  border-radius: 20px;
   padding: 10px;
   width: auto;
   display: flex;
@@ -18,7 +18,7 @@ export const DropdownItemList = styled.div<{
   show: boolean;
   fullWidth?: boolean;
 }>`
-  border-radius: 10px;
+  border-radius: 20px;
   justify-content: center;
   flex-flow: column;
   align-items: center;

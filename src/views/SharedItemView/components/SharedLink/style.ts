@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Text } from "../../../../components/Text";
+import styled from 'styled-components';
+import { Text } from '../../../../components/Text';
 
 export const SharedLinkWrapper = styled.li`
   display: flex;

@@ -59,7 +59,9 @@ export const Collection = ({ item, sortingMode }: Props) => {
         <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={'60px'} />
         <ColorTag color={item.color} />
       </Icon>
-      <Title>{item.value}</Title>
+      <Title>
+        {item.value.length > 10 ? `${item.value.slice(0, 10)}...` : item.value}
+      </Title>
     </CollectionWrapper>
   );
 };

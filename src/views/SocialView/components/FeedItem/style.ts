@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Text } from "../../../../components/Text";
-import { motion } from "framer-motion";
+import styled from 'styled-components';
+import { Text } from '../../../../components/Text';
+import { motion } from 'framer-motion';
 
 export const FeedItemWrapper = styled(motion.div)<{ color: string }>`
   padding: 20px;

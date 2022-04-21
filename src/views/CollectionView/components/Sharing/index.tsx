@@ -10,10 +10,13 @@ import { EmptyState } from '../../../../components/EmptyState';
 import { updateCollection } from '../../../../redux/actions/CollectionActions';
 import { CollectionInterface } from '../../../../types/CollectionInterface';
 import { ShareRequestInterface } from '../../../../types/ShareRequestInterface';
+import { Row } from '../../../style';
+import { Text } from '../../../../components/Text';
 import { FriendsAutocomplete } from '../FriendsAutocomplete';
 import {
   AddButton,
   AddWrapper,
+  ShareRequestIndicator,
   Error,
   InputWrapper,
   SharedEmail,
@@ -156,11 +159,9 @@ export const Sharing = ({ collection }: Props) => {
           {sharedList.length > 0 ? (
             sharedList.map((e) => {
               return (
-                <SharedEmail
-                  onClick={() => handleDelete(e.email)}
-                  isAccepted={e.isAccepted}
-                >
-                  {e.email}
+                <SharedEmail onClick={() => handleDelete(e.email)}>
+                  <ShareRequestIndicator isAccepted={e.isAccepted} />
+                  <Text> {e.email}</Text>
                 </SharedEmail>
               );
             })
