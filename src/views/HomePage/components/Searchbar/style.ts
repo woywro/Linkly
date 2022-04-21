@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import breakpoints from "../../../../theme/breakpoints";
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
+import breakpoints from '../../../../theme/breakpoints';
 
 export const SearchBarWrapper = styled.div`
   padding: 5px;
@@ -16,7 +17,7 @@ export const SearchBarWrapper = styled.div`
     width: auto;
     position: relative;
     &:after {
-      content: "";
+      content: '';
       background: ${(props) => props.theme.colors.gradient};
       width: 100%;
       height: 100%;
@@ -27,7 +28,7 @@ export const SearchBarWrapper = styled.div`
   }
 `;
 
-export const StyledSearchBar = styled.div`
+export const StyledSearchBar = styled(motion.div)`
   width: 60%;
   box-shadow: ${(props) => props.theme.shadow};
   border-radius: 16px;
@@ -54,8 +55,4 @@ export const Input = styled.input`
   transition: all 0.3s ease;
   background: none;
   border-radius: 16px;
-  &:focus {
-    outline: none;
-    transform: scale(1.02);
-  }
 `;

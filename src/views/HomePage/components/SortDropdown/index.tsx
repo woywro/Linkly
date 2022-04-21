@@ -1,47 +1,53 @@
-import { useState } from "react";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { useDispatch } from "react-redux";
-import { useTheme } from "styled-components";
-import { DropdownMenu } from "../../../../components/DropdownMenu";
-import { Text } from "../../../../components/Text";
-import { sortLinks } from "../../../../redux/actions/LinkActions";
-import { ThemeInterface } from "../../../../types/ThemeInterface";
-import { Field, IconButton, SortDropdownWrapper } from "./style";
+import { useState } from 'react';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { useTheme } from 'styled-components';
+import { DropdownMenu } from '../../../../components/DropdownMenu';
+import { Text } from '../../../../components/Text';
+import { sortLinks } from '../../../../redux/actions/LinkActions';
+import { ThemeInterface } from '../../../../types/ThemeInterface';
+import { Field, IconButton, SortDropdownWrapper } from './style';
 
 export const SortDropdown = () => {
   const [sortByName, setSortByName] = useState(false);
   const [sortByOwner, setSortByOwner] = useState(false);
   const [sortByModification, setSortByModification] = useState(false);
+  const [elementToReturn, setElementToReturn] = useState<JSX.Element>(
+    <Text>Sort</Text>
+  );
   const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
 
   const handleSortByName = () => {
     resetSorting();
     setSortByName(!sortByName);
+    setElementToReturn(<Text>Name</Text>);
     if (sortByName == false) {
-      dispatch(sortLinks("asc"));
+      dispatch(sortLinks('asc'));
     } else {
-      dispatch(sortLinks("desc"));
+      dispatch(sortLinks('desc'));
     }
   };
 
   const handleSortByOwner = () => {
     resetSorting();
     setSortByOwner(!sortByOwner);
+    setElementToReturn(<Text>Owner</Text>);
     if (sortByName == true) {
-      dispatch(sortLinks("ownerAsc"));
+      dispatch(sortLinks('ownerAsc'));
     } else {
-      dispatch(sortLinks("ownerDesc"));
+      dispatch(sortLinks('ownerDesc'));
     }
   };
 
   const handleSortByModification = () => {
     resetSorting();
     setSortByModification(!sortByModification);
+    setElementToReturn(<Text>Modification</Text>);
     if (sortByModification == true) {
-      dispatch(sortLinks("modifiedAsc"));
+      dispatch(sortLinks('modifiedAsc'));
     } else {
-      dispatch(sortLinks("modifiedDesc"));
+      dispatch(sortLinks('modifiedDesc'));
     }
   };
 
@@ -53,7 +59,11 @@ export const SortDropdown = () => {
 
   return (
     <SortDropdownWrapper>
-      <DropdownMenu icon={true} title={"sort"} fullWidth={true}>
+      <DropdownMenu
+        icon={true}
+        fullWidth={true}
+        returnedElement={elementToReturn}
+      >
         <Field onClick={handleSortByName}>
           <Text color={theme.colors.primaryText}>NAME</Text>
           <IconButton>

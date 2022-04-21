@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import breakpoints from "../theme/breakpoints";
+import styled from 'styled-components';
+import breakpoints from '../theme/breakpoints';
 export const PageContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -56,8 +56,8 @@ export const RightWrapper = styled.div<{ open: boolean }>`
     background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     z-index: 102;
-    display: ${({ open }) => (open ? "flex" : "none")};
-    transform: ${({ open }) => (open ? "translateX(0)" : "translate(-100%)")};
+    display: ${({ open }) => (open ? 'flex' : 'none')};
+    transform: ${({ open }) => (open ? 'translateX(0)' : 'translate(-100%)')};
     transition: transform 0.3s ease-in-out;
   }
   @media only screen and ${breakpoints.device.lg} {
@@ -97,7 +97,7 @@ export const Divider = styled.div`
 export const Row = styled.div`
   display: flex;
   width: 100%;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-flow: row;
 `;

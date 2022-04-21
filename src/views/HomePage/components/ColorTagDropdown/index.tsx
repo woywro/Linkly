@@ -1,7 +1,7 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { DropdownMenu } from '../../../../components/DropdownMenu';
 import useMediaQuery from '../../../../hooks/useMediaQuery';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { motion } from 'framer-motion';
 import { colorTags } from '../../../../constants/colorTags';
 import { Row } from '../../../style';
@@ -9,6 +9,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../../redux/store';
 import { setCollections } from '../../../../redux/actions/CollectionActions';
 import { CollectionInterface } from '../../../../types/CollectionInterface';
+import { theme1 } from '../../../../theme/theme';
+import { ThemeInterface } from '../../../../types/ThemeInterface';
 
 interface Props {
   setList: (arg0: CollectionInterface[]) => void;
@@ -19,7 +21,14 @@ export const ColorTagDropdown = ({ setList, list }: Props) => {
   const mediaQuerySm = useMediaQuery('sm');
   const collections = useSelector((state: RootState) => state.collections);
   const dispatch = useDispatch();
-  const [elementToReturn, setElementToReturn] = useState<JSX.Element>();
+  const theme = useTheme() as ThemeInterface;
+  const [elementToReturn, setElementToReturn] = useState<JSX.Element>(
+    <ColorTag color={theme.colors.gradient} />
+  );
+
+  useEffect(() => {
+    setElementToReturn(<ColorTag color={theme.colors.gradient} />);
+  }, [theme]);
 
   const handleFilter = (color: string) => {
     setElementToReturn(<ColorTag color={color} />);
@@ -36,7 +45,7 @@ export const ColorTagDropdown = ({ setList, list }: Props) => {
   };
 
   const handleResetFilter = () => {
-    setElementToReturn(<></>);
+    setElementToReturn(<ColorTag color={theme.colors.gradient} />);
     setList(
       collections.sort(
         (a: CollectionInterface, b: CollectionInterface) =>
@@ -55,9 +64,7 @@ export const ColorTagDropdown = ({ setList, list }: Props) => {
         {colorTags.map((e) => {
           return <ColorTag onClick={() => handleFilter(e)} color={e} />;
         })}
-        <ColorTag onClick={handleResetFilter} color={''}>
-          x
-        </ColorTag>
+        <ColorTag color={theme.colors.gradient} onClick={handleResetFilter} />
       </Row>
     </DropdownMenu>
   );

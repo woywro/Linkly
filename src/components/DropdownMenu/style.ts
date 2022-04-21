@@ -8,6 +8,7 @@ export const DropdownMenuWrapper = styled.div`
   width: auto;
   display: flex;
   justify-content: flex-start;
+  cursor: pointer;
   &:hover {
     ${hoverEffectBg}
   }
@@ -17,6 +18,7 @@ export const DropdownItemList = styled.div<{
   show: boolean;
   fullWidth?: boolean;
 }>`
+  border-radius: 10px;
   justify-content: center;
   flex-flow: column;
   align-items: center;

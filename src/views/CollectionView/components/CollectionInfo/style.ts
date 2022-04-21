@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 export const CollectionInfoWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -24,12 +24,12 @@ export const Icon = styled.div`
 
 export const ColorTag = styled.div<{ background: string }>`
   padding: 0;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   border: none;
   position: absolute;
-  bottom: 0;
-  top: 0;
+  bottom: 10px;
+  left: 10px;
   background: ${(props) => props.background};
 `;

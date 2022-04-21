@@ -31,7 +31,6 @@ export const CollectionList = () => {
   const [sortingMode, setSortingMode] = useState(false);
 
   useEffect(() => {
-    console.log(collections);
     if (collectionsOrder == '') {
       setList(collections);
     } else {
@@ -50,7 +49,10 @@ export const CollectionList = () => {
   };
 
   return (
-    <CollectionsWrapper>
+    <CollectionsWrapper
+      animate={{ x: [-50, 0] }}
+      transition={{ ease: 'easeOut', duration: 0.5 }}
+    >
       {loading ? (
         <LoadingSpinner />
       ) : (
@@ -69,6 +71,7 @@ export const CollectionList = () => {
           </TopWrapper>
           <Scrollbars autoHeight>
             <CollectionsList
+              sortingMode={sortingMode}
               axis="x"
               values={list}
               onReorder={setList}

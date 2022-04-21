@@ -53,8 +53,8 @@ const ColorSwitcherWrapper = styled.div<{ isVisible?: boolean }>`
 
 const ColorTag = styled(motion.button)<{ background: string }>`
   padding: 0;
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   border: none;
   margin: 5px;

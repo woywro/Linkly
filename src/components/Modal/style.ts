@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import { Text } from "../Text";
-import breakpoints from "../../theme/breakpoints";
-import { hoverEffectBg } from "../../mixins/hoverEffects";
-import { motion } from "framer-motion";
+import styled from 'styled-components';
+import { Text } from '../Text';
+import breakpoints from '../../theme/breakpoints';
+import { hoverEffectBg } from '../../mixins/hoverEffects';
+import { motion } from 'framer-motion';
 
 export const Overlay = styled(motion.div)`
   position: fixed;
@@ -21,14 +21,14 @@ export const ModalWrapper = styled(motion.div)`
   left: 50%;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.colors.primaryBgNoTransparent};
-  padding: 30px;
+  padding: 50px;
   z-index: 1000;
   border-radius: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-flow: column;
-  width: 500px;
+  width: auto;
   height: auto;
   overflow-y: hidden;
   @media only screen and ${breakpoints.device.sm} {

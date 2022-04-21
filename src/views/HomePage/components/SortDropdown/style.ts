@@ -1,12 +1,11 @@
-import styled from "styled-components";
-import breakpoints from "../../../../theme/breakpoints";
+import styled from 'styled-components';
+import breakpoints from '../../../../theme/breakpoints';
 
 export const SortDropdownWrapper = styled.div`
   display: none;
-  z-index: 31;
+  z-index: 300;
   @media only screen and ${breakpoints.device.sm} {
     display: flex;
-    z-index: 20;
   }
 `;
 

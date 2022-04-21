@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { css } from "styled-components";
-import breakpoints from "../../theme/breakpoints";
-import { Button } from "../Button";
-import { motion } from "framer-motion";
-import { Text } from "../Text";
+import styled from 'styled-components';
+import { css } from 'styled-components';
+import breakpoints from '../../theme/breakpoints';
+import { Button } from '../Button';
+import { motion } from 'framer-motion';
+import { Text } from '../Text';
 
 export const NavBarWrapper = styled.nav`
   flex-flow: column;
@@ -31,7 +31,7 @@ export const Item = styled(motion.button)<{ isActive?: boolean }>`
   background: none;
   border: none;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
   cursor: pointer;
@@ -43,7 +43,7 @@ export const Item = styled(motion.button)<{ isActive?: boolean }>`
       border-radius: 20px;
     `};
   &:hover:after {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 100%;

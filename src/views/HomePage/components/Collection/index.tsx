@@ -65,10 +65,11 @@ export const Collection = ({ item, sortingMode }: Props) => {
 };
 
 const ColorTag = styled.div<{ color: string }>`
-  width: 10px;
-  height: 10px;
+  width: 15px;
+  height: 15px;
   border-radius: 50%;
   position: absolute;
-  bottom: 0;
+  bottom: 10px;
+  left: 0;
   background: ${(props) => props.color};
 `;
