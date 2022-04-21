@@ -6,6 +6,7 @@ import breakpoints from '../../../../theme/breakpoints';
 import { Field, Form } from 'formik';
 import { Text } from '../../../../components/Text';
 import { InputStyling } from '../../../../components/Input';
+import { motion } from 'framer-motion';
 
 export const AddWrapper = styled.div`
   width: 100%;
@@ -24,7 +25,7 @@ export const SharedList = styled.div`
   padding: 10px;
 `;
 
-export const SharedEmail = styled.div<{ isAccepted: boolean }>`
+export const SharedEmail = styled(motion.div)`
   display: flex;
   justify-content: start;
   align-items: center;
@@ -44,7 +45,7 @@ export const SharedEmail = styled.div<{ isAccepted: boolean }>`
   }
 `;
 
-export const ShareRequestIndicator = styled.div`
+export const ShareRequestIndicator = styled.div<{ isAccepted: boolean }>`
   border-radius: 50%;
   width: 10px;
   height: 10px;

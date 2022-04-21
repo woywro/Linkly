@@ -67,15 +67,26 @@ export const CollectionList = () => {
           <TopWrapper>
             <Title>Collections</Title>
             <Row style={{ width: 'auto' }}>
-              {sortingMode && (
-                <Button onClick={handleResetSorting}>reset</Button>
+              {sortingMode ? (
+                <>
+                  <Button onClick={handleResetSorting}>reset</Button>
+                  <ListReorderButton
+                    style={{ color: 'white' }}
+                    onClick={saveListOrder}
+                    sortingMode={sortingMode}
+                  >
+                    save
+                  </ListReorderButton>
+                </>
+              ) : (
+                <ListReorderButton
+                  onClick={saveListOrder}
+                  sortingMode={sortingMode}
+                >
+                  edit
+                </ListReorderButton>
               )}
-              <ListReorderButton
-                onClick={saveListOrder}
-                sortingMode={sortingMode}
-              >
-                {sortingMode ? 'save' : 'edit'}
-              </ListReorderButton>
+
               <ColorTagDropdown setList={setList} list={list} />
             </Row>
           </TopWrapper>

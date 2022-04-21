@@ -1,15 +1,16 @@
-import { useRouter } from "next/router";
-import { RiFolder5Fill } from "react-icons/ri";
-import { useDispatch } from "react-redux";
-import { useTheme } from "styled-components";
-import { Text } from "../../../../components/Text";
-import { Label, Name, FeedItemWrapper, Row, Timestamp } from "./style";
-import moment from "moment";
-import { SharedWithYouInterface } from "../../../../types/SharedWithYouInterface";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
-import { UserInterface } from "../../../../types/UserInterface";
-import { ThemeInterface } from "../../../../types/ThemeInterface";
-import { useEffect } from "react";
+import { useRouter } from 'next/router';
+import { RiFolder5Fill } from 'react-icons/ri';
+import { useDispatch } from 'react-redux';
+import { useTheme } from 'styled-components';
+import { Text } from '../../../../components/Text';
+import { Label, Name, FeedItemWrapper, Row, Timestamp } from './style';
+import moment from 'moment';
+import { SharedWithYouInterface } from '../../../../types/SharedWithYouInterface';
+import { CollectionInterface } from '../../../../types/CollectionInterface';
+import { UserInterface } from '../../../../types/UserInterface';
+import { ThemeInterface } from '../../../../types/ThemeInterface';
+import { useEffect } from 'react';
+import { Button } from '../../../../components/Button';
 
 interface Props {
   sharedItem: SharedWithYouInterface;
@@ -29,7 +30,7 @@ export const FeedItem = ({ sharedItem }: Props) => {
       }}
     >
       <Label>
-        <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={"70px"} />
+        <RiFolder5Fill style={{ fill: theme.colors.yellow }} size={'70px'} />
         <Name>{sharedItem.collection.value}</Name>
       </Label>
       <Text color={theme.colors.secondaryText}>

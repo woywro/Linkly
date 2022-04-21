@@ -64,7 +64,13 @@ export const ColorTagDropdown = ({ setList, list }: Props) => {
         {colorTags.map((e) => {
           return <ColorTag onClick={() => handleFilter(e)} color={e} />;
         })}
-        <ColorTag color={theme.colors.gradient} onClick={handleResetFilter} />
+        <ColorTag
+          color={theme.colors.gradient}
+          style={{
+            marginLeft: '10px',
+          }}
+          onClick={handleResetFilter}
+        />
       </Row>
     </DropdownMenu>
   );

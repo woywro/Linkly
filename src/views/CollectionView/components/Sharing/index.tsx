@@ -159,7 +159,13 @@ export const Sharing = ({ collection }: Props) => {
           {sharedList.length > 0 ? (
             sharedList.map((e) => {
               return (
-                <SharedEmail onClick={() => handleDelete(e.email)}>
+                <SharedEmail
+                  onClick={() => handleDelete(e.email)}
+                  key={e.email}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                >
                   <ShareRequestIndicator isAccepted={e.isAccepted} />
                   <Text> {e.email}</Text>
                 </SharedEmail>
