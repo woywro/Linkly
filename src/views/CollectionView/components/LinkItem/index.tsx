@@ -63,9 +63,6 @@ export const LinkItem = ({ item }: Props) => {
       {!mediaQuerySm && (
         <>
           <Text color={theme.colors.secondaryText}>{item.owner?.email}</Text>
-          <Text color={theme.colors.secondaryText}>
-            {moment(parseInt(item.modificationTimestamp)).format('lll')}
-          </Text>
         </>
       )}
       <LinkDropdownWrapper>
