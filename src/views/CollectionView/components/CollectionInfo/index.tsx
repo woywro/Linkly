@@ -23,7 +23,7 @@ export const CollectionInfo = ({ collection, setCollection }: Props) => {
   const dispatch = useDispatch();
   const collections = useSelector((state: RootState) => state.collections);
 
-  const handleDeleteCategory = useCallback(() => {
+  const handleDeleteCategory = () => {
     dispatch(deleteCollection(collections, collection.id));
     router.push('/');
   };
