@@ -1,4 +1,4 @@
-  ![Mockup](https://github.com/woywro/Linkly/blob/docs/docs/HomePage/img/screenshot.png)
+  ![Mockup](https://github.com/woywro/Linkly/blob/main/docs/HomePage/img/screenshot.png)
 
   <ol>
   <li><b>Searchbar</b><br/>Searches through collections and links.</li>
