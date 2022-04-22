@@ -1,11 +1,11 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import { useDispatch } from "react-redux";
-import styled, { useTheme } from "styled-components";
-import { useLocalStorage } from "../../hooks/useLocalStorage";
-import { switchTheme } from "../../redux/actions/ThemeActions";
-import breakpoints from "../../theme/breakpoints";
+import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import styled, { useTheme } from 'styled-components';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
+import { switchTheme } from '../../redux/actions/ThemeActions';
+import breakpoints from '../../theme/breakpoints';
 import {
   theme5,
   theme8,
@@ -19,12 +19,12 @@ import {
   theme10,
   theme11,
   theme12,
-} from "../../theme/theme";
-import { ThemeInterface } from "../../types/ThemeInterface";
+} from '../../theme/theme';
+import { ThemeInterface } from '../../types/ThemeInterface';
 
 export const ThemeSwitcher = () => {
   const dispatch = useDispatch();
-  const [choosenTheme, setChoosenTheme] = useLocalStorage("theme", "");
+  const [choosenTheme, setChoosenTheme] = useLocalStorage('theme', '');
   const [visible, setVisible] = useState(false);
   const theme = useTheme() as ThemeInterface;
 
@@ -128,9 +128,9 @@ export const ThemeSwitcher = () => {
         onClick={() => setVisible(!visible)}
       >
         {visible ? (
-          <BsChevronDown size={"18px"} />
+          <BsChevronDown size={'18px'} />
         ) : (
-          <BsChevronUp size={"18px"} />
+          <BsChevronUp size={'18px'} />
         )}
       </ThemeExpandButton>
     </ThemeSwitcherWrapper>
@@ -167,32 +167,32 @@ const Column = styled.div<{ isVisible?: boolean }>`
   align-items: center;
   flex-flow: column;
   width: 100%;
-  display: ${(props) => (props.isVisible ? "flex" : "none")};
+  display: ${(props) => (props.isVisible ? 'flex' : 'none')};
 `;
 
 const ThemeSwitcherWrapper = styled.div<{ isVisible?: boolean }>`
   background: ${(props) =>
-    props.isVisible ? props.theme.colors.primaryBg : "none"};
-  height: ${(props) => (props.isVisible ? "100%" : "auto")};
+    props.isVisible ? props.theme.colors.primaryBg : 'none'};
+  height: ${(props) => (props.isVisible ? '100%' : 'auto')};
   width: 100%;
   position: absolute;
   display: flex;
   justify-content: flex-end;
   flex-flow: column;
   align-items: center;
-  border-radius: 30px;
+  border-radius: 20px;
   padding-bottom: 16px;
   bottom: 0;
   @media only screen and ${breakpoints.device.sm} {
     background: rgba(255, 255, 255, 0.3);
     padding: 20px;
-    border-radius: 30px;
+    border-radius: 20px;
     position: static;
   }
   @media only screen and ${breakpoints.device.lg} {
     background: rgba(255, 255, 255, 0.3);
     padding: 10px;
-    border-radius: 30px;
+    border-radius: 20px;
     position: static;
   }
 `;

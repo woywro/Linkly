@@ -1,17 +1,23 @@
-import axios from "axios";
-import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { AiOutlineLink } from "react-icons/ai";
-import { BiUser } from "react-icons/bi";
-import { RiFolder5Fill, RiTeamLine } from "react-icons/ri";
-import { useTheme } from "styled-components";
-import { Text } from "../../../../components/Text";
-import { ThemeInterface } from "../../../../types/ThemeInterface";
-import { Stat, Stats, Wrapper } from "./style";
+import axios from 'axios';
+import { useSession } from 'next-auth/react';
+import { useEffect, useState } from 'react';
+import { AiOutlineLink } from 'react-icons/ai';
+import { BiUser } from 'react-icons/bi';
+import { RiFolder5Fill, RiTeamLine } from 'react-icons/ri';
+import { useTheme } from 'styled-components';
+import { Text } from '../../../../components/Text';
+import { ThemeInterface } from '../../../../types/ThemeInterface';
+import { Stat, Stats, Wrapper } from './style';
+
+interface statsInterface {
+  collections: number;
+  links: number;
+  shareRequests: number;
+}
 
 export const AccountDetails = () => {
-  const { data: session, status } = useSession();
-  const [stats, setStats] = useState({
+  const { data: session } = useSession();
+  const [stats, setStats] = useState<statsInterface>({
     collections: 0,
     links: 0,
     shareRequests: 0,
@@ -19,7 +25,7 @@ export const AccountDetails = () => {
   const theme = useTheme() as ThemeInterface;
 
   const getStats = () => {
-    axios.get("/api/countStats").then((res) => {
+    axios.get('/api/countStats').then((res) => {
       setStats(res.data);
     });
   };
@@ -30,8 +36,8 @@ export const AccountDetails = () => {
 
   return (
     <Wrapper>
-      <BiUser size={"60px"} style={{ fill: theme.colors.secondary }} />
-      <Text size={"big"}>
+      <BiUser size={'60px'} style={{ fill: theme.colors.secondary }} />
+      <Text size={'big'}>
         {session?.user?.name !== null
           ? session?.user?.name
           : session?.user?.email}

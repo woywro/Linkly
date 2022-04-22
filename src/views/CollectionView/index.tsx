@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { CloseWrapperButton } from "../../components/CloseWrapperButton";
-import { CollectionLinkItem } from "./components/CollectionLinkItem";
-import { Links } from "../../components/Links";
-import { OpenWrapperButton } from "../../components/OpenWrapperButton";
-import Scrollbars from "react-custom-scrollbars-2";
-import { LinkInterface } from "../../types/LinkInterface";
+import { useEffect, useState } from 'react';
+import { CloseWrapperButton } from '../../components/CloseWrapperButton';
+import { CollectionLinkItem } from './components/CollectionLinkItem';
+import { Links } from '../../components/Links';
+import { OpenWrapperButton } from '../../components/OpenWrapperButton';
+import Scrollbars from 'react-custom-scrollbars-2';
+import { LinkInterface } from '../../types/LinkInterface';
 import {
   Divider,
   LeftWrapper,
@@ -12,11 +12,13 @@ import {
   RightWrapper,
   Title,
   TitleWrapper,
-} from "../style";
-import { CollectionInfo } from "./components/CollectionInfo";
-import { Sharing } from "./components/Sharing";
-import { EmptyState } from "../../components/EmptyState";
-import { CollectionInterface } from "../../types/CollectionInterface";
+  PathLink,
+} from '../style';
+import { CollectionInfo } from './components/CollectionInfo';
+import { Sharing } from './components/Sharing';
+import { EmptyState } from '../../components/EmptyState';
+import { CollectionInterface } from '../../types/CollectionInterface';
+import { useRouter } from 'next/router';
 
 interface Props {
   collectionFetched: CollectionInterface;
@@ -31,31 +33,33 @@ export const CollectionView = ({ collectionFetched }: Props) => {
 
   useEffect(() => {
     setLinks(collectionFetched.links);
-  }, [collectionFetched]);
-
-  useEffect(() => {
     setCollection(collectionFetched);
   }, [collectionFetched]);
+
+  const router = useRouter();
 
   return (
     <PageContainer>
       <LeftWrapper>
         <TitleWrapper>
-          <Title>{`categories/${collection?.value}`}</Title>
+          <Title>
+            <PathLink onClick={() => router.push('/')}>Collections</PathLink>/
+            {collection?.value}
+          </Title>
         </TitleWrapper>
         <Scrollbars
           style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           <Links>
             <>
               {links?.length == 0 ? (
-                <EmptyState msg={"There are no links in this collection"} />
+                <EmptyState msg={'There are no links in this collection'} />
               ) : (
                 links?.map((link: LinkInterface) => {
                   return (
@@ -72,19 +76,21 @@ export const CollectionView = ({ collectionFetched }: Props) => {
         </Scrollbars>
       </LeftWrapper>
       <RightWrapper open={open}>
-        {collection !== undefined && (
-          <>
-            <CloseWrapperButton onClick={() => setOpen(false)} />
-            <Title>Info</Title>
-            <CollectionInfo
-              collection={collection}
-              setCollection={setCollection}
-            />
-            <Divider />
-            <Title>Sharing</Title>
-            <Sharing collection={collection} />
-          </>
-        )}
+        <Scrollbars>
+          {collection !== undefined && (
+            <>
+              <CloseWrapperButton onClick={() => setOpen(false)} />
+              <Title>Info</Title>
+              <CollectionInfo
+                collection={collection}
+                setCollection={setCollection}
+              />
+              <Divider />
+              <Title>Sharing</Title>
+              <Sharing collection={collection} />
+            </>
+          )}
+        </Scrollbars>
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>

@@ -1,41 +1,35 @@
-import { useDispatch, useSelector } from "react-redux";
-import { EmptyState } from "../../../../components/EmptyState";
-import { RootState } from "../../../../redux/store";
-import { Title } from "../../../style";
-import { HistoryItem } from "../HistoryItem";
-import { HistoryWrapper } from "./style";
-import axios from "axios";
-import { useCallback, useState } from "react";
-import { setHistory } from "../../../../redux/actions/HistoryActions";
-import { Button } from "../../../../components/Button";
-import { useEffect } from "react";
-import useLoading from "../../../../hooks/useLoading";
-import { LoadingSpinner } from "../../../../components/LoadingSpinner";
-import { HistoryInterface } from "../../../../types/HistoryInterface";
+import axios from 'axios';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button } from '../../../../components/Button';
+import { EmptyState } from '../../../../components/EmptyState';
+import { LoadingSpinner } from '../../../../components/LoadingSpinner';
+import useLoading from '../../../../hooks/useLoading';
+import { setHistory } from '../../../../redux/actions/HistoryActions';
+import { RootState } from '../../../../redux/store';
+import { HistoryInterface } from '../../../../types/HistoryInterface';
+import { Title } from '../../../style';
+import { HistoryItem } from '../HistoryItem';
+import { HistoryWrapper } from './style';
 
 export const History = () => {
   const History = useSelector((state: RootState) => state.history);
   const requests = useSelector((state: RootState) => state.requestsLoading);
   const dispatch = useDispatch();
-  const [loadingText, setLoadingText] = useState("load more");
+  const [loadingText, setLoadingText] = useState('load more');
+  const loading = useLoading(requests, 'getHistory');
 
-  const loading = useLoading(requests, "getHistory");
-
-  useEffect(() => {
-    console.log(requests);
-  }, [requests]);
-
-  const handleLoadMore = useCallback(() => {
-    setLoadingText("loading");
+  const handleLoadMore = () => {
+    setLoadingText('loading');
     axios
-      .get("/api/getHistory", {
+      .get('/api/getHistory', {
         params: { cursor: History[History.length - 1].timestamp },
       })
       .then((res) => {
         dispatch(setHistory(History.concat(res.data.history)));
-        setLoadingText("load more");
+        setLoadingText('load more');
       });
-  }, [History]);
+  };
 
   return (
     <HistoryWrapper>

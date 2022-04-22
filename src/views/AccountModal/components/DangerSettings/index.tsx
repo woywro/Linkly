@@ -1,14 +1,14 @@
-import axios from "axios";
-import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
-import { Button } from "../../../../components/Button";
-import { Input } from "../../../../components/Input";
-import { Text } from "../../../../components/Text";
-import { Wrapper } from "./style";
+import axios from 'axios';
+import { signOut, useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { useCallback, useEffect, useState } from 'react';
+import { Button } from '../../../../components/Button';
+import { Input } from '../../../../components/Input';
+import { Text } from '../../../../components/Text';
+import { Wrapper } from './style';
 
 export const DangerSettings = () => {
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const router = useRouter();
   const { data: session } = useSession();
   const [disabled, setDisabled] = useState<boolean>(false);
@@ -21,22 +21,22 @@ export const DangerSettings = () => {
     }
   }, [session, input]);
 
-  const handleDeleteAccount = useCallback(() => {
-    axios.post("/api/deleteAccount").then(() => {
+  const handleDeleteAccount = () => {
+    axios.post('/api/deleteAccount').then(() => {
       signOut();
     });
-  }, []);
+  };
 
-  const handleClearLs = useCallback(() => {
+  const handleClearLs = () => {
     localStorage.clear();
-    router.push("/");
-  }, []);
+    router.push('/');
+  };
 
   return (
     <Wrapper>
-      <Text style={{ marginBottom: "10px" }}>
-        Type in{" "}
-        <span style={{ fontWeight: "bold" }}>{session?.user?.email}</span> to
+      <Text style={{ marginBottom: '10px' }}>
+        Type in{' '}
+        <span style={{ fontWeight: 'bold' }}>{session?.user?.email}</span> to
         proceed
       </Text>
       <Input

@@ -1,27 +1,28 @@
-import axios from "axios";
-import { Field, Form, Formik } from "formik";
-import { useRouter } from "next/router";
-import { useCallback, useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import * as Yup from "yup";
-import { Button } from "../../components/Button";
-import { InputStyling } from "../../components/Input";
-import { Text } from "../../components/Text";
-import { updateCollections } from "../../redux/actions/CollectionActions";
-import { addLink } from "../../redux/actions/LinkActions";
-import { CollectionInterface } from "../../types/CollectionInterface";
-import { CollectionsSelect } from "./components/CollectionsSelect";
-import { AddLinkWrapper } from "./style";
-import { LinkInterface } from "../../types/LinkInterface";
-import { updateLink } from "../../redux/actions/LinkActions";
+import axios from 'axios';
+import { Field, Form, Formik } from 'formik';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import * as Yup from 'yup';
+import { Button } from '../../components/Button';
+import { InputStyling } from '../../components/Input';
+import { Text } from '../../components/Text';
+import { updateCollections } from '../../redux/actions/CollectionActions';
+import { addLink, updateLink } from '../../redux/actions/LinkActions';
+import { CollectionInterface } from '../../types/CollectionInterface';
+import { LinkInterface } from '../../types/LinkInterface';
+import { CollectionsSelect } from './components/CollectionsSelect';
+import { AddLinkWrapper } from './style';
 
 interface Props {
   link?: LinkInterface;
 }
 
 export const LinkModal = ({ link }: Props) => {
-  const [collectionValues, setCollectionValues] = useState<string[] | []>([]);
+  const [collectionValues, setCollectionValues] = useState<
+    string[] | [] | undefined
+  >([]);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -32,72 +33,64 @@ export const LinkModal = ({ link }: Props) => {
     }
   }, [link]);
 
-  const setInputValues = useCallback(
-    (link) => {
-      setCollectionValues(
-        link.collections.map((e: CollectionInterface) => {
-          return e.value;
-        })
-      );
-    },
-    [link, collectionValues]
-  );
+  const setInputValues = (link: LinkInterface) => {
+    const linkCollectionValues: string[] | undefined = link?.collections?.map(
+      (e: CollectionInterface) => {
+        return e.value;
+      }
+    );
+    setCollectionValues(linkCollectionValues);
+  };
 
-  const handleSaveLinkOnEdit = useCallback(
-    async (title: string, url: string) => {
-      await axios
-        .post("/api/updateLink", {
-          id: link?.id,
-          title: title,
-          url: url,
-          collectionValues: collectionValues,
-        })
-        .then((res) => {
-          dispatch(updateLink(res.data));
-          dispatch(updateCollections(res.data.collections));
-        });
-      router.back();
-    },
-    [link, collectionValues]
-  );
+  const handleSaveLinkOnEdit = async (title: string, url: string) => {
+    await axios
+      .post('/api/updateLink', {
+        id: link?.id,
+        title: title,
+        url: url,
+        collectionValues: collectionValues,
+      })
+      .then((res) => {
+        dispatch(updateLink(res.data));
+        dispatch(updateCollections(res.data.collections));
+      });
+    router.back();
+  };
 
-  const handleAdd = useCallback(
-    async (title: string, url: string) => {
-      await axios
-        .post("/api/addLink", {
-          title,
-          url,
-          collectionValues,
-        })
-        .then((res) => {
-          dispatch(addLink(res.data));
-          dispatch(updateCollections(res.data.collections));
-        });
-      router.push("/");
-    },
-    [link, collectionValues]
-  );
+  const handleAdd = async (title: string, url: string) => {
+    await axios
+      .post('/api/addLink', {
+        title,
+        url,
+        collectionValues,
+      })
+      .then((res) => {
+        dispatch(addLink(res.data));
+        dispatch(updateCollections(res.data.collections));
+      });
+    router.push('/');
+  };
 
   const validationSchema = Yup.object({
     title: Yup.string()
-      .min(2, "title is too short!")
-      .max(50, "title is too long!")
-      .required("title is required"),
+      .min(2, 'title is too short!')
+      .max(30, 'title is too long!')
+      .required('title is required'),
     url: Yup.string()
       .url()
-      .min(3, "url is too short!")
-      .required("url is required"),
+      .min(3, 'url is too short!')
+      .required('url is required'),
   });
 
   return (
     <AddLinkWrapper>
       <Formik
         initialValues={{
-          title: link !== undefined ? link.title : "",
-          url: link !== undefined ? link?.url : "",
+          title: link !== undefined ? link.title : '',
+          url: link !== undefined ? link?.url : '',
         }}
         onSubmit={(values) => {
-          if (router.pathname == "/addLink") {
+          if (router.pathname == '/addLink') {
             handleAdd(values.title, values.url);
           } else {
             handleSaveLinkOnEdit(values.title, values.url);
@@ -106,7 +99,7 @@ export const LinkModal = ({ link }: Props) => {
         validationSchema={validationSchema}
       >
         {({ errors, touched }) => (
-          <StyledForm>
+          <StyledForm autoComplete="off">
             <InputWrapper>
               <StyledInput name="title" placeholder="Link title" />
               {errors.title && touched.title ? (

@@ -1,30 +1,33 @@
-import { useRef, useState } from "react";
-import { BsChevronDown, BsChevronUp } from "react-icons/bs";
-import styled from "styled-components";
-import { useClickInside } from "../../hooks/useClickInside";
-import useClickOutside from "../../hooks/useClickOutside";
-import { Text } from "../Text";
-import { DropdownItemList, DropdownMenuWrapper, Label } from "./style";
+import { useRef, useState } from 'react';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import styled from 'styled-components';
+import { useClickInside } from '../../hooks/useClickInside';
+import useClickOutside from '../../hooks/useClickOutside';
+import { Text } from '../Text';
+import { DropdownItemList, DropdownMenuWrapper, Label } from './style';
 
 interface Props {
-  children: JSX.Element[];
+  children: JSX.Element | JSX.Element[];
   icon?: boolean;
   title?: string;
   fullWidth?: boolean;
+  returnedElement?: JSX.Element;
 }
 
-export const DropdownMenu = ({ children, title, icon, fullWidth }: Props) => {
+export const DropdownMenu = ({
+  children,
+  title,
+  icon,
+  fullWidth,
+  returnedElement,
+}: Props) => {
   const [show, setShow] = useState(false);
   const ref1 = useRef();
   const ref2 = useRef();
 
-  useClickInside(
-    ref2,
-    () => {
-      setShow(false);
-    },
-    show
-  );
+  useClickInside(ref2, () => {
+    setShow(false);
+  });
 
   useClickOutside(ref1, () => {
     setShow(false);
@@ -40,6 +43,9 @@ export const DropdownMenu = ({ children, title, icon, fullWidth }: Props) => {
       {icon == true ? (
         <Label>
           <Title>{title}</Title>
+          {returnedElement !== undefined && (
+            <ReturnedElement>{returnedElement}</ReturnedElement>
+          )}
           <ButtonIcon>
             {show == true ? <BsChevronDown /> : <BsChevronUp />}
           </ButtonIcon>
@@ -65,3 +71,5 @@ const ButtonIcon = styled.div`
 const Title = styled(Text)`
   color: ${(props) => props.theme.colors.primaryText};
 `;
+
+const ReturnedElement = styled.div``;

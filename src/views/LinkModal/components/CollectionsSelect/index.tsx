@@ -1,13 +1,13 @@
-import { useFormik } from "formik";
-import { useState } from "react";
-import { BsFillTrashFill } from "react-icons/bs";
-import { useSelector } from "react-redux";
-import * as Yup from "yup";
-import { Input } from "../../../../components/Input";
-import { Text } from "../../../../components/Text";
-import { RootState } from "../../../../redux/store";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
-import { Divider } from "../../../style";
+import { useFormik } from 'formik';
+import { useState } from 'react';
+import { BsFillTrashFill } from 'react-icons/bs';
+import { useSelector } from 'react-redux';
+import * as Yup from 'yup';
+import { Input } from '../../../../components/Input';
+import { Text } from '../../../../components/Text';
+import { RootState } from '../../../../redux/store';
+import { CollectionInterface } from '../../../../types/CollectionInterface';
+import { Divider } from '../../../style';
 import {
   AddCollectionButton,
   ChoosenSuggestion,
@@ -17,7 +17,7 @@ import {
   StyledForm,
   SuggesionsWrapper,
   Suggestion,
-} from "./style";
+} from './style';
 
 interface Props {
   setCollectionValues: (arg0: string[]) => void;
@@ -34,7 +34,7 @@ export const CollectionsSelect = ({
     CollectionInterface[] | []
   >([]);
   const [showSuggestions, setShowSuggestions] = useState<boolean>(false);
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState<string>('');
 
   const onChange = (e: { target: HTMLInputElement }) => {
     const userInput = e.target.value;
@@ -73,14 +73,14 @@ export const CollectionsSelect = ({
 
   const validationSchema = Yup.object({
     collection: Yup.string()
-      .min(3, "collection name is too short!")
-      .max(20, "collection name is too long!")
-      .required("collection is required"),
+      .min(3, 'collection name is too short!')
+      .max(20, 'collection name is too long!')
+      .required('collection is required'),
   });
 
   const formik = useFormik({
     initialValues: {
-      collection: "",
+      collection: '',
     },
     onSubmit: (values, actions) => {
       handleAddCollection(values.collection);
@@ -98,7 +98,7 @@ export const CollectionsSelect = ({
               key={suggestion.value}
               onClick={() => handleAddSuggestion(suggestion)}
             >
-              <Text size={"small"} bold>
+              <Text size={'small'} bold>
                 {suggestion.value}
               </Text>
             </Suggestion>
@@ -110,7 +110,7 @@ export const CollectionsSelect = ({
 
   return (
     <SelectWrapper>
-      <StyledForm onSubmit={formik.handleSubmit}>
+      <StyledForm onSubmit={formik.handleSubmit} autoComplete="off">
         <Input
           type="text"
           onKeyUp={onChange}
@@ -144,7 +144,7 @@ export const CollectionsSelect = ({
             return (
               <ChoosenSuggestion onClick={() => handleDeleteCollection(e)}>
                 {e}
-                <BsFillTrashFill style={{ fill: "white", marginLeft: "2px" }} />
+                <BsFillTrashFill style={{ fill: 'white', marginLeft: '2px' }} />
               </ChoosenSuggestion>
             );
           })}

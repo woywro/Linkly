@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import breakpoints from "../../theme/breakpoints";
+import styled from 'styled-components';
+import breakpoints from '../../theme/breakpoints';
 export const StyledLinks = styled.div`
   width: 100%;
   height: 100%;

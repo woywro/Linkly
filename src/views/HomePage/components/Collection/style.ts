@@ -1,23 +1,22 @@
-import styled from "styled-components";
-import { Text } from "../../../../components/Text";
-import { motion } from "framer-motion";
-import { Reorder } from "framer-motion";
+import styled from 'styled-components';
+import { Text } from '../../../../components/Text';
+import { motion } from 'framer-motion';
+import { Reorder } from 'framer-motion';
 
-export const CollectionWrapper = styled(Reorder.Item)`
+export const CollectionWrapper = styled(Reorder.Item)<{ sortingMode: boolean }>`
   padding: 5px;
   display: flex;
   height: 120px;
   margin: 5px;
-  font-size: 50px;
   align-items: center;
   text-align: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-flow: column;
   cursor: pointer;
   border-radius: 20px;
-  background: none;
+  background: ${(props) =>
+    props.sortingMode ? props.theme.colors.primary : 'none'};
   border: none;
-  flex: 0 0 auto;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
     background: ${(props) => props.theme.colors.primary};
@@ -39,4 +38,14 @@ export const Icon = styled.div`
 export const Title = styled(Text)`
   margin-top: 5px;
   font-size: 20px;
+`;
+
+export const ColorTag = styled.div<{ color: string }>`
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  background: ${(props) => props.color};
 `;

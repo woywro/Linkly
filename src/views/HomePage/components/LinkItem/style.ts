@@ -1,11 +1,11 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   hoverEffectBg,
   hoverEffectText,
-} from "../../../../mixins/hoverEffects";
-import { Text } from "../../../../components/Text";
-import breakpoints from "../../../../theme/breakpoints";
-import { motion } from "framer-motion";
+} from '../../../../mixins/hoverEffects';
+import { Text } from '../../../../components/Text';
+import breakpoints from '../../../../theme/breakpoints';
+import { motion } from 'framer-motion';
 
 export const LinkWrapper = styled.div`
   display: grid;
@@ -18,7 +18,7 @@ export const LinkWrapper = styled.div`
   position: relative;
   border-radius: 20px;
   gap: 10px;
-  word-break: break-all;
+  word-break: keep-all;
   &:hover {
     ${hoverEffectBg}
   }

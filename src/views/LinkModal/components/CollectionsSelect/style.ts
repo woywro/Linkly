@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import { Button } from "../../../../components/Button";
-import { Input } from "../../../../components/Input";
-import { Text } from "../../../../components/Text";
+import styled from 'styled-components';
+import { Button } from '../../../../components/Button';
+import { Input } from '../../../../components/Input';
+import { Text } from '../../../../components/Text';
 
 export const StyledForm = styled.form`
   display: flex;
@@ -13,12 +13,13 @@ export const StyledForm = styled.form`
 `;
 
 export const SuggesionsWrapper = styled.ul`
-  border-top: 1px solid gray;
   list-style: none;
   max-height: 100px;
   overflow-y: auto;
   width: 100%;
+  border-radius: 20px;
   position: absolute;
+  box-shadow: ${(props) => props.theme.shadow}
   background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
   top: 100%;
   right: 0;
@@ -28,7 +29,7 @@ export const SelectWrapper = styled.div`
   position: relative;
   background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
   padding: 15px 5px;
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 15px;
   width: 100%;
   &:focus {
@@ -53,7 +54,7 @@ export const ChoosenSuggestion = styled.li`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
+  padding: 10px;
   font-size: 12px;
   background: ${(props) => props.theme.colors.secondary};
   cursor: pointer;
@@ -70,7 +71,7 @@ export const StyledInput = styled.input`
 
 export const Suggestion = styled.li`
   cursor: pointer;
-  padding: 5px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -91,8 +92,7 @@ export const Add = styled.div`
 
 export const AddCollectionButton = styled(Button)`
   position: absolute;
-  top: 0;
   right: 0;
   font-size: 13px;
-  padding: 5px;
+  padding: 7px;
 `;

@@ -1,14 +1,14 @@
-import { signOut, useSession } from "next-auth/react";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import { BiLogOut } from "react-icons/bi";
-import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
-import styled, { useTheme } from "styled-components";
-import { Logo } from "../Logo";
-import { Text } from "../Text";
-import { ThemeSwitcher } from "../ThemeSwitcher";
-import { Item, Links, LogoutBtn, NavBarWrapper, NavItemText } from "./style";
-import { BiUser } from "react-icons/bi";
+import { signOut, useSession } from 'next-auth/react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { BiLogOut } from 'react-icons/bi';
+import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from 'react-icons/ri';
+import styled, { useTheme } from 'styled-components';
+import { Logo } from '../Logo';
+import { Text } from '../Text';
+import { ThemeSwitcher } from '../ThemeSwitcher';
+import { Item, Links, LogoutBtn, NavBarWrapper, NavItemText } from './style';
+import { BiUser } from 'react-icons/bi';
 
 export const NavBar = () => {
   const router = useRouter();
@@ -21,7 +21,7 @@ export const NavBar = () => {
       <Links>
         <Link href={`/addLink`} passHref>
           <Item
-            isActive={router.pathname == "/addLink" ? true : false}
+            isActive={router.pathname == '/addLink' ? true : false}
             whileTap={{ scale: 0.9 }}
           >
             <RiAddCircleLine />
@@ -30,7 +30,7 @@ export const NavBar = () => {
         </Link>
         <Link href="/" passHref>
           <Item
-            isActive={router.pathname == "/" ? true : false}
+            isActive={router.pathname == '/' ? true : false}
             whileTap={{ scale: 0.9 }}
           >
             <RiLayoutGridLine />
@@ -39,7 +39,7 @@ export const NavBar = () => {
         </Link>
         <Link href="/social" passHref>
           <Item
-            isActive={router.pathname == "/social" ? true : false}
+            isActive={router.pathname == '/social' ? true : false}
             whileTap={{ scale: 0.9 }}
           >
             <RiTeamLine />
@@ -50,7 +50,7 @@ export const NavBar = () => {
       <BottomSection>
         <Link href={`/account`} passHref>
           <Item
-            style={{ padding: "5px", borderRadius: "10px" }}
+            style={{ padding: '5px', borderRadius: '10px' }}
             isActive={false}
             whileTap={{ scale: 0.9 }}
           >
@@ -84,7 +84,7 @@ const BottomSection = styled.div`
   padding: 10px;
   padding-bottom: 40px;
   margin-bottom: 10px;
-  border-radius: 30px;
+  border-radius: 20px;
   position: relative;
   background: ${(props) => props.theme.colors.secondaryBg};
 `;

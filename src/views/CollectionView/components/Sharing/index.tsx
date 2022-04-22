@@ -1,16 +1,17 @@
-import axios from "axios";
-import { Formik } from "formik";
-import { useRouter } from "next/router";
-import { useCallback, useEffect, useState } from "react";
-import Scrollbars from "react-custom-scrollbars-2";
-import toast from "react-hot-toast";
-import { useDispatch } from "react-redux";
-import * as Yup from "yup";
-import { EmptyState } from "../../../../components/EmptyState";
-import { updateShareStatus } from "../../../../redux/actions/CollectionActions";
-import { CollectionInterface } from "../../../../types/CollectionInterface";
-import { ShareRequestInterface } from "../../../../types/ShareRequestInterface";
-import { FriendsAutocomplete } from "../FriendsAutocomplete";
+import axios from 'axios';
+import { Formik } from 'formik';
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
+import toast from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import * as Yup from 'yup';
+import { EmptyState } from '../../../../components/EmptyState';
+import { Text } from '../../../../components/Text';
+import { updateCollection } from '../../../../redux/actions/CollectionActions';
+import { CollectionInterface } from '../../../../types/CollectionInterface';
+import { ShareRequestInterface } from '../../../../types/ShareRequestInterface';
+import { FriendsAutocomplete } from '../FriendsAutocomplete';
 import {
   AddButton,
   AddWrapper,
@@ -18,10 +19,11 @@ import {
   InputWrapper,
   SharedEmail,
   SharedList,
+  ShareRequestIndicator,
   SharingWrapper,
   StyledForm,
   StyledInput,
-} from "./style";
+} from './style';
 
 interface Props {
   collection: CollectionInterface;
@@ -51,43 +53,55 @@ export const Sharing = ({ collection }: Props) => {
     }
   }, [collection, router]);
 
-  const handleAdd = useCallback(
-    (email: string) => {
-      axios
-        .post("/api/createShareRequest", {
-          collectionId: router.query.collectionId,
-          email: email,
-        })
-        .then(() => {
-          setSharedList([...sharedList, { email: email, isAccepted: false }]);
-        })
-        .catch((err) => {
-          toast.error(err.response.data);
-        });
-      dispatch(
-        updateShareStatus(collection.id, {
-          email: email,
-          collectionId: collection.id,
-        })
-      );
-    },
-    [router, sharedList]
-  );
+  const handleAdd = (email: string) => {
+    axios
+      .post('/api/createShareRequest', {
+        collectionId: router.query.collectionId,
+        email: email,
+      })
+      .then((res) => {
+        setSharedList([...sharedList, { email: email, isAccepted: false }]);
+        dispatch(updateCollection(res.data.collection));
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+      });
+  };
 
   const handleDelete = (e: string) => {
-    axios.post("/api/deleteShareRequest", {
-      email: e,
-      collectionId: router.query.collectionId,
-    });
-    const listFiltered = sharedList.filter((x) => x.email !== e);
-    setSharedList(listFiltered);
-    dispatch(updateShareStatus(collection.id, listFiltered));
+    axios
+      .post('/api/deleteShareRequest', {
+        email: e,
+        collectionId: router.query.collectionId,
+      })
+      .then((res) => {
+        const listFiltered = sharedList.filter((x) => x.email !== e);
+        setSharedList(listFiltered);
+        dispatch(updateCollection(res.data.collection));
+      });
   };
 
   const handleSearch = (toSearch: string) => {
     setFriends([]);
     axios
-      .get("/api/getFriends", {
+      .get('/api/getFriends', {
+        params: {
+          search: toSearch,
+        },
+      })
+      .then((res) => {
+        const friends: string[] = res.data.result.map(
+          (e: ShareRequestInterface) => e.receiverEmail
+        );
+        let uniqueFriends: string[] = [...new Set(friends)];
+        setFriends(uniqueFriends);
+      });
+  };
+
+  const handleSearch = (toSearch: string) => {
+    setFriends([]);
+    axios
+      .get('/api/getFriends', {
         params: {
           search: toSearch,
         },
@@ -102,8 +116,8 @@ export const Sharing = ({ collection }: Props) => {
   const validationSchema = Yup.object({
     email: Yup.string()
       .email()
-      .min(3, "email is too short!")
-      .required("email is required"),
+      .min(3, 'email is too short!')
+      .required('email is required'),
   });
 
   return (
@@ -111,16 +125,17 @@ export const Sharing = ({ collection }: Props) => {
       <AddWrapper>
         <Formik
           initialValues={{
-            email: "",
+            email: '',
           }}
-          onSubmit={(values) => {
+          onSubmit={(values, { resetForm }) => {
             handleAdd(values.email);
+            resetForm();
           }}
           validationSchema={validationSchema}
         >
           {({ errors, touched, values, setFieldValue }) => (
             <StyledForm
-              autocomplete="off"
+              autoComplete="off"
               onChange={() => {
                 handleSearch(values.email);
               }}
@@ -141,24 +156,20 @@ export const Sharing = ({ collection }: Props) => {
           )}
         </Formik>
       </AddWrapper>
-      <Scrollbars
-        style={{
-          width: "100%",
-          height: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-        }}
-      >
+      <Scrollbars>
         <SharedList>
           {sharedList.length > 0 ? (
             sharedList.map((e) => {
               return (
                 <SharedEmail
                   onClick={() => handleDelete(e.email)}
-                  isAccepted={e.isAccepted}
+                  key={e.email}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
                 >
-                  {e.email}
+                  <ShareRequestIndicator isAccepted={e.isAccepted} />
+                  <Text> {e.email}</Text>
                 </SharedEmail>
               );
             })

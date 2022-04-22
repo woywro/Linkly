@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import breakpoints from "../theme/breakpoints";
+import styled from 'styled-components';
+import { hoverEffectText } from '../mixins/hoverEffects';
+import breakpoints from '../theme/breakpoints';
 export const PageContainer = styled.div`
   display: flex;
   justify-content: space-between;
@@ -41,9 +42,10 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   width: 25%;
   height: 100%;
   border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+  border-top-left-radius: 30px;
   text-align: left;
   padding: 10px;
+  z-index: 1000;
 
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
@@ -55,9 +57,8 @@ export const RightWrapper = styled.div<{ open: boolean }>`
     position: absolute;
     background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    z-index: 102;
-    display: ${({ open }) => (open ? "flex" : "none")};
-    transform: ${({ open }) => (open ? "translateX(0)" : "translate(-100%)")};
+    display: ${({ open }) => (open ? 'flex' : 'none')};
+    transform: ${({ open }) => (open ? 'translateX(0)' : 'translate(-100%)')};
     transition: transform 0.3s ease-in-out;
   }
   @media only screen and ${breakpoints.device.lg} {
@@ -84,7 +85,15 @@ export const Title = styled.h1`
   font-size: 30px;
   padding: 10px;
   opacity: 0.8;
+  word-break: keep-all;
   color: ${(props) => props.theme.colors.primaryText};
+`;
+
+export const PathLink = styled.span`
+  cursor: pointer;
+  &:hover {
+    ${hoverEffectText}
+  }
 `;
 
 export const Divider = styled.div`
@@ -97,7 +106,7 @@ export const Divider = styled.div`
 export const Row = styled.div`
   display: flex;
   width: 100%;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
   flex-flow: row;
 `;

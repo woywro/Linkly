@@ -1,11 +1,11 @@
-import { CollectionInterface } from "../../types/CollectionInterface";
-import { AnyAction } from "redux";
+import { CollectionInterface } from '../../types/CollectionInterface';
+import { AnyAction } from 'redux';
 
 const initialCollections: CollectionInterface[] = [];
 
 export const collections = (state = initialCollections, action: AnyAction) => {
   switch (action.type) {
-    case "UPDATE_COLLECTIONS": {
+    case 'UPDATE_COLLECTIONS': {
       const allCollections: CollectionInterface[] = [
         ...state,
         ...action.payload.collections,
@@ -30,22 +30,8 @@ export const collections = (state = initialCollections, action: AnyAction) => {
       });
       return sorted;
     }
-    case "UPDATE_SHARESTATUS": {
-      const collectionsFiltered: CollectionInterface[] = state.filter(
-        (e) => e.id !== action.payload.collectionId
-      );
-      let collectionModified: CollectionInterface = state.filter(
-        (e) => e.id == action.payload.collectionId
-      )[0];
 
-      collectionModified.shareRequests = action.payload.shareRequests;
-      const updatedCollections: CollectionInterface[] = [
-        collectionModified,
-        ...collectionsFiltered,
-      ];
-      return updatedCollections;
-    }
-    case "UPDATE_COLLECTION": {
+    case 'UPDATE_COLLECTION': {
       const newState: CollectionInterface[] = [...state];
       const collectionsFiltered: CollectionInterface[] = newState.filter(
         (e) => e.id !== action.payload.collection.id
@@ -56,7 +42,7 @@ export const collections = (state = initialCollections, action: AnyAction) => {
       ];
       return updatedCollections;
     }
-    case "SET_COLLECTIONS": {
+    case 'SET_COLLECTIONS': {
       return action.payload.collections;
     }
     default: {

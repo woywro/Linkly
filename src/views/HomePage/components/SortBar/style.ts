@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import breakpoints from "../../../../theme/breakpoints";
+import styled from 'styled-components';
+import breakpoints from '../../../../theme/breakpoints';
 import {
   hoverEffectBg,
   hoverEffectText,
-} from "../../../../mixins/hoverEffects";
-import { motion } from "framer-motion";
-import { Input } from "../../../../components/Input";
+} from '../../../../mixins/hoverEffects';
+import { motion } from 'framer-motion';
+import { Input } from '../../../../components/Input';
 
 export const SortBarWrapper = styled.div`
   display: grid;
@@ -34,7 +34,7 @@ export const SearchContainer = styled.div`
     position: absolute;
     bottom: -5px;
     left: 0;
-    content: "";
+    content: '';
     width: 100%;
     height: 2px;
     background: ${(props) => props.theme.colors.primary};
@@ -63,6 +63,7 @@ export const TextInput = styled(Input)`
   font-size: 16px;
   padding: 0px;
   background: none;
+  border-radius: 0;
 `;
 
 export const Field = styled.div`
@@ -70,7 +71,4 @@ export const Field = styled.div`
   flex-flow: row;
   justify-content: start;
   align-items: center;
-  &:hover {
-    ${hoverEffectText}
-  }
 `;

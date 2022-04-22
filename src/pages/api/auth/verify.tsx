@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import styled, { useTheme } from "styled-components";
-import { Button } from "../../../components/Button";
-import { Text } from "../../../components/Text";
-import breakpoints from "../../../theme/breakpoints";
+import { useRouter } from 'next/router';
+import styled, { useTheme } from 'styled-components';
+import { Button } from '../../../components/Button';
+import { Text } from '../../../components/Text';
+import breakpoints from '../../../theme/breakpoints';
 
 export default function Verify() {
   const router = useRouter();
@@ -10,10 +10,10 @@ export default function Verify() {
 
   return (
     <Wrapper>
-      <Text color={theme.colors.primaryText} size={"big"}>
+      <Text color={theme.colors.primaryText} size={'big'}>
         👏 Congratulations! Check your email inbox!
       </Text>
-      <Button onClick={() => router.push("/")}>Back to login</Button>
+      <Button onClick={() => router.push('/')}>Back to login</Button>
     </Wrapper>
   );
 }
@@ -28,7 +28,7 @@ const Wrapper = styled.div`
   height: 100%;
   padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
-  border-radius: 30px;
+  border-radius: 20px;
   @media only screen and ${breakpoints.device.sm} {
     border-radius: 0px;
     width: 100%;

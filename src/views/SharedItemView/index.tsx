@@ -1,12 +1,13 @@
-import Scrollbars from "react-custom-scrollbars-2";
-import { useTheme } from "styled-components";
-import { EmptyState } from "../../components/EmptyState";
-import { Text } from "../../components/Text";
-import { LinkInterface } from "../../types/LinkInterface";
-import { SharedWithYouInterface } from "../../types/SharedWithYouInterface";
-import { ThemeInterface } from "../../types/ThemeInterface";
-import { SharedLink } from "./components/SharedLink";
-import { List, SharedItemViewWrapper } from "./style";
+import Scrollbars from 'react-custom-scrollbars-2';
+import { useTheme } from 'styled-components';
+import { Button } from '../../components/Button';
+import { EmptyState } from '../../components/EmptyState';
+import { Text } from '../../components/Text';
+import { LinkInterface } from '../../types/LinkInterface';
+import { SharedWithYouInterface } from '../../types/SharedWithYouInterface';
+import { ThemeInterface } from '../../types/ThemeInterface';
+import { SharedLink } from './components/SharedLink';
+import { List, SharedItemViewWrapper } from './style';
 
 interface Props {
   share: SharedWithYouInterface;

@@ -1,6 +1,6 @@
-import { LinkInterface } from "./LinkInterface";
-import { ShareRequestInterface } from "./ShareRequestInterface";
-import { UserInterface } from "./UserInterface";
+import { LinkInterface } from './LinkInterface';
+import { ShareRequestInterface } from './ShareRequestInterface';
+import { UserInterface } from './UserInterface';
 
 export interface CollectionInterface {
   id: string;

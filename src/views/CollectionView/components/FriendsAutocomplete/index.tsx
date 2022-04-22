@@ -1,11 +1,11 @@
-import { useCallback, useEffect, useState } from "react";
-import { Text } from "../../../../components/Text";
-import { SugestionsWrapper, Suggestion } from "./style";
+import { useCallback, useEffect, useState } from 'react';
+import { Text } from '../../../../components/Text';
+import { SugestionsWrapper, Suggestion } from './style';
 
 interface Props {
   friend: string;
   friends: String[];
-  setFieldValue: any;
+  setFieldValue: (arg0: string, arg1: string) => void;
 }
 
 export const FriendsAutocomplete = ({
@@ -18,7 +18,7 @@ export const FriendsAutocomplete = ({
   const handleOnClick = useCallback(
     (friend) => {
       setHide(true);
-      setFieldValue("email", friend);
+      setFieldValue('email', friend);
     },
     [friend, hide]
   );
@@ -32,19 +32,20 @@ export const FriendsAutocomplete = ({
   }, [friend]);
 
   return (
-    hide == false &&
-    friends.length > 0 && (
-      <SugestionsWrapper>
-        {friends.map((friend) => {
-          return (
-            <Suggestion onClick={() => handleOnClick(friend)}>
-              <Text style={{ marginLeft: "4px", wordBreak: "break-all" }}>
-                {friend}
-              </Text>
-            </Suggestion>
-          );
-        })}
-      </SugestionsWrapper>
-    )
+    <>
+      {hide == false && friends.length > 0 && (
+        <SugestionsWrapper>
+          {friends.map((friend) => {
+            return (
+              <Suggestion onClick={() => handleOnClick(friend)}>
+                <Text style={{ marginLeft: '4px', wordBreak: 'break-all' }}>
+                  {friend}
+                </Text>
+              </Suggestion>
+            );
+          })}
+        </SugestionsWrapper>
+      )}
+    </>
   );
 };

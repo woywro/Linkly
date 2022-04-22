@@ -1,7 +1,7 @@
-import breakpoints from "../../theme/breakpoints";
-import styled from "styled-components";
-import { css } from "styled-components";
-import { motion } from "framer-motion";
+import breakpoints from '../../theme/breakpoints';
+import styled from 'styled-components';
+import { css } from 'styled-components';
+import { motion } from 'framer-motion';
 
 export const MobileNavWrapper = styled.div<{ open: boolean }>`
 overflow: hidden;
@@ -12,14 +12,14 @@ align-items: center;
 flex-flow: column;
 background-image:   ${(props) => props.theme.colors.gradient};
 position: fixed;
-transform: ${({ open }) => (open ? "translateX(0)" : "translateX(-100%)")};
+transform: ${({ open }) => (open ? 'translateX(0)' : 'translateX(-100%)')};
 top: 0;
 right: 0;
 height: 100%;
 width: 100%;
 overflow; hidden;
 transition: transform 0.3s ease-in-out;
-z-index: 200;
+z-index: 2000;
   @media only screen and ${breakpoints.device.sm} {
 
   }
@@ -51,7 +51,7 @@ export const MobileNavItem = styled(motion.li)<{ isActive: boolean }>`
       border-radius: 20px;
     `};
   &:hover:after {
-    content: "";
+    content: '';
     position: absolute;
     width: 100%;
     height: 100%;

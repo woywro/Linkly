@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import { Text } from "../../../../components/Text";
-import { hoverEffectBg } from "../../../../mixins/hoverEffects";
+import styled from 'styled-components';
+import { Text } from '../../../../components/Text';
+import { hoverEffectBg } from '../../../../mixins/hoverEffects';
 
 export const StyledCategory = styled.div`
   padding: 5px;

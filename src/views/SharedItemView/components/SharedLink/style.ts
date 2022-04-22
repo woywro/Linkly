@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { Text } from "../../../../components/Text";
+import styled from 'styled-components';
+import { Text } from '../../../../components/Text';
 
 export const SharedLinkWrapper = styled.li`
   display: flex;
@@ -29,5 +29,5 @@ export const Label = styled.div`
 
 export const Name = styled(Text)`
   margin-left: 5px;
-  word-break: break-all;
+  word-break: keep-all;
 `;

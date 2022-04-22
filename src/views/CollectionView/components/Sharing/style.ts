@@ -1,11 +1,12 @@
-import styled from "styled-components";
-import { Button } from "../../../../components/Button";
-import { Input } from "../../../../components/Input";
-import { hoverEffectText } from "../../../../mixins/hoverEffects";
-import breakpoints from "../../../../theme/breakpoints";
-import { Field, Form } from "formik";
-import { Text } from "../../../../components/Text";
-import { InputStyling } from "../../../../components/Input";
+import styled from 'styled-components';
+import { Button } from '../../../../components/Button';
+import { Input } from '../../../../components/Input';
+import { hoverEffectText } from '../../../../mixins/hoverEffects';
+import breakpoints from '../../../../theme/breakpoints';
+import { Field, Form } from 'formik';
+import { Text } from '../../../../components/Text';
+import { InputStyling } from '../../../../components/Input';
+import { motion } from 'framer-motion';
 
 export const AddWrapper = styled.div`
   width: 100%;
@@ -24,7 +25,7 @@ export const SharedList = styled.div`
   padding: 10px;
 `;
 
-export const SharedEmail = styled.div<{ isAccepted: boolean }>`
+export const SharedEmail = styled(motion.div)`
   display: flex;
   justify-content: start;
   align-items: center;
@@ -37,25 +38,25 @@ export const SharedEmail = styled.div<{ isAccepted: boolean }>`
     ${hoverEffectText}
   }
   &::after {
-    content: "X";
+    content: 'X';
     position: absolute;
     right: 20px;
   }
-  &::before {
-    content: "";
-    position: absolute;
-    left: -7px;
-    border-radius: 50%;
-    width: 10px;
-    height: 10px;
-    background: ${(props) => {
-      if (props.isAccepted == true) {
-        return props.theme.colors.green;
-      } else {
-        return props.theme.colors.red;
-      }
-    }};
   }
+`;
+
+export const ShareRequestIndicator = styled.div<{ isAccepted: boolean }>`
+  border-radius: 50%;
+  width: 10px;
+  height: 10px;
+  margin-right: 5px;
+  background: ${(props) => {
+    if (props.isAccepted == true) {
+      return props.theme.colors.green;
+    } else {
+      return props.theme.colors.red;
+    }
+  }};
 `;
 
 export const SharingWrapper = styled.div`
@@ -69,8 +70,8 @@ export const SharingWrapper = styled.div`
 `;
 
 export const AddButton = styled(Button)`
-  padding: 5px;
-  border-radius: 10px;
+  padding: 5px 10px;
+  border-radius: 20px;
 `;
 
 export const StyledForm = styled(Form)`
@@ -78,27 +79,32 @@ export const StyledForm = styled(Form)`
   justify-content: center;
   align-items: center;
   flex-flow: row;
+  background: ${(props) => props.theme.colors.primaryBg};
+  padding: 5px;
+  border-radius: 20px;
   width: 100%;
+  position: relative;
+  margin-bottom: 10px;
 `;
 
 export const InputWrapper = styled.div`
   display: flex;
   flex-flow: column;
   width: 100%;
-  position: relative;
 `;
 
 export const Error = styled(Text)`
   color: ${(props) => props.theme.colors.red};
   font-size: 12px;
-  padding: 5px;
+  padding: 2px;
   position: absolute;
-  top: 100%;
+  bottom: -20px;
 `;
 
 export const StyledInput = styled(Field)`
   ${InputStyling}
   margin: 0;
+  border-radius: 0;
   padding: 10px;
-  background: ${(props) => props.theme.colors.primaryBg};
+  background: none;
 `;

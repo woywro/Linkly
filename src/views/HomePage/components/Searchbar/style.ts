@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import breakpoints from "../../../../theme/breakpoints";
+import { motion } from 'framer-motion';
+import styled from 'styled-components';
+import breakpoints from '../../../../theme/breakpoints';
 
 export const SearchBarWrapper = styled.div`
   padding: 5px;
@@ -11,12 +12,12 @@ export const SearchBarWrapper = styled.div`
   z-index: 60;
   @media only screen and ${breakpoints.device.sm} {
     padding: 0;
-    border-radius: 30px;
+    border-radius: 20px;
     height: 100px;
     width: auto;
     position: relative;
     &:after {
-      content: "";
+      content: '';
       background: ${(props) => props.theme.colors.gradient};
       width: 100%;
       height: 100%;
@@ -27,10 +28,10 @@ export const SearchBarWrapper = styled.div`
   }
 `;
 
-export const StyledSearchBar = styled.div`
+export const StyledSearchBar = styled(motion.div)`
   width: 60%;
   box-shadow: ${(props) => props.theme.shadow};
-  border-radius: 16px;
+  border-radius: 20px;
   display: flex;
   justify-content: center;
   background: ${(props) => props.theme.colors.primaryBgNoTransparent};
@@ -53,9 +54,5 @@ export const Input = styled.input`
   line-height: 21px;
   transition: all 0.3s ease;
   background: none;
-  border-radius: 16px;
-  &:focus {
-    outline: none;
-    transform: scale(1.02);
-  }
+  border-radius: 20px;
 `;
