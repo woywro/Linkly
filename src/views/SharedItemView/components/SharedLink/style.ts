@@ -29,5 +29,5 @@ export const Label = styled.div`
 
 export const Name = styled(Text)`
   margin-left: 5px;
-  word-break: break-all;
+  word-break: keep-all;
 `;

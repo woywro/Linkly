@@ -18,7 +18,7 @@ export const LinkWrapper = styled.div`
   position: relative;
   border-radius: 20px;
   gap: 10px;
-  word-break: break-all;
+  word-break: keep-all;
   &:hover {
     ${hoverEffectBg}
   }
