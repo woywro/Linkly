@@ -36,7 +36,7 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
 
   return (
     <LinkWrapper onClick={() => handleOnClick(item)}>
-      <LinkLabel>
+      <LinkLabel title={item.title}>
         <AiOutlineLink />
         <Name>{item.title}</Name>
       </LinkLabel>

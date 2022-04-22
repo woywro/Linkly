@@ -30,11 +30,13 @@ export const LinkWrapper = styled.div`
   }
 `;
 
-export const LinkLabel = styled.div`
+export const LinkLabel = styled.div<{ title: string }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   color: ${(props) => props.theme.colors.primaryText};
+  word-break: ${(props) =>
+    props.title.indexOf(' ') >= 0 ? 'keep-all' : 'break-word'};
   &:hover {
     ${hoverEffectText}
   }

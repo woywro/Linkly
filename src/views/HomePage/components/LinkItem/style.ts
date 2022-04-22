@@ -31,14 +31,15 @@ export const LinkWrapper = styled.div`
   }
 `;
 
-export const LinkLabel = styled.div`
+export const LinkLabel = styled.div<{ title: string }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
   height: 100%;
   flex-shrink: 5;
-  word-break: break-word;
+  word-break: ${(props) =>
+    props.title.indexOf(' ') >= 0 ? 'keep-all' : 'break-word'};
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
     ${hoverEffectText}
