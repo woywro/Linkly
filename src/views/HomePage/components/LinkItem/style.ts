@@ -11,7 +11,7 @@ export const LinkWrapper = styled.div`
   display: grid;
   justify-content: start;
   align-items: center;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
+  grid-template-columns: 3fr 2fr 2fr 1fr;
   width: 100%;
   padding: 10px;
   cursor: pointer;
@@ -38,6 +38,7 @@ export const LinkLabel = styled.div`
   width: 100%;
   height: 100%;
   flex-shrink: 5;
+  word-break: break-word;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {
     ${hoverEffectText}
@@ -50,9 +51,7 @@ export const Name = styled(Text)`
   color: ${(props) => props.theme.colors.primaryText};
 `;
 
-export const FieldText = styled(Text)`
-  word-break: break-word;
-`;
+export const FieldText = styled(Text)``;
 
 export const LinkMenuButton = styled.button`
   background: none;

@@ -11,7 +11,7 @@ export const SortBarWrapper = styled.div`
   display: grid;
   justify-content: start;
   align-items: center;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
+  grid-template-columns: 3fr 2fr 2fr 1fr;
   width: 100%;
   padding: 5px;
   cursor: pointer;

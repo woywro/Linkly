@@ -46,7 +46,7 @@ export const CollectionLinkItem = ({ item, setLinks, links }: Props) => {
             {item.owner?.email}
           </FieldText>
           <FieldText color={theme.colors.secondaryText}>
-            {moment(parseInt(item.modificationTimestamp)).format('lll')}
+            {moment(parseInt(item.modificationTimestamp)).calendar()}
           </FieldText>
         </>
       )}
