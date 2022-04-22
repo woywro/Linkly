@@ -1,4 +1,4 @@
-![Mockup](https://github.com/woywro/Linkly/blob/docs/docs/CollectionView/img/screenshot.png)
+![Mockup](https://github.com/woywro/Linkly/blob/main/docs/CollectionView/img/screenshot.png)
      <ol>
   <li><b>Current location</b><br/>Click on <ins>collections</ins> to go back to homescreen.</li>
   <li><b>Tag switcher</b><br/>Use it to switch tags. E.g. if you have many programming related links, instead of putting all of them in <ins>Programming</ins> collection you can split them to smaller collections and tag with one color.</li>
