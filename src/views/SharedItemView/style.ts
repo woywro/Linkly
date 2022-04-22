@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const List = styled.ul`
   list-style: none;
@@ -14,7 +14,7 @@ export const List = styled.ul`
 
 export const SharedItemViewWrapper = styled.div`
   max-height: 300px;
-  width: 100%;
+  width: auto;
   display: flex;
   justify-content: flex-start;
   flex-flow: column;

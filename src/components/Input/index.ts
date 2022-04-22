@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { css } from 'styled-components';
+import breakpoints from '../../theme/breakpoints';
 
 export const Input = styled.input`
   border: none;
@@ -22,5 +23,8 @@ export const InputStyling = css`
   width: 100%;
   &:focus {
     outline: none;
+  }
+  @media only screen and ${breakpoints.device.sm} {
+    padding: 20px;
   }
 `;

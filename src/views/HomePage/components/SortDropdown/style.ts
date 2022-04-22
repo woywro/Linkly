@@ -30,6 +30,6 @@ export const Field = styled.div`
   justify-content: space-between;
   width: 100%;
   align-items: center;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
 `;

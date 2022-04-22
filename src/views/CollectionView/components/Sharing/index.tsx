@@ -1,26 +1,25 @@
 import axios from 'axios';
 import { Formik } from 'formik';
 import { useRouter } from 'next/router';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import Scrollbars from 'react-custom-scrollbars-2';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 import { EmptyState } from '../../../../components/EmptyState';
+import { Text } from '../../../../components/Text';
 import { updateCollection } from '../../../../redux/actions/CollectionActions';
 import { CollectionInterface } from '../../../../types/CollectionInterface';
 import { ShareRequestInterface } from '../../../../types/ShareRequestInterface';
-import { Row } from '../../../style';
-import { Text } from '../../../../components/Text';
 import { FriendsAutocomplete } from '../FriendsAutocomplete';
 import {
   AddButton,
   AddWrapper,
-  ShareRequestIndicator,
   Error,
   InputWrapper,
   SharedEmail,
   SharedList,
+  ShareRequestIndicator,
   SharingWrapper,
   StyledForm,
   StyledInput,
@@ -54,23 +53,20 @@ export const Sharing = ({ collection }: Props) => {
     }
   }, [collection, router]);
 
-  const handleAdd = useCallback(
-    (email: string) => {
-      axios
-        .post('/api/createShareRequest', {
-          collectionId: router.query.collectionId,
-          email: email,
-        })
-        .then((res) => {
-          setSharedList([...sharedList, { email: email, isAccepted: false }]);
-          dispatch(updateCollection(res.data.collection));
-        })
-        .catch((err) => {
-          toast.error(err.response.data);
-        });
-    },
-    [router, sharedList]
-  );
+  const handleAdd = (email: string) => {
+    axios
+      .post('/api/createShareRequest', {
+        collectionId: router.query.collectionId,
+        email: email,
+      })
+      .then((res) => {
+        setSharedList([...sharedList, { email: email, isAccepted: false }]);
+        dispatch(updateCollection(res.data.collection));
+      })
+      .catch((err) => {
+        toast.error(err.response.data);
+      });
+  };
 
   const handleDelete = (e: string) => {
     axios
@@ -81,10 +77,6 @@ export const Sharing = ({ collection }: Props) => {
       .then((res) => {
         const listFiltered = sharedList.filter((x) => x.email !== e);
         setSharedList(listFiltered);
-        // const updatedCollection: CollectionInterface = {
-        //   ...collection,
-        //   shareRequests: res.data.collection
-        // };
         dispatch(updateCollection(res.data.collection));
       });
   };
@@ -98,8 +90,10 @@ export const Sharing = ({ collection }: Props) => {
         },
       })
       .then((res) => {
-        const friends = res.data.result.map((e) => e.receiverEmail);
-        let uniqueFriends = [...new Set(friends)];
+        const friends: string[] = res.data.result.map(
+          (e: ShareRequestInterface) => e.receiverEmail
+        );
+        let uniqueFriends: string[] = [...new Set(friends)];
         setFriends(uniqueFriends);
       });
   };
@@ -147,15 +141,7 @@ export const Sharing = ({ collection }: Props) => {
           )}
         </Formik>
       </AddWrapper>
-      <Scrollbars
-        style={{
-          width: '100%',
-          height: '100%',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
+      <Scrollbars>
         <SharedList>
           {sharedList.length > 0 ? (
             sharedList.map((e) => {

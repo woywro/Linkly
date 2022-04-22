@@ -1,6 +1,7 @@
 import axios from 'axios';
 import moment from 'moment';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
 import { RiFolder5Fill } from 'react-icons/ri';
 import { TiTick, TiTimes } from 'react-icons/ti';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,8 +10,13 @@ import { Button } from '../../../../components/Button';
 import { EmptyState } from '../../../../components/EmptyState';
 import { LoadingSpinner } from '../../../../components/LoadingSpinner';
 import { Text } from '../../../../components/Text';
+import useLoading from '../../../../hooks/useLoading';
 import { updateSharedWithYou } from '../../../../redux/actions/SharedActions';
-import { deleteShareRequest } from '../../../../redux/actions/ShareRequestsActions';
+import {
+  deleteShareRequest,
+  getShareRequests,
+} from '../../../../redux/actions/ShareRequestsActions';
+import { RootState } from '../../../../redux/store';
 import { ShareRequestInterface } from '../../../../types/ShareRequestInterface';
 import { ThemeInterface } from '../../../../types/ThemeInterface';
 import {
@@ -20,10 +26,6 @@ import {
   StyledCategory,
   Title,
 } from './style';
-import { getShareRequests } from '../../../../redux/actions/ShareRequestsActions';
-import useLoading from '../../../../hooks/useLoading';
-import { RootState } from '../../../../redux/store';
-import Scrollbars from 'react-custom-scrollbars-2';
 
 export const ShareRequests = () => {
   const theme = useTheme() as ThemeInterface;

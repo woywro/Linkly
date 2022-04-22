@@ -7,7 +7,7 @@ import { Text } from '../Text';
 import { DropdownItemList, DropdownMenuWrapper, Label } from './style';
 
 interface Props {
-  children: JSX.Element[];
+  children: JSX.Element | JSX.Element[];
   icon?: boolean;
   title?: string;
   fullWidth?: boolean;

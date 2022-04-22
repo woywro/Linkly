@@ -21,7 +21,6 @@ import { Button } from '../../../../components/Button';
 
 export const CollectionList = () => {
   const collections = useSelector((state: RootState) => state.collections);
-
   const request = useSelector((state: RootState) => state.requestsLoading);
   const loading = useLoading(request, 'getCollections');
   const [list, setList] = useState<CollectionInterface[]>(collections);
@@ -29,7 +28,7 @@ export const CollectionList = () => {
     'collectionsOrder',
     ''
   );
-  const [sortingMode, setSortingMode] = useState(false);
+  const [sortingMode, setSortingMode] = useState<boolean>(false);
 
   useEffect(() => {
     if (collectionsOrder == '') {

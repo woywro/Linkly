@@ -25,7 +25,7 @@ export const ModalWrapper = styled(motion.div)`
   z-index: 1000;
   border-radius: 20px;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-flow: column;
   width: auto;
@@ -35,11 +35,13 @@ export const ModalWrapper = styled(motion.div)`
     width: 95%;
     height: auto;
     padding: 20px;
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
   @media only screen and ${breakpoints.device.lg} {
-    width: 95%;
     height: auto;
-    padding: 20px;
+    padding: 40px;
+    min-width: 300px;
   }
 `;
 

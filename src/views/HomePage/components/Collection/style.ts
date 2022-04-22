@@ -39,3 +39,13 @@ export const Title = styled(Text)`
   margin-top: 5px;
   font-size: 20px;
 `;
+
+export const ColorTag = styled.div<{ color: string }>`
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  background: ${(props) => props.color};
+`;

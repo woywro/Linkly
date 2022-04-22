@@ -1,16 +1,11 @@
+import moment from 'moment';
 import { useRouter } from 'next/router';
 import { RiFolder5Fill } from 'react-icons/ri';
-import { useDispatch } from 'react-redux';
 import { useTheme } from 'styled-components';
 import { Text } from '../../../../components/Text';
-import { Label, Name, FeedItemWrapper, Row, Timestamp } from './style';
-import moment from 'moment';
 import { SharedWithYouInterface } from '../../../../types/SharedWithYouInterface';
-import { CollectionInterface } from '../../../../types/CollectionInterface';
-import { UserInterface } from '../../../../types/UserInterface';
 import { ThemeInterface } from '../../../../types/ThemeInterface';
-import { useEffect } from 'react';
-import { Button } from '../../../../components/Button';
+import { FeedItemWrapper, Label, Name, Timestamp } from './style';
 
 interface Props {
   sharedItem: SharedWithYouInterface;

@@ -9,7 +9,7 @@ import { LinkList } from './components/LinkList';
 import { SearchBar } from './components/Searchbar';
 
 export const HomePage = () => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
 
   return (
     <PageContainer>

@@ -5,6 +5,7 @@ import {
 } from '../../../../mixins/hoverEffects';
 import { Text } from '../../../../components/Text';
 import breakpoints from '../../../../theme/breakpoints';
+import { motion } from 'framer-motion';
 
 export const LinkWrapper = styled.div`
   display: grid;
@@ -65,7 +66,7 @@ export const LinkMenuButton = styled.button`
   color: ${(props) => props.theme.colors.secondaryText};
 `;
 
-export const DropDownButton = styled.button`
+export const DropDownButton = styled(motion.button)`
   padding: 10px;
   width: 100%;
   border: none;

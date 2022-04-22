@@ -92,8 +92,7 @@ export const Add = styled.div`
 
 export const AddCollectionButton = styled(Button)`
   position: absolute;
-  top: 0;
   right: 0;
   font-size: 13px;
-  padding: 5px;
+  padding: 7px;
 `;

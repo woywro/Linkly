@@ -33,9 +33,6 @@ export const CollectionView = ({ collectionFetched }: Props) => {
 
   useEffect(() => {
     setLinks(collectionFetched.links);
-  }, [collectionFetched]);
-
-  useEffect(() => {
     setCollection(collectionFetched);
   }, [collectionFetched]);
 

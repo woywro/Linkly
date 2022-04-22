@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import { RiFolder5Fill } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from 'styled-components';
@@ -8,10 +9,8 @@ import { deleteCollection } from '../../../../redux/actions/CollectionActions';
 import { RootState } from '../../../../redux/store';
 import { CollectionInterface } from '../../../../types/CollectionInterface';
 import { ThemeInterface } from '../../../../types/ThemeInterface';
-import { Name, CollectionInfoWrapper, Icon, ColorTag } from './style';
-import moment from 'moment';
-import { useCallback } from 'react';
 import { ColorTagSwitcher } from '../ColorTagSwitcher';
+import { CollectionInfoWrapper, ColorTag, Icon, Name } from './style';
 
 interface Props {
   collection: CollectionInterface;
@@ -24,10 +23,10 @@ export const CollectionInfo = ({ collection, setCollection }: Props) => {
   const dispatch = useDispatch();
   const collections = useSelector((state: RootState) => state.collections);
 
-  const handleDeleteCategory = useCallback(() => {
+  const handleDeleteCategory = () => {
     dispatch(deleteCollection(collections, collection.id));
     router.push('/');
-  }, [collections, collection]);
+  };
 
   return (
     <CollectionInfoWrapper>

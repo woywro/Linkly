@@ -42,9 +42,10 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   width: 25%;
   height: 100%;
   border-top-right-radius: 30px;
-  border-bottom-right-radius: 30px;
+  border-top-left-radius: 30px;
   text-align: left;
   padding: 10px;
+  z-index: 1000;
 
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
@@ -56,7 +57,6 @@ export const RightWrapper = styled.div<{ open: boolean }>`
     position: absolute;
     background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    z-index: 102;
     display: ${({ open }) => (open ? 'flex' : 'none')};
     transform: ${({ open }) => (open ? 'translateX(0)' : 'translate(-100%)')};
     transition: transform 0.3s ease-in-out;

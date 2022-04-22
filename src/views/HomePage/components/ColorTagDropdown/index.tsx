@@ -1,16 +1,15 @@
-import { useEffect, useMemo, useState } from 'react';
-import { DropdownMenu } from '../../../../components/DropdownMenu';
-import useMediaQuery from '../../../../hooks/useMediaQuery';
-import styled, { useTheme } from 'styled-components';
-import { motion } from 'framer-motion';
-import { colorTags } from '../../../../constants/colorTags';
-import { Row } from '../../../style';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useTheme } from 'styled-components';
+import { DropdownMenu } from '../../../../components/DropdownMenu';
+import { colorTags } from '../../../../constants/colorTags';
+import useMediaQuery from '../../../../hooks/useMediaQuery';
 import { RootState } from '../../../../redux/store';
-import { setCollections } from '../../../../redux/actions/CollectionActions';
+import breakpoints from '../../../../theme/breakpoints';
 import { CollectionInterface } from '../../../../types/CollectionInterface';
-import { theme1 } from '../../../../theme/theme';
 import { ThemeInterface } from '../../../../types/ThemeInterface';
+import { Row } from '../../../style';
+import { ColorTag } from './style';
 
 interface Props {
   setList: (arg0: CollectionInterface[]) => void;
@@ -18,7 +17,7 @@ interface Props {
 }
 
 export const ColorTagDropdown = ({ setList, list }: Props) => {
-  const mediaQuerySm = useMediaQuery('sm');
+  const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   const collections = useSelector((state: RootState) => state.collections);
   const dispatch = useDispatch();
   const theme = useTheme() as ThemeInterface;
@@ -75,17 +74,3 @@ export const ColorTagDropdown = ({ setList, list }: Props) => {
     </DropdownMenu>
   );
 };
-
-const ColorTag = styled.div<{ color: string }>`
-  padding: 10px;
-  width: 20px;
-  height: 20px;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2px;
-  background: ${(props) => props.color};
-  cursor: pointer;
-  border-radius: 20px;
-`;

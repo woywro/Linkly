@@ -1,11 +1,10 @@
 import axios from 'axios';
-import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useDispatch } from 'react-redux';
-import styled from 'styled-components';
+import { colorTags } from '../../../../constants/colorTags';
 import { updateCollection } from '../../../../redux/actions/CollectionActions';
 import { CollectionInterface } from '../../../../types/CollectionInterface';
-import { colorTags } from '../../../../constants/colorTags';
+import { ColorSwitcherWrapper, ColorTag } from './style';
 
 interface Props {
   setCollection: (arg0: CollectionInterface) => void;
@@ -40,24 +39,3 @@ export const ColorTagSwitcher = ({ setCollection }: Props) => {
     </ColorSwitcherWrapper>
   );
 };
-
-const ColorSwitcherWrapper = styled.div<{ isVisible?: boolean }>`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-flow: row;
-  align-items: center;
-  border-radius: 20px;
-  padding: 5px;
-`;
-
-const ColorTag = styled(motion.button)<{ background: string }>`
-  padding: 0;
-  width: 15px;
-  height: 15px;
-  border-radius: 50%;
-  border: none;
-  margin: 5px;
-  background: ${(props) => props.background};
-  cursor: pointer;
-`;

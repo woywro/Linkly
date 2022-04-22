@@ -1,26 +1,25 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import { AiOutlineSearch } from "react-icons/ai";
-import { BsChevronDown, BsChevronUp, BsXLg } from "react-icons/bs";
-import { useDispatch } from "react-redux";
-import { useTheme } from "styled-components";
-import { Text } from "../../../../components/Text";
-import { setLinks, sortLinks } from "../../../../redux/actions/LinkActions";
-import { ThemeInterface } from "../../../../types/ThemeInterface";
+import axios from 'axios';
+import { useState } from 'react';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { BsChevronDown, BsChevronUp, BsXLg } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { useTheme } from 'styled-components';
+import { Text } from '../../../../components/Text';
+import { setLinks, sortLinks } from '../../../../redux/actions/LinkActions';
+import { ThemeInterface } from '../../../../types/ThemeInterface';
 import {
   Field,
   IconButton,
   SearchContainer,
   SortBarWrapper,
   TextInput,
-} from "./style";
+} from './style';
 
 export const SortBar = () => {
   const [sortByName, setSortByName] = useState(false);
   const [sortByOwner, setSortByOwner] = useState(false);
   const [sortByModification, setSortByModification] = useState(false);
   const [searchMode, setSearchMode] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
   const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
 
@@ -28,27 +27,27 @@ export const SortBar = () => {
     resetSorting();
     setSortByName(!sortByName);
     if (sortByName == false) {
-      dispatch(sortLinks("asc"));
+      dispatch(sortLinks('asc'));
     } else {
-      dispatch(sortLinks("desc"));
+      dispatch(sortLinks('desc'));
     }
   };
   const handleSortByOwner = () => {
     resetSorting();
     setSortByOwner(!sortByOwner);
     if (sortByName == true) {
-      dispatch(sortLinks("ownerAsc"));
+      dispatch(sortLinks('ownerAsc'));
     } else {
-      dispatch(sortLinks("ownerDesc"));
+      dispatch(sortLinks('ownerDesc'));
     }
   };
   const handleSortByModification = () => {
     resetSorting();
     setSortByModification(!sortByModification);
     if (sortByModification == true) {
-      dispatch(sortLinks("modifiedAsc"));
+      dispatch(sortLinks('modifiedAsc'));
     } else {
-      dispatch(sortLinks("modifiedDesc"));
+      dispatch(sortLinks('modifiedDesc'));
     }
   };
 
@@ -58,9 +57,9 @@ export const SortBar = () => {
     setSortByOwner(false);
   };
 
-  const handleSearchByName = (searchValue) => {
+  const handleSearchByName = (searchValue: string) => {
     axios
-      .get("/api/searchLinksByName", { params: { search: searchValue } })
+      .get('/api/searchLinksByName', { params: { search: searchValue } })
       .then((res) => {
         dispatch(setLinks(res.data.link));
       });
@@ -68,7 +67,6 @@ export const SortBar = () => {
 
   const handleStopSearch = () => {
     setSearchMode(false);
-    setSearchValue("");
   };
 
   return (

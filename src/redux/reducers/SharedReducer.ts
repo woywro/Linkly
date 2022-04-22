@@ -1,5 +1,5 @@
-import { CollectionInterface } from "../../types/CollectionInterface";
-import { AnyAction } from "redux";
+import { CollectionInterface } from '../../types/CollectionInterface';
+import { AnyAction } from 'redux';
 
 const initialCollections: CollectionInterface[] = [];
 
@@ -8,11 +8,11 @@ export const sharedWithYou = (
   action: AnyAction
 ) => {
   switch (action.type) {
-    case "SET_SHAREDWITHYOU": {
+    case 'SET_SHAREDWITHYOU': {
       return action.payload.shares;
     }
-    case "UPDATE_SHAREDWITHYOU": {
-      return [...state, action.payload.share];
+    case 'UPDATE_SHAREDWITHYOU': {
+      return [action.payload.share, ...state];
     }
     default: {
       return state;
