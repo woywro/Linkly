@@ -98,21 +98,6 @@ export const Sharing = ({ collection }: Props) => {
       });
   };
 
-  const handleSearch = (toSearch: string) => {
-    setFriends([]);
-    axios
-      .get('/api/getFriends', {
-        params: {
-          search: toSearch,
-        },
-      })
-      .then((res) => {
-        const friends = res.data.result.map((e) => e.receiverEmail);
-        let uniqueFriends = [...new Set(friends)];
-        setFriends(uniqueFriends);
-      });
-  };
-
   const validationSchema = Yup.object({
     email: Yup.string()
       .email()

@@ -36,11 +36,3 @@ export const ListReorderButton = styled(Button)<{ sortingMode: boolean }>`
     display: none;
   }
 `;
-export const ListReorderButton = styled(Button)<{ sortingMode: boolean }>`
-  border-radius: 10px;
-  background: ${(props) => !props.sortingMode && 'none'};
-  color: ${(props) => props.theme.colors.primaryText};
-  @media only screen and ${breakpoints.device.sm} {
-    display: none;
-  }
-`;

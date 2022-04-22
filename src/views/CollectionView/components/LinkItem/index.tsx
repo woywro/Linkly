@@ -31,30 +31,6 @@ export const LinkItem = ({ item }: Props) => {
   const dispatch = useDispatch();
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
 
-<<<<<<< HEAD
-  const handleOnClick = useCallback(
-    async (item: LinkInterface) => {
-      dispatch(updateHistory(item));
-      await axios.post("/api/addHistory", {
-        linkId: item.id,
-      });
-<<<<<<< HEAD:src/views/CollectionView/components/LinkItem/index.tsx
-      window.open(item.url?, "_blank")
-=======
-      window.open(item.url, "_blank");
->>>>>>> development:src/views/HomePage/components/LinkItem/index.tsx
-    },
-    [item]
-  );
-
-  const handleDeleteLink = useCallback(async (e, item) => {
-    e.stopPropagation();
-    dispatch(deleteLink(item));
-    await axios.post("/api/deleteLink", {
-      id: item.id,
-    });
-  }, []);
-=======
   const handleOnClick = async (item: LinkInterface) => {
     dispatch(updateHistory(item));
     await axios.post('/api/addHistory', {
@@ -70,7 +46,6 @@ export const LinkItem = ({ item }: Props) => {
       id: item.id,
     });
   };
->>>>>>> development
 
   const handleEditLink = () => {
     router.push({
@@ -88,13 +63,6 @@ export const LinkItem = ({ item }: Props) => {
       {!mediaQuerySm && (
         <>
           <Text color={theme.colors.secondaryText}>{item.owner?.email}</Text>
-          <Text color={theme.colors.secondaryText}>
-<<<<<<< HEAD
-            {moment(parseInt(item.modificationTimestamp)).format("lll")}
-=======
-            {moment(parseInt(item.modificationTimestamp)).format('lll')}
->>>>>>> development
-          </Text>
         </>
       )}
       <LinkDropdownWrapper>
