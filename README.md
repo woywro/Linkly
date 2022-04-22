@@ -66,6 +66,9 @@ If you don't want to authenticate with google/github you can use your email for 
    ```sh
    npm run dev
    ```
+   
+## Docs
+   <a href="docs"><strong>Explore the docs »</strong></a>
 
 ## License
 
