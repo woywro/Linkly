@@ -110,7 +110,7 @@ export const CollectionsSelect = ({
 
   return (
     <SelectWrapper>
-      <StyledForm onSubmit={formik.handleSubmit}>
+      <StyledForm onSubmit={formik.handleSubmit} autoComplete="off">
         <Input
           type="text"
           onKeyUp={onChange}

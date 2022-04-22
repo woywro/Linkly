@@ -118,14 +118,15 @@ export const Sharing = ({ collection }: Props) => {
           initialValues={{
             email: '',
           }}
-          onSubmit={(values) => {
+          onSubmit={(values, { resetForm }) => {
             handleAdd(values.email);
+            resetForm();
           }}
           validationSchema={validationSchema}
         >
           {({ errors, touched, values, setFieldValue }) => (
             <StyledForm
-              autocomplete="off"
+              autoComplete="off"
               onChange={() => {
                 handleSearch(values.email);
               }}

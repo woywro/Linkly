@@ -12,11 +12,13 @@ import {
   RightWrapper,
   Title,
   TitleWrapper,
+  PathLink,
 } from '../style';
 import { CollectionInfo } from './components/CollectionInfo';
 import { Sharing } from './components/Sharing';
 import { EmptyState } from '../../components/EmptyState';
 import { CollectionInterface } from '../../types/CollectionInterface';
+import { useRouter } from 'next/router';
 
 interface Props {
   collectionFetched: CollectionInterface;
@@ -37,11 +39,16 @@ export const CollectionView = ({ collectionFetched }: Props) => {
     setCollection(collectionFetched);
   }, [collectionFetched]);
 
+  const router = useRouter();
+
   return (
     <PageContainer>
       <LeftWrapper>
         <TitleWrapper>
-          <Title>{`categories/${collection?.value}`}</Title>
+          <Title>
+            <PathLink onClick={() => router.push('/')}>Collections</PathLink>/
+            {collection?.value}
+          </Title>
         </TitleWrapper>
         <Scrollbars
           style={{

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { hoverEffectText } from '../mixins/hoverEffects';
 import breakpoints from '../theme/breakpoints';
 export const PageContainer = styled.div`
   display: flex;
@@ -86,6 +87,13 @@ export const Title = styled.h1`
   opacity: 0.8;
   word-break: break-all;
   color: ${(props) => props.theme.colors.primaryText};
+`;
+
+export const PathLink = styled.span`
+  cursor: pointer;
+  &:hover {
+    ${hoverEffectText}
+  }
 `;
 
 export const Divider = styled.div`
