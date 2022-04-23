@@ -19,6 +19,7 @@ import { Sharing } from './components/Sharing';
 import { EmptyState } from '../../components/EmptyState';
 import { CollectionInterface } from '../../types/CollectionInterface';
 import { useRouter } from 'next/router';
+import { LinkItem } from '../../components/LinkItem';
 
 interface Props {
   collectionFetched: CollectionInterface;
@@ -63,11 +64,7 @@ export const CollectionView = ({ collectionFetched }: Props) => {
               ) : (
                 links?.map((link: LinkInterface) => {
                   return (
-                    <CollectionLinkItem
-                      item={link}
-                      setLinks={setLinks}
-                      links={links}
-                    />
+                    <LinkItem item={link} setLinks={setLinks} links={links} />
                   );
                 })
               )}

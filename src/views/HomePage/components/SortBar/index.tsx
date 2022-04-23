@@ -5,7 +5,9 @@ import { BsChevronDown, BsChevronUp, BsXLg } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { useTheme } from 'styled-components';
 import { Text } from '../../../../components/Text';
+import useMediaQuery from '../../../../hooks/useMediaQuery';
 import { setLinks, sortLinks } from '../../../../redux/actions/LinkActions';
+import breakpoints from '../../../../theme/breakpoints';
 import { ThemeInterface } from '../../../../types/ThemeInterface';
 import {
   Field,
@@ -22,6 +24,7 @@ export const SortBar = () => {
   const [searchMode, setSearchMode] = useState(false);
   const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
+  const mediaQueryLg = useMediaQuery(breakpoints.device.lg);
 
   const handleSortByName = () => {
     resetSorting();
@@ -106,14 +109,16 @@ export const SortBar = () => {
           </SearchContainer>
         )}
       </Field>
-      <Field>
-        <Text bold color={theme.colors.primaryText}>
-          OWNER
-        </Text>
-        <IconButton onClick={handleSortByOwner} whileTap={{ scale: 0.95 }}>
-          {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
-        </IconButton>
-      </Field>
+      {!mediaQueryLg && (
+        <Field>
+          <Text bold color={theme.colors.primaryText}>
+            OWNER
+          </Text>
+          <IconButton onClick={handleSortByOwner} whileTap={{ scale: 0.95 }}>
+            {sortByOwner == true ? <BsChevronDown /> : <BsChevronUp />}
+          </IconButton>
+        </Field>
+      )}
       <Field>
         <Text bold color={theme.colors.primaryText}>
           LAST MODIFIED

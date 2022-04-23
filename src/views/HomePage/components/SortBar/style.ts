@@ -21,6 +21,7 @@ export const SortBarWrapper = styled.div`
   }
   @media only screen and ${breakpoints.device.lg} {
     gap: 20px;
+    grid-template-columns: 3fr 2fr 1fr;
   }
 `;
 

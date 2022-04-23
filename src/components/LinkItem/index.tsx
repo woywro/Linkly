@@ -4,22 +4,28 @@ import { useCallback } from 'react';
 import { AiOutlineLink } from 'react-icons/ai';
 import { useDispatch } from 'react-redux';
 import { useTheme } from 'styled-components';
-import useMediaQuery from '../../../../hooks/useMediaQuery';
-import { updateHistory } from '../../../../redux/actions/HistoryActions';
-import breakpoints from '../../../../theme/breakpoints';
-import { LinkInterface } from '../../../../types/LinkInterface';
-import { ThemeInterface } from '../../../../types/ThemeInterface';
-import { HomeLinkDropdown } from '../HomeLinkDropdown';
+import { ThemeInterface } from '../../types/ThemeInterface';
+import { HomeLinkDropdown } from '../../views/HomePage/components/HomeLinkDropdown';
+import { LinkInterface } from '../../types/LinkInterface';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import { updateHistory } from '../../redux/actions/HistoryActions';
+import breakpoints from '../../theme/breakpoints';
 import { FieldText, LinkLabel, LinkWrapper, Name } from './style';
+import { CollectionLinkDropdown } from '../../views/CollectionView/components/CollcetionLinkDropdown';
+import { Router, useRouter } from 'next/router';
 
 interface Props {
   item: LinkInterface;
+  setLinks?: (arg0: LinkInterface[] | undefined) => void;
+  links?: LinkInterface[];
 }
 
-export const LinkItem = ({ item }: Props) => {
+export const LinkItem = ({ item, setLinks, links }: Props) => {
+  const router = useRouter();
   const theme = useTheme() as ThemeInterface;
   const dispatch = useDispatch();
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
+  const mediaQueryLg = useMediaQuery(breakpoints.device.lg);
 
   const handleOnClick = useCallback(
     async (item: LinkInterface) => {
@@ -40,15 +46,21 @@ export const LinkItem = ({ item }: Props) => {
       </LinkLabel>
       {!mediaQuerySm && (
         <>
-          <FieldText color={theme.colors.secondaryText}>
-            {item.owner?.email}
-          </FieldText>
+          {!mediaQueryLg && (
+            <FieldText color={theme.colors.secondaryText}>
+              {item.owner?.email}
+            </FieldText>
+          )}
           <FieldText color={theme.colors.secondaryText}>
             {moment(parseInt(item.modificationTimestamp)).calendar()}
           </FieldText>
         </>
       )}
-      <HomeLinkDropdown item={item} />
+      {router.pathname === '/' ? (
+        <HomeLinkDropdown item={item} />
+      ) : (
+        <CollectionLinkDropdown item={item} setLinks={setLinks} links={links} />
+      )}
     </LinkWrapper>
   );
 };
