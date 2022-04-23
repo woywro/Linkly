@@ -73,21 +73,19 @@ export const CollectionView = ({ collectionFetched }: Props) => {
         </Scrollbars>
       </LeftWrapper>
       <RightWrapper open={open}>
-        <Scrollbars>
-          {collection !== undefined && (
-            <>
-              <CloseWrapperButton onClick={() => setOpen(false)} />
-              <Title>Info</Title>
-              <CollectionInfo
-                collection={collection}
-                setCollection={setCollection}
-              />
-              <Divider />
-              <Title>Sharing</Title>
-              <Sharing collection={collection} />
-            </>
-          )}
-        </Scrollbars>
+        {collection !== undefined && (
+          <Scrollbars>
+            <CloseWrapperButton onClick={() => setOpen(false)} />
+            <Title>Info</Title>
+            <CollectionInfo
+              collection={collection}
+              setCollection={setCollection}
+            />
+            <Divider />
+            <Title>Sharing</Title>
+            <Sharing collection={collection} />
+          </Scrollbars>
+        )}
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>

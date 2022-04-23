@@ -9,7 +9,7 @@ export const FeedWrapper = styled.div`
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(auto-fill, 150px);
   justify-content: start;
-  gap: 15px;
+  gap: 5px;
   align-items: start;
   @media only screen and ${breakpoints.device.sm} {
     grid-template-columns: 1fr;

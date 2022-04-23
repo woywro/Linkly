@@ -19,15 +19,17 @@ export const AddWrapper = styled.div`
 
 export const SharedList = styled.div`
   width: 100%;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-flow: column;
+  justify-content: flex-start;
+  aling-items: center;
   padding: 10px;
 `;
 
 export const SharedEmail = styled(motion.div)`
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   padding: 10px;
@@ -65,8 +67,8 @@ export const SharingWrapper = styled.div`
   padding: 5px;
   display: flex;
   flex-flow: column;
-  justify-content: center;
-  align-items: flex-start;
+  justify-content: flex-start;
+  align-items: start;
 `;
 
 export const AddButton = styled(Button)`

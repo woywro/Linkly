@@ -14,7 +14,7 @@ export const List = styled.ul`
 
 export const SharedItemViewWrapper = styled.div`
   max-height: 300px;
-  width: auto;
+  width: 100%;
   display: flex;
   justify-content: flex-start;
   flex-flow: column;

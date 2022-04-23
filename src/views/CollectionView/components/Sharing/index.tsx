@@ -141,28 +141,26 @@ export const Sharing = ({ collection }: Props) => {
           )}
         </Formik>
       </AddWrapper>
-      <Scrollbars>
-        <SharedList>
-          {sharedList.length > 0 ? (
-            sharedList.map((e) => {
-              return (
-                <SharedEmail
-                  onClick={() => handleDelete(e.email)}
-                  key={e.email}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                >
-                  <ShareRequestIndicator isAccepted={e.isAccepted} />
-                  <Text> {e.email}</Text>
-                </SharedEmail>
-              );
-            })
-          ) : (
-            <EmptyState msg="add people to start sharing this collection!" />
-          )}
-        </SharedList>
-      </Scrollbars>
+      <SharedList>
+        {sharedList.length > 0 ? (
+          sharedList.map((e) => {
+            return (
+              <SharedEmail
+                onClick={() => handleDelete(e.email)}
+                key={e.email}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                <ShareRequestIndicator isAccepted={e.isAccepted} />
+                <Text> {e.email}</Text>
+              </SharedEmail>
+            );
+          })
+        ) : (
+          <EmptyState msg="add people to start sharing this collection!" />
+        )}
+      </SharedList>
     </SharingWrapper>
   );
 };

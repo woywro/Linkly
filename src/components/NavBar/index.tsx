@@ -60,7 +60,6 @@ export const NavBar = () => {
         </Link>
         {session && (
           <LogoutBtn
-            isActive={false}
             onClick={() => {
               signOut();
             }}
