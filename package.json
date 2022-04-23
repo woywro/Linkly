@@ -4,8 +4,8 @@
     "dev": "next dev",
     "build": "prisma generate && next build",
     "start": "next start",
-    "docker:build": "docker build -t registry.gitlab.com/nersent/cloud/linkly:1.4.6 .",
-    "docker:push": "docker push registry.gitlab.com/nersent/cloud/linkly:1.4.6"
+    "docker:build": "docker build -t registry.gitlab.com/nersent/cloud/linkly:1.4.7 .",
+    "docker:push": "docker push registry.gitlab.com/nersent/cloud/linkly:1.4.7"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.1",
@@ -25,14 +25,11 @@
     "next": "^12.1.5",
     "next-auth": "^4.3.2",
     "next-pwa": "^5.5.2",
-    "nodemailer": "^6.7.3",
     "react": "^17.0.2",
     "react-custom-scrollbars-2": "^4.4.0",
     "react-dom": "^17.0.2",
     "react-hot-toast": "^2.2.0",
     "react-icons": "^4.3.1",
-    "react-intersection-observer": "^8.34.0",
-    "react-query": "^3.34.20",
     "react-redux": "^7.2.8",
     "react-social-login-buttons": "^3.6.0",
     "redux": "^4.1.2",
