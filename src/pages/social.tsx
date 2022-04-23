@@ -1,5 +1,11 @@
-import { SocialView } from "../views/SocialView";
+import { SocialView } from '../views/SocialView';
+import { NextSeo } from 'next-seo';
 
 export default function Home() {
-  return <SocialView />;
+  return (
+    <>
+      <NextSeo title="Social - Linkly" />
+      <SocialView />
+    </>
+  );
 }
