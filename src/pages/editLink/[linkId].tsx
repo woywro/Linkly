@@ -1,9 +1,8 @@
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
-import { LinkModal } from '../../views/LinkModal';
 import { Modal } from '../../components/Modal';
 import { LinkInterface } from '../../types/LinkInterface';
-import { PrismaClient } from '@prisma/client';
-import { getSession } from 'next-auth/react';
+import { LinkModal } from '../../views/LinkModal';
 
 interface Props {
   link: LinkInterface;
@@ -12,15 +11,18 @@ interface Props {
 export default function editLink({ link }: Props) {
   const router = useRouter();
   return (
-    <Modal
-      title={'Edit Link'}
-      open={true}
-      onClose={() => {
-        router.back();
-      }}
-    >
-      <LinkModal link={JSON.parse(link)} />
-    </Modal>
+    <>
+      <NextSeo title="EditLink - Linkly" />
+      <Modal
+        title={'Edit Link'}
+        open={true}
+        onClose={() => {
+          router.back();
+        }}
+      >
+        <LinkModal link={JSON.parse(link)} />
+      </Modal>
+    </>
   );
 }
 

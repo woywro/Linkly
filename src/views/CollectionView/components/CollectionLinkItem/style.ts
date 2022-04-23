@@ -10,7 +10,7 @@ export const LinkWrapper = styled.div`
   display: grid;
   justify-content: start;
   align-items: center;
-  grid-template-columns: 2fr 2fr 2fr 1fr;
+  grid-template-columns: 3fr 2fr 2fr 1fr;
   gap: 10px;
   width: 100%;
   padding: 10px;
@@ -30,11 +30,13 @@ export const LinkWrapper = styled.div`
   }
 `;
 
-export const LinkLabel = styled.div`
+export const LinkLabel = styled.div<{ title: string }>`
   display: flex;
   justify-content: flex-start;
   align-items: center;
   color: ${(props) => props.theme.colors.primaryText};
+  word-break: ${(props) =>
+    props.title.indexOf(' ') >= 0 ? 'keep-all' : 'break-word'};
   &:hover {
     ${hoverEffectText}
   }

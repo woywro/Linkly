@@ -10,7 +10,7 @@ import useLoading from '../../../../hooks/useLoading';
 import { setLinks } from '../../../../redux/actions/LinkActions';
 import { RootState } from '../../../../redux/store';
 import { Title, TitleWrapper } from '../../../style';
-import { LinkItem } from '../LinkItem';
+import { LinkItem } from '../../../../components/LinkItem';
 import { SortBar } from '../SortBar';
 import { SortDropdown } from '../SortDropdown';
 

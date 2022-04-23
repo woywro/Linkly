@@ -23,6 +23,7 @@ export const Row = styled.div`
   display: flex;
   flex-flow: row;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
 `;
 
@@ -42,6 +43,7 @@ export const ShareRequest = styled.div`
   padding: 10px;
   border-radius: 20px;
   justify-content: space-around;
+  flex-wrap: wrap;
   align-items: center;
   flex-flow: column;
   position: relative;

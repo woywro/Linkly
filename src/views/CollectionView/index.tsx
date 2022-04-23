@@ -19,6 +19,7 @@ import { Sharing } from './components/Sharing';
 import { EmptyState } from '../../components/EmptyState';
 import { CollectionInterface } from '../../types/CollectionInterface';
 import { useRouter } from 'next/router';
+import { LinkItem } from '../../components/LinkItem';
 
 interface Props {
   collectionFetched: CollectionInterface;
@@ -63,11 +64,7 @@ export const CollectionView = ({ collectionFetched }: Props) => {
               ) : (
                 links?.map((link: LinkInterface) => {
                   return (
-                    <CollectionLinkItem
-                      item={link}
-                      setLinks={setLinks}
-                      links={links}
-                    />
+                    <LinkItem item={link} setLinks={setLinks} links={links} />
                   );
                 })
               )}
@@ -76,21 +73,19 @@ export const CollectionView = ({ collectionFetched }: Props) => {
         </Scrollbars>
       </LeftWrapper>
       <RightWrapper open={open}>
-        <Scrollbars>
-          {collection !== undefined && (
-            <>
-              <CloseWrapperButton onClick={() => setOpen(false)} />
-              <Title>Info</Title>
-              <CollectionInfo
-                collection={collection}
-                setCollection={setCollection}
-              />
-              <Divider />
-              <Title>Sharing</Title>
-              <Sharing collection={collection} />
-            </>
-          )}
-        </Scrollbars>
+        {collection !== undefined && (
+          <Scrollbars>
+            <CloseWrapperButton onClick={() => setOpen(false)} />
+            <Title>Info</Title>
+            <CollectionInfo
+              collection={collection}
+              setCollection={setCollection}
+            />
+            <Divider />
+            <Title>Sharing</Title>
+            <Sharing collection={collection} />
+          </Scrollbars>
+        )}
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>

@@ -1,14 +1,20 @@
-import { getSession } from "next-auth/react";
-import { prisma } from "../../../prisma/PrismaClient";
-import { CollectionInterface } from "../../types/CollectionInterface";
-import { CollectionView } from "../../views/CollectionView";
+import { getSession } from 'next-auth/react';
+import { prisma } from '../../../prisma/PrismaClient';
+import { CollectionInterface } from '../../types/CollectionInterface';
+import { CollectionView } from '../../views/CollectionView';
+import { NextSeo } from 'next-seo';
 
 interface Props {
   collection: CollectionInterface;
 }
 
 export default function elementPage({ collection }: Props) {
-  return <CollectionView collectionFetched={collection} />;
+  return (
+    <>
+      <NextSeo title={`${collection.value} - Linkly`} />{' '}
+      <CollectionView collectionFetched={collection} />
+    </>
+  );
 }
 
 export async function getServerSideProps({ req, params }) {

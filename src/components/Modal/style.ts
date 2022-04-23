@@ -28,7 +28,7 @@ export const ModalWrapper = styled(motion.div)`
   justify-content: flex-start;
   align-items: center;
   flex-flow: column;
-  width: auto;
+  min-width: 300px;
   height: auto;
   overflow-y: hidden;
   @media only screen and ${breakpoints.device.sm} {

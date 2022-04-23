@@ -11,8 +11,8 @@ import { DropDownButton } from './style';
 
 interface Props {
   item: LinkInterface;
-  setLinks: (arg0: LinkInterface[]) => void;
-  links: LinkInterface[];
+  setLinks?: (arg0: LinkInterface[] | undefined) => void;
+  links?: LinkInterface[];
 }
 
 export const CollectionLinkDropdown = ({ item, setLinks, links }: Props) => {
@@ -27,28 +27,28 @@ export const CollectionLinkDropdown = ({ item, setLinks, links }: Props) => {
       await axios.post('/api/deleteLink', {
         id: item.id,
       });
-      const linksFiltered: LinkInterface[] = links.filter(
+      const linksFiltered: LinkInterface[] | undefined = links?.filter(
         (x) => x.id !== item.id
       );
-      setLinks(linksFiltered);
+      setLinks?.(linksFiltered);
     },
     [links]
   );
 
-  const handleDeleteLinkFromCollection = useCallback(
-    async (e: React.MouseEvent, item: LinkInterface) => {
-      e.stopPropagation();
-      await axios.post('/api/deleteLinkFromCollection', {
-        id: item.id,
-        collectionId: router.query.collectionId,
-      });
-      const linksFiltered: LinkInterface[] = links.filter(
-        (x) => x.id !== item.id
-      );
-      setLinks(linksFiltered);
-    },
-    [links]
-  );
+  const handleDeleteLinkFromCollection = async (
+    e: React.MouseEvent,
+    item: LinkInterface
+  ) => {
+    e.stopPropagation();
+    await axios.post('/api/deleteLinkFromCollection', {
+      id: item.id,
+      collectionId: router.query.collectionId,
+    });
+    const linksFiltered: LinkInterface[] | undefined = links?.filter(
+      (x) => x.id !== item.id
+    );
+    setLinks?.(linksFiltered);
+  };
 
   const handleEditLink = useCallback(() => {
     router.push({
