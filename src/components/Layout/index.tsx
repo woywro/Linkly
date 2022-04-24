@@ -6,7 +6,11 @@ import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
 import { Toaster } from 'react-hot-toast';
 
-export const Layout = ({ children }) => {
+interface Props {
+  children: JSX.Element[];
+}
+
+export const Layout = ({ children }: Props) => {
   const router = useRouter();
   return (
     <Wrapper>
