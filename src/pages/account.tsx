@@ -3,11 +3,12 @@ import { useRouter } from 'next/router';
 import { Modal } from '../components/Modal';
 import Head from 'next/head';
 import { NextSeo } from 'next-seo';
+import { Layout } from '../components/Layout';
 
 export default function Account() {
   const router = useRouter();
   return (
-    <>
+    <Layout>
       <NextSeo title="Account - Linkly" />
       <Modal
         title={'Account'}
@@ -18,6 +19,6 @@ export default function Account() {
       >
         <AccountModal />
       </Modal>
-    </>
+    </Layout>
   );
 }

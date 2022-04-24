@@ -46,6 +46,15 @@ export const NavBar = () => {
             <NavItemText>Social</NavItemText>
           </Item>
         </Link>
+        <Link href="/start" passHref>
+          <Item
+            isActive={router.pathname == '/social' ? true : false}
+            whileTap={{ scale: 0.9 }}
+          >
+            <RiTeamLine />
+            <NavItemText>Start</NavItemText>
+          </Item>
+        </Link>
       </Links>
       <BottomSection>
         <Link href={`/account`} passHref>
