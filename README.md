@@ -78,6 +78,12 @@ If you don't want to authenticate with google/github you can use your email for 
 
 <a href="docs"><strong>Explore the docs »</strong></a>
 
+## Todo
+
+- [ ] Migrate to Auth0 (react native support)
+- [ ] Create React native version
+
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` file for more information.
