@@ -82,6 +82,7 @@ If you don't want to authenticate with google/github you can use your email for 
 
 - [ ] Migrate to Auth0 (react native support)
 - [ ] Create React native version
+- [ ] Create browser start page with support for collections
 
 
 ## License
