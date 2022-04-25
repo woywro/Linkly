@@ -1,20 +1,13 @@
-import { useSelector } from 'react-redux';
-import styled from 'styled-components';
-import bg1 from '../../public/img/bg1.png';
-import { collections } from '../redux/reducers/CollectionReducer';
-import { RootState } from '../redux/store';
-import { Title } from '../views/style';
-import { Text } from '../components/Text';
-import { Scrollbars } from 'react-custom-scrollbars-2';
-import { AnimatePresence } from 'framer-motion';
-import { motion } from 'framer-motion';
-import { useState } from 'react';
-import { CollectionInterface } from '../types/CollectionInterface';
-import { StartView } from '../views/StartView';
 import { getSession } from 'next-auth/react';
 import { prisma } from '../../prisma/PrismaClient';
+import { CollectionInterface } from '../types/CollectionInterface';
+import { StartView } from '../views/StartView';
 
-export default function Start({ collections }) {
+interface Props {
+  collections: CollectionInterface[];
+}
+
+export default function Start({ collections }: Props) {
   return <StartView collections={collections} />;
 }
 
@@ -24,6 +17,7 @@ export async function getServerSideProps({ req, params }) {
     orderBy: {
       modificationTimestamp: 'desc',
     },
+    take: 4,
     where: {
       owner: { email: session.user.email },
     },

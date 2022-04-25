@@ -26,15 +26,16 @@ export const StartView = ({ collections }) => {
       <ItemsWrapper>
         <Title>Collections</Title>
         <Collections>
-          {collections.map((e) => {
+          {collections.map((e: CollectionInterface) => {
             return (
               <Collection
+                whileTap={{ scale: 0.9 }}
                 key={e.id}
                 color={e.color}
                 layoutId={e.id}
                 onClick={() => setSelected(e)}
               >
-                <motion.h5>{e.value}</motion.h5>
+                <Text>{e.value}</Text>
               </Collection>
             );
           })}
@@ -72,12 +73,13 @@ const Collection = styled(motion.div)<{ color: string }>`
   cursor: pointer;
   flex-flow: row;
   justify-content: flex-start;
+  align-items: center;
   padding: 30px;
   border-radius: 20px;
-  width: 200px;
-  margin-right: 10px;
-  background: ${(props) =>
-    props.color ? props.color : 'rgba(255,255,255,0.7)'};
+  width: 250px;
+  margin: 10px;
+  background-color: ${(props) =>
+    props.color ? props.color : 'rgba(0,0,0,0.7)'};
 `;
 
 const Wrapper = styled.div`

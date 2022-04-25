@@ -9,6 +9,7 @@ import { Text } from '../Text';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 import { Item, Links, LogoutBtn, NavBarWrapper, NavItemText } from './style';
 import { BiUser } from 'react-icons/bi';
+import { GoBrowser } from 'react-icons/go';
 
 export const NavBar = () => {
   const router = useRouter();
@@ -51,7 +52,7 @@ export const NavBar = () => {
             isActive={router.pathname == '/social' ? true : false}
             whileTap={{ scale: 0.9 }}
           >
-            <RiTeamLine />
+            <GoBrowser />
             <NavItemText>Start</NavItemText>
           </Item>
         </Link>

@@ -1,13 +1,18 @@
 import axios from 'axios';
 import { motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import useClickOutside from '../../../../hooks/useClickOutside';
 import { Title } from '../../../style';
 import { Link } from '../Link';
 
 export const CollectionModal = ({ selected, setSelected }) => {
+  const ref = useRef();
+  useClickOutside(ref, () => {
+    setSelected('');
+  });
   return (
-    <CollectionDetailed layoutId={selected.id} color={selected.color}>
+    <CollectionDetailed layoutId={selected.id} color={selected.color} ref={ref}>
       <Title>{selected.value}</Title>
       {selected.links.map((e) => {
         return <Link link={e} />;
@@ -22,8 +27,7 @@ const CollectionDetailed = styled(motion.ul)<{ color: string }>`
   width: 60vh;
   height: 60vh;
   position: absolute;
-  background: ${(props) =>
-    props.color ? props.color : 'rgba(255,255,255,0.7)'};
+  background: ${(props) => (props.color ? props.color : 'rgba(0,0,0)')};
   border-radius: 20px;
   padding: 20px;
 `;
