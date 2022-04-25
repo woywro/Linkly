@@ -1,15 +1,15 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
+import { getSession } from '@auth0/nextjs-auth0';
 import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
-  const session = await getSession({ req });
+  const session = await getSession(req, res);
   try {
     const result = await prisma.History.create({
       data: {
         link: { connect: { id: data.linkId } },
-        owner: { connect: { email: session.user.email } },
+        owner: session?.user.email,
         timestamp: JSON.stringify(Date.now()),
       },
     });

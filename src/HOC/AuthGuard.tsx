@@ -24,8 +24,8 @@ export const AuthGuard = ({ children }: Props) => {
   useEffect(() => {
     if (user) {
       dispatch(getLinks());
-      // dispatch(getHistory());
-      // dispatch(getCollections());
+      dispatch(getHistory());
+      dispatch(getCollections());
     }
   }, [user]);
 

@@ -1,4 +1,4 @@
-import { getSession } from 'next-auth/react';
+import { getSession } from '@auth0/nextjs-auth0';
 import { prisma } from '../../../prisma/PrismaClient';
 import { CollectionInterface } from '../../types/CollectionInterface';
 import { CollectionView } from '../../views/CollectionView';
@@ -17,12 +17,12 @@ export default function elementPage({ collection }: Props) {
   );
 }
 
-export async function getServerSideProps({ req, params }) {
-  const session = await getSession({ req });
+export async function getServerSideProps({ req, res, params }) {
+  const session = await getSession(req, res);
   const result = await prisma.Collection.findFirst({
     where: {
       id: params.collectionId,
-      owner: { email: session.user.email },
+      owner: session.user.email,
     },
     include: {
       links: {

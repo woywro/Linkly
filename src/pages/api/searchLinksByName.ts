@@ -1,18 +1,18 @@
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import { prisma } from "../../../prisma/PrismaClient";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from '@auth0/nextjs-auth0';
+import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
-  const data = req.query["search"];
+  const session = await getSession(req, res);
+  const data = req.query['search'];
   try {
     const link = await prisma.Link.findMany({
       where: {
         title: {
           contains: data,
         },
-        owner: { email: session.user.email },
+        owner: session?.user.email,
       },
       select: {
         id: true,

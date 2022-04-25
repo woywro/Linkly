@@ -1,17 +1,17 @@
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import { prisma } from "../../../prisma/PrismaClient";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from '@auth0/nextjs-auth0';
+import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
+  const session = await getSession(req, res);
   try {
     const result = await prisma.ShareRequest.findMany({
       orderBy: {
-        createdTimestamp: "desc",
+        createdTimestamp: 'desc',
       },
       where: {
-        receiverEmail: session.user.email,
+        receiver: session?.user.email,
         isAccepted: true,
       },
       select: {
