@@ -1,8 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from '@auth0/nextjs-auth0';
+import { getSession, withApiAuthRequired } from '@auth0/nextjs-auth0';
 import { prisma } from '../../../prisma/PrismaClient';
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default withApiAuthRequired(async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
   const session = await getSession(req,res);
 
@@ -56,4 +56,4 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   } catch (err) {
     res.status(403).json({ err });
   }
-};
+});

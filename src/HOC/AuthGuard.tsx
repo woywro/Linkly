@@ -35,7 +35,12 @@ export const AuthGuard = ({ children }: Props) => {
   if (user) {
     return <>{children}</>;
   }
-  return <a href="/api/auth/login">Login</a>;
+  return (
+    <>
+      <Login />
+      <a href="/api/auth/login">Login</a>
+    </>
+  );
 };
 
 const Center = styled.div`

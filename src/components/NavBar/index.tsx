@@ -9,10 +9,13 @@ import { Text } from '../Text';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 import { Item, Links, LogoutBtn, NavBarWrapper, NavItemText } from './style';
 import { BiUser } from 'react-icons/bi';
+import { useUser } from '@auth0/nextjs-auth0';
+import axios from 'axios';
 
 export const NavBar = () => {
   const router = useRouter();
   const theme = useTheme();
+  const { user } = useUser();
 
   return (
     <NavBarWrapper>
@@ -57,17 +60,17 @@ export const NavBar = () => {
             <NavItemText>Account</NavItemText>
           </Item>
         </Link>
-        {/* {session && (
+        {user && (
           <LogoutBtn
             onClick={() => {
-              signOut();
+              router.push('/api/auth/logout');
             }}
             whileTap={{ scale: 0.9 }}
           >
             <BiLogOut />
             <NavItemText>Log out</NavItemText>
           </LogoutBtn>
-        )} */}
+        )}
         <ThemeSwitcher />
       </BottomSection>
     </NavBarWrapper>
