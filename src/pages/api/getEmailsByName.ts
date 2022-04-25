@@ -1,11 +1,8 @@
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import { prisma } from "../../../prisma/PrismaClient";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
-  const data = req.query["search"];
+  const data = req.query['search'];
   try {
     const emails = await prisma.User.findMany({
       where: {

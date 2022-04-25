@@ -1,14 +1,15 @@
 import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
+import { getSession } from '@auth0/nextjs-auth0';
 import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
+  const session = await getSession(req, res);
+  console.log(session);
   try {
     const collections = await prisma.Collection.findMany({
       where: {
-        owner: { email: session.user.email },
+        owner: session?.user?.email,
       },
       orderBy: {
         modificationTimestamp: 'desc',

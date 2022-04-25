@@ -1,45 +1,41 @@
-import { useSession } from "next-auth/react";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import styled from "styled-components";
-import { LoadingSpinner } from "../components/LoadingSpinner";
-import { Modal } from "../components/Modal";
-import Verify from "../pages/api/auth/verify";
-import Login from "../pages/login";
-import { getCollections } from "../redux/actions/CollectionActions";
-import { getHistory } from "../redux/actions/HistoryActions";
-import { getLinks } from "../redux/actions/LinkActions";
+import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
+import { LoadingSpinner } from '../components/LoadingSpinner';
+import { Modal } from '../components/Modal';
+import Verify from '../pages/api/auth/verify';
+import Login from '../pages/login';
+import { getCollections } from '../redux/actions/CollectionActions';
+import { getHistory } from '../redux/actions/HistoryActions';
+import { getLinks } from '../redux/actions/LinkActions';
+import { useUser } from '@auth0/nextjs-auth0';
 
 interface Props {
   children: JSX.Element;
 }
 
 export const AuthGuard = ({ children }: Props) => {
-  const { data: Session, status } = useSession();
+  const { user, error, isLoading } = useUser();
   const dispatch = useDispatch();
   const router = useRouter();
 
   useEffect(() => {
-    if (status == "authenticated" && Session !== null) {
+    if (user) {
       dispatch(getLinks());
-      dispatch(getHistory());
-      dispatch(getCollections());
+      // dispatch(getHistory());
+      // dispatch(getCollections());
     }
-  }, [status]);
+  }, [user]);
 
-  if (status == "loading") {
-    return (
-      <Center>
-        <LoadingSpinner />
-      </Center>
-    );
-  }
-  if (status == "authenticated") {
+  if (isLoading) return <div>Loading...</div>;
+  if (error) return <div>{error.message}</div>;
+
+  if (user) {
     return <>{children}</>;
   }
-
-  return <Login />;
+  return <a href="/api/auth/login">Login</a>;
 };
 
 const Center = styled.div`

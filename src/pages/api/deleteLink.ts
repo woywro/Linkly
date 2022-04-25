@@ -1,11 +1,8 @@
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { prisma } from "../../../prisma/PrismaClient";
-import { getSession } from "next-auth/react";
+import { NextApiRequest, NextApiResponse } from 'next';
+import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
-  const session = await getSession({ req });
   try {
     const result = await prisma.Link.delete({
       where: {

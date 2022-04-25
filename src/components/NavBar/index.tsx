@@ -12,7 +12,6 @@ import { BiUser } from 'react-icons/bi';
 
 export const NavBar = () => {
   const router = useRouter();
-  const { data: session } = useSession();
   const theme = useTheme();
 
   return (
@@ -58,7 +57,7 @@ export const NavBar = () => {
             <NavItemText>Account</NavItemText>
           </Item>
         </Link>
-        {session && (
+        {/* {session && (
           <LogoutBtn
             onClick={() => {
               signOut();
@@ -68,7 +67,7 @@ export const NavBar = () => {
             <BiLogOut />
             <NavItemText>Log out</NavItemText>
           </LogoutBtn>
-        )}
+        )} */}
         <ThemeSwitcher />
       </BottomSection>
     </NavBarWrapper>

@@ -12,14 +12,17 @@ import { OnlineStatusProvider } from '../hooks/useOnlineStatus';
 import store from '../redux/store';
 import breakpoints from '../theme/breakpoints';
 import { GlobalStyles } from '../theme/globalStyles';
+import { UserProvider } from '@auth0/nextjs-auth0';
 
 export default function App({
   Component,
   router,
-  pageProps: { session, status, ...pageProps },
+  pageProps: { status, ...pageProps },
 }: AppProps) {
+  const { user } = pageProps;
+
   return (
-    <SessionProvider session={session}>
+    <UserProvider user={user}>
       <OnlineStatusProvider>
         <Provider store={store}>
           <ReduxThemeProvider>
@@ -52,7 +55,7 @@ export default function App({
           </ReduxThemeProvider>
         </Provider>
       </OnlineStatusProvider>
-    </SessionProvider>
+    </UserProvider>
   );
 }
 

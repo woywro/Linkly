@@ -1,16 +1,17 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
+import { getSession } from '@auth0/nextjs-auth0';
 import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
-  const session = await getSession({ req });
+  const session = await getSession(req, res);
+  console.log(session);
   try {
     const result = await prisma.Link.create({
       data: {
         title: data.title,
         url: data.url,
-        owner: { connect: { email: session?.user?.email } },
+        owner: session?.user?.email,
         modificationTimestamp: Date.now().toString(),
         collections: {
           connectOrCreate: data.collectionValues.map(
@@ -19,7 +20,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                 value: collectionValue,
                 valId: `${session?.user?.email}/${collectionValue}`,
                 modificationTimestamp: Date.now().toString(),
-                owner: { connect: { email: session?.user?.email } },
+                owner: session?.user?.email,
                 color: '',
               },
               where: {
@@ -44,7 +45,6 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
             color: true,
           },
         },
-        ownerId: true,
         owner: true,
         modificationTimestamp: true,
       },

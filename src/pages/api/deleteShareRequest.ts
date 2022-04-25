@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
 import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
@@ -9,7 +8,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
       prisma.shareRequest.deleteMany({
         where: {
           collectionId: data.collectionId,
-          receiverEmail: data.email,
+          receiver: data.email,
         },
       }),
       prisma.collection.findUnique({
@@ -20,7 +19,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
           color: true,
           id: true,
           modificationTimestamp: true,
-          ownerId: true,
+          owner: true,
           valId: true,
           value: true,
           shareRequests: true,

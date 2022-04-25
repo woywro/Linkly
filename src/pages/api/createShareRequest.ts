@@ -1,17 +1,17 @@
 import { PrismaClient } from '@prisma/client';
 import { NextApiRequest, NextApiResponse } from 'next';
-import { getSession } from 'next-auth/react';
+import { getSession } from '@auth0/nextjs-auth0';
 import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
 import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body;
-  const session = await getSession({ req });
+  const session = await getSession(req, res);
   try {
     const result = await prisma.ShareRequest.create({
       data: {
-        owner: { connect: { email: session.user?.email } },
-        receiver: { connect: { email: data.email } },
+        owner: session?.user?.email,
+        receiver: data.email,
         collection: { connect: { id: data.collectionId } },
         isAccepted: false,
         createdTimestamp: Date.now().toString(),

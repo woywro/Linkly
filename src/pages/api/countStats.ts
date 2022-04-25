@@ -1,25 +1,25 @@
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import { prisma } from "../../../prisma/PrismaClient";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from '@auth0/nextjs-auth0';
+import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-  const session = await getSession({ req });
+  const session = await getSession(req, res);
   try {
     const [links, collections, shareRequests] = await prisma.$transaction([
       prisma.Link.count({
         where: {
-          owner: { email: session?.user?.email },
+          owner: session?.user?.email,
         },
       }),
       prisma.Collection.count({
         where: {
-          owner: { email: session?.user?.email },
+          owner: session?.user?.email,
         },
       }),
       prisma.ShareRequest.count({
         where: {
-          owner: { email: session?.user?.email },
+          owner: session?.user?.email,
         },
       }),
     ]);
