@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { motion } from 'framer-motion';
 import { hoverEffectBg, hoverEffectText } from '../../mixins/hoverEffects';
 import breakpoints from '../../theme/breakpoints';
 import { Text } from '../Text';
