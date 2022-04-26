@@ -39,9 +39,10 @@ export const ModalWrapper = styled(motion.div)`
     padding-bottom: 40px;
   }
   @media only screen and ${breakpoints.device.lg} {
-    height: auto;
-    padding: 40px;
-    min-width: 300px;
+    max-height: 100%;
+    padding: 20px;
+    width: 95%;
+    overflow-y: auto;
   }
 `;
 

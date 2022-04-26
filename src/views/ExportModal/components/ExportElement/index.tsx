@@ -1,7 +1,7 @@
 import React from 'react';
 import { LinkInterface } from '../../../../types/LinkInterface';
-import styled from 'styled-components';
 import { Text } from '../../../../components/Text';
+import { Wrapper, StyledCheckbox } from './style';
 
 interface Props {
   link: LinkInterface;
@@ -31,15 +31,3 @@ export const ExportElement = ({ link, checked, setChecked }: Props) => {
     </Wrapper>
   );
 };
-
-const StyledCheckbox = styled.input`
-  margin-right: 5px;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  padding: 10px;
-  justify-content: flex-start;
-  align-items: center;
-`;
