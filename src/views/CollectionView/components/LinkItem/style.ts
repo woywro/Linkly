@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 <<<<<<< HEAD:src/views/CollectionView/components/LinkItem/style.ts
+<<<<<<< HEAD:src/views/CollectionView/components/LinkItem/style.ts
 import {
   hoverEffectBg,
   hoverEffectText,
@@ -7,6 +8,11 @@ import {
 import { Text } from '../../../../components/Text';
 import breakpoints from '../../../../theme/breakpoints';
 import { motion } from 'framer-motion';
+=======
+import { hoverEffectBg, hoverEffectText } from '../../mixins/hoverEffects';
+import breakpoints from '../../theme/breakpoints';
+import { Text } from '../Text';
+>>>>>>> development:src/components/LinkItem/style.ts
 =======
 import { hoverEffectBg, hoverEffectText } from '../../mixins/hoverEffects';
 import breakpoints from '../../theme/breakpoints';

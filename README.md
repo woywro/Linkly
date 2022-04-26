@@ -84,6 +84,7 @@ If you don't want to authenticate with google/github you can use your email for 
 - [ ] Create React native version
 - [ ] Create browser start page with support for collections
 
+<a href="docs"><strong>Explore the docs »</strong></a>
 
 ## License
 
