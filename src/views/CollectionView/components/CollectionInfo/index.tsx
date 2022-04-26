@@ -9,6 +9,7 @@ import { deleteCollection } from '../../../../redux/actions/CollectionActions';
 import { RootState } from '../../../../redux/store';
 import { CollectionInterface } from '../../../../types/CollectionInterface';
 import { ThemeInterface } from '../../../../types/ThemeInterface';
+import { Row } from '../../../style';
 import { ColorTagSwitcher } from '../ColorTagSwitcher';
 import { CollectionInfoWrapper, ColorTag, Icon, Name } from './style';
 
@@ -28,6 +29,10 @@ export const CollectionInfo = ({ collection, setCollection }: Props) => {
     router.push('/');
   };
 
+  const handleExportCategory = () => {
+    router.push(`/export/${collection.id}`);
+  };
+
   return (
     <CollectionInfoWrapper>
       <Name>
@@ -43,7 +48,10 @@ export const CollectionInfo = ({ collection, setCollection }: Props) => {
         links: {collection.links?.length}
       </Text>
       <ColorTagSwitcher setCollection={setCollection} />
-      <Button onClick={handleDeleteCategory}>Delete Category</Button>
+      <Row>
+        <Button onClick={handleDeleteCategory}>Delete</Button>
+        <Button onClick={handleExportCategory}>Export</Button>
+      </Row>
     </CollectionInfoWrapper>
   );
 };

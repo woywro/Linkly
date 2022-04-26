@@ -21,14 +21,14 @@ export const ModalWrapper = styled(motion.div)`
   left: 50%;
   transform: translate(-50%, -50%);
   background: ${(props) => props.theme.colors.primaryBgNoTransparent};
-  padding: 50px;
+  padding: 40px;
   z-index: 1000;
   border-radius: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-flow: column;
-  min-width: 300px;
+  min-width: 400px;
   height: auto;
   overflow-y: hidden;
   @media only screen and ${breakpoints.device.sm} {
