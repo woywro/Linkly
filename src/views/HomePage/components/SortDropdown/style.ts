@@ -6,7 +6,6 @@ export const SortDropdownWrapper = styled.div`
   z-index: 300;
   @media only screen and ${breakpoints.device.sm} {
     display: flex;
-    z-index: 20;
   }
 `;
 

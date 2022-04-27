@@ -30,7 +30,7 @@ export const DropdownItemList = styled.div<{
   background: ${(props) => props.theme.colors.primaryBgNoTransparent};
   box-shadow: ${(props) => props.theme.shadow};
   display: ${(props) => (props.show ? 'flex' : 'none')};
-  z-index: 40;
+  z-index: 100;
   width: auto;
   @media only screen and ${breakpoints.device.sm} {
     width: 100%;
@@ -46,5 +46,4 @@ export const Label = styled.div`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 20;
 `;
