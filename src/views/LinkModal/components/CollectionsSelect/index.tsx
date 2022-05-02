@@ -142,7 +142,10 @@ export const CollectionsSelect = ({
         {collectionValues !== undefined &&
           collectionValues.map((e) => {
             return (
-              <ChoosenSuggestion onClick={() => handleDeleteCollection(e)}>
+              <ChoosenSuggestion
+                onClick={() => handleDeleteCollection(e)}
+                key={e}
+              >
                 {e}
                 <BsFillTrashFill style={{ fill: 'white', marginLeft: '2px' }} />
               </ChoosenSuggestion>

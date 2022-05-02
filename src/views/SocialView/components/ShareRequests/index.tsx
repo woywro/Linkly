@@ -68,7 +68,7 @@ export const ShareRequests = () => {
         ) : (
           shareRequests.map((request) => {
             return (
-              <ShareRequest>
+              <ShareRequest key={request.id}>
                 <Row>
                   <Title>{request.owner.email}</Title>
                   <Text color={theme.colors.secondaryText}>
