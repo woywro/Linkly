@@ -27,7 +27,7 @@ export const SharedItemView = ({ share }: Props) => {
             <EmptyState msg="This collection is empty" />
           ) : (
             share.collection.links?.map((link: LinkInterface) => {
-              return <SharedLink link={link} />;
+              return <SharedLink link={link} key={link.id} />;
             })
           )}
         </List>

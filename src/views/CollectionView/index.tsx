@@ -64,7 +64,12 @@ export const CollectionView = ({ collectionFetched }: Props) => {
               ) : (
                 links?.map((link: LinkInterface) => {
                   return (
-                    <LinkItem item={link} setLinks={setLinks} links={links} />
+                    <LinkItem
+                      key={link.id}
+                      item={link}
+                      setLinks={setLinks}
+                      links={links}
+                    />
                   );
                 })
               )}

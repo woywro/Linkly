@@ -38,7 +38,12 @@ export const ExportModal = ({ collectionFetched }: Props) => {
       <Scrollbars autoHeight>
         {collectionFetched?.links?.map((e) => {
           return (
-            <ExportElement setChecked={setChecked} checked={checked} link={e} />
+            <ExportElement
+              setChecked={setChecked}
+              key={e.modificationTimestamp}
+              checked={checked}
+              link={e}
+            />
           );
         })}
       </Scrollbars>
