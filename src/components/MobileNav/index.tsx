@@ -6,19 +6,10 @@ import { RiLayoutGridLine, RiTeamLine } from 'react-icons/ri';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 import {
   CloseButton,
-<<<<<<< HEAD
-} from "./style";
-import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
-import { ThemeSwitcher } from "../ThemeSwitcher";
-import { BiLogOut } from "react-icons/bi";
-import { signOut, useSession } from "next-auth/react";
-import { BiUser } from "react-icons/bi";
-=======
   MobileNavItem,
   MobileNavItems,
   MobileNavWrapper,
 } from './style';
->>>>>>> development
 
 interface Props {
   open: boolean;
@@ -37,13 +28,8 @@ export const MobileNav = ({ open, setOpen }: Props) => {
       <CloseButton onClick={() => setOpen(false)}>x</CloseButton>
       <MobileNavItems>
         <MobileNavItem
-<<<<<<< HEAD
-          isActive={router.pathname == "/" ? true : false}
-          onClick={() => router.push("/")}
-=======
           isActive={router.pathname == '/' ? true : false}
           onClick={() => router.push('/')}
->>>>>>> development
           whileTap={{ scale: 0.9 }}
         >
           <RiLayoutGridLine style={{ fill: 'white' }} /> Home
@@ -56,19 +42,11 @@ export const MobileNav = ({ open, setOpen }: Props) => {
           <RiTeamLine style={{ fill: 'white' }} /> Social
         </MobileNavItem>
         <MobileNavItem
-<<<<<<< HEAD
-          isActive={router.pathname == "/account" ? true : false}
-          onClick={() => router.push("/account")}
-          whileTap={{ scale: 0.9 }}
-        >
-          <BiUser style={{ fill: "white" }} /> Account
-=======
           isActive={router.pathname == '/account' ? true : false}
           onClick={() => router.push('/account')}
           whileTap={{ scale: 0.9 }}
         >
           <BiUser style={{ fill: 'white' }} /> Account
->>>>>>> development
         </MobileNavItem>
         <MobileNavItem
           isActive={false}

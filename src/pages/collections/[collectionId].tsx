@@ -3,10 +3,7 @@ import { prisma } from '../../../prisma/PrismaClient';
 import { CollectionInterface } from '../../types/CollectionInterface';
 import { CollectionView } from '../../views/CollectionView';
 import { NextSeo } from 'next-seo';
-<<<<<<< HEAD
-=======
 import { NextApiRequest, NextApiResponse } from 'next';
->>>>>>> development
 
 interface Props {
   collection: CollectionInterface;
