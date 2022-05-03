@@ -1,5 +1,9 @@
-import { StyledButton } from "./style";
+import { StyledButton } from './style';
 
-export const CloseWrapperButton = ({ onClick }) => {
+interface Props {
+  onClick: () => void;
+}
+
+export const CloseWrapperButton = ({ onClick }: Props) => {
   return <StyledButton onClick={onClick}>x</StyledButton>;
 };

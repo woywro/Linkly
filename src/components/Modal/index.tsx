@@ -13,11 +13,7 @@ interface Props {
 
 export const Modal = ({ title, open, onClose, children }: Props) => {
   const ref = useRef();
-  const router = useRouter();
-  // useClickOutside(ref, () => {
-  //   onClose();
-  //   router.push("/");
-  // });
+
   const backdropVariant = {
     hidden: {
       opacity: 0,

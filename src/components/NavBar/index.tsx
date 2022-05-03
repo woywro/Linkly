@@ -1,14 +1,12 @@
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { BiLogOut } from 'react-icons/bi';
+import { BiLogOut, BiUser } from 'react-icons/bi';
 import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from 'react-icons/ri';
 import styled, { useTheme } from 'styled-components';
 import { Logo } from '../Logo';
-import { Text } from '../Text';
 import { ThemeSwitcher } from '../ThemeSwitcher';
 import { Item, Links, LogoutBtn, NavBarWrapper, NavItemText } from './style';
-import { BiUser } from 'react-icons/bi';
 
 export const NavBar = () => {
   const router = useRouter();

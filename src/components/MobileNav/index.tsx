@@ -1,18 +1,15 @@
-import React, { useEffect } from "react";
-import { useRouter } from "next/router";
-import { Button } from "../Button";
-import { useCallback } from "react";
+import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/router';
+import React, { useEffect } from 'react';
+import { BiLogOut, BiUser } from 'react-icons/bi';
+import { RiLayoutGridLine, RiTeamLine } from 'react-icons/ri';
+import { ThemeSwitcher } from '../ThemeSwitcher';
 import {
-  MobileNavWrapper,
-  MobileNavItems,
-  MobileNavItem,
   CloseButton,
-} from "./style";
-import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from "react-icons/ri";
-import { ThemeSwitcher } from "../ThemeSwitcher";
-import { BiLogOut } from "react-icons/bi";
-import { signOut, useSession } from "next-auth/react";
-import { BiUser } from "react-icons/bi";
+  MobileNavItem,
+  MobileNavItems,
+  MobileNavWrapper,
+} from './style';
 
 interface Props {
   open: boolean;
@@ -31,32 +28,32 @@ export const MobileNav = ({ open, setOpen }: Props) => {
       <CloseButton onClick={() => setOpen(false)}>x</CloseButton>
       <MobileNavItems>
         <MobileNavItem
-          isActive={router.pathname == "/" ? true : false}
-          onClick={() => router.push("/")}
+          isActive={router.pathname == '/' ? true : false}
+          onClick={() => router.push('/')}
           whileTap={{ scale: 0.9 }}
         >
-          <RiLayoutGridLine style={{ fill: "white" }} /> Home
+          <RiLayoutGridLine style={{ fill: 'white' }} /> Home
         </MobileNavItem>
         <MobileNavItem
-          isActive={router.pathname == "/social" ? true : false}
-          onClick={() => router.push("/social")}
+          isActive={router.pathname == '/social' ? true : false}
+          onClick={() => router.push('/social')}
           whileTap={{ scale: 0.9 }}
         >
-          <RiTeamLine style={{ fill: "white" }} /> Social
+          <RiTeamLine style={{ fill: 'white' }} /> Social
         </MobileNavItem>
         <MobileNavItem
-          isActive={router.pathname == "/account" ? true : false}
-          onClick={() => router.push("/account")}
+          isActive={router.pathname == '/account' ? true : false}
+          onClick={() => router.push('/account')}
           whileTap={{ scale: 0.9 }}
         >
-          <BiUser style={{ fill: "white" }} /> Account
+          <BiUser style={{ fill: 'white' }} /> Account
         </MobileNavItem>
         <MobileNavItem
           isActive={false}
           onClick={() => signOut()}
           whileTap={{ scale: 0.9 }}
         >
-          <BiLogOut style={{ fill: "white" }} /> Sign out
+          <BiLogOut style={{ fill: 'white' }} /> Sign out
         </MobileNavItem>
         <MobileNavItem isActive={false}>
           <ThemeSwitcher />

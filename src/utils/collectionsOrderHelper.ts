@@ -1,9 +1,9 @@
 import { CollectionInterface } from '../types/CollectionInterface';
 
 export const collectionsOrderHelper = (collections: CollectionInterface[]) => {
-  const savedCollectionsOrder = JSON.parse(
-    localStorage.getItem('collectionsOrder')
-  );
+  const lsOrder = localStorage.getItem('collectionsOrder') || '{}';
+  const savedCollectionsOrder = JSON.parse(lsOrder);
+  console.log(savedCollectionsOrder);
   const arraysLinked = savedCollectionsOrder.concat(collections);
   function getUniqueListBy(arr, key) {
     return [...new Map(arr.map((item) => [item[key], item])).values()];

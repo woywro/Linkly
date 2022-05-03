@@ -1,10 +1,11 @@
+import { NextApiRequest } from 'next';
 import { getSession } from 'next-auth/react';
+import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { prisma } from '../../../prisma/PrismaClient';
 import { Modal } from '../../components/Modal';
-import { SharedItemView } from '../../views/SharedItemView';
 import { SharedWithYouInterface } from '../../types/SharedWithYouInterface';
-import { NextSeo } from 'next-seo';
+import { SharedItemView } from '../../views/SharedItemView';
 
 interface Props {
   share: SharedWithYouInterface;
@@ -29,7 +30,12 @@ export default function SharedItem({ share }: Props) {
   );
 }
 
-export async function getServerSideProps({ req, query }) {
+interface ServerSideProps {
+  req: NextApiRequest;
+  query: any;
+}
+
+export async function getServerSideProps({ req, query }: ServerSideProps) {
   const session = await getSession({ req });
   const { shareId } = query;
   const share = await prisma.ShareRequest.findUnique({

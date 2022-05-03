@@ -6,6 +6,7 @@ import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { Modal } from '../../components/Modal';
 import { ExportModal } from '../../views/ExportModal';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 interface Props {
   collection: CollectionInterface;
@@ -29,12 +30,17 @@ export default function elementPage({ collection }: Props) {
   );
 }
 
-export async function getServerSideProps({ req, params }) {
+interface ServerSideProps {
+  req: NextApiRequest;
+  params: any;
+}
+
+export async function getServerSideProps({ req, params }: ServerSideProps) {
   const session = await getSession({ req });
   const result = await prisma.Collection.findFirst({
     where: {
       id: params.collectionId,
-      owner: { email: session.user.email },
+      owner: { email: session?.user?.email },
     },
     include: {
       links: {
