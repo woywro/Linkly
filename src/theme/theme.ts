@@ -17,12 +17,6 @@ export const theme1 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const theme2 = {
@@ -44,12 +38,6 @@ export const theme2 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 export const theme3 = {
   mode: 'dark',
@@ -70,12 +58,6 @@ export const theme3 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 export const theme4 = {
   mode: 'dark',
@@ -97,12 +79,6 @@ export const theme4 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const theme5 = {
@@ -124,12 +100,6 @@ export const theme5 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const theme6 = {
@@ -151,12 +121,6 @@ export const theme6 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const theme7 = {
@@ -178,12 +142,6 @@ export const theme7 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const theme8 = {
@@ -205,12 +163,6 @@ export const theme8 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const theme9 = {
@@ -232,12 +184,6 @@ export const theme9 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const theme10 = {
@@ -259,12 +205,6 @@ export const theme10 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 export const theme11 = {
   mode: 'light',
@@ -285,12 +225,6 @@ export const theme11 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 export const theme12 = {
   mode: 'light',
@@ -311,12 +245,6 @@ export const theme12 = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const themeSeven = {
@@ -338,12 +266,6 @@ export const themeSeven = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
 
 export const themeEight = {
@@ -365,10 +287,4 @@ export const themeEight = {
     active2: 'rgba(0, 0, 0, 0.05)',
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
-  fonts: ['sans-serif', 'Roboto'],
-  fontSizes: {
-    small: '1em',
-    medium: '2em',
-    large: '3em',
-  },
 };
