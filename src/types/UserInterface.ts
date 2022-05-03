@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 export interface UserInterface {
   id: string;
   name: string | null;

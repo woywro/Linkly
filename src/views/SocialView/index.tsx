@@ -20,7 +20,6 @@ import { BiRefresh } from 'react-icons/bi';
 import { getShareRequests } from '../../redux/actions/ShareRequestsActions';
 import { useTheme } from 'styled-components';
 import { ThemeInterface } from '../../types/ThemeInterface';
-import { MotionConfig } from 'framer-motion';
 import { motion } from 'framer-motion';
 
 export const SocialView = () => {

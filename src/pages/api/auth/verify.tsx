@@ -3,10 +3,11 @@ import styled, { useTheme } from 'styled-components';
 import { Button } from '../../../components/Button';
 import { Text } from '../../../components/Text';
 import breakpoints from '../../../theme/breakpoints';
+import { ThemeInterface } from '../../../types/ThemeInterface';
 
 export default function Verify() {
   const router = useRouter();
-  const theme = useTheme();
+  const theme = useTheme() as ThemeInterface;
 
   return (
     <Wrapper>

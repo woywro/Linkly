@@ -1,5 +1,5 @@
 export interface ThemeInterface {
-  mode: "dark" | "light";
+  mode: 'dark' | 'light';
   colors: {
     primary: string;
     secondary: string;
@@ -15,10 +15,4 @@ export interface ThemeInterface {
     active2: string;
   };
   shadow: string;
-  fonts: string[];
-  fontSizes: {
-    small: string;
-    medium: string;
-    large: string;
-  };
 }

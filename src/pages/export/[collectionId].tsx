@@ -1,7 +1,6 @@
 import { getSession } from 'next-auth/react';
 import { prisma } from '../../../prisma/PrismaClient';
 import { CollectionInterface } from '../../types/CollectionInterface';
-import { CollectionView } from '../../views/CollectionView';
 import { NextSeo } from 'next-seo';
 import { useRouter } from 'next/router';
 import { Modal } from '../../components/Modal';
