@@ -1,8 +1,12 @@
-import { useEffect, useRef, useState } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 
 interface Props {
+<<<<<<< HEAD:src/wrappers/Portal.tsx
   children: JSX.Element[];
+=======
+  children: JSX.Element;
+>>>>>>> development:src/HOC/Portal.tsx
   selector: any;
 }
 

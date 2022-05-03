@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
@@ -27,8 +28,29 @@ export const ThemeSwitcher = () => {
   const [choosenTheme, setChoosenTheme] = useLocalStorage('theme', '');
   const [visible, setVisible] = useState(false);
   const theme = useTheme() as ThemeInterface;
+=======
+import React, { MouseEvent, useState } from 'react';
+import { BsChevronDown, BsChevronUp } from 'react-icons/bs';
+import { useDispatch } from 'react-redux';
+import { switchTheme } from '../../redux/actions/ThemeActions';
+import * as allThemes from '../../theme/theme';
+import {
+  Column,
+  Row,
+  ThemeChoiceButton,
+  ThemeExpandButton,
+  ThemeSwitcherWrapper,
+} from './style';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 
-  const handleChangeTheme = (e, theme) => {
+export const ThemeSwitcher = () => {
+  const dispatch = useDispatch();
+  console.log(allThemes);
+  const [choosenTheme, setChoosenTheme] = useLocalStorage('theme', '');
+  const [visible, setVisible] = useState(false);
+>>>>>>> development
+
+  const handleChangeTheme = (e: MouseEvent, theme: any) => {
     e.stopPropagation();
     setChoosenTheme(theme);
     setVisible(false);
@@ -49,6 +71,7 @@ export const ThemeSwitcher = () => {
         >
           <ThemeChoiceButton
             whileTap={{ scale: 0.9 }}
+<<<<<<< HEAD
             onClick={(e) => handleChangeTheme(e, theme9)}
             background={theme9.colors.gradient}
           ></ThemeChoiceButton>
@@ -70,6 +93,28 @@ export const ThemeSwitcher = () => {
         </Row>
         <Row
           isVisible={visible}
+=======
+            onClick={(e) => handleChangeTheme(e, allThemes.theme9)}
+            background={allThemes.theme9.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, allThemes.theme10)}
+            background={allThemes.theme10.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, allThemes.theme11)}
+            background={allThemes.theme11.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, allThemes.theme12)}
+            background={allThemes.theme12.colors.gradient}
+          ></ThemeChoiceButton>
+        </Row>
+        <Row
+>>>>>>> development
           initial="initial"
           animate="animate"
           variants={{
@@ -81,6 +126,7 @@ export const ThemeSwitcher = () => {
         >
           <ThemeChoiceButton
             whileTap={{ scale: 0.9 }}
+<<<<<<< HEAD
             onClick={(e) => handleChangeTheme(e, theme5)}
             background={theme5.colors.gradient}
           ></ThemeChoiceButton>
@@ -121,6 +167,48 @@ export const ThemeSwitcher = () => {
           whileTap={{ scale: 0.9 }}
           onClick={(e) => handleChangeTheme(e, theme4)}
           background={theme4.colors.gradient}
+=======
+            onClick={(e) => handleChangeTheme(e, allThemes.theme5)}
+            background={allThemes.theme5.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, allThemes.theme6)}
+            background={allThemes.theme6.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, allThemes.theme8)}
+            background={allThemes.theme8.colors.gradient}
+          ></ThemeChoiceButton>
+          <ThemeChoiceButton
+            whileTap={{ scale: 0.9 }}
+            onClick={(e) => handleChangeTheme(e, allThemes.theme7)}
+            background={allThemes.theme7.colors.gradient}
+          ></ThemeChoiceButton>
+        </Row>
+      </Column>
+      <Row>
+        <ThemeChoiceButton
+          whileTap={{ scale: 0.9 }}
+          onClick={(e) => handleChangeTheme(e, allThemes.theme1)}
+          background={allThemes.theme1.colors.gradient}
+        ></ThemeChoiceButton>
+        <ThemeChoiceButton
+          whileTap={{ scale: 0.9 }}
+          onClick={(e) => handleChangeTheme(e, allThemes.theme2)}
+          background={allThemes.theme2.colors.gradient}
+        ></ThemeChoiceButton>
+        <ThemeChoiceButton
+          whileTap={{ scale: 0.9 }}
+          onClick={(e) => handleChangeTheme(e, allThemes.theme3)}
+          background={allThemes.theme3.colors.gradient}
+        ></ThemeChoiceButton>
+        <ThemeChoiceButton
+          whileTap={{ scale: 0.9 }}
+          onClick={(e) => handleChangeTheme(e, allThemes.theme4)}
+          background={allThemes.theme4.colors.gradient}
+>>>>>>> development
         ></ThemeChoiceButton>
       </Row>
       <ThemeExpandButton
@@ -136,6 +224,7 @@ export const ThemeSwitcher = () => {
     </ThemeSwitcherWrapper>
   );
 };
+<<<<<<< HEAD
 
 const ThemeExpandButton = styled(motion.button)`
   background: none;
@@ -207,3 +296,5 @@ const ThemeChoiceButton = styled(motion.button)<{ background: string }>`
   background: ${(props) => props.background};
   cursor: pointer;
 `;
+=======
+>>>>>>> development

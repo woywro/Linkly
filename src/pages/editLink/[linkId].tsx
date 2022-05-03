@@ -26,7 +26,7 @@ export default function editLink({ link }: Props) {
   );
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps({ query }: any) {
   return {
     props: {
       link: query.data,

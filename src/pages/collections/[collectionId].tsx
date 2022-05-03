@@ -3,6 +3,10 @@ import { prisma } from '../../../prisma/PrismaClient';
 import { CollectionInterface } from '../../types/CollectionInterface';
 import { CollectionView } from '../../views/CollectionView';
 import { NextSeo } from 'next-seo';
+<<<<<<< HEAD
+=======
+import { NextApiRequest, NextApiResponse } from 'next';
+>>>>>>> development
 
 interface Props {
   collection: CollectionInterface;
@@ -17,12 +21,17 @@ export default function elementPage({ collection }: Props) {
   );
 }
 
-export async function getServerSideProps({ req, params }) {
+interface Props {
+  req: NextApiRequest;
+  params: any;
+}
+
+export async function getServerSideProps({ req, params }: Props) {
   const session = await getSession({ req });
   const result = await prisma.Collection.findFirst({
     where: {
       id: params.collectionId,
-      owner: { email: session.user.email },
+      owner: { email: session?.user?.email },
     },
     include: {
       links: {
