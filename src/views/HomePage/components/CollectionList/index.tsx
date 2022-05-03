@@ -33,7 +33,7 @@ export const CollectionList = () => {
   useEffect(() => {
     if (collectionsOrder == '') {
       setList(collections);
-    } else {
+    } else if (collections.length !== 0) {
       const collectionsSorted = collectionsOrderHelper(collections);
       setList(collectionsSorted);
     }
