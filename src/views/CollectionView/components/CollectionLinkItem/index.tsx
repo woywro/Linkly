@@ -14,7 +14,7 @@ import { FieldText, LinkLabel, LinkWrapper, Name } from './style';
 
 interface Props {
   item: LinkInterface;
-  setLinks: (arg0: LinkInterface[]) => void;
+  setLinks: (arg0: LinkInterface[] | undefined) => void;
   links: LinkInterface[];
 }
 

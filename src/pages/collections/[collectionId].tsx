@@ -32,6 +32,9 @@ export async function getServerSideProps({ req, params }: Props) {
     },
     include: {
       links: {
+        orderBy: {
+          modificationTimestamp: 'desc',
+        },
         select: {
           id: true,
           title: true,

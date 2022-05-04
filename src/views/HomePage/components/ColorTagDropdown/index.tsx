@@ -13,10 +13,9 @@ import { ColorTag } from './style';
 
 interface Props {
   setList: (arg0: CollectionInterface[]) => void;
-  list: CollectionInterface[];
 }
 
-export const ColorTagDropdown = ({ setList, list }: Props) => {
+export const ColorTagDropdown = ({ setList }: Props) => {
   const mediaQuerySm = useMediaQuery(breakpoints.device.sm);
   const collections = useSelector((state: RootState) => state.collections);
   const dispatch = useDispatch();

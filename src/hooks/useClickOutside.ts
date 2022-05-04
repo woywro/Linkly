@@ -1,13 +1,9 @@
-import { RefObject, useEffect, useRef } from "react";
-
-type ListenerEvent = MouseEvent & {
-  target: Element;
-};
+import { RefObject, useEffect, useRef } from 'react';
 
 const useClickOutside = (
   ref: RefObject<HTMLElement>,
   callback: (event: MouseEvent) => void,
-  eventType: string = "click"
+  eventType: string = 'click'
 ) => {
   const handlerRef = useRef(callback);
 
@@ -16,7 +12,7 @@ const useClickOutside = (
   });
 
   useEffect(() => {
-    const listener = (event: ListenerEvent) => {
+    const listener = (event: any) => {
       if (ref && ref.current) {
         if (event.target.shadowRoot) {
           if (!event.target.shadowRoot.contains(ref.current)) {
@@ -31,11 +27,11 @@ const useClickOutside = (
     };
 
     document.addEventListener(eventType, listener);
-    document.addEventListener("touchstart", listener);
+    document.addEventListener('touchstart', listener);
 
     return () => {
       document.removeEventListener(eventType, listener);
-      document.removeEventListener("touchstart", listener);
+      document.removeEventListener('touchstart', listener);
     };
   });
 };

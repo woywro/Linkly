@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useDragControls } from 'framer-motion';
 import { useRouter } from 'next/router';
+import { useCallback } from 'react';
 import { AiFillCloud } from 'react-icons/ai';
 import { RiFolder5Fill } from 'react-icons/ri';
 import { useDispatch } from 'react-redux';
@@ -21,14 +22,14 @@ export const Collection = ({ item, sortingMode }: Props) => {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  const handleOpenCategory = () => {
+  const handleOpenCategory = useCallback(() => {
     axios
       .post('/api/updateCollectionTimestamp', { id: item.id })
       .then((res) => {
         dispatch(updateCollection(res.data));
       });
     router.push(`/collections/${item.id}`);
-  };
+  }, [item]);
 
   return (
     <CollectionWrapper

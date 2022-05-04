@@ -1,7 +1,11 @@
 import { useEffect } from 'react';
+import React from 'react';
 
-export const useClickInside = (ref, callback) => {
-  const handleClick = (e) => {
+export const useClickInside = (
+  ref: React.RefObject<HTMLElement>,
+  callback: () => void
+) => {
+  const handleClick = (e: any) => {
     if (ref.current && ref.current.contains(e.target)) {
       callback();
     }
