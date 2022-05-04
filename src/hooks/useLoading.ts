@@ -20,7 +20,6 @@ export function checkIfLoading(state: any, name: string) {
 
 export default function useLoading(state: any, name: string) {
   const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     setLoading(checkIfLoading(state, name));
   }, [state, loading, name]);
