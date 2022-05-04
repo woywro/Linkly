@@ -1,25 +1,24 @@
+import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
 import { CloseWrapperButton } from '../../components/CloseWrapperButton';
-import { CollectionLinkItem } from './components/CollectionLinkItem';
+import { EmptyState } from '../../components/EmptyState';
+import { LinkItem } from '../../components/LinkItem';
 import { Links } from '../../components/Links';
 import { OpenWrapperButton } from '../../components/OpenWrapperButton';
-import Scrollbars from 'react-custom-scrollbars-2';
+import { CollectionInterface } from '../../types/CollectionInterface';
 import { LinkInterface } from '../../types/LinkInterface';
 import {
   Divider,
   LeftWrapper,
   PageContainer,
+  PathLink,
   RightWrapper,
   Title,
   TitleWrapper,
-  PathLink,
 } from '../style';
 import { CollectionInfo } from './components/CollectionInfo';
 import { Sharing } from './components/Sharing';
-import { EmptyState } from '../../components/EmptyState';
-import { CollectionInterface } from '../../types/CollectionInterface';
-import { useRouter } from 'next/router';
-import { LinkItem } from '../../components/LinkItem';
 
 interface Props {
   collectionFetched: CollectionInterface;

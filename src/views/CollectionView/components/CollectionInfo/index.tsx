@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { useCallback } from 'react';
 import { RiFolder5Fill } from 'react-icons/ri';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTheme } from 'styled-components';

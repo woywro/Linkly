@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { LoadingRequestInterface } from "../types/LoadingRequestInterface";
+import { useEffect, useState } from 'react';
+import { LoadingRequestInterface } from '../types/LoadingRequestInterface';
 
-export function checkIfLoading(state, name: string) {
+export function checkIfLoading(state: any, name: string) {
   const requestsInProgress: string[] = [];
   state.requests.map((request: LoadingRequestInterface) => {
     if (request.inProgress == true) {
@@ -18,7 +18,7 @@ export function checkIfLoading(state, name: string) {
   return res();
 }
 
-export default function useLoading(state, name: string) {
+export default function useLoading(state: any, name: string) {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

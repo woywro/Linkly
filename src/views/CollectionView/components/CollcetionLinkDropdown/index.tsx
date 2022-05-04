@@ -35,20 +35,20 @@ export const CollectionLinkDropdown = ({ item, setLinks, links }: Props) => {
     [links]
   );
 
-  const handleDeleteLinkFromCollection = async (
-    e: React.MouseEvent,
-    item: LinkInterface
-  ) => {
-    e.stopPropagation();
-    await axios.post('/api/deleteLinkFromCollection', {
-      id: item.id,
-      collectionId: router.query.collectionId,
-    });
-    const linksFiltered: LinkInterface[] | undefined = links?.filter(
-      (x) => x.id !== item.id
-    );
-    setLinks?.(linksFiltered);
-  };
+  const handleDeleteLinkFromCollection = useCallback(
+    async (e: React.MouseEvent, item: LinkInterface) => {
+      e.stopPropagation();
+      await axios.post('/api/deleteLinkFromCollection', {
+        id: item.id,
+        collectionId: router.query.collectionId,
+      });
+      const linksFiltered: LinkInterface[] | undefined = links?.filter(
+        (x) => x.id !== item.id
+      );
+      setLinks?.(linksFiltered);
+    },
+    [links, item]
+  );
 
   const handleEditLink = useCallback(() => {
     router.push({

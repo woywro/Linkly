@@ -13,6 +13,7 @@ interface Props {
 export const ColorTagSwitcher = ({ setCollection }: Props) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
   const handleChangeTag = (color: string) => {
     axios
       .post('/api/updateCollectionTag', {

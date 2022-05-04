@@ -1,7 +1,7 @@
-import { PrismaClient } from "@prisma/client";
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import { prisma } from "../../../prisma/PrismaClient";
+import { PrismaClient } from '@prisma/client';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
+import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
@@ -9,11 +9,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
   try {
     const result = await prisma.ShareRequest.findMany({
       where: {
-        ownerId: session?.user.id,
+        owner: { email: session?.user?.email },
         isAccepted: true,
         receiverEmail: {
           contains: searchValue,
-          mode: "insensitive",
+          mode: 'insensitive',
         },
       },
       select: {

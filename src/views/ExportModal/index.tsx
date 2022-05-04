@@ -21,10 +21,6 @@ export const ExportModal = ({ collectionFetched }: Props) => {
     setChecked(urls);
   }, [collectionFetched]);
 
-  useEffect(() => {
-    console.log(checked);
-  }, [checked]);
-
   const handleCopyToClipboard = () => {
     navigator.clipboard.writeText(checked.join(' '));
     setCopyButtonText('Copied!');
