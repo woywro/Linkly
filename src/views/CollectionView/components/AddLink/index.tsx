@@ -1,21 +1,23 @@
-import { Button } from '../../../../components/Button';
-import { Input } from '../../../../components/Input';
-import styled, { useTheme } from 'styled-components';
-import { useDispatch, useStore } from 'react-redux';
-import { useState } from 'react';
 import axios from 'axios';
+import { Formik } from 'formik';
+import { useRouter } from 'next/router';
+import { RiAddCircleLine } from 'react-icons/ri';
+import { useDispatch } from 'react-redux';
+import { useTheme } from 'styled-components';
+import * as Yup from 'yup';
 import { updateCollections } from '../../../../redux/actions/CollectionActions';
 import { addLink } from '../../../../redux/actions/LinkActions';
-import { CollectionInterface } from '../../../../types/CollectionInterface';
 import { LinkInterface } from '../../../../types/LinkInterface';
-import { Field, Form, Formik } from 'formik';
-import * as Yup from 'yup';
-import { useRouter } from 'next/router';
-import { InputStyling } from '../../../../components/Input';
-import { Text } from '../../../../components/Text';
-import { Divider } from '../../../style';
-import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from 'react-icons/ri';
 import { ThemeInterface } from '../../../../types/ThemeInterface';
+import { Divider } from '../../../style';
+import {
+  AddButton,
+  Error,
+  InputWrapper,
+  StyledForm,
+  StyledInput,
+  Wrapper,
+} from './style';
 
 interface Props {
   collectionValue?: string;
@@ -27,7 +29,7 @@ export const AddLink = ({ collectionValue, links, setLinks }: Props) => {
   const dispatch = useDispatch();
   const router = useRouter();
   const theme = useTheme() as ThemeInterface;
-  const handleAdd = async (title, url) => {
+  const handleAdd = async (title: string, url: string) => {
     const collectionValues = [collectionValue];
     await axios
       .post('/api/addLink', {
@@ -89,44 +91,3 @@ export const AddLink = ({ collectionValue, links, setLinks }: Props) => {
     </Wrapper>
   );
 };
-
-const AddButton = styled.button`
-  border: none;
-  padding: 10px;
-  background: none;
-  cursor: pointer;
-  font-size: 30px;
-`;
-
-const Wrapper = styled.div`
-  display: flex;
-  width: 100%;
-  background: none;
-  padding: 10px;
-  flex-flow: column;
-`;
-
-const StyledForm = styled(Form)`
-  display: flex;
-  justify-content: center;
-  align-items: start;
-  flex-flow: row;
-  width: 100%;
-`;
-
-const InputWrapper = styled.div`
-  display: flex;
-  flex-flow: column;
-  width: 100%;
-`;
-
-const Error = styled(Text)`
-  color: ${(props) => props.theme.colors.red};
-  font-size: 12px;
-  padding: 5px;
-`;
-
-const StyledInput = styled(Field)`
-  ${InputStyling}
-  background: none;
-`;
