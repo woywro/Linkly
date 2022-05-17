@@ -1,6 +1,6 @@
 import { Button } from '../../../../components/Button';
 import { Input } from '../../../../components/Input';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import { useDispatch, useStore } from 'react-redux';
 import { useState } from 'react';
 import axios from 'axios';
@@ -14,6 +14,8 @@ import { useRouter } from 'next/router';
 import { InputStyling } from '../../../../components/Input';
 import { Text } from '../../../../components/Text';
 import { Divider } from '../../../style';
+import { RiAddCircleLine, RiLayoutGridLine, RiTeamLine } from 'react-icons/ri';
+import { ThemeInterface } from '../../../../types/ThemeInterface';
 
 interface Props {
   collectionValue?: string;
@@ -24,7 +26,7 @@ interface Props {
 export const AddLink = ({ collectionValue, links, setLinks }: Props) => {
   const dispatch = useDispatch();
   const router = useRouter();
-
+  const theme = useTheme() as ThemeInterface;
   const handleAdd = async (title, url) => {
     const collectionValues = [collectionValue];
     await axios
@@ -78,7 +80,9 @@ export const AddLink = ({ collectionValue, links, setLinks }: Props) => {
               <StyledInput name="url" placeholder="Website url" />
               {errors.url && touched.url ? <Error>{errors.url}</Error> : null}
             </InputWrapper>
-            <AddButton type="submit">+</AddButton>
+            <AddButton type="submit">
+              <RiAddCircleLine style={{ fill: theme.colors.secondary }} />
+            </AddButton>
           </StyledForm>
         )}
       </Formik>
