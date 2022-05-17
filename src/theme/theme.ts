@@ -126,12 +126,12 @@ export const theme6 = {
 export const theme7 = {
   mode: 'light',
   colors: {
-    primary: '#FFFF99',
-    secondary: '#06beb6',
+    primary: '#cf8bf3',
+    secondary: '#fdb99b',
     yellow: '#ffc107',
     green: '#50C878',
     red: '#FF1919',
-    gradient: 'linear-gradient(to right, #06beb6, #48b1bf)',
+    gradient: 'linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);',
     primaryBg: 'rgba(255,255,255,0.5)',
     secondaryBg: 'rgba(255,255,255,0.6)',
     primaryBgNoTransparent: '#ffffff',
@@ -168,12 +168,12 @@ export const theme8 = {
 export const theme9 = {
   mode: 'light',
   colors: {
-    primary: '#FBAB7E',
-    secondary: '#F7CE68',
+    primary: '#b06ab3',
+    secondary: '#4568dc',
     yellow: '#ffc107',
     green: '#50C878',
     red: '#FF1919',
-    gradient: 'linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%)',
+    gradient: 'linear-gradient(to right, #4568dc, #b06ab3)',
     primaryBg: 'rgba(255,255,255,0.5)',
     secondaryBg: 'rgba(255,255,255,0.6)',
     primaryBgNoTransparent: '#ffffff',
@@ -189,12 +189,12 @@ export const theme9 = {
 export const theme10 = {
   mode: 'light',
   colors: {
-    primary: '#4a00e0',
-    secondary: '#8e2de2',
+    primary: '#396afc',
+    secondary: '#2948ff',
     yellow: '#ffc107',
     green: '#50C878',
     red: '#FF1919',
-    gradient: 'linear-gradient(to right, #8e2de2, #4a00e0)',
+    gradient: 'linear-gradient(to right, #396afc, #2948ff)',
     primaryBg: 'rgba(255,255,255,0.5)',
     secondaryBg: 'rgba(255,255,255,0.6)',
     primaryBgNoTransparent: '#ffffff',
@@ -206,15 +206,16 @@ export const theme10 = {
   },
   shadow: 'rgba(0, 0, 0, 0.24) 0px 3px 8px;',
 };
+//
 export const theme11 = {
   mode: 'light',
   colors: {
-    primary: '#136a8a',
-    secondary: '#267871',
+    primary: '#bc4e9c',
+    secondary: '#f80759',
     yellow: '#ffc107',
     green: '#50C878',
     red: '#FF1919',
-    gradient: 'linear-gradient(to right, #136a8a, #267871)',
+    gradient: 'linear-gradient(to right, #bc4e9c, #f80759)',
     primaryBg: 'rgba(255,255,255,0.5)',
     secondaryBg: 'rgba(255,255,255,0.6)',
     primaryBgNoTransparent: '#ffffff',
