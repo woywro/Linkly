@@ -1,19 +1,19 @@
-import axios from "axios";
-import { HistoryInterface } from "../../types/HistoryInterface";
-import { LinkInterface } from "../../types/LinkInterface";
+import axios from 'axios';
+import { HistoryInterface } from '../../types/HistoryInterface';
+import { LinkInterface } from '../../types/LinkInterface';
 import {
   requestStarted,
   requestFinished,
-} from "../actions/RequestsLoadingActions";
+} from '../actions/RequestsLoadingActions';
 export const setHistory = (historyLinks: HistoryInterface[]) => ({
-  type: "SET_HISTORY",
+  type: 'SET_HISTORY',
   payload: {
     historyLinks,
   },
 });
 
 export const updateHistory = (link: LinkInterface) => ({
-  type: "UPDATE_HISTORY",
+  type: 'UPDATE_HISTORY',
   payload: {
     link,
   },
@@ -21,10 +21,10 @@ export const updateHistory = (link: LinkInterface) => ({
 
 export const getHistory = () => {
   return function (dispatch) {
-    dispatch(requestStarted("getHistory"));
-    axios.get("/api/getHistory", { params: { cursor: "" } }).then((res) => {
+    dispatch(requestStarted('getHistory'));
+    axios.get('/api/getHistory', { params: { cursor: '' } }).then((res) => {
       dispatch(setHistory(res.data.history));
-      dispatch(requestFinished("getHistory"));
+      dispatch(requestFinished('getHistory'));
     });
   };
 };
