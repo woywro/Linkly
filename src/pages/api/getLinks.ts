@@ -1,21 +1,21 @@
-import { PrismaClientKnownRequestError } from "@prisma/client/runtime";
-import { NextApiRequest, NextApiResponse } from "next";
-import { getSession } from "next-auth/react";
-import { prisma } from "../../../prisma/PrismaClient";
+import { PrismaClientKnownRequestError } from '@prisma/client/runtime';
+import { NextApiRequest, NextApiResponse } from 'next';
+import { getSession } from 'next-auth/react';
+import { prisma } from '../../../prisma/PrismaClient';
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
   const session = await getSession({ req });
   try {
-    const limit = 3;
-    const cursor = req.query.cursor ?? "";
+    const limit = 6;
+    const cursor = req.query.cursor ?? '';
     const cursorObj =
-      cursor == "" ? undefined : { modificationTimestamp: cursor };
+      cursor == '' ? undefined : { modificationTimestamp: cursor };
     const link = await prisma.Link.findMany({
-      skip: cursor !== "" ? 1 : 0,
+      skip: cursor !== '' ? 1 : 0,
       cursor: cursorObj,
       take: limit,
       orderBy: {
-        modificationTimestamp: "desc",
+        modificationTimestamp: 'desc',
       },
       where: {
         owner: { email: session.user.email },
