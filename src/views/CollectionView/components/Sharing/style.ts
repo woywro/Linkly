@@ -35,7 +35,7 @@ export const SharedEmail = styled(motion.div)`
   padding: 10px;
   cursor: pointer;
   position: relative;
-  border-radius: 20px;
+  border-radius: 10px;
   &:hover {
     ${hoverEffectText}
   }
@@ -73,7 +73,7 @@ export const SharingWrapper = styled.div`
 
 export const AddButton = styled(Button)`
   padding: 5px 10px;
-  border-radius: 20px;
+  border-radius: 10px;
 `;
 
 export const StyledForm = styled(Form)`
@@ -83,7 +83,7 @@ export const StyledForm = styled(Form)`
   flex-flow: row;
   background: ${(props) => props.theme.colors.primaryBg};
   padding: 5px;
-  border-radius: 20px;
+  border-radius: 10px;
   width: 100%;
   position: relative;
   margin-bottom: 10px;

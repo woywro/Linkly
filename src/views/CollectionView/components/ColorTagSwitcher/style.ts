@@ -7,7 +7,7 @@ export const ColorSwitcherWrapper = styled.div<{ isVisible?: boolean }>`
   justify-content: center;
   flex-flow: row;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 5px;
 `;
 

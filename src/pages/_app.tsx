@@ -70,10 +70,6 @@ const Wrapper = styled.div`
   position: relative;
   padding: 0;
   background: ${(props) => props.theme.colors.gradient};
-  @media only screen and ${breakpoints.device.sm} {
-  }
-  @media only screen and ${breakpoints.device.lg} {
-  }
 `;
 const ViewBox = styled.div`
   width: 90vw;
@@ -82,7 +78,7 @@ const ViewBox = styled.div`
   justify-content: flex-start;
   position: relative;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 10px;
   box-shadow: 0px 0px 0px 18px rgba(255, 255, 255, 0.3);
   background: ${(props) => props.theme.colors.primaryBg};
   @media only screen and ${breakpoints.device.sm} {

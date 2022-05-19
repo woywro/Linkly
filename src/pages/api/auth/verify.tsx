@@ -29,7 +29,7 @@ const Wrapper = styled.div`
   height: 100%;
   padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
-  border-radius: 20px;
+  border-radius: 10px;
   @media only screen and ${breakpoints.device.sm} {
     border-radius: 0px;
     width: 100%;

@@ -39,16 +39,15 @@ export const Item = styled(motion.button)<{ isActive?: boolean }>`
   ${({ isActive }) =>
     isActive &&
     css`
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 20px;
+      &::after {
+        border-left: 3px solid ${(props) => props.theme.colors.secondary};
+        position: absolute;
+        left: 0;
+        height: 100%;
+        content: '';
+        width: 5px;
+      }
     `};
-  &:hover:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 20px;
-  }
 `;
 
 export const Links = styled.div`

@@ -25,6 +25,7 @@ export const StyledForm = styled(Form)`
   align-items: start;
   flex-flow: row;
   width: 100%;
+  padding: 10px;
 `;
 
 export const InputWrapper = styled.div`
@@ -42,4 +43,5 @@ export const Error = styled(Text)`
 export const StyledInput = styled(Field)`
   ${InputStyling}
   background: none;
+  border-radius: 0;
 `;

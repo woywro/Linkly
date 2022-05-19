@@ -23,7 +23,7 @@ export const ModalWrapper = styled(motion.div)`
   background: ${(props) => props.theme.colors.primaryBgNoTransparent};
   padding: 40px;
   z-index: 1000;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -53,7 +53,7 @@ export const CloseButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
   font-size: 24px;

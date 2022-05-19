@@ -12,7 +12,7 @@ export const StyledButton = styled(motion.button)`
     right: 15px;
     background: ${(props) => props.theme.colors.secondary};
     border: none;
-    border-radius: 20px;
+    border-radius: 10px;
     z-index: 100;
   }
 `;

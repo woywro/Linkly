@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 
 export const Button = styled(motion.button)`
   background: ${(props) => props.theme.colors.secondary};
-  border-radius: 15px;
+  border-radius: 10px;
   color: #ffffff;
   cursor: pointer;
   font-size: 16px;
