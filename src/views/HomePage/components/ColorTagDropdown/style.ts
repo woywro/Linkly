@@ -12,7 +12,7 @@ export const ColorTag = styled.div<{ color: string }>`
   margin: 2px;
   background: ${(props) => props.color};
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 10px;
   @media only screen and ${breakpoints.device.sm} {
     width: 25px;
     height: 25px;

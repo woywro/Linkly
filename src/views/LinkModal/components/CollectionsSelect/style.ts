@@ -17,7 +17,7 @@ export const SuggesionsWrapper = styled.ul`
   max-height: 100px;
   overflow-y: auto;
   width: 100%;
-  border-radius: 20px;
+  border-radius: 10px;
   position: absolute;
   box-shadow: ${(props) => props.theme.shadow}
   background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
@@ -29,7 +29,7 @@ export const SelectWrapper = styled.div`
   position: relative;
   background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
   padding: 15px 5px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-size: 15px;
   width: 100%;
   &:focus {
@@ -58,7 +58,7 @@ export const ChoosenSuggestion = styled.li`
   font-size: 12px;
   background: ${(props) => props.theme.colors.secondary};
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 10px;
   margin: 2px;
   margin-top: 10px;
   color: white;
@@ -83,7 +83,7 @@ export const Add = styled.div`
   cursor: pointer;
   background: ${(props) => props.theme.colors.background};
   padding: 5px;
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   align-items: center;
   flex-flow: column;

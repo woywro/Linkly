@@ -16,7 +16,7 @@ export const LinkWrapper = styled.div`
   padding: 10px;
   cursor: pointer;
   position: relative;
-  border-radius: 20px;
+  border-radius: 10px;
   &:hover {
     ${hoverEffectBg}
   }

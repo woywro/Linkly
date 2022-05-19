@@ -48,14 +48,14 @@ export const MobileNavItem = styled(motion.li)<{ isActive: boolean }>`
     isActive &&
     css`
       background: rgba(0, 0, 0, 0.1);
-      border-radius: 20px;
+      border-radius: 10px;
     `};
   &:hover:after {
     content: '';
     position: absolute;
     width: 100%;
     height: 100%;
-    border-radius: 20px;
+    border-radius: 10px;
   }
   @media only screen and ${breakpoints.device.lg} {
     margin: 5px;

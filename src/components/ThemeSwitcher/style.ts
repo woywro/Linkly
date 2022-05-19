@@ -45,19 +45,19 @@ export const ThemeSwitcherWrapper = styled.div<{ isVisible?: boolean }>`
   justify-content: flex-end;
   flex-flow: column;
   align-items: center;
-  border-radius: 20px;
+  border-radius: 10px;
   padding-bottom: 16px;
   bottom: 0;
   @media only screen and ${breakpoints.device.sm} {
     background: rgba(255, 255, 255, 0.3);
     padding: 20px;
-    border-radius: 20px;
+    border-radius: 10px;
     position: static;
   }
   @media only screen and ${breakpoints.device.lg} {
     background: rgba(255, 255, 255, 0.3);
     padding: 10px;
-    border-radius: 20px;
+    border-radius: 10px;
     position: static;
   }
 `;

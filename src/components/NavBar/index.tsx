@@ -44,18 +44,17 @@ export const NavBar = () => {
             <NavItemText>Social</NavItemText>
           </Item>
         </Link>
-      </Links>
-      <BottomSection>
         <Link href={`/account`} passHref>
           <Item
-            style={{ padding: '5px', borderRadius: '10px' }}
-            isActive={false}
+            isActive={router.pathname == '/account' ? true : false}
             whileTap={{ scale: 0.9 }}
           >
             <BiUser />
             <NavItemText>Account</NavItemText>
           </Item>
         </Link>
+      </Links>
+      <BottomSection>
         {session && (
           <LogoutBtn
             onClick={() => {
@@ -81,7 +80,7 @@ const BottomSection = styled.div`
   padding: 10px;
   padding-bottom: 40px;
   margin-bottom: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   position: relative;
   background: ${(props) => props.theme.colors.secondaryBg};
 `;
