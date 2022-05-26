@@ -7,6 +7,7 @@ import { CollectionList } from './components/CollectionList';
 import { History } from './components/History';
 import { LinkList } from './components/LinkList';
 import { SearchBar } from './components/Searchbar';
+import { FastLinks } from './components/FastLinks';
 
 export const HomePage = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -38,17 +39,8 @@ export const HomePage = () => {
       </LeftWrapper>
       <RightWrapper open={open}>
         <CloseWrapperButton onClick={() => setOpen(false)} />
-        <Scrollbars
-          style={{
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <History />
-        </Scrollbars>
+        <History />
+        <FastLinks />
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>
