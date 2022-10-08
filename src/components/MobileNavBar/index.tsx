@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
-import { Logo } from "../Logo";
-import { MobileNav } from "../MobileNav";
-import { AddLinkButton, MenuButton, MobileNavbarWrapper, Title } from "./style";
-import { AiOutlinePlus } from "react-icons/ai";
-import { useRouter } from "next/router";
+import { useState } from 'react';
+import { AiOutlineMenu } from 'react-icons/ai';
+import { Logo } from '../Logo';
+import { MobileNav } from '../MobileNav';
+import { AddLinkButton, MenuButton, MobileNavbarWrapper, Title } from './style';
+import { AiOutlinePlus } from 'react-icons/ai';
+import { useRouter } from 'next/router';
 
 export const MobileNavBar = () => {
   const [open, setOpen] = useState(false);
@@ -14,7 +14,7 @@ export const MobileNavBar = () => {
       <MenuButton whileTap={{ scale: 0.9 }}>
         <AiOutlineMenu
           size={25}
-          style={{ fill: "white" }}
+          style={{ fill: 'white' }}
           onClick={() => setOpen(!open)}
         />
       </MenuButton>
@@ -22,8 +22,8 @@ export const MobileNavBar = () => {
       <AddLinkButton whileTap={{ scale: 0.9 }}>
         <AiOutlinePlus
           size={25}
-          style={{ fill: "white" }}
-          onClick={() => router.push("/addLink")}
+          style={{ fill: 'white' }}
+          onClick={() => router.push('/addLink')}
         />
       </AddLinkButton>
       <MobileNav open={open} setOpen={setOpen} />

@@ -72,8 +72,8 @@ const Wrapper = styled.div`
   background: ${(props) => props.theme.colors.gradient};
 `;
 const ViewBox = styled.div`
-  width: 90vw;
-  height: 80vh;
+  width: 95vw;
+  height: 90vh;
   display: flex;
   justify-content: flex-start;
   position: relative;
