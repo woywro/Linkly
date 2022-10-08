@@ -10,7 +10,7 @@ export const SharedLinkWrapper = styled.li`
   margin: 5px;
   cursor: pointer;
   position: relative;
-  border-radius: 20px;
+  border-radius: 10px;
   &:hover {
     background: ${(props) => props.theme.colors.secondaryBg};
   }

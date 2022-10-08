@@ -10,7 +10,7 @@ export const StyledCategory = styled.div`
   align-items: center;
   justify-content: flex-start;
   flex-flow: row;
-  border-radius: 20px;
+  border-radius: 10px;
   color: ${(props) => props.theme.colors.primaryText};
 `;
 
@@ -41,7 +41,7 @@ export const ShareRequest = styled.div`
   width: 100%;
   display: flex;
   padding: 10px;
-  border-radius: 20px;
+  border-radius: 10px;
   justify-content: space-around;
   flex-wrap: wrap;
   align-items: center;

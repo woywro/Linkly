@@ -17,6 +17,7 @@ import {
   Title,
   TitleWrapper,
 } from '../style';
+import { AddLink } from './components/AddLink';
 import { CollectionInfo } from './components/CollectionInfo';
 import { Sharing } from './components/Sharing';
 
@@ -72,6 +73,11 @@ export const CollectionView = ({ collectionFetched }: Props) => {
                   );
                 })
               )}
+              <AddLink
+                collectionValue={collectionFetched.value}
+                setLinks={setLinks}
+                links={links}
+              />
             </>
           </Links>
         </Scrollbars>

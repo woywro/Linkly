@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
   width: 30%;
   padding: 20px;
   background: ${(props) => props.theme.colors.primaryBg};
-  border-radius: 20px;
+  border-radius: 10px;
   @media only screen and ${breakpoints.device.sm} {
     border-radius: 0px;
     width: 100%;
@@ -60,7 +60,7 @@ export const Title = styled(Text)`
 `;
 
 export const LoginButton = styled(Button)`
-  border-radius: 20px;
+  border-radius: 10px;
   width: 50%;
   padding: 15px;
   margin: 0;

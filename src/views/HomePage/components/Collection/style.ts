@@ -13,7 +13,7 @@ export const CollectionWrapper = styled(Reorder.Item)<{ sortingMode: boolean }>`
   justify-content: flex-start;
   flex-flow: column;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 10px;
   background: ${(props) =>
     props.sortingMode ? props.theme.colors.primary : 'none'};
   border: none;

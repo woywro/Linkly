@@ -18,7 +18,7 @@ export const DropdownItemList = styled.div<{
   show: boolean;
   fullWidth?: boolean;
 }>`
-  border-radius: 20px;
+  border-radius: 10px;
   justify-content: center;
   flex-flow: column;
   align-items: center;

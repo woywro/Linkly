@@ -10,7 +10,7 @@ export const FeedItemWrapper = styled(motion.div)<{ color: string }>`
   justify-content: center;
   flex-flow: column;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 10px;
   position: relative;
   color: ${(props) => props.theme.colors.primaryText};
   &:hover {

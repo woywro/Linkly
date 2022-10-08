@@ -7,5 +7,5 @@ export const DropDownButton = styled.button`
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 20px;
+  border-radius: 10px;
 `;

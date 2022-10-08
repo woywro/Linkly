@@ -44,6 +44,7 @@ export const RightWrapper = styled.div<{ open: boolean }>`
   border-top-right-radius: 30px;
   border-top-left-radius: 30px;
   text-align: left;
+  position: relative;
   padding: 10px;
   z-index: 1000;
 

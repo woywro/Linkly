@@ -12,7 +12,7 @@ export const SearchBarWrapper = styled.div`
   z-index: 60;
   @media only screen and ${breakpoints.device.sm} {
     padding: 0;
-    border-radius: 20px;
+    border-radius: 10px;
     height: 100px;
     width: auto;
     position: relative;
@@ -31,7 +31,7 @@ export const SearchBarWrapper = styled.div`
 export const StyledSearchBar = styled(motion.div)`
   width: 60%;
   box-shadow: ${(props) => props.theme.shadow};
-  border-radius: 20px;
+  border-radius: 10px;
   display: flex;
   justify-content: center;
   background: ${(props) => props.theme.colors.primaryBgNoTransparent};
@@ -54,5 +54,5 @@ export const Input = styled.input`
   line-height: 21px;
   transition: all 0.3s ease;
   background: none;
-  border-radius: 20px;
+  border-radius: 10px;
 `;

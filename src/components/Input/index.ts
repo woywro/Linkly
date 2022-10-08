@@ -6,7 +6,7 @@ export const Input = styled.input`
   border: none;
   background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
   padding: 10px 15px;
-  border-radius: 20px;
+  border-radius: 10px;
   font-size: 15px;
   width: 100%;
   &:focus {
@@ -17,7 +17,7 @@ export const Input = styled.input`
 export const InputStyling = css`
   border: none;
   background: ${(props) => props.theme.colors.secondaryBgNoTransparent};
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 15px 20px;
   font-size: 15px;
   width: 100%;
