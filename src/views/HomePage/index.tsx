@@ -40,7 +40,7 @@ export const HomePage = () => {
       <RightWrapper open={open}>
         <CloseWrapperButton onClick={() => setOpen(false)} />
         <History />
-        <FastLinks />
+        {/* <FastLinks /> */}
       </RightWrapper>
       <OpenWrapperButton onClick={() => setOpen(true)} />
     </PageContainer>
